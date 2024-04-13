@@ -9,7 +9,7 @@
 Desenvolvimento de uma API completa, fornecendo recursos como criação, leitura, atualização e exclusão de dados referentes ao universo **Star Wars**.
 
 ## Participantes
-### 🧑‍✈️ Capitão
+### 🚀 Capitão
 [NOME e GITHUB]
 
 ### 💂‍♀️ Batalhão
