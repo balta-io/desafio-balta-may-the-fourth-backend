@@ -10,7 +10,7 @@ Desenvolvimento de uma API completa, fornecendo recursos como criação, leitura
 
 ## Participantes
 ### 🚀 Capitão
-[NOME e GITHUB]
+Sergio Valadão Junior - [Github](https://github.com/savaladaojr/)
 
 ### 💂‍♀️ Batalhão
 * [NOME e GITHUB]
