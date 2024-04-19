@@ -3,19 +3,16 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.0.31903.59
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MayTheFourth.Api", "MayTheFourth.Api\MayTheFourth.Api.csproj", "{4B9538BB-09E6-4154-899F-F7124BC8F26C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MayTheFourth.Api", "MayTheFourth.Api\MayTheFourth.Api.csproj", "{4B9538BB-09E6-4154-899F-F7124BC8F26C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MayTheFourth.Core", "MayTheFourth.Core\MayTheFourth.Core.csproj", "{2D0996E1-D778-4D9E-B6CF-810CF737FC1A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MayTheFourth.Core", "MayTheFourth.Core\MayTheFourth.Core.csproj", "{2D0996E1-D778-4D9E-B6CF-810CF737FC1A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MayTheFourth.Infra", "MayTheFourth.Infra\MayTheFourth.Infra.csproj", "{B5E6A056-2D1F-46F3-BB01-E4BFB0F33F0A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MayTheFourth.Infra", "MayTheFourth.Infra\MayTheFourth.Infra.csproj", "{B5E6A056-2D1F-46F3-BB01-E4BFB0F33F0A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Release|Any CPU = Release|Any CPU
-	EndGlobalSection
-	GlobalSection(SolutionProperties) = preSolution
-		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{4B9538BB-09E6-4154-899F-F7124BC8F26C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
@@ -30,5 +27,8 @@ Global
 		{B5E6A056-2D1F-46F3-BB01-E4BFB0F33F0A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B5E6A056-2D1F-46F3-BB01-E4BFB0F33F0A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B5E6A056-2D1F-46F3-BB01-E4BFB0F33F0A}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
 	EndGlobalSection
 EndGlobal
