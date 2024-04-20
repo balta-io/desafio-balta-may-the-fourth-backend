@@ -16,6 +16,6 @@ public class Film : Entity
     public List<Species> Species { get; set; } = [];
     public List<Starship> Starships { get; set; } = [];
     public List<Vehicle> Vehicles { get; set; } = [];
-    public List<People> Characters { get; set; } = [];
+    public List<Person> Characters { get; set; } = [];
     public List<Planet> Planets { get; set; } = [];
 }
