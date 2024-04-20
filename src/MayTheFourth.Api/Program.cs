@@ -1,5 +1,8 @@
+using MayTheFourth.Api.Extensions;
+
 var builder = WebApplication.CreateBuilder(args);
 
+builder.AddMediatR();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
