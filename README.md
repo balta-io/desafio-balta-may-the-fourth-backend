@@ -13,10 +13,10 @@ Desenvolvimento de uma API completa, fornecendo recursos como criação, leitura
 Sergio Valadão Junior - [Github](https://github.com/savaladaojr/)
 
 ### 💂‍♀️ Batalhão
-* [NOME e GITHUB]
-* [NOME e GITHUB]
-* [NOME e GITHUB]
-* [NOME e GITHUB]
+* André Rodrigues - [Github](https://github.com/savaladaojr/desafio-balta-may-the-fourth-backend)
+* Augusto Rengel - [Github](https://github.com/savaladaojr/desafio-balta-may-the-fourth-backend)
+* Jonathan Igor Bockorny Pereira - [Github](https://github.com/savaladaojr/desafio-balta-may-the-fourth-backend)
+* Lucas  - [Github](https://github.com/savaladaojr/desafio-balta-may-the-fourth-backend)
 
 ## ⚙️ Tecnologias
 * C# 12
