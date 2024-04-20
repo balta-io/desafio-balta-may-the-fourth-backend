@@ -1,6 +1,8 @@
-﻿namespace MayTheFourth.Core.Entities;
+﻿using MayTheFourth.Core.Contexts.SharedContext.Entities;
 
-public class Species
+namespace MayTheFourth.Core.Entities;
+
+public class Species : Entity
 {
     public string Name { get; set; } = string.Empty;
     public string Classification { get; set; } = string.Empty;

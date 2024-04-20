@@ -1,6 +1,8 @@
-﻿namespace MayTheFourth.Core.Entities;
+﻿using MayTheFourth.Core.Contexts.SharedContext.Entities;
 
-public class Film
+namespace MayTheFourth.Core.Entities;
+
+public class Film : Entity
 {
     public string Title { get; set; } = string.Empty;
     public int EpisodeId { get; set; }

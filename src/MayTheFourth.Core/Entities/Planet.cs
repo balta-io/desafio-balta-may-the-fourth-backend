@@ -1,6 +1,8 @@
-﻿namespace MayTheFourth.Core.Entities;
+﻿using MayTheFourth.Core.Contexts.SharedContext.Entities;
 
-public class Planet
+namespace MayTheFourth.Core.Entities;
+
+public class Planet : Entity
 {
     public string Name { get; set; } = string.Empty;
     public string Diameter { get; set; } = string.Empty;

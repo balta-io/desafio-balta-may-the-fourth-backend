@@ -1,8 +1,10 @@
-﻿namespace MayTheFourth.Core.Entities;
+﻿using MayTheFourth.Core.Contexts.SharedContext.Entities;
+
+namespace MayTheFourth.Core.Entities;
 
 public class People
 {
-    public class Person
+    public class Person : Entity
     {
         public string Name { get; set; } = string.Empty;
         public string BirthYear { get; set; } = string.Empty;

@@ -1,6 +1,8 @@
-﻿namespace MayTheFourth.Core.Entities;
+﻿using MayTheFourth.Core.Contexts.SharedContext.Entities;
 
-public class Vehicle
+namespace MayTheFourth.Core.Entities;
+
+public class Vehicle : Entity
 {
     public string Name { get; set; } = string.Empty;
     public string Model { get; set; } = string.Empty;
