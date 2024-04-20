@@ -9,7 +9,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MayTheFourth.Core", "MayThe
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MayTheFourth.Api", "MayTheFourth.Api\MayTheFourth.Api.csproj", "{49086F14-EDE5-4613-A733-F95BC6226210}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MayTheFourth.Tests", "MayTheFourth.Tests\MayTheFourth.Tests.csproj", "{8305FACC-1EC7-4F75-82F8-3DD5552F280C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MayTheFourth.Tests", "MayTheFourth.Tests\MayTheFourth.Tests.csproj", "{8305FACC-1EC7-4F75-82F8-3DD5552F280C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

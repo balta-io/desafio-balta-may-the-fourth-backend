@@ -17,9 +17,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\MayTheFourth.Api\MayTheFourth.Api.csproj" />
     <ProjectReference Include="..\MayTheFourth.Core\MayTheFourth.Core.csproj" />
-    <ProjectReference Include="..\MayTheFourth.Infra\MayTheFourth.Infra.csproj" />
   </ItemGroup>
 
 </Project>
