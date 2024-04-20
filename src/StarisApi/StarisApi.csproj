@@ -16,16 +16,11 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="DbContexts\" />
     <Folder Include="Endpoints\Movies\" />
     <Folder Include="Endpoints\Species\" />
     <Folder Include="Endpoints\Ships\" />
     <Folder Include="Endpoints\Vehicles\" />
     <Folder Include="Endpoints\Planets\" />
-    <Folder Include="Models\" />
-    <Folder Include="Dtos\" />
-    <Folder Include="Configurations\" />
-    <Folder Include="Responses\" />
   </ItemGroup>
 
 </Project>
