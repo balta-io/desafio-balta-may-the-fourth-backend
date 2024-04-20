@@ -9,17 +9,20 @@ public class People
         public string EyeColor { get; set; } = string.Empty;
         public string Gender { get; set; } = string.Empty;
         public string HairColor { get; set; } = string.Empty;
-        public string Height { get; set; } = string.Empty;
+        public int Height { get; set; }
         public string Mass { get; set; } = string.Empty;
         public string SkinColor { get; set; } = string.Empty;
-        public string Homeworld { get; set; } = string.Empty;
-        public string[] Films { get; set; } = [];
-        public string[] Species { get; set; } = [];
-        public string[] Starships { get; set; } = [];
-        public string[] Vehicles { get; set; } = [];
         public string Url { get; set; } = string.Empty;
-        public string Created { get; set; } = string.Empty;
-        public string Edited { get; set; } = string.Empty;
+        public DateTime Created { get; set; }
+        public DateTime Edited { get; set; }
+
+        public Planet Homeworld { get; set; }
+        public int HomeworldId { get; set; }
+
+        public List<Film> Films { get; set; } = [];
+        public List<Species> Species { get; set; } = [];
+        public List<Starship> Starships { get; set; } = [];
+        public List<Vehicle> Vehicles { get; set; } = [];
     }
 
 }

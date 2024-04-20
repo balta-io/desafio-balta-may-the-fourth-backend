@@ -11,9 +11,9 @@ public class Planet
     public string Climate { get; set; } = string.Empty;
     public string Terrain { get; set; } = string.Empty;
     public string SurfaceWater { get; set; } = string.Empty;
-    public string[] Residents { get; set; } = [];
-    public string[] Films { get; set; } = [];
     public string Url { get; set; } = string.Empty;
-    public string Created { get; set; } = string.Empty;
-    public string Edited { get; set; } = string.Empty;
+    public DateTime Created { get; set; }
+    public DateTime Edited { get; set; }
+    public List<People> Residents { get; set; } = [];
+    public List<Film> Films { get; set; } = [];
 }

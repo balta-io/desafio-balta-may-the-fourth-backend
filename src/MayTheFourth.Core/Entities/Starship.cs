@@ -6,18 +6,18 @@ public class Starship
     public string Model { get; set; } = string.Empty;
     public string StarshipClass { get; set; } = string.Empty;
     public string Manufacturer { get; set; } = string.Empty;
-    public string CostInCredits { get; set; } = string.Empty;
-    public string Length { get; set; } = string.Empty;
+    public decimal CostInCredits { get; set; }
+    public int Length { get; set; }
     public string Crew { get; set; } = string.Empty;
-    public string Passengers { get; set; } = string.Empty;
-    public string MaxAtmospheringSpeed { get; set; } = string.Empty;
+    public int Passengers { get; set; }
+    public int MaxAtmospheringSpeed { get; set; }
     public string HyperdriveRating { get; set; } = string.Empty;
     public string MGLT { get; set; } = string.Empty;
-    public string CargoCapacity { get; set; } = string.Empty;
+    public int CargoCapacity { get; set; }
     public string Consumables { get; set; } = string.Empty;
-    public string[] Films { get; set; } = [];
-    public string[] Pilots { get; set; } = [];
     public string Url { get; set; } = string.Empty;
-    public string Created { get; set; } = string.Empty;
-    public string Edited { get; set; } = string.Empty;
+    public DateTime Created { get; set; }
+    public DateTime Edited { get; set; }
+    public List<Film> Films { get; set; } = [];
+    public List<People> Pilots { get; set; } = [];
 }
