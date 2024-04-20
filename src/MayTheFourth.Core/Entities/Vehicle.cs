@@ -19,5 +19,5 @@ public class Vehicle : Entity
     public DateTime Created { get; set; }
     public DateTime Edited { get; set; }
     public List<Film> Films { get; set; } = [];
-    public List<People> Pilots { get; set; } = [];
+    public List<Person> Pilots { get; set; } = [];
 }

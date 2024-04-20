@@ -16,6 +16,6 @@ public record Request(
     string Url,
     DateTime Created,
     DateTime Edited,
-    List<People> Residents,
+    List<Person> Residents,
     List<Film> Films
     ) : IRequest<Response>;
