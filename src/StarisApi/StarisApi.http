@@ -1,0 +1,6 @@
+@StarisApi_HostAddress = http://localhost:5138
+
+GET {{StarisApi_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
