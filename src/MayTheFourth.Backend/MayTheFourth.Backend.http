@@ -1,0 +1,6 @@
+@MayTheFourth.Backend_HostAddress = http://localhost:5102
+
+GET {{MayTheFourth.Backend_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
