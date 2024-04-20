@@ -2,7 +2,7 @@
 
 namespace MayTheFourth.Core.Entities;
 
-public class People : Entity
+public class Person : Entity
     {
         public string Name { get; set; } = string.Empty;
         public string BirthYear { get; set; } = string.Empty;

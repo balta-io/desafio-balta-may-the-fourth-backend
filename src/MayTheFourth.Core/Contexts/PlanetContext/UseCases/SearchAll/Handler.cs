@@ -2,7 +2,7 @@
 using MayTheFourth.Core.Interfaces.Repositories;
 using MediatR;
 
-namespace MayTheFourth.Core.Contexts.PlanetContext.UseCases.SearchAllPlanets;
+namespace MayTheFourth.Core.Contexts.PlanetContext.UseCases.SearchAll;
 
 public class Handler : IRequestHandler<Request, Response>
 {
@@ -19,12 +19,12 @@ public class Handler : IRequestHandler<Request, Response>
         try
         {
             planets = await _planetRepository.GetAllPlanets();
-            if (planets is null)
+            if (planets!.Count <= 0)
                 return new Response("Nenhum planeta encontrado.", 404);
         }
         catch (Exception ex)
         {
-            return new Response($"Erro: {ex.Message}", 400);
+            return new Response($"Erro: {ex.Message}", 500);
         }
         #endregion
 

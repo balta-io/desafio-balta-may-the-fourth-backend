@@ -18,10 +18,10 @@ public static class PlanetExtension
     {
         #region Get all planets
         app.MapGet("api/v1/planets", async
-            (IRequestHandler<Core.Contexts.PlanetContext.UseCases.SearchAllPlanets.Request,
-            Core.Contexts.PlanetContext.UseCases.SearchAllPlanets.Response> handler) =>
+            (IRequestHandler<Core.Contexts.PlanetContext.UseCases.SearchAll.Request,
+            Core.Contexts.PlanetContext.UseCases.SearchAll.Response> handler) =>
         {
-            var request = new Core.Contexts.PlanetContext.UseCases.SearchAllPlanets.Request();
+            var request = new Core.Contexts.PlanetContext.UseCases.SearchAll.Request();
             var result = await handler.Handle(request, new CancellationToken());
 
             return result.IsSuccess
@@ -32,10 +32,10 @@ public static class PlanetExtension
 
         #region Create planet
         app.MapPost("api/v1/planets/create", async (
-            [FromBody] Core.Contexts.PlanetContext.UseCases.CreatePlanet.Request request,
+            [FromBody] Core.Contexts.PlanetContext.UseCases.Create.Request request,
             [FromServices] IRequestHandler<
-                Core.Contexts.PlanetContext.UseCases.CreatePlanet.Request,
-                Core.Contexts.PlanetContext.UseCases.CreatePlanet.Response> handler) =>
+                Core.Contexts.PlanetContext.UseCases.Create.Request,
+                Core.Contexts.PlanetContext.UseCases.Create.Response> handler) =>
         {
             var result = await handler.Handle(request, new CancellationToken());
             Console.WriteLine(result);

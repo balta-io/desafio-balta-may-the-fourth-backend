@@ -1,6 +1,6 @@
 ﻿using MayTheFourth.Core.Entities;
 
-namespace MayTheFourth.Core.Contexts.PlanetContext.UseCases.CreatePlanet;
+namespace MayTheFourth.Core.Contexts.PlanetContext.UseCases.Create;
 
 public class Response : SharedContext.UseCases.Response
 {
