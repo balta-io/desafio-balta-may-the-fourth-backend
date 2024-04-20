@@ -2,9 +2,7 @@
 
 namespace MayTheFourth.Core.Entities;
 
-public class People
-{
-    public class Person : Entity
+public class People : Entity
     {
         public string Name { get; set; } = string.Empty;
         public string BirthYear { get; set; } = string.Empty;
@@ -25,6 +23,4 @@ public class People
         public List<Species> Species { get; set; } = [];
         public List<Starship> Starships { get; set; } = [];
         public List<Vehicle> Vehicles { get; set; } = [];
-    }
-
 }

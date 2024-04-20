@@ -5,9 +5,9 @@ VisualStudioVersion = 17.0.31903.59
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MayTheFourth.Infra", "MayTheFourth.Infra\MayTheFourth.Infra.csproj", "{B5E6A056-2D1F-46F3-BB01-E4BFB0F33F0A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MayTheFourth.Core", "MayTheFourth.Core\MayTheFourth.Core.csproj", "{A09E17ED-C9CC-4A2B-949F-C5B438F78296}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MayTheFourth.Core", "MayTheFourth.Core\MayTheFourth.Core.csproj", "{A09E17ED-C9CC-4A2B-949F-C5B438F78296}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MayTheFourth.Api", "MayTheFourth.Api\MayTheFourth.Api.csproj", "{49086F14-EDE5-4613-A733-F95BC6226210}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MayTheFourth.Api", "MayTheFourth.Api\MayTheFourth.Api.csproj", "{49086F14-EDE5-4613-A733-F95BC6226210}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

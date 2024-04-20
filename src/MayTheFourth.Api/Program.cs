@@ -1,7 +1,10 @@
 using MayTheFourth.Api.Extensions;
+using MayTheFourth.Api.Extensions.Contexts.PlanetContext;
 
 var builder = WebApplication.CreateBuilder(args);
 
+builder.AddPlanetContext();
+builder.AddDbContext();
 builder.AddMediatR();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
@@ -16,4 +19,6 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 
+
+app.MapPlanetEndpoints();
 app.Run();
