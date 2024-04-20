@@ -1,7 +1,7 @@
 ﻿using MayTheFourth.Core.Entities;
 using MediatR;
 
-namespace MayTheFourth.Core.Contexts.PlanetContext.UseCases.CreatePlanet;
+namespace MayTheFourth.Core.Contexts.PlanetContext.UseCases.Create;
 
 public record Request(
     string Name, 
@@ -16,6 +16,6 @@ public record Request(
     string Url,
     DateTime Created,
     DateTime Edited,
-    List<People> Residents,
+    List<Person> Residents,
     List<Film> Films
     ) : IRequest<Response>;

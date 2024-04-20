@@ -2,7 +2,7 @@
 using MayTheFourth.Core.Interfaces.Repositories;
 using MediatR;
 
-namespace MayTheFourth.Core.Contexts.PlanetContext.UseCases.CreatePlanet;
+namespace MayTheFourth.Core.Contexts.PlanetContext.UseCases.Create;
 
 public class Handler : IRequestHandler<Request, Response>
 {
@@ -27,7 +27,7 @@ public class Handler : IRequestHandler<Request, Response>
         }
         catch (Exception ex)
         {
-            return new Response($"Erro: {ex.Message}", 400);
+            return new Response($"Erro: {ex.Message}", 500);
         }
         #endregion
 
@@ -40,7 +40,7 @@ public class Handler : IRequestHandler<Request, Response>
         }
         catch(Exception ex)
         {
-            return new Response($"Erro: {ex.Message}", 400);
+            return new Response($"Erro: {ex.Message}", 500);
         }
         #endregion
 
