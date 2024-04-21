@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using StarisApi.Models.CharacterMovie;
 using StarisApi.Models.Characters;
 using StarisApi.Models.Movies;
 using StarisApi.Models.Planets;
@@ -14,6 +15,7 @@ namespace StarisApi.DbContexts
         public DbSet<Planet> Planets { get; set; } = null!;
         public DbSet<StarShip> StarShips { get; set; } = null!;
         public DbSet<Vehicle> Vehicles { get; set; } = null!;
+        public DbSet<CharacterMovie> CharacterMovies { get; set; } = null!;
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -22,6 +24,7 @@ namespace StarisApi.DbContexts
             modelBuilder.ApplyConfiguration(new PlanetDbMap());
             modelBuilder.ApplyConfiguration(new StarShipDbMap());
             modelBuilder.ApplyConfiguration(new VehicleDbMap());
+            modelBuilder.ApplyConfiguration(new CharacterMoviesDbMap());
         }
     }
 }
