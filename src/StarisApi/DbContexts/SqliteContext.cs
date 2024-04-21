@@ -2,6 +2,7 @@
 using StarisApi.Models.CharacterMovies;
 using StarisApi.Models.CharacterPlanets;
 using StarisApi.Models.Characters;
+using StarisApi.Models.MoviePlanet;
 using StarisApi.Models.Movies;
 using StarisApi.Models.Planets;
 using StarisApi.Models.StarShips;
@@ -18,6 +19,7 @@ namespace StarisApi.DbContexts
         public DbSet<Vehicle> Vehicles { get; set; } = null!;
         public DbSet<CharacterMovie> CharacterMovies { get; set; } = null!;
         public DbSet<CharacterPlanet> CharacterPlanets { get; set; } = null!;
+        public DbSet<MoviePlanet> MoviePlanets { get; set; } = null!;
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -28,6 +30,7 @@ namespace StarisApi.DbContexts
             modelBuilder.ApplyConfiguration(new VehicleDbMap());
             modelBuilder.ApplyConfiguration(new CharacterMovieDbMap());
             modelBuilder.ApplyConfiguration(new CharacterPlanetDbMap());
+            modelBuilder.ApplyConfiguration(new MoviePlanetDbMap());
         }
     }
 }
