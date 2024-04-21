@@ -13,7 +13,7 @@ public class Response : SharedContext.UseCases.Response
     public Response(string message, ResponseData data)
     {
         Message = message;
-        Status = 200;
+        Status = 201;
         Data = data;
     }
 

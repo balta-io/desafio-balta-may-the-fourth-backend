@@ -61,7 +61,7 @@ public class Handler : IRequestHandler<Request, Response>
             CostInCredits = request.CostInCredits,
             Length = request.Length,
             Crew = request.Crew,
-            Passengers = request.Passagers,
+            Passagers = request.Passagers,
             MaxAtmospheringSpeed = request.MaxAtmospheringSpeed,
             HyperdriveRating = request.HyperdriveRating,
             MGLT = request.MGLT,

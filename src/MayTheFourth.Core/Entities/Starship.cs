@@ -11,7 +11,7 @@ public class Starship : Entity
     public int CostInCredits { get; set; }
     public double Length { get; set; }
     public int Crew { get; set; }
-    public int Passengers { get; set; }
+    public int Passagers { get; set; }
     public int MaxAtmospheringSpeed { get; set; }
     public string HyperdriveRating { get; set; } = string.Empty;
     public string MGLT { get; set; } = string.Empty;

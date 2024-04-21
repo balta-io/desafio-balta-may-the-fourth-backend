@@ -9,16 +9,18 @@ namespace MayTheFourth.Tests.Contexts.PlanetContext.UseCases;
 public class CreatePlanetTests
 {
     private readonly IPlanetRepository _planetRepository;
+    private readonly Handler _handler;
 
     public CreatePlanetTests()
     {
         _planetRepository = new FakePlanetRepository();
+        _handler = new(_planetRepository);
     }
 
     [TestMethod]
+    [TestCategory("Handler")]
     public async Task Should_Return_Error_400_When_Planet_Already_Exists()
     {
-        var handler = new Handler(_planetRepository);
         var request = new Request(
             Name: "Alderaan",
             Diameter: "12500",
@@ -36,17 +38,17 @@ public class CreatePlanetTests
             Films: []
         );
 
-        var response = await handler.Handle(request, CancellationToken.None);
+        var response = await _handler.Handle(request, CancellationToken.None);
 
         Assert.AreEqual("Erro: Planeja já cadastrado.", response.Message);
         Assert.AreEqual(400, response.Status);
+        Assert.AreEqual(false, response.IsSuccess);
     }
 
     [TestMethod]
     [TestCategory("Handler")]
     public async Task Should_Return_Success_Response_When_Planet_Created_Successfully()
     {
-        var handler = new Handler(_planetRepository);
         var request = new Request(
             Name: "Tatooine",
             Diameter: "10465",
@@ -64,10 +66,12 @@ public class CreatePlanetTests
             Films: []
         );
 
-        var response = await handler.Handle(request, CancellationToken.None);
+        var response = await _handler.Handle(request, CancellationToken.None);
 
         Assert.AreEqual("Planeta cadastrado com sucesso.", response.Message);
         Assert.IsNotNull(response.Data?.planet);
+        Assert.AreEqual(201, response.Status);
+        Assert.AreEqual(true,response.IsSuccess);
     }
 
 }
