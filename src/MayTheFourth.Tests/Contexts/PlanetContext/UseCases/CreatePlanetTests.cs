@@ -23,11 +23,11 @@ public class CreatePlanetTests
     {
         var request = new Request(
             Name: "Alderaan",
-            Diameter: "12500",
-            RotationPeriod: "24",
-            OrbitalPeriod: "364",
-            Gravity: "9.81",
-            Population: "2000000000",
+            Diameter: 12500,
+            RotationPeriod: 24,
+            OrbitalPeriod: 364,
+            Gravity: 9.81,
+            Population: 2000000000,
             Climate: "temperate",
             Terrain: "grasslands, mountains",
             SurfaceWater: "40",
@@ -51,11 +51,11 @@ public class CreatePlanetTests
     {
         var request = new Request(
             Name: "Tatooine",
-            Diameter: "10465",
-            RotationPeriod: "23",
-            OrbitalPeriod: "304",
-            Gravity: "1 standard",
-            Population: "200000",
+            Diameter: 10465,
+            RotationPeriod: 23,
+            OrbitalPeriod: 304,
+            Gravity: 8.0,
+            Population: 200000,
             Climate: "arid",
             Terrain: "desert",
             SurfaceWater: "1",

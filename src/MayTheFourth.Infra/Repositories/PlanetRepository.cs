@@ -15,7 +15,7 @@ public class PlanetRepository : IPlanetRepository
     public async Task<List<Planet>?> GetAllPlanets()
     => await _appDbContext.Planets.AsNoTracking().ToListAsync();
 
-    public async Task<bool> AnyAsync(string name, string gravity)
+    public async Task<bool> AnyAsync(string name, double gravity)
         => await _appDbContext.Planets.AnyAsync(x => x.Name == name && x.Gravity.Equals(gravity));
 
     public async Task SaveAsync(Planet planet, CancellationToken cancellationToken)

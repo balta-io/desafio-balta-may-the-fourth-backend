@@ -10,7 +10,7 @@ public record Request(
     int CostInCredits,
     double Length,
     int Crew,
-    int Passagers,
+    int Passengers,
     int MaxAtmospheringSpeed,
     string HyperdriveRating,
     string MGLT,

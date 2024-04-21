@@ -5,11 +5,11 @@ namespace MayTheFourth.Core.Contexts.PlanetContext.UseCases.Create;
 
 public record Request(
     string Name, 
-    string Diameter, 
-    string RotationPeriod, 
-    string OrbitalPeriod,
-    string Gravity,
-    string Population,
+    int Diameter, 
+    int RotationPeriod, 
+    int OrbitalPeriod,
+    double Gravity,
+    int Population,
     string Climate,
     string Terrain,
     string SurfaceWater,

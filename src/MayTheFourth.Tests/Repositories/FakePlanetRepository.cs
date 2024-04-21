@@ -14,9 +14,9 @@ public class FakePlanetRepository : IPlanetRepository
         new() { Name = "Hoth", Gravity = 9.81 }
     };
 
-    public Task<bool> AnyAsync(string name, string gravity)
+    public Task<bool> AnyAsync(string name, double gravity)
     {
-        if (string.Equals(name, planets[0].Name))
+        if (string.Equals(name, planets[0].Name) && gravity.Equals(planets[0].Gravity))
             return Task.FromResult(true);
 
         return Task.FromResult(false);

@@ -35,7 +35,7 @@ public class Handler : IRequestHandler<Request, Response>
         Planet? planet;
         try
         {
-            planet = new Planet();
+            planet = CreatePlanet(request);
             await _planetRepository.SaveAsync(planet, cancellationToken);
         }
         catch(Exception ex)
@@ -47,5 +47,28 @@ public class Handler : IRequestHandler<Request, Response>
         #region Response
         return new Response("Planeta cadastrado com sucesso.", new ResponseData(planet));
         #endregion
+    }
+
+    private Planet CreatePlanet(Request request)
+    {
+        var planet = new Planet
+        {
+            Name = request.Name,
+            Diameter = request.Diameter,
+            RotationPeriod = request.RotationPeriod,
+            OrbitalPeriod = request.OrbitalPeriod,
+            Gravity = request.Gravity,
+            Population = request.Population,
+            Climate = request.Climate,
+            Terrain = request.Terrain,
+            SurfaceWater = request.SurfaceWater,
+            Url = request.Url,
+            Created = request.Created,
+            Edited = request.Edited,
+            Residents = request.Residents,
+            Films = request.Films
+        };
+
+        return planet;
     }
 }
