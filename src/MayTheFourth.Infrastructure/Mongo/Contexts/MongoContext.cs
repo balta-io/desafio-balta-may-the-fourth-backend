@@ -1,10 +1,10 @@
-using LotoBackend.Infrastructure.Mongo.Contexts.Interfaces;
-using LotoBackend.Infrastructure.Mongo.Utils;
-using LotoBackend.Infrastructure.Mongo.Utils.Interfaces;
+using MayTheFourth.Infrastructure.Mongo.Contexts.Interfaces;
+using MayTheFourth.Infrastructure.Mongo.Utils;
+using MayTheFourth.Infrastructure.Mongo.Utils.Interfaces;
 using Microsoft.Extensions.Options;
 using MongoDB.Driver;
 
-namespace LotoBackend.Infrastructure.Mongo.Contexts
+namespace MayTheFourth.Infrastructure.Mongo.Contexts
 {
     public class MongoContext
     (

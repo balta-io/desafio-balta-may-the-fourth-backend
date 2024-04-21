@@ -1,9 +1,9 @@
 using System.Diagnostics.CodeAnalysis;
 using FluentValidation;
-using LotoBackend.Application;
+using MayTheFourth.Application;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace LotoBackend.IOC.OptionsInjection
+namespace MayTheFourth.IOC.OptionsInjection
 {
     [ExcludeFromCodeCoverage]
     public static class ConfigureBindingsValidator

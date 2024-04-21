@@ -1,6 +1,6 @@
 using System.Diagnostics.CodeAnalysis;
-using LotoBackend.Application;
-using LotoBackend.Application.Common.Behavior;
+using MayTheFourth.Application;
+using MayTheFourth.Application.Common.Behavior;
 using MediatR;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.DependencyInjection;

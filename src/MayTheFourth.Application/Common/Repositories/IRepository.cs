@@ -1,7 +1,7 @@
 using System.Linq.Expressions;
-using LotoBackend.Domain.Entities;
+using MayTheFourth.Domain.Entities;
 
-namespace LotoBackend.Application.Common.Repositories
+namespace MayTheFourth.Application.Common.Repositories
 {
     public interface IRepository<TEntity> where TEntity : Entity
     {

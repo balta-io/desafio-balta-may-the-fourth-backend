@@ -1,10 +1,10 @@
 using System.Linq.Expressions;
-using LotoBackend.Application.Common.Repositories;
-using LotoBackend.Domain.Entities;
-using LotoBackend.Infrastructure.Mongo.Contexts.Interfaces;
+using MayTheFourth.Application.Common.Repositories;
+using MayTheFourth.Domain.Entities;
+using MayTheFourth.Infrastructure.Mongo.Contexts.Interfaces;
 using MongoDB.Driver;
 
-namespace LotoBackend.Infrastructure.Mongo.Repositories
+namespace MayTheFourth.Infrastructure.Mongo.Repositories
 {
     public class GenericRepository<TEntity>(IMongoContext context) : IRepository<TEntity> where TEntity : Entity
     {

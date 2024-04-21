@@ -1,9 +1,9 @@
 using System.Diagnostics.CodeAnalysis;
-using LotoBackend.Domain.Entities;
-using LotoBackend.Infrastructure.Mongo.Contexts.Interfaces;
+using MayTheFourth.Domain.Entities;
+using MayTheFourth.Infrastructure.Mongo.Contexts.Interfaces;
 using MongoDB.Driver;
 
-namespace LotoBackend.Infrastructure.Mongo.Contexts.EntityConfig
+namespace MayTheFourth.Infrastructure.Mongo.Contexts.EntityConfig
 {
     [ExcludeFromCodeCoverage]
     public abstract class EntityConfig<T> where T : Entity

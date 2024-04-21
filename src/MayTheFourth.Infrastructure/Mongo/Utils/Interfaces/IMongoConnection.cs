@@ -1,6 +1,6 @@
 ﻿using MongoDB.Driver;
 
-namespace LotoBackend.Infrastructure.Mongo.Utils.Interfaces
+namespace MayTheFourth.Infrastructure.Mongo.Utils.Interfaces
 {
     public interface IMongoConnection
     {

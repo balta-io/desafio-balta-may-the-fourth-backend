@@ -1,7 +1,7 @@
 using System.ComponentModel;
 using Newtonsoft.Json;
 
-namespace LotoBackend.WebApi.Swagger
+namespace MayTheFourth.WebApi.Swagger
 {
     /// <summary>
     /// EnumDescriptionConverter
