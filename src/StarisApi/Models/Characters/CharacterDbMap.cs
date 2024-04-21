@@ -10,6 +10,13 @@ namespace StarisApi.Models.Characters
             builder.ToTable("Characters");
             builder.HasKey(x => x.Id);
             builder.Property(x => x.Name).HasColumnType("varchar(30)").IsRequired();
+            builder.Property(x => x.BirthYear).HasColumnType("varchar(30)").IsRequired();
+            builder.Property(x => x.EyeColor).HasColumnType("varchar(30)").IsRequired();
+            builder.Property(x => x.Gender).HasColumnType("varchar(30)").IsRequired();
+            builder.Property(x => x.HairColor).HasColumnType("varchar(30)").IsRequired();
+            builder.Property(x => x.Height).HasColumnType("varchar(30)").IsRequired();
+            builder.Property(x => x.Mass).HasColumnType("varchar(30)").IsRequired();
+            builder.Property(x => x.SkinColor).HasColumnType("varchar(30)").IsRequired();
         }
     }
 }
