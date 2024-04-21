@@ -1,0 +1,6 @@
+@MayTheFouthBackend.Presentation_HostAddress = http://localhost:5240
+
+GET {{MayTheFouthBackend.Presentation_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
