@@ -1,11 +1,30 @@
 {
   "version": 3,
   "targets": {
-    "net8.0": {}
+    "net8.0": {
+      "MayTheFouthBackend.Domain/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v8.0",
+        "compile": {
+          "bin/placeholder/MayTheFouthBackend.Domain.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/MayTheFouthBackend.Domain.dll": {}
+        }
+      }
+    }
   },
-  "libraries": {},
+  "libraries": {
+    "MayTheFouthBackend.Domain/1.0.0": {
+      "type": "project",
+      "path": "../MayTheFouthBackend.Domain/MayTheFouthBackend.Domain.csproj",
+      "msbuildProject": "../MayTheFouthBackend.Domain/MayTheFouthBackend.Domain.csproj"
+    }
+  },
   "projectFileDependencyGroups": {
-    "net8.0": []
+    "net8.0": [
+      "MayTheFouthBackend.Domain >= 1.0.0"
+    ]
   },
   "packageFolders": {
     "C:\\Users\\Raul da Silva\\.nuget\\packages\\": {},
@@ -40,7 +59,11 @@
       "frameworks": {
         "net8.0": {
           "targetAlias": "net8.0",
-          "projectReferences": {}
+          "projectReferences": {
+            "C:\\Users\\Raul da Silva\\Documents\\MEGA\\JornadaDev\\BaltaIo\\_DesafioBalta_StarWors\\desafio-balta-may-the-fourth-backend\\Api\\MayTheFouthBackend.Domain\\MayTheFouthBackend.Domain.csproj": {
+              "projectPath": "C:\\Users\\Raul da Silva\\Documents\\MEGA\\JornadaDev\\BaltaIo\\_DesafioBalta_StarWors\\desafio-balta-may-the-fourth-backend\\Api\\MayTheFouthBackend.Domain\\MayTheFouthBackend.Domain.csproj"
+            }
+          }
         }
       },
       "warningProperties": {
