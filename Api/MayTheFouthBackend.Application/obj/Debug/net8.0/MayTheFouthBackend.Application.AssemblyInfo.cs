@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("MayTheFouthBackend.Application")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+b04b6ccd952dd83d0c148f1bc5688394a2c9428c")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+e4f7d0eff2dce8c3095b1149cf7994f3d3bd79bc")]
 [assembly: System.Reflection.AssemblyProductAttribute("MayTheFouthBackend.Application")]
 [assembly: System.Reflection.AssemblyTitleAttribute("MayTheFouthBackend.Application")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
