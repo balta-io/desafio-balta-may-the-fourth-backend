@@ -6,4 +6,9 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\MayTheFouthBackend.Application\MayTheFouthBackend.Application.csproj" />
+    <ProjectReference Include="..\MayTheFouthBackend.Infra.Data\MayTheFouthBackend.Infra.Data.csproj" />
+  </ItemGroup>
+
 </Project>
