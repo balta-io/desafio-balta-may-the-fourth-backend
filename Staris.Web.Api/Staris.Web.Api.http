@@ -1,0 +1,6 @@
+@Staris.Web.Api_HostAddress = http://localhost:5250
+
+GET {{Staris.Web.Api_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
