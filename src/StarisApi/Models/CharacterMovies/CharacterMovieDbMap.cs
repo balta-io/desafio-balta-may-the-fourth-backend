@@ -1,9 +1,9 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
-namespace StarisApi.Models.CharacterMovie;
+namespace StarisApi.Models.CharacterMovies;
 
-public class CharacterMoviesDbMap : IEntityTypeConfiguration<CharacterMovie>
+public class CharacterMovieDbMap : IEntityTypeConfiguration<CharacterMovie>
 {
     public void Configure(EntityTypeBuilder<CharacterMovie> builder)
     {

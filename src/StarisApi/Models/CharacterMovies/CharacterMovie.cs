@@ -1,4 +1,4 @@
-﻿namespace StarisApi.Models.CharacterMovie;
+﻿namespace StarisApi.Models.CharacterMovies;
 
 public class CharacterMovie
 {

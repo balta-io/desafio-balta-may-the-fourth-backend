@@ -1,5 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using StarisApi.Models.CharacterMovie;
+using StarisApi.Models.CharacterMovies;
 using StarisApi.Models.Characters;
 using StarisApi.Models.Movies;
 using StarisApi.Models.Planets;
@@ -24,7 +24,7 @@ namespace StarisApi.DbContexts
             modelBuilder.ApplyConfiguration(new PlanetDbMap());
             modelBuilder.ApplyConfiguration(new StarShipDbMap());
             modelBuilder.ApplyConfiguration(new VehicleDbMap());
-            modelBuilder.ApplyConfiguration(new CharacterMoviesDbMap());
+            modelBuilder.ApplyConfiguration(new CharacterMovieDbMap());
         }
     }
 }
