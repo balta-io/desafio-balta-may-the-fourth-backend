@@ -1,4 +1,4 @@
-using LotoBackend.IOC;
+using MayTheFourth.IOC;
 using MayTheFourth.WebApi.Endpoints;
 using Microsoft.OpenApi.Models;
 

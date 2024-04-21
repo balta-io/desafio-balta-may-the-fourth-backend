@@ -1,10 +1,10 @@
-using LotoBackend.Infrastructure.Mongo.Utils.Interfaces;
+using MayTheFourth.Infrastructure.Mongo.Utils.Interfaces;
 using Microsoft.Extensions.Options;
 using MongoDB.Bson.Serialization;
 using MongoDB.Bson.Serialization.Conventions;
 using MongoDB.Driver;
 
-namespace LotoBackend.Infrastructure.Mongo.Utils
+namespace MayTheFourth.Infrastructure.Mongo.Utils
 {
     public class MongoConnection(IOptions<MongoConnectionOptions> options) : IMongoConnection
     {

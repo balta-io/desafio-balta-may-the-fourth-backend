@@ -1,4 +1,4 @@
-namespace LotoBackend.Domain.Entities
+namespace MayTheFourth.Domain.Entities
 {
     public abstract class Entity
     {

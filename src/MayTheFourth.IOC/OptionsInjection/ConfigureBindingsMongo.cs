@@ -1,15 +1,15 @@
 using System.Diagnostics.CodeAnalysis;
-using LotoBackend.Infrastructure.Mongo.Contexts;
-using LotoBackend.Infrastructure.Mongo.Contexts.Interfaces;
-using LotoBackend.Infrastructure.Mongo.Utils;
-using LotoBackend.Infrastructure.Mongo.Utils.Interfaces;
+using MayTheFourth.Infrastructure.Mongo.Contexts;
+using MayTheFourth.Infrastructure.Mongo.Contexts.Interfaces;
+using MayTheFourth.Infrastructure.Mongo.Utils;
+using MayTheFourth.Infrastructure.Mongo.Utils.Interfaces;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using MongoDB.Bson;
 using MongoDB.Bson.Serialization;
 using MongoDB.Bson.Serialization.Serializers;
 
-namespace LotoBackend.IOC.OptionsInjection
+namespace MayTheFourth.IOC.OptionsInjection
 {
     [ExcludeFromCodeCoverage]
     public static class ConfigureBindingsMongo
@@ -57,7 +57,7 @@ namespace LotoBackend.IOC.OptionsInjection
             (
                type =>
                        ObjectSerializer.DefaultAllowedTypes(type) ||
-                       type.FullName.StartsWith("LotoBackend.Domain")
+                       type.FullName.StartsWith("MayTheFourth.Domain")
             );
             #pragma warning restore CS8602
 

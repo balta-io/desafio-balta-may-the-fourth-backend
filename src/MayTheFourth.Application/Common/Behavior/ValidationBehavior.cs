@@ -1,7 +1,7 @@
 using FluentValidation;
 using MediatR;
 
-namespace LotoBackend.Application.Common.Behavior
+namespace MayTheFourth.Application.Common.Behavior
 {
     /// <summary>
     /// Pipeline Behavior for Model Validation

@@ -1,6 +1,6 @@
 using System.Diagnostics.CodeAnalysis;
 
-namespace LotoBackend.Infrastructure.Mongo.Utils
+namespace MayTheFourth.Infrastructure.Mongo.Utils
 {
     [ExcludeFromCodeCoverage]
     [AttributeUsage(AttributeTargets.Class, AllowMultiple = false)]

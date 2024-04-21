@@ -1,4 +1,4 @@
-﻿namespace LotoBackend.Infrastructure.Mongo.Utils
+﻿namespace MayTheFourth.Infrastructure.Mongo.Utils
 {
     public class MongoConnectionOptions
     {

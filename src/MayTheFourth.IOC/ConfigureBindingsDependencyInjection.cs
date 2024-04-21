@@ -1,10 +1,10 @@
 using System.Diagnostics.CodeAnalysis;
-using LotoBackend.IOC.OptionsInjection;
+using MayTheFourth.IOC.OptionsInjection;
 using MayTheFourth.IOC.OptionsInjection;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace LotoBackend.IOC
+namespace MayTheFourth.IOC
 {
     [ExcludeFromCodeCoverage]
     public static class ConfigureBindingsDependencyInjection

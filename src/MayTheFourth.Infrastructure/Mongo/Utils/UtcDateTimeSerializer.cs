@@ -2,7 +2,7 @@
 using MongoDB.Bson.Serialization;
 using MongoDB.Bson.Serialization.Serializers;
 
-namespace LotoBackend.Infrastructure.Mongo.Utils
+namespace MayTheFourth.Infrastructure.Mongo.Utils
 {
     [ExcludeFromCodeCoverage]
     public class UtcDateTimeSerializer : DateTimeSerializer
