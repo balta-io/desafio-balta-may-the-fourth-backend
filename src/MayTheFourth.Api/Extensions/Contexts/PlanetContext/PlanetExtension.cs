@@ -38,7 +38,6 @@ public static class PlanetExtension
                 Core.Contexts.PlanetContext.UseCases.Create.Response> handler) =>
         {
             var result = await handler.Handle(request, new CancellationToken());
-            Console.WriteLine(result);
 
             return result.IsSuccess
                 ? Results.Created($"api/v1/planets/create/{result.Data?.planet.Id}", result)

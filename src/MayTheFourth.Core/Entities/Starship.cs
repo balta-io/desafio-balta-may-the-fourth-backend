@@ -8,9 +8,9 @@ public class Starship : Entity
     public string Model { get; set; } = string.Empty;
     public string StarshipClass { get; set; } = string.Empty;
     public string Manufacturer { get; set; } = string.Empty;
-    public decimal CostInCredits { get; set; }
-    public int Length { get; set; }
-    public string Crew { get; set; } = string.Empty;
+    public int CostInCredits { get; set; }
+    public double Length { get; set; }
+    public int Crew { get; set; }
     public int Passengers { get; set; }
     public int MaxAtmospheringSpeed { get; set; }
     public string HyperdriveRating { get; set; } = string.Empty;
