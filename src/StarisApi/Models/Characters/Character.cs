@@ -1,4 +1,5 @@
 ﻿using StarisApi.Dtos;
+using StarisApi.Models.CharactersMovies;
 using StarisApi.Models.Planets;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Globalization;
@@ -19,6 +20,8 @@ namespace StarisApi.Models.Characters
 
         public int PlanetId { get; set; }
         public Planet Planet { get; set; } = null!;
+
+        public ICollection<CharacterMovie> Movies { get; set; } = null!;
 
         public override T ConvertToDto<T>()
         {
