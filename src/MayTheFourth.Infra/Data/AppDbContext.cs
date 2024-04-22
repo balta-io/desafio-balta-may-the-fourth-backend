@@ -1,4 +1,5 @@
 ﻿using MayTheFourth.Core.Entities;
+using MayTheFourth.Infra.Data.Mappings;
 using Microsoft.EntityFrameworkCore;
 
 namespace MayTheFourth.Infra.Data;
@@ -16,5 +17,10 @@ public class AppDbContext : DbContext
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {
         base.OnConfiguring(optionsBuilder);
+    }
+
+    protected override void OnModelCreating(ModelBuilder modelBuilder)
+    {
+        modelBuilder.ApplyConfiguration(new FilmMap());
     }
 }

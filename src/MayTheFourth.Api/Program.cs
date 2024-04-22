@@ -4,6 +4,7 @@ using MayTheFourth.Api.Extensions.Contexts.PlanetContext;
 
 var builder = WebApplication.CreateBuilder(args);
 
+builder.AddConfiguration();
 builder.AddPlanetContext();
 builder.AddFilmContext();
 builder.AddDbContext();

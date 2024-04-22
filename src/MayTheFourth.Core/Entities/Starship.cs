@@ -20,6 +20,7 @@ public class Starship : Entity
     public string Url { get; set; } = string.Empty;
     public DateTime Created { get; set; }
     public DateTime Edited { get; set; }
+
     public List<Film> Films { get; set; } = [];
     public List<Person> Pilots { get; set; } = [];
 }
