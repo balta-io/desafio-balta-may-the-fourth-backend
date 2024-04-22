@@ -9,11 +9,9 @@
 Desenvolvimento de uma API completa, fornecendo recursos como criação, leitura, atualização e exclusão de dados referentes ao universo **Star Wars**.
 
 ## Participantes
-### 🚀 Capitão
-[NOME e GITHUB]
 
 ### 💂‍♀️ Batalhão
-* [NOME e GITHUB]
+* [Rodrigo Castagnaro e https://github.com/rodrigoskte]
 * [NOME e GITHUB]
 * [NOME e GITHUB]
 * [NOME e GITHUB]
