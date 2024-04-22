@@ -12,6 +12,7 @@ using System.Reflection;
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddEndpointsApiExplorer();
+builder.Services.AddHttpClient();
 builder.Services.AddSwaggerGen(opt =>
 {
     opt.EnableAnnotations();
@@ -32,6 +33,7 @@ builder.Services.AddDbContext<SqliteContext>(opt =>
 });
 
 builder.Services.AddTransient<SqliteContext>();
+builder.Services.AddTransient<DataBaseFeeder>();
 builder.Services.AddScoped(typeof(Repository<>));
 
 Configurations.Host = builder.Configuration.GetValue<string>("Host")!;
