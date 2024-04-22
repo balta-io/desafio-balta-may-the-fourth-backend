@@ -6,6 +6,7 @@ using MayTheFourth.Api.Extensions.Contexts.StartshipContext;
 
 var builder = WebApplication.CreateBuilder(args);
 
+builder.AddConfiguration();
 builder.AddPlanetContext();
 builder.AddStarshipContext();
 builder.AddFilmContext();

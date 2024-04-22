@@ -20,6 +20,7 @@ public class Species : Entity
     public Planet Homeworld { get; set; }
     public int HomeworldId { get; set; }
 
+
     public List<Person> People { get; set; } = [];
     public List<Film> Films { get; set; } = [];
 }
