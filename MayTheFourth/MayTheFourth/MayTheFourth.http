@@ -1,0 +1,6 @@
+@MayTheFourth_HostAddress = http://localhost:5001
+
+GET {{MayTheFourth_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
