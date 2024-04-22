@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace MayTheFourth.Tests.Contexts.FilmContext
+namespace MayTheFourth.Tests.Contexts.FilmContext.UseCases
 {
     [TestClass]
     public class SearchAll
@@ -19,7 +19,7 @@ namespace MayTheFourth.Tests.Contexts.FilmContext
             _filmRepository = new FakeFilmRepository();
         }
 
-        [TestMethod]        
+        [TestMethod]
         [TestCategory("Handler")]
         public void Should_Return_Exactly_Five_Films()
         {
