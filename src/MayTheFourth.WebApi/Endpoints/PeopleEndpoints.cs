@@ -1,9 +1,9 @@
 namespace MayTheFourth.WebApi.Endpoints
 {
-    public static class PersonagensEndpoints
+    public static class PeopleEndpoints
     {
         //TODO - Adicionar Endpoints
-        public static void MapPersonagensEndpoints(this WebApplication app)
+        public static void MapPeopleEndpoints(this WebApplication app)
         {
 
         }

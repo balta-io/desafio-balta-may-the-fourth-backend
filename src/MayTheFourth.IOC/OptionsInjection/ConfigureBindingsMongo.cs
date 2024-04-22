@@ -1,6 +1,9 @@
 using System.Diagnostics.CodeAnalysis;
+using MayTheFourth.Application.Common.Repositories;
+using MayTheFourth.Domain.Entities;
 using MayTheFourth.Infrastructure.Mongo.Contexts;
 using MayTheFourth.Infrastructure.Mongo.Contexts.Interfaces;
+using MayTheFourth.Infrastructure.Mongo.Repositories;
 using MayTheFourth.Infrastructure.Mongo.Utils;
 using MayTheFourth.Infrastructure.Mongo.Utils.Interfaces;
 using Microsoft.Extensions.Configuration;
@@ -20,15 +23,17 @@ namespace MayTheFourth.IOC.OptionsInjection
             IConfiguration configuration
         )
         {
-            //services.Configure<MongoConnectionOptions>(c =>
-            //{
-            //    int defaultTtlDays = configuration.GetValue<int>("Mongo:DefaultTtlDays");
-            //    c.DefaultTtlDays = defaultTtlDays == default ? 30 : defaultTtlDays;
+            var mongoConfigSection = configuration.GetSection("Mongo");
 
-            //    c.ConnectionString = configuration.GetValue<string>("Mongo:ConnectionString");
+            services.Configure<MongoConnectionOptions>(c =>
+            {
+                int defaultTtlDays = mongoConfigSection.GetValue<int>("Mongo:DefaultTtlDays");
+                c.DefaultTtlDays = defaultTtlDays == default ? 30 : defaultTtlDays;
 
-            //    c.Schema = configuration.GetValue<string>("Mongo:Schema");
-            //});
+                c.ConnectionString = configuration.GetValue<string>("Mongo:ConnectionString");
+
+                c.Schema = configuration.GetValue<string>("Mongo:Schema");
+            });
 
             services.AddSingleton<IMongoConnection, MongoConnection>();
             services.AddSingleton<IMongoContext, MongoContext>();
@@ -40,7 +45,12 @@ namespace MayTheFourth.IOC.OptionsInjection
         private static void ConfigureMongoRepositories(IServiceCollection services)
         {
             //Example
-            //services.AddScoped<IRepository<ClienteEntity>, GenericRepository<ClienteEntity>>();            
+            services.AddScoped<IRepository<Film>, GenericRepository<Film>>();
+            services.AddScoped<IRepository<Person>, GenericRepository<Person>>();
+            services.AddScoped<IRepository<Planet>, GenericRepository<Planet>>();
+            services.AddScoped<IRepository<Specie>, GenericRepository<Specie>>();
+            services.AddScoped<IRepository<Vehicle>, GenericRepository<Vehicle>>();
+            services.AddScoped<IRepository<Starship>, GenericRepository<Starship>>();
         }
 
         private static void ConfigureMongoSerializer()

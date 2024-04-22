@@ -1,13 +1,14 @@
 namespace MayTheFourth.WebApi.Endpoints
 {
-    public static class PlanetasEndpoints
+    public static class StarshipsEndpoints
     {
         //TODO - Adicionar Endpoints
-        public static void MapPlanetasEndpoints(this WebApplication app)
+        public static void MapStarshipsEndpoints(this WebApplication app)
         {
 
         }
 
         //TODO - Adicionar métodos
+
     }
 }
