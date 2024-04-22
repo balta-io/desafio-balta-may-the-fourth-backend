@@ -15,8 +15,8 @@ public static class PersonExtension
 
     public static void MapPersonEndpoints(this WebApplication app)
     {
-        #region Get all persons
-        app.MapGet("api/v1/person", async
+        #region Get all people
+        app.MapGet("api/v1/people", async
             (IRequestHandler<Core.Contexts.PersonContext.UseCases.SearchAll.Request,
             Core.Contexts.PersonContext.UseCases.SearchAll.Response> handler) =>
         {

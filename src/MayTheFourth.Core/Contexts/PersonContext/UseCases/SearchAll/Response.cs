@@ -20,4 +20,4 @@ public class Response : SharedContext.UseCases.Response
     public ResponseData? Data { get; set; }
 }
 
-public record ResponseData(List<Person> persons);
+public record ResponseData(List<Person> people);
