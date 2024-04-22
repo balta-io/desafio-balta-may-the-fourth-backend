@@ -87,11 +87,11 @@ public class PersonMap : IEntityTypeConfiguration<Person>
             species => species.HasOne<Species>()
                     .WithMany()
                     .HasForeignKey("SpeciesId")
-                    .OnDelete(DeleteBehavior.Cascade),
+                    .OnDelete(DeleteBehavior.Restrict),
                 person => person.HasOne<Person>()
                     .WithMany()
                     .HasForeignKey("PersonId")
-                    .OnDelete(DeleteBehavior.Cascade));
+                    .OnDelete(DeleteBehavior.Restrict));
 
         builder.HasMany(x => x.Starships)
             .WithMany(x => x.Pilots)
