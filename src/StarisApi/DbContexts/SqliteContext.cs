@@ -3,7 +3,6 @@ using StarisApi.Models.Characters;
 using StarisApi.Models.CharactersMovies;
 using StarisApi.Models.CharactersPlanets;
 using StarisApi.Models.Movies;
-using StarisApi.Models.Movies;
 using StarisApi.Models.MoviesPlanet;
 using StarisApi.Models.MoviesStarship;
 using StarisApi.Models.MoviesStarships;
