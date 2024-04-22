@@ -1,9 +1,8 @@
 ﻿using MayTheFourth.Core.Entities;
 
-namespace MayTheFourth.Core.Interfaces.Repositories
+namespace MayTheFourth.Core.Interfaces.Repositories;
+
+public interface IPersonRepository
 {
-    public interface IPersonRepository
-    {
-        Task<List<Person>> GetAllAsync();
-    }
+    Task<List<Person>> GetAllAsync();
 }

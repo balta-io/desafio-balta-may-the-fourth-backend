@@ -15,12 +15,12 @@ public class Handler : IRequestHandler<Request, Response>
 
     public async Task<Response> Handle(Request request, CancellationToken cancellationToken)
     {
-        #region GetAllPersons
-        List<Person>? persons;
+        #region GetAllPeople
+        List<Person>? people;
 
         try
         {
-            persons = await _personRepository.GetAllAsync();
+            people = await _personRepository.GetAllAsync();
         }
         catch (Exception ex)
         {
@@ -29,7 +29,7 @@ public class Handler : IRequestHandler<Request, Response>
         #endregion
 
         #region Response
-        return new Response("Lista de personagens encontrada", new ResponseData(persons!));
+        return new Response("Lista de personagens encontrada", new ResponseData(people!));
         #endregion
     }
 }

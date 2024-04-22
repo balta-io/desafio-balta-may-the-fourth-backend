@@ -16,13 +16,13 @@ public class SearchAllTests
 
     [TestMethod]
     [TestCategory("Handler")]
-    public void Should_Succeed_When_PersonList_Contains_Exactly_Five_Persons()
+    public void Should_Succeed_When_PeopleList_Contains_Exactly_Five_People()
     {
         var handler = new Handler(_personRepository);
         var request = new Request();
 
-        var persons = handler.Handle(request, new CancellationToken());
+        var people = handler.Handle(request, new CancellationToken());
 
-        Assert.AreEqual(5, persons.Result.Data?.persons.Count, "Expected exactly five persons in the list.");
+        Assert.AreEqual(5, people.Result.Data?.people.Count, "Expected exactly five people in the list.");
     }
 }
