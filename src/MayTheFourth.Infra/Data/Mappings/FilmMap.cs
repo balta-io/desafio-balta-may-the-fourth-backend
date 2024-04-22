@@ -67,50 +67,7 @@ namespace MayTheFourth.Infra.Data.Mappings
                 .HasColumnType("DATETIME");
 
             #region relationships
-            //// Species relationship
-            //builder.HasMany(x => x.SpeciesList)
-            //    .WithMany()
-            //    .UsingEntity<Dictionary<string, object>>("FilmSpecies",
-            //    j => j.HasOne<Species>().WithMany().HasForeignKey("SpeciesId"),
-            //    j => j.HasOne<Film>().WithMany().HasForeignKey("FilmId")
-            //    .OnDelete(DeleteBehavior.Cascade));
-
-            //// Starships relationship
-            //builder.HasMany(x => x.Starships)
-            //    .WithMany()
-            //    .UsingEntity<Dictionary<string, object>>("FilmStarship",
-            //    j => j.HasOne<Starship>().WithMany().HasForeignKey("StarshipId"),
-            //    j => j.HasOne<Film>().WithMany().HasForeignKey("FilmId")
-            //    .OnDelete(DeleteBehavior.Cascade));
-
-            //// Vehicles relationship
-            //builder.HasMany(x => x.Vehicles)
-            //    .WithMany()
-            //    .UsingEntity<Dictionary<string, object>>("FilmVehicle",
-            //    j => j.HasOne<Vehicle>().WithMany().HasForeignKey("VehicleId"),
-            //    j => j.HasOne<Film>().WithMany().HasForeignKey("FilmId")
-            //    .OnDelete(DeleteBehavior.Cascade));
-
-            //// Characters relationship
-            //builder.HasMany(x => x.Characters)
-            //    .WithMany()
-            //    .UsingEntity<Dictionary<string, object>>("FilmCharacter",
-            //    j => j.HasOne<Person>().WithMany().HasForeignKey("CharacterId"),
-            //    j => j.HasOne<Film>().WithMany().HasForeignKey("FilmId")
-            //    .OnDelete(DeleteBehavior.Cascade));
-
-            //// Planets relationship
-            //builder.HasMany(x => x.Planets)
-            //    .WithMany()
-            //    .UsingEntity<Dictionary<string, object>>("FilmPlanet",
-            //    j => j.HasOne<Planet>().WithMany().HasForeignKey("PlanetId"),
-            //    j => j.HasOne<Film>().WithMany().HasForeignKey("FilmId")
-            //    .OnDelete(DeleteBehavior.Cascade));
-
-
-
-
-            builder.HasMany(x => x.SpeciesList)
+                builder.HasMany(x => x.SpeciesList)
                 .WithMany(x => x.Films)
                 .UsingEntity<Dictionary<string, object>>("FilmSpecies",
                 species => species.HasOne<Species>()

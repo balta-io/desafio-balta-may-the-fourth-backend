@@ -17,7 +17,7 @@ public class Person : Entity
     public DateTime Edited { get; set; }
 
     public Planet Homeworld { get; set; }
-    public int HomeworldId { get; set; }
+    public Guid HomeworldId { get; set; }
 
     public List<Film> Films { get; set; } = [];
     public List<Species> Species { get; set; } = [];

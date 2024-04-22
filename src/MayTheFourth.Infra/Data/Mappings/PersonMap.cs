@@ -11,10 +11,6 @@ public class PersonMap : IEntityTypeConfiguration<Person>
         builder.ToTable("Person");
         builder.HasKey(x => x.Id);
 
-        builder.Property(x => x.Id)
-            .ValueGeneratedOnAdd()
-            .UseIdentityColumn();
-
         builder.Property(x => x.Name)
             .IsRequired()
             .HasColumnName("Name")
