@@ -9,7 +9,7 @@ public sealed class Planet : Entity
     public int OrbitalPeriod { get; set; }
     public int Diameter { get; set; }
     public string Climate { get; set; } = string.Empty;
-    public int Gravit { get; set; }
+    public int Gravity { get; set; }
     public int SurfaceWater { get; set; }
     public long Population { get; set; }
 }

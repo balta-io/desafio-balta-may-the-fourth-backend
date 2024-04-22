@@ -12,7 +12,7 @@ public sealed class Character : Entity
     public string Height { get; set; } = string.Empty;
     public string EyeColor { get; set; } = string.Empty;
     public string SkinColor { get; set; } = string.Empty;
-    public string HarColor { get; set; } = string.Empty;
+    public string HairColor { get; set; } = string.Empty;
     public int HomeWorldId { get; set; }
     public Planet? HomeWorld { get; init; }
 }
