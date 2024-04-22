@@ -1,21 +1,20 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using StarisApi.DbContexts;
+﻿
+using Microsoft.AspNetCore.Mvc;
 using StarisApi.Dtos;
-using StarisApi.Models.Characters;
+using StarisApi.Models.People;
 using StarisApi.Repository;
 using StarisApi.Requests;
-using StarisApi.Responses;
 
 namespace StarisApi.Endpoints.Characters
 {
-    public static class CharacterEndpoits
+    public static class PeopleEndpoits
     {
         public static IEndpointRouteBuilder MapCharacterEndpoits(this IEndpointRouteBuilder app)
         {
 
-            app.MapGet("/character", ([AsParameters] Request request, Repository<Character> context) =>
+            app.MapGet("/people", ([AsParameters] Request request, Repository<Person> context) =>
             {
-                var characters = context.GetAll<CharacterDto>(request);
+                var characters = context.GetAll<PersonDto>(request);
                 return characters.Results.Any() ? TypedResults.Ok(characters) : Results.NoContent();
 
             }).WithTags("Character")
@@ -23,12 +22,12 @@ namespace StarisApi.Endpoints.Characters
               .Produces(TypedResults.NoContent().StatusCode)
               .WithOpenApi();
 
-            app.MapGet("/character/{id}", ([FromRoute] int id, Repository<Character> context) =>
+            app.MapGet("/people/{id}", ([FromRoute] int id, Repository<Person> context) =>
             {
                 var character = context.Find(id);
 
                 return character is null ? Results.NotFound() : TypedResults.Ok(character);
-
+                
             }).WithTags("Character")
               .WithOpenApi();
 

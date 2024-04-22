@@ -1,13 +1,13 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
-namespace StarisApi.Models.Characters;
+namespace StarisApi.Models.People;
 
-public class CharacterDbMap : IEntityTypeConfiguration<Character>
+public class PersonDbMap : IEntityTypeConfiguration<Person>
 {
-    public void Configure(EntityTypeBuilder<Character> builder)
+    public void Configure(EntityTypeBuilder<Person> builder)
     {
-        builder.ToTable("Characters");
+        builder.ToTable("People");
         builder.HasKey(x => x.Id);
         builder.Property(x => x.Name).HasColumnType("varchar(30)").IsRequired();
         builder.Property(x => x.BirthYear).HasColumnType("varchar(30)").IsRequired();

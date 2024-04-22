@@ -1,8 +1,7 @@
 ﻿namespace StarisApi.Models.StarShips;
 
-public class StarShip
+public class Starship : Entity
 {
-    public int Id { get; set; }
     public string Model { get; set; } = null!;
     public string Name { get; set; } = null!;
     public string StarshipClass { get; set; } = null!;
@@ -16,5 +15,17 @@ public class StarShip
     public string Megalights { get; set; } = null!;
     public string CargoCapacity { get; set; } = null!;
     public string Consumables { get; set; } = null!;
+
     //public ICollection<MovieStarship> Movies { get; set; } = [];
+
+    public override T ConvertToDto<T>()
+    {
+        throw new NotImplementedException();
+    }
+
+    public override string GetSearchParameter()
+    {
+        throw new NotImplementedException();
+    }
+    
 }

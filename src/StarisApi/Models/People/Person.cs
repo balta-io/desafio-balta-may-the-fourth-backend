@@ -1,0 +1,44 @@
+﻿using StarisApi.Dtos;
+using StarisApi.Models.Planets;
+using System.ComponentModel.DataAnnotations.Schema;
+using System.Globalization;
+using System.Reflection;
+
+namespace StarisApi.Models.People
+{
+    public sealed class Person : Entity
+    {
+        public string Name { get; set; } = null!;
+        public string BirthYear { get; set; } = null!;
+        public string EyeColor { get; set; } = null!;
+        public string Gender { get; set; } = null!;
+        public string HairColor { get; set; } = null!;
+        public string Height { get; set; } = null!;
+        public string Mass { get; set; } = null!;
+        public string SkinColor { get; set; } = null!;
+
+        public int PlanetId { get; set; }
+        public Planet Planet { get; set; } = null!;
+
+        public override T ConvertToDto<T>()
+        {
+            var character = new PersonDto
+            {
+                Id = Id,
+                Name = Name,
+                BirthYear = BirthYear,
+                EyeColor = EyeColor,
+                Gender = Gender,
+                HairColor = HairColor,
+                Height = Height,
+                Mass = Mass,
+                SkinColor = SkinColor,
+
+            } as T;
+
+            return character!;
+        }
+
+        public override string GetSearchParameter() => "Name";
+    }
+}
