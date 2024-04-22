@@ -4,9 +4,9 @@ using System.ComponentModel.DataAnnotations.Schema;
 using System.Globalization;
 using System.Reflection;
 
-namespace StarisApi.Models.People
+namespace StarisApi.Models.Characters
 {
-    public sealed class Person : Entity
+    public sealed class Character : Entity
     {
         public string Name { get; set; } = null!;
         public string BirthYear { get; set; } = null!;
@@ -22,7 +22,7 @@ namespace StarisApi.Models.People
 
         public override T ConvertToDto<T>()
         {
-            var character = new PersonDto
+            var character = new CharacterDto
             {
                 Id = Id,
                 Name = Name,

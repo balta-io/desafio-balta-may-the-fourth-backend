@@ -1,13 +1,13 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
-namespace StarisApi.Models.Films;
+namespace StarisApi.Models.Movies;
 
-public class FilmDbMap : IEntityTypeConfiguration<Film>
+public class MovieDbMap : IEntityTypeConfiguration<Movie>
 {
-    public void Configure(EntityTypeBuilder<Film> builder)
+    public void Configure(EntityTypeBuilder<Movie> builder)
     {
-        builder.ToTable("Films");
+        builder.ToTable("Movies");
         builder.HasKey(x => x.Id);
         builder.Property(x => x.Producer).HasColumnType("varchar(50)").IsRequired();
         builder.Property(x => x.Director).HasColumnType("varchar(50)").IsRequired();
