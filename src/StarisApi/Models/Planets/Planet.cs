@@ -1,4 +1,6 @@
-﻿namespace StarisApi.Models.Planets;
+﻿using StarisApi.Models.Characters;
+
+namespace StarisApi.Models.Planets;
 
 public class Planet
 {
@@ -12,6 +14,6 @@ public class Planet
     public string Climate { get; set; } = null!;
     public string Terrain { get; set; } = null!;
     public string SurfaceWater { get; set; } = null!;
-    //public ICollection<CharacterPlanet> Characters { get; set; } = [];
+    public ICollection<Character> Characters { get; set; } = [];
     //public ICollection<MoviePlanet> Movies { get; set; } = [];
 }

@@ -1,4 +1,7 @@
-﻿namespace StarisApi.Models.Characters;
+﻿using StarisApi.Models.Planets;
+using System.ComponentModel.DataAnnotations.Schema;
+
+namespace StarisApi.Models.Characters;
 
 public class Character
 {
@@ -11,6 +14,8 @@ public class Character
     public string Height { get; set; } = null!;
     public string Mass { get; set; } = null!;
     public string SkinColor { get; set; } = null!;
-    //public Planet? HomeWorld { get; set; }
+    [ForeignKey("Planet")]
+    public int PlanetId { get; set; }
+    public Planet Planet { get; set; } = null!;
     //public ICollection<CharacterMovie> Movies { get; set; } = [];
 }
