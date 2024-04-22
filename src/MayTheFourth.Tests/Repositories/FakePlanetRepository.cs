@@ -22,7 +22,7 @@ public class FakePlanetRepository : IPlanetRepository
         return Task.FromResult(false);
     }
 
-    public async Task<List<Planet>?> GetAllPlanets()
+    public async Task<List<Planet>?> GetAllAsync()
     {
         await Task.Delay(1000);
         return planets;

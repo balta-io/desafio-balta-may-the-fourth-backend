@@ -12,7 +12,7 @@ public class PlanetRepository : IPlanetRepository
     public PlanetRepository(AppDbContext appDbContext)
         => _appDbContext = appDbContext;
 
-    public async Task<List<Planet>?> GetAllPlanets()
+    public async Task<List<Planet>?> GetAllAsync()
     => await _appDbContext.Planets.AsNoTracking().ToListAsync();
 
     public async Task<bool> AnyAsync(string name, double gravity)

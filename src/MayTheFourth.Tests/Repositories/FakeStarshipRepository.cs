@@ -53,7 +53,7 @@ public class FakeStarshipRepository : IStarshipRepository
         return Task.FromResult(false);
     }
 
-    public async Task<List<Starship>?> GetAllStarshipsAsync()
+    public async Task<List<Starship>?> GetAllAsync()
     {
         await Task.Delay(1000);
         return starships;

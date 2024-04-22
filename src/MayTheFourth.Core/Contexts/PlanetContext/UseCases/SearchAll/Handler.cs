@@ -18,7 +18,7 @@ public class Handler : IRequestHandler<Request, Response>
         List<Planet>? planets;
         try
         {
-            planets = await _planetRepository.GetAllPlanets();
+            planets = await _planetRepository.GetAllAsync();
             if (planets!.Count <= 0)
                 return new Response("Nenhum planeta encontrado.", 404);
         }

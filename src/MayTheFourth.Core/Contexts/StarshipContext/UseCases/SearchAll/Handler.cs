@@ -19,7 +19,7 @@ public class Handler : IRequestHandler<Request, Response>
         List<Starship>? starships;
         try
         {
-            starships = await _starshipRepository.GetAllStarshipsAsync();
+            starships = await _starshipRepository.GetAllAsync();
             if (starships!.Count <= 0)
                 return new Response("Nenhuma nave encontrada.", 404);
 
