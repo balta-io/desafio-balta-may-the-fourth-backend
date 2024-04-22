@@ -41,5 +41,6 @@ app.MapStarshipsEndpoints();
 app.MapPeopleEndpoints();
 app.MapPlanetsEndpoints();
 app.MapVehiclesEndpoints();
+app.MapPopulateDBEndpoints();
 
 app.Run();

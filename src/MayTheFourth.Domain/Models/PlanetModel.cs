@@ -1,6 +1,6 @@
-namespace MayTheFourth.Domain.Entities
+namespace MayTheFourth.Domain.Models
 {
-    public class Planet : Entity
+    public class PlanetModel
     {
         public string Name { get; set; }
         public string RotationPeriod { get; set; }

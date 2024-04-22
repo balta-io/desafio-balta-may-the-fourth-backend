@@ -25,7 +25,9 @@ namespace MayTheFourth.Infrastructure.StarWarsApi
             }
             catch (Exception ex)
             {
-                Console.WriteLine($"Erro ao consultar a API: {ex.Message}");
+                Console.WriteLine(
+                    $"Erro ao consultar a API no endereço: {apiUrl} \n" +
+                    $"Mensagem: {ex.Message}");
 
                 return default;
             }

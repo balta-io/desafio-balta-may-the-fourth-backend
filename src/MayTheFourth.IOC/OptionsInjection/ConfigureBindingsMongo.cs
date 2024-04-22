@@ -45,12 +45,12 @@ namespace MayTheFourth.IOC.OptionsInjection
         private static void ConfigureMongoRepositories(IServiceCollection services)
         {
             //Example
-            services.AddScoped<IRepository<Film>, GenericRepository<Film>>();
-            services.AddScoped<IRepository<Person>, GenericRepository<Person>>();
-            services.AddScoped<IRepository<Planet>, GenericRepository<Planet>>();
-            services.AddScoped<IRepository<Specie>, GenericRepository<Specie>>();
-            services.AddScoped<IRepository<Vehicle>, GenericRepository<Vehicle>>();
-            services.AddScoped<IRepository<Starship>, GenericRepository<Starship>>();
+            services.AddScoped<IRepository<FilmEntity>, GenericRepository<FilmEntity>>();
+            services.AddScoped<IRepository<PersonEntity>, GenericRepository<PersonEntity>>();
+            services.AddScoped<IRepository<PlanetEntity>, GenericRepository<PlanetEntity>>();
+            services.AddScoped<IRepository<SpecieEntity>, GenericRepository<SpecieEntity>>();
+            services.AddScoped<IRepository<VehicleEntity>, GenericRepository<VehicleEntity>>();
+            services.AddScoped<IRepository<StarshipEntity>, GenericRepository<StarshipEntity>>();
         }
 
         private static void ConfigureMongoSerializer()
