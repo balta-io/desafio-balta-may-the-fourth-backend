@@ -10,7 +10,7 @@ namespace MayTheFourth.Application.Features.Films.GetFilmes
 
             Console.WriteLine("FUNCIONOU");
 
-            return Unit.Value;
+            return default;
         }
     }
 }

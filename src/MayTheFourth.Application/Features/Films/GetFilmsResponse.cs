@@ -1,9 +1,5 @@
-using MediatR;
-
-namespace MayTheFourth.Application.Features.Films.GetFilmes
+namespace MayTheFourth.Application.Features.Films
 {
-    public class GetFilmsRequest : IRequest<List<GetFilmsResponse>>;
-
     public class GetFilmsResponse
     {
         public int FilmeId { get; set; }
