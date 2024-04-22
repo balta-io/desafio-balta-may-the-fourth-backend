@@ -1,6 +1,5 @@
 using System.Diagnostics.CodeAnalysis;
 using MayTheFourth.IOC.OptionsInjection;
-using MayTheFourth.IOC.OptionsInjection;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -17,6 +16,7 @@ namespace MayTheFourth.IOC
         {
             ConfigureBindingsMediatR.RegisterBindings(services);
             ConfigureBindingsMongo.RegisterBindings(services, configuration);
+            ConfigureBindingsServices.RegisterBindings(services);
             ConfigureBindingsValidator.RegisterBindings(services);
         }
     }

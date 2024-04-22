@@ -36,10 +36,10 @@ if (app.Environment.IsDevelopment())
 app.UseHttpsRedirection();
 
 // Map Endpoints
-app.MapFilmesEndpoints();
-app.MapNavesEndpoints();
-app.MapPersonagensEndpoints();
-app.MapPlanetasEndpoints();
-app.MapVeiculosEndpoints();
+app.MapFilmsEndpoints();
+app.MapStarshipsEndpoints();
+app.MapPeopleEndpoints();
+app.MapPlanetsEndpoints();
+app.MapVehiclesEndpoints();
 
 app.Run();
