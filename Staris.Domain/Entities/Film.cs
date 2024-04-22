@@ -11,4 +11,9 @@ public sealed class Film : Entity
     public string Producer { get; set; } = string.Empty;
     public DateTime ReleaseDate { get; set; }
 
+
+    //EF Relation
+	public List<CharacterFilm>? Characters { get; init; }
+
+	public List<PlanetFilm>? Planets { get; init; }
 }

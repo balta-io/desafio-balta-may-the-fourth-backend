@@ -12,4 +12,10 @@ public sealed class Planet : Entity
     public int Gravity { get; set; }
     public int SurfaceWater { get; set; }
     public long Population { get; set; }
+
+
+    //EF Relation
+    public List<CharacterPlanet> Residents { get; set; }
+
+	public List<PlanetFilm> Movies { get; set; }
 }

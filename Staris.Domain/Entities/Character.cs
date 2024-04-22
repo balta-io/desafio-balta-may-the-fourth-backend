@@ -1,4 +1,5 @@
 ﻿using Staris.Domain.Common;
+using System.Collections;
 
 namespace Staris.Domain.Entities;
 
@@ -14,5 +15,11 @@ public sealed class Character : Entity
     public string SkinColor { get; set; } = string.Empty;
     public string HairColor { get; set; } = string.Empty;
     public int HomeWorldId { get; set; }
+
+
+    //EF Relation
     public Planet? HomeWorld { get; init; }
+
+    public List<CharacterFilm>? Movies{ get; init; }
+
 }

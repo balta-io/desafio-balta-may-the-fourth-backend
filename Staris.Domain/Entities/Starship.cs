@@ -1,8 +1,13 @@
-﻿namespace Staris.Domain.Entities;
+﻿using Staris.Domain.Common;
 
-public sealed class Starship : Vehicle
+namespace Staris.Domain.Entities;
+
+public sealed class Starship : Entity
 {
     public decimal hyperdriveRating { get; set; }
     public int MaximumMegalights { get; set; }
+
+    //EF Relation
+    Vehicle? Vehicle { get; set; }  
 }
 

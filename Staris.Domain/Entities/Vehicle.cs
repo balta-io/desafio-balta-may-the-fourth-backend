@@ -1,4 +1,5 @@
 ﻿using Staris.Domain.Common;
+using Staris.Domain.Enumerables;
 
 namespace Staris.Domain.Entities;
 
@@ -15,12 +16,6 @@ public class Vehicle : Entity
     public decimal CargoCapacity { get; set; }
     public int Consumables { get; set; }
     public string Class { get; set; } = string.Empty;
-    public TypeOfVehicle Type { get; set; }
-}
 
-public enum TypeOfVehicle
-{
-    Unknown = 0,
-    Vehicle = 1,
-    Starship = 2
+    public EnumTypeOfVehicle Type { get; set; }
 }
