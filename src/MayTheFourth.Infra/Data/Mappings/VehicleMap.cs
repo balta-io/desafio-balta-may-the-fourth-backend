@@ -4,11 +4,11 @@ using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace MayTheFourth.Infra.Data.Mappings;
 
-public class StarshipMap : IEntityTypeConfiguration<Starship>
+public class VehicleMap : IEntityTypeConfiguration<Vehicle>
 {
-    public void Configure(EntityTypeBuilder<Starship> builder)
+    public void Configure(EntityTypeBuilder<Vehicle> builder)
     {
-        builder.ToTable("Starships");
+        builder.ToTable("Vehicles");
         builder.HasKey(x => x.Id);
 
         builder.Property(x => x.Name)
@@ -23,10 +23,10 @@ public class StarshipMap : IEntityTypeConfiguration<Starship>
             .HasColumnType("NVARCHAR")
             .HasMaxLength(50);
 
-        builder.Property(x => x.StarshipClass)
+        builder.Property(x => x.VehicleClass)
             .IsRequired()
-            .HasColumnName("StarshipClass")
-            .HasColumnType("NVARCHAR")
+            .HasColumnName("VehicleClass")
+            .HasColumnName("NVARCHAR")
             .HasMaxLength(50);
 
         builder.Property(x => x.Manufacturer)
@@ -35,42 +35,32 @@ public class StarshipMap : IEntityTypeConfiguration<Starship>
             .HasColumnType("NVARCHAR")
             .HasMaxLength(50);
 
-        builder.Property(x => x.CostInCredits)
-            .IsRequired()
-            .HasColumnName("CostInCredits")
-            .HasColumnType("INT");
-
         builder.Property(x => x.Length)
             .IsRequired()
             .HasColumnName("Length")
+            .HasColumnType("INT");
+
+        builder.Property(x => x.CostInCredits)
+            .IsRequired()
+            .HasColumnName("CostInCredits")
             .HasColumnType("DECIMAL");
 
         builder.Property(x => x.Crew)
             .IsRequired()
             .HasColumnName("Crew")
-            .HasColumnType("INT");
+            .HasColumnType("NVARCHAR")
+            .HasMaxLength(50);
 
         builder.Property(x => x.Passengers)
             .IsRequired()
             .HasColumnName("Passengers")
-            .HasColumnType("INT");
+            .HasColumnType("NVARCHAR")
+            .HasMaxLength(50);
 
         builder.Property(x => x.MaxAtmospheringSpeed)
             .IsRequired()
             .HasColumnName("MaxAtmospheringSpeed")
             .HasColumnType("INT");
-
-        builder.Property(x => x.HyperdriveRating)
-            .IsRequired()
-            .HasColumnName("HyperdriveRating")
-            .HasColumnType("NVARCHAR")
-            .HasMaxLength(50);
-
-        builder.Property(x => x.MGLT)
-            .IsRequired()
-            .HasColumnName("MGLT")
-            .HasColumnType("NVARCHAR")
-            .HasMaxLength(50);
 
         builder.Property(x => x.CargoCapacity)
             .IsRequired()
@@ -86,7 +76,7 @@ public class StarshipMap : IEntityTypeConfiguration<Starship>
         builder.Property(x => x.Url)
             .IsRequired()
             .HasColumnName("Url")
-            .HasColumnType("NVARChAR")
+            .HasColumnType("NVARCHAR")
             .HasMaxLength(50);
 
         builder.Property(x => x.Created)

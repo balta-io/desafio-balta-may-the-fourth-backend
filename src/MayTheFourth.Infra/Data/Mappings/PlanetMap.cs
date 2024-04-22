@@ -79,16 +79,6 @@ public class PlanetMap : IEntityTypeConfiguration<Planet>
         builder.Property(x => x.Edited)
             .IsRequired()
             .HasColumnName("Edited")
-            .HasColumnType("DATETIME");
-
-        builder.HasMany(x => x.Residents).WithOne(x => x.Homeworld)
-            .HasForeignKey(x => x.HomeworldId);
-
-        builder.HasMany(x => x.Films).WithMany(x => x.Planets)
-            .UsingEntity<Dictionary<string, object>>("PlanetFilms",
-            films => films.HasOne<Film>().WithMany().HasForeignKey("FilmId").OnDelete(DeleteBehavior.Cascade),
-            planet => planet.HasOne<Planet>().WithMany().HasForeignKey("PlanetId").OnDelete(DeleteBehavior.Cascade)
-        );
-            
+            .HasColumnType("DATETIME");           
     }
 }

@@ -85,18 +85,6 @@ public class PersonMap : IEntityTypeConfiguration<Person>
             .HasForeignKey(x => x.HomeworldId)
             .IsRequired();
 
-        builder.HasMany(x => x.Films)
-            .WithMany(x => x.Characters)
-            .UsingEntity<Dictionary<string, object>>("FilmPerson",
-            film => film.HasOne<Film>()
-                        .WithMany()
-                        .HasForeignKey("FilmId")
-                        .OnDelete(DeleteBehavior.Cascade),
-                person => person.HasOne<Person>()
-                        .WithMany()
-                        .HasForeignKey("PersonId")
-                        .OnDelete(DeleteBehavior.Cascade));
-
         builder.HasMany(x => x.Species)
             .WithMany(x => x.People)
             .UsingEntity<Dictionary<string, object>>("PersonSpecies",
