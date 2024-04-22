@@ -1,4 +1,4 @@
-﻿using StarisApi.Models.People;
+﻿using StarisApi.Models.Characters;
 
 namespace StarisApi.Models.Planets;
 
@@ -13,7 +13,7 @@ public class Planet : Entity
     public string Climate { get; set; } = null!;
     public string Terrain { get; set; } = null!;
     public string SurfaceWater { get; set; } = null!;
-    public ICollection<Person> People { get; set; } = [];
+    public ICollection<Character> Characters { get; set; } = [];
 
     //public ICollection<MoviePlanet> Movies { get; set; } = [];
 

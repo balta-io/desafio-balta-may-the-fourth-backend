@@ -1,11 +1,11 @@
-﻿using StarisApi.Models.PeopleFilms;
-using StarisApi.Models.FilmsStarship;
-using StarisApi.Models.FilmsVehicle;
-using StarisApi.Models.FilmsPlanet;
+﻿using StarisApi.Models.CharactersMovies;
+using StarisApi.Models.MoviesPlanet;
+using StarisApi.Models.MoviesStarships;
+using StarisApi.Models.MoviesVehicles;
 
-namespace StarisApi.Models.Films;
+namespace StarisApi.Models.Movies;
 
-public class Film : Entity
+public class Movie : Entity
 {
     public string Title { get; set; } = null!;
     public int Episode { get; set; }
@@ -14,10 +14,10 @@ public class Film : Entity
     public string Producer { get; set; } = null!;
     public string ReleaseDate { get; set; } = null!;
 
-    public ICollection<PersonFilm> People { get; set; } = [];
-    public ICollection<FilmPlanet> Planets { get; set; } = [];
-    public ICollection<FilmVehicle> Vehicles { get; set; } = [];
-    public ICollection<FilmStarship> Starships { get; set; } = [];
+    public ICollection<CharacterMovie> Characters { get; set; } = [];
+    public ICollection<MoviePlanet> Planets { get; set; } = [];
+    public ICollection<MovieVehicle> Vehicles { get; set; } = [];
+    public ICollection<MovieStarship> Starships { get; set; } = [];
 
     public override T ConvertToDto<T>()
     {
