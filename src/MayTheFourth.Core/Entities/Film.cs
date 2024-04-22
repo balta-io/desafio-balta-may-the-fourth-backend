@@ -13,7 +13,7 @@ public class Film : Entity
     public string Url { get; set; } = string.Empty;
     public DateTime Created { get; set; }
     public DateTime Edited { get; set; }
-    public List<Species> Species { get; set; } = [];
+    public List<Species> SpeciesList { get; set; } = [];
     public List<Starship> Starships { get; set; } = [];
     public List<Vehicle> Vehicles { get; set; } = [];
     public List<Person> Characters { get; set; } = [];
