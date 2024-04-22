@@ -5,22 +5,23 @@
 namespace StarisApi.Migrations
 {
     /// <inheritdoc />
-    public partial class initialmigration : Migration
+    public partial class AddRelationshipMovieStarships : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
-                name: "Characters",
+                name: "MovieStarshipsRelationship",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "INTEGER", nullable: false)
                         .Annotation("Sqlite:Autoincrement", true),
-                    Name = table.Column<string>(type: "varchar(30)", nullable: false)
+                    MovieId = table.Column<int>(type: "int", nullable: false),
+                    StarshipId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Characters", x => x.Id);
+                    table.PrimaryKey("PK_MovieStarshipsRelationship", x => x.Id);
                 });
         }
 
@@ -28,7 +29,7 @@ namespace StarisApi.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "Characters");
+                name: "MovieStarshipsRelationship");
         }
     }
 }

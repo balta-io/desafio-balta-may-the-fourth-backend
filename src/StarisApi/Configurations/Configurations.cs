@@ -1,6 +1,7 @@
 ﻿namespace StarisApi.Configurations
 {
-    public class Configurations
+    public static class Configurations
     {
+        public static string Host { get; set; } = string.Empty;
     }
 }
