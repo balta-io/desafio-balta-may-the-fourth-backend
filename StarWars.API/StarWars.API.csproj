@@ -1,0 +1,68 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <InvariantGlobalization>true</InvariantGlobalization>
+  </PropertyGroup>
+
+  <PropertyGroup Condition=" '$(RunConfiguration)' == 'https' " />
+  <PropertyGroup Condition=" '$(RunConfiguration)' == 'http' " />
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="8.0.0" />
+    <PackageReference Include="Swashbuckle.AspNetCore" Version="6.4.0" />
+    <PackageReference Include="Asp.Versioning.Mvc.ApiExplorer" Version="8.1.0" />
+    <PackageReference Include="MySql.Data.EntityFrameworkCore" Version="8.0.22" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="8.0.4" />
+  </ItemGroup>
+
+      <!-- Inicio de Configurações especificas    
+    Activa a documentação da API com base nos summary  -->
+  <PropertyGroup>
+      <GenerateDocumentationFile>true</GenerateDocumentationFile>
+      <NoWarn>$(NoWarn);1591</NoWarn>
+  </PropertyGroup>
+
+  <!-- Permitir que os resources de idioma, tenham qualquer nome sem o prefixo da solution -->
+  <PropertyGroup>
+      <InvariantGlobalization>true</InvariantGlobalization>
+      <EmbeddedResourceUseDependentUponConvention>false</EmbeddedResourceUseDependentUponConvention>
+  </PropertyGroup>
+	<!--FIM -->
+
+  <ItemGroup>
+    <None Remove="Middlewares\" />
+    <None Remove="Middlewares\Json\" />
+    <None Remove="Middlewares\Security\" />
+    <None Remove="Middlewares\Swagger\" />
+    <None Remove="Middlewares\Versioning\" />
+    <None Remove="Endpoints\" />
+    <None Remove="Models\" />
+    <None Remove="Services\" />
+    <None Remove="Storages\" />
+    <None Remove="Storages\Repositores\" />
+    <None Remove="Storages\Datas\" />
+    <None Remove="Storages\Datas\EntityConfigurations\" />
+    <None Remove="Storages\Abstracts\" />
+    <None Remove="Services\Abstracts\" />
+    <None Remove="Endpoints\Abstracts\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Middlewares\" />
+    <Folder Include="Middlewares\Json\" />
+    <Folder Include="Middlewares\Security\" />
+    <Folder Include="Middlewares\Swagger\" />
+    <Folder Include="Middlewares\Versioning\" />
+    <Folder Include="Endpoints\" />
+    <Folder Include="Models\" />
+    <Folder Include="Services\" />
+    <Folder Include="Storages\" />
+    <Folder Include="Storages\Repositores\" />
+    <Folder Include="Storages\Datas\" />
+    <Folder Include="Storages\Datas\EntityConfigurations\" />
+    <Folder Include="Storages\Abstracts\" />
+    <Folder Include="Services\Abstracts\" />
+    <Folder Include="Endpoints\Abstracts\" />
+  </ItemGroup>
+</Project>
