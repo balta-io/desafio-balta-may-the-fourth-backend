@@ -9,7 +9,7 @@ namespace MayTheFourth.API.Helpers
 {
     public static class ApiHelper
     {
-        public static bool IsSuccessReponse(HttpStatusCode code)
+        public static bool IsSuccessResponse(HttpStatusCode code)
         {
             if (IsInformational(code))
                 return true;
@@ -56,7 +56,7 @@ namespace MayTheFourth.API.Helpers
         {
             return Results.BadRequest(new
             {
-                Error = IsSuccessReponse(statusCode),
+                Error = IsSuccessResponse(statusCode),
                 Status = (int)statusCode,
                 Detail = new string[] {
                     $"{ex.Message} {ex.InnerException?.Message} {ex.InnerException?.InnerException?.Message}"
@@ -66,21 +66,21 @@ namespace MayTheFourth.API.Helpers
 
         public static IResult ResultPagedOperation<ViewModel, Model>(
            PageListResult<ViewModel> OkResult,
-           IErrorBaseService service) 
+           IErrorBaseService service)
             where ViewModel : BaseViewModel<Model>
             where Model : BaseModel
         {
             if (service.Validation.Any())
                 return Results.BadRequest(new
                 {
-                    Error = IsSuccessReponse(HttpStatusCode.BadRequest),
+                    Error = IsSuccessResponse(HttpStatusCode.BadRequest),
                     Status = (int)HttpStatusCode.BadRequest,
                     Detail = service.Validation.Select(x => string.Join(" ", x.Messages)).ToArray()
                 });
 
             return Results.Ok(new
             {
-                Error = IsSuccessReponse(HttpStatusCode.OK),
+                Error = IsSuccessResponse(HttpStatusCode.OK),
                 Status = (int)HttpStatusCode.OK,
                 Data = OkResult
             });
@@ -95,14 +95,14 @@ namespace MayTheFourth.API.Helpers
             if (service.Validation.Any() || OkResult == null)
                 return Results.BadRequest(new
                 {
-                    Error = IsSuccessReponse(HttpStatusCode.BadRequest),
+                    Error = IsSuccessResponse(HttpStatusCode.BadRequest),
                     Status = (int)HttpStatusCode.BadRequest,
                     Detail = service.Validation.Select(x => string.Join(" ", x.Messages)).ToArray()
                 });
 
             return Results.Ok(new
             {
-                Error = IsSuccessReponse(HttpStatusCode.OK),
+                Error = IsSuccessResponse(HttpStatusCode.OK),
                 Status = (int)HttpStatusCode.OK,
                 Data = OkResult
             });
@@ -117,21 +117,21 @@ namespace MayTheFourth.API.Helpers
             if (service.Validation.Any())
                 return Results.BadRequest(new
                 {
-                    Error = IsSuccessReponse(HttpStatusCode.BadRequest),
+                    Error = IsSuccessResponse(HttpStatusCode.BadRequest),
                     Status = (int)HttpStatusCode.BadRequest,
                     Detail = service.Validation.Select(x => string.Join(" ", x.Messages)).ToArray()
                 });
 
             return Results.Ok(new
             {
-                Error = IsSuccessReponse(HttpStatusCode.OK),
+                Error = IsSuccessResponse(HttpStatusCode.OK),
                 Status = (int)HttpStatusCode.OK,
                 Data = OkResult
             });
         }
 
         public static async Task<IResult> GetByKeyAsync<ViewModel, Model>(
-            IBaseReaderService<ViewModel, Model> service, 
+            IBaseReaderService<ViewModel, Model> service,
             Expression<Func<Model, bool>> expr,
             CancellationToken cancellationToken
             )
@@ -151,9 +151,9 @@ namespace MayTheFourth.API.Helpers
             }
         }
 
-        public static async Task<IResult> GetAllPaggedAsync<ViewModel, Model>(
-            IBaseReaderService<ViewModel, Model> service, 
-            int page, 
+        public static async Task<IResult> GetAllPagedAsync<ViewModel, Model>(
+            IBaseReaderService<ViewModel, Model> service,
+            int page,
             int limit,
             CancellationToken cancellationToken)
             where ViewModel : BaseViewModel<Model>
@@ -173,7 +173,7 @@ namespace MayTheFourth.API.Helpers
             }
         }
 
-        public static async Task<IResult> GetAllPaggedFilteredAsync<ViewModel, Model>(
+        public static async Task<IResult> GetAllPagedFilteredAsync<ViewModel, Model>(
             IBaseReaderService<ViewModel, Model> service,
             int page,
             int limit,
@@ -197,7 +197,7 @@ namespace MayTheFourth.API.Helpers
         }
 
         public static async Task<IResult> RemoveByIdAsync<ViewModel, Model>(
-            IBaseWriterService<ViewModel, Model>  service,
+            IBaseWriterService<ViewModel, Model> service,
             Guid id,
             CancellationToken cancellationToken
          )

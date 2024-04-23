@@ -40,7 +40,7 @@ app.MapGet(Urls.GetMoviesList, async (
     [FromQuery(Name = "limit")] int? limit,
     IMovieService service, CancellationToken cancellation) =>
 {
-    return await ApiHelper.GetAllPaggedAsync(
+    return await ApiHelper.GetAllPagedAsync(
         service,
         page ?? 0, 
         limit ?? 0, 
