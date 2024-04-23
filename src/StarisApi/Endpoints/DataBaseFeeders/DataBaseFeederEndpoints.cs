@@ -32,17 +32,17 @@ public static class DataBaseFeederEndpoints
             var relationMovieVehicle = feeder.GetMovieVehicleRelation(filmsBase, vehiclesBase);
             var relationMovieStarship = feeder.GetMovieStarshipRelation(filmsBase, starshipsBase);
 
-            context.CharacterMovies.AddRange(relationCharacterMovie);
-            context.MoviesPlanets.AddRange(relationMoviePlanet);
-            context.MoviesStarships.AddRange(relationMovieStarship);
-            context.MoviesVehicles.AddRange(relationMovieVehicle);
+            //context.CharacterMovies.AddRange(relationCharacterMovie);
+            //context.MoviesPlanets.AddRange(relationMoviePlanet);
+            //context.MoviesStarships.AddRange(relationMovieStarship);
+            //context.MoviesVehicles.AddRange(relationMovieVehicle);
 
-            //var movies = feeder.GetMovies(filmsBase, relationMovieVehicle, relationMoviePlanet, relationMovieStarship, relationCharacterMovie);
+            var movies = feeder.GetMovies(filmsBase, relationMovieVehicle, relationMoviePlanet, relationMovieStarship, relationCharacterMovie);
             //var characters = feeder.GetCharacters(charactersBase, relationCharacterMovie);
 
-            await context.SaveChangesAsync();
+            //await context.SaveChangesAsync();
 
-            return relationCharacterMovie.Count != 0 ? TypedResults.Ok(relationCharacterMovie) : Results.NoContent();
+            return movies.Count != 0 ? TypedResults.Ok(movies) : Results.NoContent();
         });
 
         return app;
