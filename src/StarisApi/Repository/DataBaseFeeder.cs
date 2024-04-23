@@ -1,6 +1,5 @@
 ﻿using StarisApi.Models.Characters;
 using StarisApi.Models.CharactersMovies;
-using StarisApi.Models.CharactersPlanets;
 using StarisApi.Models.Movies;
 using StarisApi.Models.MoviesPlanet;
 using StarisApi.Models.MoviesStarships;
@@ -8,10 +7,7 @@ using StarisApi.Models.MoviesVehicles;
 using StarisApi.Models.Planets;
 using StarisApi.Models.StarShips;
 using StarisApi.Models.Vehicles;
-using System.Linq;
-using System.Net.Http;
 using System.Text.Json;
-using System.Xml.Linq;
 
 namespace StarisApi.Repository;
 

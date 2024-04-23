@@ -1,9 +1,6 @@
 ﻿using StarisApi.Dtos;
 using StarisApi.Models.CharactersMovies;
 using StarisApi.Models.Planets;
-using System.ComponentModel.DataAnnotations.Schema;
-using System.Globalization;
-using System.Reflection;
 
 namespace StarisApi.Models.Characters
 {
@@ -36,8 +33,8 @@ namespace StarisApi.Models.Characters
                 Height = Height,
                 Mass = Mass,
                 SkinColor = SkinColor,
-                Homeworld = Planet,
-                Movies = Movies
+                Homeworld = new ListDto(PlanetId, Planet.Name),
+                Movies = Movies.Select(x => new ListDto(x.MovieId, x.Movie.Title)).ToList()
             } as T;
 
             return character!;

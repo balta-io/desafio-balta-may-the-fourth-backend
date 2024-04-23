@@ -7,6 +7,7 @@ using StarisApi.Responses;
 using System.Linq;
 using System.Net.WebSockets;
 using System.Linq.Dynamic.Core;
+using Microsoft.EntityFrameworkCore;
 
 namespace StarisApi.Repository
 {
@@ -30,7 +31,7 @@ namespace StarisApi.Repository
             var sortParameters = new TEntity().ValidateSortParameter(request.SortBy);
             int offset = ((request.Page ?? 1) - 1) * (request.PerPage ?? 10);
 
-            IQueryable<TEntity> listaEntity = context.Set<TEntity>();
+            IQueryable<TEntity> listaEntity = context.Set<TEntity>().AsNoTracking();
 
             if (searchParam != null && request.Search != null)
                 listaEntity = listaEntity.Where($"{searchParam} == {request.Search}");
@@ -40,7 +41,7 @@ namespace StarisApi.Repository
 
             listaEntity = listaEntity.Skip(offset).Take(request.PerPage ?? 10);
 
-            var listaDto = listaEntity.ToList().ToDtoList<TEntity, T>();
+            var listaDto = listaEntity.AsSplitQuery().ToList().ToDtoList<TEntity, T>();
 
             return new ResponseList<IList<IDto>,T>(listaDto, total, request);
         }
