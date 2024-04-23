@@ -64,41 +64,45 @@ namespace MayTheFourth.Infra.Services.DataImportService
                                 case "planets":
                                     List<PlanetDTO> planets = JsonSerializer.Deserialize<List<PlanetDTO>>(results.GetRawText())!;
 
-                                    foreach (var planetDTO in planets)
-                                    {
-                                        await _appDbContext.Planets.AddAsync(planetDTO.ToPlanet());
-                                        //var planet = planetDTO.ToPlanet();
-                                        //string query = @$"INSERT INTO [dbo].[Planets]
-                                        //           ([Id]
-                                        //           ,[Name]
-                                        //           ,[Diameter]
-                                        //           ,[RotationPeriod]
-                                        //           ,[OrbitalPeriod]
-                                        //           ,[Gravity]
-                                        //           ,[Population]
-                                        //           ,[Climate]
-                                        //           ,[Terrain]
-                                        //           ,[SurfaceWater]
-                                        //           ,[Url]
-                                        //           ,[Created]
-                                        //           ,[Edited])
-                                        //     VALUES
-                                        //           ('{planet.Id}',
-                                        //           '{planet.Name}',
-                                        //           {planet.Diameter},
-                                        //           {planet.RotationPeriod},
-                                        //           {planet.OrbitalPeriod},
-                                        //           '{planet.Gravity}',
-                                        //           {planet.Population},
-                                        //           '{planet.Climate}',
-                                        //           '{planet.Terrain}',
-                                        //           '{planet.SurfaceWater}',
-                                        //           '{planet.Url}',
-                                        //           '{planet.Created}',
-                                        //           '{planet.Edited}')";
-                                        //_appDbContext.Database.ExecuteSqlRaw(query);
-                                    }
+                                    var planetDTO = planets[0];
+                                    await _appDbContext.Planets.AddAsync(planetDTO.ToPlanet());
                                     await _appDbContext.SaveChangesAsync();
+
+                                    //foreach (var planetDTO in planets)
+                                    //{
+                                    //    await _appDbContext.Planets.AddAsync(planetDTO.ToPlanet());
+                                    //    //var planet = planetDTO.ToPlanet();
+                                    //    //string query = @$"INSERT INTO [dbo].[Planets]
+                                    //    //           ([Id]
+                                    //    //           ,[Name]
+                                    //    //           ,[Diameter]
+                                    //    //           ,[RotationPeriod]
+                                    //    //           ,[OrbitalPeriod]
+                                    //    //           ,[Gravity]
+                                    //    //           ,[Population]
+                                    //    //           ,[Climate]
+                                    //    //           ,[Terrain]
+                                    //    //           ,[SurfaceWater]
+                                    //    //           ,[Url]
+                                    //    //           ,[Created]
+                                    //    //           ,[Edited])
+                                    //    //     VALUES
+                                    //    //           ('{planet.Id}',
+                                    //    //           '{planet.Name}',
+                                    //    //           {planet.Diameter},
+                                    //    //           {planet.RotationPeriod},
+                                    //    //           {planet.OrbitalPeriod},
+                                    //    //           '{planet.Gravity}',
+                                    //    //           {planet.Population},
+                                    //    //           '{planet.Climate}',
+                                    //    //           '{planet.Terrain}',
+                                    //    //           '{planet.SurfaceWater}',
+                                    //    //           '{planet.Url}',
+                                    //    //           '{planet.Created}',
+                                    //    //           '{planet.Edited}')";
+                                    //    //_appDbContext.Database.ExecuteSqlRaw(query);
+                                    //}
+                                    //await _appDbContext.SaveChangesAsync();
                                     break;
                             }
                         }
