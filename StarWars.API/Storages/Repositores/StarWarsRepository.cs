@@ -14,18 +14,18 @@ namespace StarWars.API.Storages.Repositores
             _context = context;
         }
 
-        public async Task<MoveModel?> CreateMove(MoveModel model, CancellationToken cancellationToken = default)
+        public async Task<MovieModel?> CreateMovie(MovieModel model, CancellationToken cancellationToken = default)
         {
-            _context.Moves.Add(model);
+            _context.Movies.Add(model);
 
             var result = await _context.SaveChangesAsync(cancellationToken);
 
             return result == 0 ? null : model;
         }
 
-        public async Task<List<MoveModel>>? GetMovesAsync(CancellationToken cancellationToken = default)
+        public async Task<List<MovieModel>>? GetMoviesAsync(CancellationToken cancellationToken = default)
         {
-            var response = await _context.Moves.ToListAsync(cancellationToken);
+            var response = await _context.Movies.ToListAsync(cancellationToken);
 
             return response;
         }
