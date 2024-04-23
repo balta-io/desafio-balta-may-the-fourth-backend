@@ -1,6 +1,6 @@
-namespace MayTheFourth.Domain.Entities
+namespace MayTheFourth.Domain.Models
 {
-    public class Person : Entity
+    public class PersonModel
     {
         public string Name { get; set; }
         public string Height { get; set; }

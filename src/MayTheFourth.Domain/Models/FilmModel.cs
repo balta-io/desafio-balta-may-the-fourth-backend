@@ -1,6 +1,6 @@
-namespace MayTheFourth.Domain.Entities
+namespace MayTheFourth.Domain.Models
 {
-    public class Film : Entity
+    public class FilmModel
     {
         public string? Title { get; set; }
         public int Episode_id { get; set; }

@@ -1,6 +1,6 @@
-namespace MayTheFourth.Domain.Entities
+namespace MayTheFourth.Domain.Models
 {
-    public class Specie : Entity
+    public class SpecieModel
     {
         public string Name { get; set; }
         public string Classification { get; set; }
