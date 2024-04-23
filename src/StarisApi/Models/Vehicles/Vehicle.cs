@@ -1,4 +1,6 @@
-﻿namespace StarisApi.Models.Vehicles;
+﻿using StarisApi.Models.MoviesVehicles;
+
+namespace StarisApi.Models.Vehicles;
 
 public class Vehicle : Entity
 {
@@ -14,7 +16,7 @@ public class Vehicle : Entity
     public string CargoCapacity { get; set; } = null!;
     public string Consumables { get; set; } = null!;
 
-    //public ICollection<MovieVehicle> Movies { get; set; } = [];
+    public ICollection<MovieVehicle> Movies { get; set; } = [];
 
     public override T ConvertToDto<T>()
     {

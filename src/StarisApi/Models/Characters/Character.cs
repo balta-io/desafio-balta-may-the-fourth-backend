@@ -36,7 +36,8 @@ namespace StarisApi.Models.Characters
                 Height = Height,
                 Mass = Mass,
                 SkinColor = SkinColor,
-
+                Homeworld = Planet,
+                Movies = Movies
             } as T;
 
             return character!;
