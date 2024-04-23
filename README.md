@@ -96,40 +96,45 @@ https://localhost:7288/api/v1/film
 
 # 💂‍Participantes
 
-**Capitão:** Igor Santiago
+**Capitão:** Igor Santiago \
 <img src="https://avatars.githubusercontent.com/u/99906642?v=4" width="150"/>
-<div style="display: inline_block; margin-bottom: 20px">
+<div style="display: inline_block;">
     <a href="https://www.linkedin.com/in/igorsantiago" target="_blank"><img src="https://skillicons.dev/icons?i=linkedin"></a> 
     <a href="https://github.com/igorsantiiago" target="_blank"><img src="https://skillicons.dev/icons?i=github"></a> 
 </div>
+<br>
 
-**Soldado:** Eduardo Freitas
+**Soldado:** Eduardo Freitas \
 <img src="https://avatars.githubusercontent.com/u/13337819?v=4" width="150"/>
-<div style="display: inline_block; margin-bottom: 20px">
+<div style="display: inline_block;">
     <a href="https://www.linkedin.com/in/eduardo-freitas-ehff/" target="_blank"><img src="https://skillicons.dev/icons?i=linkedin"></a> 
     <a href="https://github.com/eduardoboca" target="_blank"><img src="https://skillicons.dev/icons?i=github"></a> 
 </div>
+<br>
 
-**Soldado:** Erik Coelho
+**Soldado:** Erik Coelho \
 <img src="https://avatars.githubusercontent.com/u/79767115?v=4" width="150"/>
-<div style="display: inline_block; margin-bottom: 20px">
+<div style="display: inline_block;">
     <a href="https://www.linkedin.com/in/erik-coelho-56121318b/" target="_blank"><img src="https://skillicons.dev/icons?i=linkedin"></a> 
     <a href="https://github.com/ErikCoelho" target="_blank"><img src="https://skillicons.dev/icons?i=github"></a> 
 </div>
+<br>
 
-**Soldado:**  Everson Rezende
+**Soldado:**  Everson Rezende \
 <img src="https://avatars.githubusercontent.com/u/61418106?v=4" width="150"/>
-<div style="display: inline_block; margin-bottom: 20px">
+<div style="display: inline_block;">
     <a href="https://www.linkedin.com/in/eversonrezende/" target="_blank"><img src="https://skillicons.dev/icons?i=linkedin"></a> 
     <a href="https://github.com/eversonrezende" target="_blank"><img src="https://skillicons.dev/icons?i=github"></a> 
 </div>
+<br>
 
-**Soldado:** Lucas Mikó
+**Soldado:** Lucas Mikó \
 <img src="https://avatars.githubusercontent.com/u/63825231?v=4" width="150"/>
-<div style="display: inline_block; margin-bottom: 20px">
+<div style="display: inline_block;">
     <a href="https://www.linkedin.com/in/lucasmiko/" target="_blank"><img src="https://skillicons.dev/icons?i=linkedin"></a> 
     <a href="https://github.com/lucasmiko" target="_blank"><img src="https://skillicons.dev/icons?i=github"></a> 
 </div>
+<br>
 
 # 💜 Participe
 Quer participar dos próximos desafios? Junte-se a [maior comunidade .NET do Brasil 🇧🇷 💜](https://balta.io/discord)
