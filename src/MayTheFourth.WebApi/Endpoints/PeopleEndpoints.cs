@@ -1,3 +1,10 @@
+using MayTheFourth.Application.Features.People;
+using MayTheFourth.Application.Features.People.GetPeople;
+using MayTheFourth.Application.Features.People.GetPeopleById;
+using MediatR;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
+
 namespace MayTheFourth.WebApi.Endpoints
 {
     public static class PeopleEndpoints
@@ -5,9 +12,32 @@ namespace MayTheFourth.WebApi.Endpoints
         //TODO - Adicionar Endpoints
         public static void MapPeopleEndpoints(this WebApplication app)
         {
+            var root = app.MapGroup("/api/people").WithTags("People").WithOpenApi();
 
+            root.MapGet("/",GetPeopleAsync)
+                .Produces<GetPeopleResponse>()
+                .WithSummary("Obtem todos os personagens cadastrados")
+                .WithDescription("Endpoint para leitura e retorno da lista de personagens cadastrados");
+
+            root.MapGet("/{id:guid}", GetPeopleByIdAsync)
+                .Produces<GetPeopleResponse>()
+                .WithSummary("Obtem um personagem pelo Id")
+                .WithDescription("Endpoint para leitura e retorno de um personagem cadastrado pelo Id correspondente");
         }
 
         //TODO - Adicionar métodos
+        public static async Task<IResult> GetPeopleAsync([FromServices] IMediator mediator,CancellationToken cancellationToken)
+        {
+            var result = await mediator.Send(new GetPeopleRequest(), cancellationToken);
+
+            return Results.Ok(result);
+        }
+
+        public static async Task<IResult> GetPeopleByIdAsync([FromRoute] Guid id,[FromServices] IMediator mediator, CancellationToken cancellationToken)
+        {
+            var result = await mediator.Send(new GetPeopleByIdRequest(id), cancellationToken);
+
+            return Results.Ok(result);
+        }
     }
 }
