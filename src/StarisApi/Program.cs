@@ -1,9 +1,11 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.OpenApi.Models;
+using StarisApi.Configurations;
 using StarisApi.Configurations.Attributtes;
 using StarisApi.DbContexts;
 using StarisApi.Endpoints;
 using StarisApi.Endpoints.Characters;
+using StarisApi.Repository;
 using Swashbuckle.AspNetCore.SwaggerGen;
 using System.Reflection;
 
@@ -30,6 +32,9 @@ builder.Services.AddDbContext<SqliteContext>(opt =>
 });
 
 builder.Services.AddTransient<SqliteContext>();
+builder.Services.AddScoped(typeof(Repository<>));
+
+Configurations.Host = builder.Configuration.GetValue<string>("Host")!;
 
 var app = builder.Build();
 
