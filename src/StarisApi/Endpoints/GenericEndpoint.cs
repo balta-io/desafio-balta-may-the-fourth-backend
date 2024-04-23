@@ -12,8 +12,8 @@ namespace StarisApi.Endpoints
         public static IEndpointRouteBuilder MapGenericEndpoint<TEntity, TDto>(this IEndpointRouteBuilder app) 
             where TEntity : Entity, new() where TDto : class, IDto
         {
-            var endpoint = $"{typeof(TDto).GetType().Name.Replace("Dto", string.Empty).ToLower()}s";
-            var tag = typeof(TDto).GetType().Name.Replace("Dto", string.Empty);
+            var endpoint = $"{typeof(TDto).ToString().Split(".").Last().Replace("Dto", string.Empty).ToLower()}s";
+            var tag = typeof(TDto).ToString().Split(".").Last().Replace("Dto", string.Empty);
 
             app.MapGet($"/{endpoint}", ([AsParameters] Request request, Repository<TEntity> context) =>
             {
