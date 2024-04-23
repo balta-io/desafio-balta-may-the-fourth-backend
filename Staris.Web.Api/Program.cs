@@ -8,7 +8,7 @@ var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddDomainDependencyInjection();
 builder.Services.AddApplicationDependencyInjection();
-builder.Services.AddInfraDependencyInjection();
+builder.Services.AddInfraDependencyInjection(builder.Configuration);
 
 builder.Services.Configure<ApplicationSettings>(builder.Configuration.GetSection("ApplicationSettings"));
 
