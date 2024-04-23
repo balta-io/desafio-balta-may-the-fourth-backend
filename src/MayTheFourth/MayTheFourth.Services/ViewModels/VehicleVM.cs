@@ -1,0 +1,8 @@
+﻿using MayTheFourth.Entities;
+
+namespace MayTheFourth.Services.ViewModels
+{
+    public class VehicleVM : BaseViewModel<Vehicle>
+    {
+    }
+}
