@@ -22,7 +22,8 @@ namespace MayTheFourth.Repositories.Mappings
             builder.Property(c => c.Population);
 
             builder.HasMany(c => c.Characters)
-                .WithMany(c => c.Planets);
+                .WithOne(c => c.Planet)
+                .HasForeignKey(c => c.PlanetId);
 
             builder.HasMany(c => c.Movies)
                 .WithMany(c => c.Planets);

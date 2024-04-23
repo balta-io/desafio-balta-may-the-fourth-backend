@@ -20,6 +20,10 @@ namespace MayTheFourth.Repositories.Mappings
             builder.Property(c => c.BirthYear);
             builder.Property(c => c.Gender);
 
+            builder.HasOne(c => c.Planet)
+                .WithMany(p => p.Characters)
+                .HasForeignKey(c => c.PlanetId);
+
             builder.HasMany(c => c.Movies)
                 .WithMany(c => c.Characters);
         }
