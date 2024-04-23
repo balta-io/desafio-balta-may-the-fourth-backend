@@ -1,4 +1,6 @@
-﻿namespace StarisApi.Models.StarShips;
+﻿using StarisApi.Models.MoviesStarships;
+
+namespace StarisApi.Models.StarShips;
 
 public class Starship : Entity
 {
@@ -16,7 +18,7 @@ public class Starship : Entity
     public string CargoCapacity { get; set; } = null!;
     public string Consumables { get; set; } = null!;
 
-    //public ICollection<MovieStarship> Movies { get; set; } = [];
+    public ICollection<MovieStarship> Movies { get; set; } = [];
 
     public override T ConvertToDto<T>()
     {

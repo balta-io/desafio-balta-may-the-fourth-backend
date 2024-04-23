@@ -1,4 +1,5 @@
 ﻿using StarisApi.Models.Characters;
+using StarisApi.Models.MoviesPlanet;
 
 namespace StarisApi.Models.Planets;
 
@@ -15,7 +16,7 @@ public class Planet : Entity
     public string SurfaceWater { get; set; } = null!;
     public ICollection<Character> Characters { get; set; } = [];
 
-    //public ICollection<MoviePlanet> Movies { get; set; } = [];
+    public ICollection<MoviePlanet> Movies { get; set; } = [];
 
     public override T ConvertToDto<T>()
     {

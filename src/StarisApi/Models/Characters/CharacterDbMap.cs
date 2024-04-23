@@ -17,5 +17,8 @@ public class CharacterDbMap : IEntityTypeConfiguration<Character>
         builder.Property(x => x.Height).HasColumnType("varchar(30)").IsRequired();
         builder.Property(x => x.Mass).HasColumnType("varchar(30)").IsRequired();
         builder.Property(x => x.SkinColor).HasColumnType("varchar(30)").IsRequired();
+
+        builder.Navigation(x => x.Movies).AutoInclude();
+        builder.Navigation(x => x.Planet).AutoInclude();
     }
 }
