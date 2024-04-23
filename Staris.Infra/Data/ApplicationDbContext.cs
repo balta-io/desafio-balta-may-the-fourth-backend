@@ -18,12 +18,20 @@ public class ApplicationDbContext : DbContext, IApplicationDbContext, IUnitOfWor
 
 
 
-    public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options)
+    public ApplicationDbContext(DbContextOptions options) : base(options)
     {
-
     }
 
-    public override async Task<int> SaveChangesAsync(CancellationToken cancellationToken = default)
+	protected override void OnModelCreating(ModelBuilder modelBuilder)
+	{
+		//Adding configuration from mapping classes
+		modelBuilder.ApplyConfigurationsFromAssembly(typeof(ApplicationDbContext).Assembly);
+
+		base.OnModelCreating(modelBuilder);
+	}
+
+
+	public override async Task<int> SaveChangesAsync(CancellationToken cancellationToken = default)
     {
         var response = await base.SaveChangesAsync(cancellationToken);
         return response;
