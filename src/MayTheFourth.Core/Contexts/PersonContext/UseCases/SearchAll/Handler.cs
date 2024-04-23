@@ -21,6 +21,8 @@ public class Handler : IRequestHandler<Request, Response>
         try
         {
             people = await _personRepository.GetAllAsync();
+            if (people!.Count <= 0)
+                return new Response("Nenhum personagem encontrado.", 404);
         }
         catch (Exception ex)
         {
