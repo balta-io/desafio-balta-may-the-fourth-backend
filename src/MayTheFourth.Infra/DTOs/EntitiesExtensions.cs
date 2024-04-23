@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Numerics;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -18,12 +19,12 @@ namespace MayTheFourth.Infra.DTOs
                 EyeColor = dto.EyeColor,
                 Gender = dto.Gender,
                 HairColor = dto.HairColor,
-                Height = dto.Height,
+                Height = int.Parse(dto.Height),
                 Mass = dto.Mass,
                 SkinColor = dto.SkinColor,
                 Url = dto.Url,
-                Created = dto.Created,
-                Edited = dto.Edited
+                Created = DateTime.Now,
+                Edited = DateTime.Now
             };
 
             return person;

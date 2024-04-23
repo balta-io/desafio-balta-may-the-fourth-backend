@@ -15,6 +15,7 @@ builder.AddFilmContext();
 builder.AddPersonContext();
 builder.AddDbContext();
 builder.AddMediatR();
+builder.AddDataImport();
 
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();

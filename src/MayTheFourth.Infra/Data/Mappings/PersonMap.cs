@@ -65,12 +65,12 @@ public class PersonMap : IEntityTypeConfiguration<Person>
             .HasMaxLength(255);
 
         builder.Property(x => x.Created)
-            .IsRequired()
+            .IsRequired(false)
             .HasColumnName("Created")
             .HasColumnType("DATETIME");
 
         builder.Property(x => x.Edited)
-            .IsRequired()
+            .IsRequired(false)
             .HasColumnName("Edited")
             .HasColumnType("DATETIME");
 
