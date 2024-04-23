@@ -1,4 +1,5 @@
-﻿using StarisApi.Models.Characters;
+﻿using StarisApi.Dtos;
+using StarisApi.Models.Characters;
 using StarisApi.Models.MoviesPlanet;
 
 namespace StarisApi.Models.Planets;
@@ -20,7 +21,23 @@ public class Planet : Entity
 
     public override T ConvertToDto<T>()
     {
-        throw new NotImplementedException();
+        var Planet = new PlanetDto
+            {
+                Id = Id,
+                Name = Name,
+                Diameter = Diameter,
+                RotationSpeed = RotationSpeed,
+                OrbitalPeriod = OrbitalPeriod,
+                Gravity = Gravity,
+                Population = Population,
+                Climate = Climate,
+                Terrain = Terrain,
+                SurfaceWater = SurfaceWater,                
+                Characters = Characters.Select(x => new ListDto(x.PlanetId, x.Planet.Name)).ToList(),
+                Movies = Movies.Select(x => new ListDto(x.MovieId, x.Movie.Title)).ToList(),
+            } as T;
+
+            return Planet!;
     }
 
     public override string GetSearchParameter()
