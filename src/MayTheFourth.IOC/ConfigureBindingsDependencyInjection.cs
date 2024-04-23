@@ -14,6 +14,7 @@ namespace MayTheFourth.IOC
             IConfiguration configuration
         )
         {
+            ConfigureBindingsMapping.RegisterBindings();
             ConfigureBindingsMediatR.RegisterBindings(services);
             ConfigureBindingsMongo.RegisterBindings(services, configuration);
             ConfigureBindingsServices.RegisterBindings(services);
