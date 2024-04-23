@@ -10,7 +10,7 @@ Desenvolvimento de uma API completa, fornecendo recursos como criação, leitura
 
 ## Participantes
 ### 🚀 Capitão
-[NOME e GITHUB]
+[Martinho Sebastião e [GITHUB](https://github.com/martinhosebastiao)]
 
 ### 💂‍♀️ Batalhão
 * [NOME e GITHUB]
