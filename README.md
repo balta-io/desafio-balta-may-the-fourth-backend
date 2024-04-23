@@ -10,13 +10,13 @@ Desenvolvimento de uma API completa, fornecendo recursos como criação, leitura
 
 ## Participantes
 ### 🚀 Capitão
-[NOME e GITHUB]
+[Alexandre Rodrigues](https://github.com/DoufaDev)
 
 ### 💂‍♀️ Batalhão
-* [NOME e GITHUB]
-* [NOME e GITHUB]
-* [NOME e GITHUB]
-* [NOME e GITHUB]
+* [Leonardo Gasperin](https://github.com/leonardoGasperin)
+* [Matheus Leal](https://github.com/Matheusleal)
+* [Duglas Neves](https://github.com/DoufaDev)
+* [Denisson Silva](https://github.com/DoufaDev)
 
 ## ⚙️ Tecnologias
 * C# 12
@@ -29,9 +29,6 @@ Desenvolvimento de uma API completa, fornecendo recursos como criação, leitura
 * Trabalho em Equipe
 * Networking
 * Muito conhecimento técnico
-
-## 🧪 Como testar o projeto
-[DESCREVER COMO EXECUTAR O PROJETO]
 
 # 💜 Participe
 Quer participar dos próximos desafios? Junte-se a [maior comunidade .NET do Brasil 🇧🇷 💜](https://balta.io/discord)
