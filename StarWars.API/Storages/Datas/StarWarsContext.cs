@@ -27,7 +27,7 @@ namespace StarWars.API.Storages.Datas
         {
             // Todo: Adicionar as configurações dos outros modelos
 
-            modelBuilder.ApplyConfiguration(new MoveConfiguration());
+            modelBuilder.ApplyConfiguration(new MovieConfiguration());
 
             base.OnModelCreating(modelBuilder);
         }
