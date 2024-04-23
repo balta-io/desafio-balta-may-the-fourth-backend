@@ -7,14 +7,14 @@ public class FakePlanetRepository : IPlanetRepository
 {
     public List<Planet> planets = new()
     {
-        new() { Name = "Alderaan", Gravity = 9.81 },
-        new() { Name = "Tatooine", Gravity = 9.81 },
-        new() { Name = "Naboo", Gravity = 9.81 },
-        new() { Name = "Coruscant", Gravity = 9.81 },
-        new() { Name = "Hoth", Gravity = 9.81 }
+        new() { Name = "Alderaan", Gravity = "9.81" },
+        new() { Name = "Tatooine", Gravity = "9.81" },
+        new() { Name = "Naboo", Gravity = "9.81" },
+        new() { Name = "Coruscant", Gravity = "9.81" },
+        new() { Name = "Hoth", Gravity = "9.81" }
     };
 
-    public Task<bool> AnyAsync(string name, double gravity)
+    public Task<bool> AnyAsync(string name, string gravity)
     {
         if (string.Equals(name, planets[0].Name) && gravity.Equals(planets[0].Gravity))
             return Task.FromResult(true);

@@ -1,5 +1,4 @@
 ﻿using MayTheFourth.Core.Contexts.SharedContext.Entities;
-using System.Text.Json.Serialization;
 
 namespace MayTheFourth.Core.Entities;
 
@@ -9,7 +8,7 @@ public class Planet : Entity
     public int Diameter { get; set; }
     public int RotationPeriod { get; set; }
     public int OrbitalPeriod { get; set; }
-    public double Gravity { get; set; }
+    public string Gravity { get; set; } = string.Empty;
     public int Population { get; set; }
     public string Climate { get; set; } = string.Empty;
     public string Terrain { get; set; } = string.Empty;
