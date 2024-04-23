@@ -1,4 +1,5 @@
 ﻿using MayTheFourth.Core.Contexts.SharedContext.Entities;
+using System.Text.Json.Serialization;
 
 namespace MayTheFourth.Core.Entities;
 

@@ -77,7 +77,7 @@ public class PersonMap : IEntityTypeConfiguration<Person>
         #region relationships
 
         builder.HasOne(x => x.Homeworld)
-            .WithMany()
+            .WithMany(x => x.Residents)
             .HasForeignKey(x => x.HomeworldId)
             .IsRequired();
 

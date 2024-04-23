@@ -20,6 +20,11 @@ namespace MayTheFourth.Infra.Repositories
         public async Task<List<Film>> GetAllAsync()
             => await _appDbContext
                     .Films
+                    .Include(x => x.Planets)
+                    .Include(x => x.Characters)
+                    .Include(x => x.Vehicles)
+                    .Include(x => x.Starships)
+                    .Include(x => x.SpeciesList)
                     .AsNoTracking()
                     .ToListAsync();
 
