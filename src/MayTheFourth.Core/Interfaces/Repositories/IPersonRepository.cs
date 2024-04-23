@@ -4,5 +4,7 @@ namespace MayTheFourth.Core.Interfaces.Repositories;
 
 public interface IPersonRepository
 {
-    Task<List<Person>> GetAllAsync();
+    Task<bool> AnyAsync(string name, string birthYear);
+    Task<List<Person>?> GetAllAsync();
+    Task SaveAsync(Person person, CancellationToken cancellationToken);
 }
