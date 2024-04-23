@@ -13,7 +13,6 @@ namespace StarisApi.Responses
         public string Previous { get; set; } = default!;
         public IList<D> Results { get; set; } = [];
 
-
         public ResponseList(IList<D> lista, int total, Request request)
         {
             var dtoNameEndpoint = typeof(D).Name.Replace("Dto", string.Empty).ToLower();

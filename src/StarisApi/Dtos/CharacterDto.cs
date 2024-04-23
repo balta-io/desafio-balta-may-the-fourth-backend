@@ -1,8 +1,10 @@
-﻿using StarisApi.Models.Characters;
-using System.Text.Json.Serialization;
+﻿using StarisApi.Models.Planets;
 
 namespace StarisApi.Dtos
 {
+    /// <summary>
+    /// teste
+    /// </summary>
     public sealed class CharacterDto : IDto
     {
         public int Id { get; set; }
@@ -14,8 +16,8 @@ namespace StarisApi.Dtos
         public string Height { get; set; } = null!;
         public string Mass { get; set; } = null!;
         public string SkinColor { get; set; } = null!;
-
-        public string Url { get; set; } = null!;
+        public ListDto Homeworld { get; set; } = null!;
+        public ICollection<ListDto> Movies { get; set; } = null!;
 
     }
 }

@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Http.Json;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.OpenApi.Models;
 using StarisApi.Configurations;
@@ -8,10 +9,13 @@ using StarisApi.Endpoints.Characters;
 using StarisApi.Repository;
 using Swashbuckle.AspNetCore.SwaggerGen;
 using System.Reflection;
+using System.Text.Json.Serialization;
 
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddEndpointsApiExplorer();
+builder.Services.AddHttpClient();
+builder.Services.Configure<JsonOptions>(opt => opt.SerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles);
 builder.Services.AddSwaggerGen(opt =>
 {
     opt.EnableAnnotations();
@@ -32,6 +36,7 @@ builder.Services.AddDbContext<SqliteContext>(opt =>
 });
 
 builder.Services.AddTransient<SqliteContext>();
+builder.Services.AddTransient<DataBaseFeeder>();
 builder.Services.AddScoped(typeof(Repository<>));
 
 Configurations.Host = builder.Configuration.GetValue<string>("Host")!;

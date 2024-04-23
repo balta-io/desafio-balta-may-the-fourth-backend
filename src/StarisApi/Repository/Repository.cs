@@ -1,11 +1,10 @@
-﻿using StarisApi.DbContexts;
+﻿using Microsoft.EntityFrameworkCore;
+using StarisApi.DbContexts;
 using StarisApi.Dtos;
 using StarisApi.Extensions;
 using StarisApi.Models;
 using StarisApi.Requests;
 using StarisApi.Responses;
-using System.Linq;
-using System.Net.WebSockets;
 using System.Linq.Dynamic.Core;
 
 namespace StarisApi.Repository
@@ -30,10 +29,10 @@ namespace StarisApi.Repository
             var sortParameters = new TEntity().ValidateSortParameter(request.SortBy);
             int offset = ((request.Page ?? 1) - 1) * (request.PerPage ?? 10);
 
-            IQueryable<TEntity> listaEntity = context.Set<TEntity>();
+            IQueryable<TEntity> listaEntity = context.Set<TEntity>().AsNoTracking();
 
             if (searchParam != null && request.Search != null)
-                listaEntity = listaEntity.Where($"{searchParam} == {request.Search}");
+                listaEntity = listaEntity.Where($"{searchParam}.ToLower().Contains(@0)", $"{request.Search.Trim().ToLower()}");
 
             if (sortParameters != null)
                 listaEntity = listaEntity.OrderBy(sortParameters, request.SortOrder);
