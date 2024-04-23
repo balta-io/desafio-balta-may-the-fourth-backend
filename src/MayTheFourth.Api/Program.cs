@@ -3,6 +3,8 @@ using MayTheFourth.Api.Extensions.Contexts.FilmContext;
 using MayTheFourth.Api.Extensions.Contexts.PersonContext;
 using MayTheFourth.Api.Extensions.Contexts.PlanetContext;
 using MayTheFourth.Api.Extensions.Contexts.StartshipContext;
+using MayTheFourth.Infra.Data;
+using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -27,7 +29,7 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 
-
+await app.ImportDataAsync();
 app.MapPlanetEndpoints();
 app.MapStarshipEndpoints();
 app.MapFilmEndpoints();

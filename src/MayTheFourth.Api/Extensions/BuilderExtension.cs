@@ -1,6 +1,7 @@
 ﻿using MayTheFourth.Core;
 using MayTheFourth.Infra.Data;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Logging.Configuration;
 
 namespace MayTheFourth.Api.Extensions;
 
@@ -15,7 +16,11 @@ public static class BuilderExtension
 
     public static void AddDbContext(this WebApplicationBuilder builder)
         => builder.Services.AddDbContext<AppDbContext>(options =>
-            options.UseSqlServer(Configuration.Database.ConnectionString, assembly => assembly.MigrationsAssembly("MayTheFourth.Api")));
+            {
+                options.UseSqlServer(Configuration.Database.ConnectionString, assembly => assembly.MigrationsAssembly("MayTheFourth.Api"))
+                .UseLoggerFactory(LoggerFactory.Create(builder => builder.AddConsole()));
+
+            });
 
     //public static void AddDbContext(this WebApplicationBuilder builder)
     //    => builder.Services.AddDbContext<AppDbContext>(opt => opt.UseInMemoryDatabase(databaseName: "InMemoryDatabase"));
