@@ -12,7 +12,7 @@ public class PersonRepository : IPersonRepository
     public PersonRepository(AppDbContext appDbContext)
         => _appDbContext = appDbContext;
 
-    public async Task<List<Person>> GetAllAsync()
+    public async Task<List<Person>?> GetAllAsync()
         => await _appDbContext
                 .People
                 .Include(x => x.Species)
@@ -21,4 +21,13 @@ public class PersonRepository : IPersonRepository
                 .Include(x => x.Vehicles)
                 .AsNoTracking()
                 .ToListAsync();
+
+    public async Task<bool> AnyAsync(string name, string birthYear)
+       => await _appDbContext.People.AnyAsync(x => x.Name == name && x.BirthYear.Equals(birthYear));
+
+    public async Task SaveAsync(Person person, CancellationToken cancellationToken)
+    {
+        await _appDbContext.People.AddAsync(person);
+        await _appDbContext.SaveChangesAsync();
+    }
 }
