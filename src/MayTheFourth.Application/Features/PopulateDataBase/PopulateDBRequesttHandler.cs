@@ -1,4 +1,4 @@
-using MayTheFourth.Application.Common.AppServices;
+using MayTheFourth.Application.Common.AppServices.PopulateDB;
 using MediatR;
 
 namespace MayTheFourth.Application.Features.PopulateDataBase

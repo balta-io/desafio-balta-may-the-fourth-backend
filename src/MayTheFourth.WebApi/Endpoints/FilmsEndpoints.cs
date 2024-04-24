@@ -21,6 +21,7 @@ namespace MayTheFourth.WebApi.Endpoints
 
             root.MapGet("/{id}", GetFilmesByIdAsync)
                 .Produces<GetFilmsResponse>()
+                .ProducesProblem(StatusCodes.Status404NotFound)
                 .WithSummary("Obtem um filme cadastrado")
                 .WithDescription("Endpoint para leitura e retorno de um filme cadastrado pelo Id correspondente");
         }
@@ -43,6 +44,9 @@ namespace MayTheFourth.WebApi.Endpoints
         )
         {
             var result = await mediator.Send(new GetFilmsByIdRequest(id));
+
+            if (result is null)
+                return Results.NotFound();
 
             return Results.Ok(result);
         }
