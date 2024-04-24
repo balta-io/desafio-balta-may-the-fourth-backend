@@ -11,10 +11,25 @@
     <hr>
 </div>
 
+1. <a href="#desafio">Desafio</a><br>
+2. <a href="#tecnologias">Tecnologias</a><br>
+3. <a href="#arquitetura">Arquiteturas e Infraestrutura</a><br>
+4. <a href="#skills">Skills Desenvolvidas</a><br>
+5. <a href="#testes">Como testar o projeto</a><br>
+6. <a href="#endpoints">Endpoints</a><br>
+7. <a href="#participantes">Participantes</a><br>
+8. <a href="#participe">Participe</a><br>
+
+---
+
+<section id="desafio"> </section>
+
 ## 🎖️ Desafio
 **May the Fourth** é a quarta edição dos **Desafios .NET** realizados pelo [balta.io](https://balta.io). Durante esta jornada, fizemos parte do batalhão backend onde unimos forças para entregar um API em celebração ao dia de Star Wars, com dados referente do universo.
 
 A API fornece a possibilidade de fazer consultas, cadastros, remoções e atualizações dos dados. Os tipos de dados disponíveis são: Filmes, Personagens, Naves, Veículos, Planetas e Espécies. 
+
+<section id="tecnologias"> </section>
 
 ## ⚙️ Tecnologias
 * C# 12
@@ -22,11 +37,15 @@ A API fornece a possibilidade de fazer consultas, cadastros, remoções e atuali
 * ASP.NET
 * Azure
 
+<section id="arquitetura"> </section>
+
 ## 📌 Arquitetura e Infraestrutura
 * Minimal APIs
 * Clean Architecture
 * Repository Pattern
 * Mediator Pattern
+
+<section id="skills"> </section>
 
 ## 🥋 Skills Desenvolvidas
 * Comunicação
@@ -34,6 +53,8 @@ A API fornece a possibilidade de fazer consultas, cadastros, remoções e atuali
 * Networking
 * Resolução de problemas
 * Conhecimento técnico
+
+<section id="testes"> </section>
 
 ## 🧪 Como testar o projeto
 Para rodar o projeto de forma local, primeiro sera necessário subir um banco de dados. Para subir um banco da forma mais fácil, iremos precisar utilizar o Docker, que é uma ferramenta para conteinirização.
@@ -76,8 +97,9 @@ dotnet watch run
 
 Agora que estamos com a API rodando, podemos fazer requisições necessárias utilizando um headless browser como o Postman e os Endpoints descritos no próximo tópico.
 
-## 🎯 Endpoints
+<section id="endpoints"> </section>
 
+## 🎯 Endpoints
 
 ### 🎬 Film
 #### 🟢 SearchAll  - Responsavel por listar todos os filmes
@@ -432,6 +454,8 @@ https://localhost:7288/api/v1/
 
 ---
 
+<section id="participantes"> </section>
+
 # 💂‍Participantes
 
 **Capitão:** Igor Santiago \
@@ -473,6 +497,8 @@ https://localhost:7288/api/v1/
     <a href="https://github.com/lucasmiko" target="_blank"><img src="https://skillicons.dev/icons?i=github"></a> 
 </div>
 <br>
+
+<section id="participe"> </section>
 
 # 💜 Participe
 Quer participar dos próximos desafios? Junte-se a [maior comunidade .NET do Brasil 🇧🇷 💜](https://balta.io/discord)
