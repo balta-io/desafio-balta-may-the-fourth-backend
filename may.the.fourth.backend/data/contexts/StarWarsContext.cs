@@ -33,7 +33,7 @@ namespace May.The.Fourth.Backend.Data.Contexts
                 new FilmeEntity { Id = 6, Titulo = "Rise of the Planetara" },
                 new FilmeEntity { Id = 7, Titulo = "Echoes of the Stars" },
                 new FilmeEntity { Id = 8, Titulo = "The Return of the Voyager" },
-                new FilmeEntity { Id = 9, Titulo = "Voyager''s Endgame" },
+                new FilmeEntity { Id = 9, Titulo = "Voyager's Endgame" },
                 new FilmeEntity { Id = 10, Titulo = "Galactic Odyssey" },
                 new FilmeEntity { Id = 11, Titulo = "The Edge of the Universe" },
             };
