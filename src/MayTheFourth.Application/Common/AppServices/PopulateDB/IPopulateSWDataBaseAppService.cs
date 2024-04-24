@@ -1,4 +1,4 @@
-namespace MayTheFourth.Application.Common.AppServices
+namespace MayTheFourth.Application.Common.AppServices.PopulateDB
 {
     public interface IPopulateSWDataBaseAppService
     {
