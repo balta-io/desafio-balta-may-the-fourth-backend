@@ -1,4 +1,5 @@
 using Mapster;
+using MayTheFourth.Application.Common.AppServices.PopulateFilms;
 using MayTheFourth.Application.Common.Repositories;
 using MayTheFourth.Domain.Entities;
 using MediatR;
@@ -9,42 +10,52 @@ namespace MayTheFourth.Application.Features.Films.GetFilmes
     {
         private readonly IRepository<FilmEntity> _filmRepository;
         private readonly IRepository<PersonEntity> _personRepository;
+        private readonly IRepository<PlanetEntity> _planetRepository;
+        private readonly IRepository<VehicleEntity> _vehicleRepository;
+        private readonly IRepository<StarshipEntity> _starshipRepository;
+        private readonly IPopulateFilmsResponseAppService _populateFilmsAppService;
 
         public GetFilmsRequestHandler
         (
             IRepository<FilmEntity> filmRepository,
-            IRepository<PersonEntity> personRepository
+            IRepository<PersonEntity> personRepository,
+            IRepository<PlanetEntity> planetRepository,
+            IRepository<VehicleEntity> vehicleRepository,
+            IRepository<StarshipEntity> starshipRepository,
+            IPopulateFilmsResponseAppService populateFilmsAppService
         )
         {
             _filmRepository = filmRepository;
             _personRepository = personRepository;
+            _planetRepository = planetRepository;
+            _vehicleRepository = vehicleRepository;
+            _starshipRepository = starshipRepository;
+            _populateFilmsAppService = populateFilmsAppService;
         }
-
-        //private readonly IRepository<PlanetEntity> _planetRepository = planetRepository;
-        //private readonly IRepository<VehicleEntity> _vehicleRepository = vehicleRepository;
-        //private readonly IRepository<StarshipEntity> _starshipRepository = starshipRepository;
-
 
         public async Task<List<GetFilmsResponse>> Handle(GetFilmsRequest request, CancellationToken cancellationToken)
         {
             cancellationToken.ThrowIfCancellationRequested();
 
             var filmList = await _filmRepository.GetListByFilterAsync(x => x.Active, cancellationToken);
-            var personList = await _filmRepository.GetListByFilterAsync(x => x.Active, cancellationToken);
+            var peopleList = await _personRepository.GetListByFilterAsync(x => x.Active, cancellationToken);
+            var planetList = await _planetRepository.GetListByFilterAsync(x => x.Active, cancellationToken);
+            var vehicleList = await _vehicleRepository.GetListByFilterAsync(x => x.Active, cancellationToken);
+            var starshipList = await _starshipRepository.GetListByFilterAsync(x => x.Active, cancellationToken);
 
             var responseList = new List<GetFilmsResponse>();
 
-            foreach (var item in filmList)
+            foreach (var film in filmList)
             {
-                var response = item.Adapt<GetFilmsResponse>();
-                var person = personList.First(x => x.Url.Equals(item.Url)).Adapt<ItemDescription>();
+                var response = film.Adapt<GetFilmsResponse>();
 
-                response.Characters.Add(person);
+                response.Characters = _populateFilmsAppService.GetPeopleList(film, peopleList);
+                response.Planets = _populateFilmsAppService.GetPlanetsList(film, planetList);
+                response.Vehicles = _populateFilmsAppService.GetVehiclesList(film, vehicleList);
+                response.Starships = _populateFilmsAppService.GetStarshipsList(film, starshipList);
 
                 responseList.Add(response);
             }
-
-            Console.WriteLine("FUNCIONOU");
 
             return responseList;
         }

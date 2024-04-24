@@ -1,11 +1,12 @@
 using Mapster;
+using MayTheFourth.Application.Common.Constants;
 using MayTheFourth.Application.Common.Repositories;
 using MayTheFourth.Application.Common.Services;
 using MayTheFourth.Domain.Entities;
 using MayTheFourth.Domain.Models;
 using Newtonsoft.Json;
 
-namespace MayTheFourth.Application.Common.AppServices
+namespace MayTheFourth.Application.Common.AppServices.PopulateDB
 {
     public class PopulateSWDataBaseAppService
     (
@@ -26,13 +27,6 @@ namespace MayTheFourth.Application.Common.AppServices
         private readonly IRepository<VehicleEntity> _vehicleRepository = vehicleRepository;
         private readonly IRepository<StarshipEntity> _starshipRepository = starshipRepository;
 
-        const string UrlFilms = "https://swapi.dev/api/films/";
-        const string UrlPeople = "https://swapi.dev/api/people/";
-        const string UrlPlanets = "https://swapi.dev/api/planets/";
-        const string UrlSpecies = "https://swapi.dev/api/species/";
-        const string UrlVehicles = "https://swapi.dev/api/vehicles/";
-        const string UrlStarships = "https://swapi.dev/api/starships/";
-
         public async Task PopulateSWDataBase(CancellationToken cancellationToken = default)
         {
             await PopulateFilms(cancellationToken);
@@ -45,14 +39,14 @@ namespace MayTheFourth.Application.Common.AppServices
 
         private async Task PopulateFilms(CancellationToken cancellationToken)
         {
-            var apiResponse = await _starWarsApiService.SearchByUrlAsync(UrlFilms, cancellationToken);
+            var apiResponse = await _starWarsApiService.SearchByUrlAsync(UrlConstants.UrlFilms, cancellationToken);
             var responseList = JsonConvert.DeserializeObject<SWApiResponse>(apiResponse);
 
             var itens = responseList.Count;
 
             for (int i = 1; i <= itens; i++)
             {
-                var url = $"{UrlFilms}{i}/";
+                var url = $"{UrlConstants.UrlFilms}{i}/";
 
                 var filmObjectJson = await _starWarsApiService.SearchByUrlAsync(url, cancellationToken);
                 if (string.IsNullOrWhiteSpace(filmObjectJson))
@@ -79,14 +73,14 @@ namespace MayTheFourth.Application.Common.AppServices
 
         private async Task PopulatePeople(CancellationToken cancellationToken)
         {
-            var apiResponse = await _starWarsApiService.SearchByUrlAsync(UrlPeople, cancellationToken);
+            var apiResponse = await _starWarsApiService.SearchByUrlAsync(UrlConstants.UrlPeople, cancellationToken);
             var responseList = JsonConvert.DeserializeObject<SWApiResponse>(apiResponse);
 
             var itens = responseList.Count;
 
             for (int i = 1; i <= itens; i++)
             {
-                var url = $"{UrlPeople}{i}/";
+                var url = $"{UrlConstants.UrlPeople}{i}/";
 
                 var peopleObjectJson = await _starWarsApiService.SearchByUrlAsync(url, cancellationToken);
                 if (string.IsNullOrWhiteSpace(peopleObjectJson))
@@ -113,13 +107,13 @@ namespace MayTheFourth.Application.Common.AppServices
 
         private async Task PopulatePlanets(CancellationToken cancellationToken)
         {
-            var apiResponse = await _starWarsApiService.SearchByUrlAsync(UrlPlanets, cancellationToken);
+            var apiResponse = await _starWarsApiService.SearchByUrlAsync(UrlConstants.UrlPlanets, cancellationToken);
             var responseList = JsonConvert.DeserializeObject<SWApiResponse>(apiResponse);
             var itens = responseList.Count;
 
             for (int i = 1; i <= itens; i++)
             {
-                var url = $"{UrlPlanets}{i}/";
+                var url = $"{UrlConstants.UrlPlanets}{i}/";
 
                 var planetObjectJson = await _starWarsApiService.SearchByUrlAsync(url, cancellationToken);
                 if (string.IsNullOrWhiteSpace(planetObjectJson))
@@ -146,13 +140,13 @@ namespace MayTheFourth.Application.Common.AppServices
 
         private async Task PopulateSpecies(CancellationToken cancellationToken)
         {
-            var apiResponse = await _starWarsApiService.SearchByUrlAsync(UrlSpecies, cancellationToken);
+            var apiResponse = await _starWarsApiService.SearchByUrlAsync(UrlConstants.UrlSpecies, cancellationToken);
             var responseList = JsonConvert.DeserializeObject<SWApiResponse>(apiResponse);
             var itens = responseList.Count;
 
             for (int i = 1; i <= itens; i++)
             {
-                var url = $"{UrlSpecies}{i}/";
+                var url = $"{UrlConstants.UrlSpecies}{i}/";
 
                 var speciesObjectJson = await _starWarsApiService.SearchByUrlAsync(url, cancellationToken);
                 if (string.IsNullOrWhiteSpace(speciesObjectJson))
@@ -179,13 +173,13 @@ namespace MayTheFourth.Application.Common.AppServices
 
         private async Task PopulateVehicles(CancellationToken cancellationToken)
         {
-            var apiResponse = await _starWarsApiService.SearchByUrlAsync(UrlVehicles, cancellationToken);
+            var apiResponse = await _starWarsApiService.SearchByUrlAsync(UrlConstants.UrlVehicles, cancellationToken);
             var responseList = JsonConvert.DeserializeObject<SWApiResponse>(apiResponse);
             var itens = responseList.Count;
 
             for (int i = 1; i <= itens; i++)
             {
-                var url = $"{UrlVehicles}{i}/";
+                var url = $"{UrlConstants.UrlVehicles}{i}/";
 
                 var vehiclesObjectJson = await _starWarsApiService.SearchByUrlAsync(url, cancellationToken);
                 if (string.IsNullOrWhiteSpace(vehiclesObjectJson))
@@ -212,13 +206,13 @@ namespace MayTheFourth.Application.Common.AppServices
 
         private async Task PopulateStarships(CancellationToken cancellationToken)
         {
-            var apiResponse = await _starWarsApiService.SearchByUrlAsync(UrlStarships, cancellationToken);
+            var apiResponse = await _starWarsApiService.SearchByUrlAsync(UrlConstants.UrlStarships, cancellationToken);
             var responseList = JsonConvert.DeserializeObject<SWApiResponse>(apiResponse);
             var itens = responseList.Count;
 
             for (int i = 1; i <= itens; i++)
             {
-                var url = $"{UrlStarships}{i}/";
+                var url = $"{UrlConstants.UrlStarships}{i}/";
 
                 var starshipsObjectJson = await _starWarsApiService.SearchByUrlAsync(url, cancellationToken);
                 if (string.IsNullOrWhiteSpace(starshipsObjectJson))

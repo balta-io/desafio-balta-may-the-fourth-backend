@@ -12,7 +12,11 @@ namespace MayTheFourth.Application.Common.Mapster
                 .NewConfig<FilmEntity, GetFilmsResponse>()
                 .Map(dest => dest.Episode, src => src.Episode_id)
                 .Map(dest => dest.OpeningCrawl, src => src.Opening_crawl)
-                .Map(dest => dest.ReleaseDate, src => src.Release_date);
+                .Map(dest => dest.ReleaseDate, src => src.Release_date)
+                .Ignore(dest => dest.Characters)
+                .Ignore(dest => dest.Planets)
+                .Ignore(dest => dest.Vehicles)
+                .Ignore(dest => dest.Starships);
         }
     }
 }
