@@ -7,6 +7,7 @@ using StarisApi.Models.MoviesVehicles;
 using StarisApi.Models.Planets;
 using StarisApi.Models.StarShips;
 using StarisApi.Models.Vehicles;
+using System.Runtime.Intrinsics.Arm;
 using System.Text.Json;
 
 namespace StarisApi.Repository;
@@ -599,5 +600,55 @@ public class DataBaseFeeder
     public int GetIdFromUrl(string[] url)
     {
         return int.Parse(url[^2]);
+    }
+
+    public async Task<Dictionary<int, string>> ScrappyUrlImage(Dictionary<int, string> entityNames)
+    {
+        var urls = MountUrlString(entityNames);
+        var entityUrlImagesRelation = new Dictionary<int, string>();
+
+        foreach (var url in urls)
+        {
+            string htmlContent = await client.GetStringAsync(url.Value);
+            entityUrlImagesRelation.Add(url.Key, ExtractImageUrl(htmlContent));
+        }
+
+        return entityUrlImagesRelation;
+    }
+
+    public Dictionary<int, string> MountUrlString(Dictionary<int, string> entityNames)
+    {
+        string urlBase = "https://starwars.fandom.com/wiki/";
+        
+        return entityNames.ToDictionary(
+            kvp => kvp.Key,
+            kvp => $"{urlBase}{kvp.Value.Replace(" ", "_")}"
+        );
+    }
+
+    string ExtractImageUrl(string htmlContent)
+    {
+        int startIndex = htmlContent.IndexOf("<a", StringComparison.OrdinalIgnoreCase);
+        string resultUrl = string.Empty;
+        
+        while (startIndex != -1)
+        {
+            if (htmlContent.IndexOf("class=\"image image-thumbnail\"", startIndex, StringComparison.OrdinalIgnoreCase) != -1)
+            {
+                int hrefIndex = htmlContent.IndexOf("href=\"", startIndex, StringComparison.OrdinalIgnoreCase);
+                if (hrefIndex != -1)
+                {
+                    int endIndex = htmlContent.IndexOf("\"", hrefIndex + 6, StringComparison.OrdinalIgnoreCase);
+                    if (endIndex != -1)
+                    {
+                        resultUrl = htmlContent.Substring(hrefIndex + 6, endIndex - hrefIndex - 6);
+                    }
+                }
+            }
+
+            startIndex = htmlContent.IndexOf("<a", startIndex + 1, StringComparison.OrdinalIgnoreCase);
+        }
+
+        return resultUrl;
     }
 }
