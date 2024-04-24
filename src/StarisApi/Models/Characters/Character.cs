@@ -4,7 +4,7 @@ using StarisApi.Models.Planets;
 
 namespace StarisApi.Models.Characters
 {
-    public sealed class Character : Entity
+    public class Character : Entity
     {
         public string Name { get; set; } = null!;
         public string BirthYear { get; set; } = null!;
@@ -16,9 +16,9 @@ namespace StarisApi.Models.Characters
         public string SkinColor { get; set; } = null!;
 
         public int PlanetId { get; set; }
-        public Planet Planet { get; set; } = null!;
+        public virtual Planet Planet { get; set; } = null!;
 
-        public ICollection<CharacterMovie> Movies { get; set; } = null!;
+        public virtual ICollection<CharacterMovie> Movies { get; set; } = null!;
 
         public override T ConvertToDto<T>()
         {

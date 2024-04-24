@@ -1,7 +1,9 @@
 ﻿using StarisApi.Dtos;
-using StarisApi.Endpoints.Characters;
-using StarisApi.Endpoints.DataBaseFeeders;
+using StarisApi.Models.Characters;
+using StarisApi.Models.Movies;
 using StarisApi.Models.Planets;
+using StarisApi.Models.StarShips;
+using StarisApi.Models.Vehicles;
 
 namespace StarisApi.Endpoints
 {
@@ -10,9 +12,11 @@ namespace StarisApi.Endpoints
         //Adicionar os endpoints aqui
         public  static IEndpointRouteBuilder MapEndpoints(this IEndpointRouteBuilder app)
         {
-            app.MapCharacterEndpoits();
+            app.MapGenericEndpoint<Character, CharacterDto>();
+            app.MapGenericEndpoint<Movie, MovieDto>();
             app.MapGenericEndpoint<Planet, PlanetDto>();
-            app.MapDatabaseFeederEndpoits();
+            app.MapGenericEndpoint<Starship, StarshipDto>();
+            app.MapGenericEndpoint<Vehicle, VehiclesDto>();
             return app;
         }
     }

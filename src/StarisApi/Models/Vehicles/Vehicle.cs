@@ -1,4 +1,5 @@
-﻿using StarisApi.Models.MoviesVehicles;
+﻿using StarisApi.Dtos;
+using StarisApi.Models.MoviesVehicles;
 
 namespace StarisApi.Models.Vehicles;
 
@@ -16,15 +17,30 @@ public class Vehicle : Entity
     public string CargoCapacity { get; set; } = null!;
     public string Consumables { get; set; } = null!;
 
-    public ICollection<MovieVehicle> Movies { get; set; } = [];
+    public virtual ICollection<MovieVehicle> Movies { get; set; } = [];
 
     public override T ConvertToDto<T>()
     {
-        throw new NotImplementedException();
+
+        var vehicle = new VehiclesDto
+        {
+            Id = Id,
+            Name = Name,
+            Model = Model,
+            VehicleClass = VehicleClass,
+            Manufacturer = Manufacturer,
+            Lenght = Lenght,
+            CostInCredits = CostInCredits,
+            Crew = Crew,
+            Passengers = Passengers,
+            MaxAtmospheringSpeed = MaxAtmospheringSpeed,
+            CargoCapacity = CargoCapacity,
+            Consumables = Consumables,
+            Movies = Movies.Select(x => new ListDto(x.MovieId, x.Movie.Title)).ToList()
+        } as T;
+
+        return vehicle!;
     }
 
-    public override string GetSearchParameter()
-    {
-        throw new NotImplementedException();
-    }
+    public override string GetSearchParameter() => "Name";
 }

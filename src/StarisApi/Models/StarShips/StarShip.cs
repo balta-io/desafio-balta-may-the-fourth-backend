@@ -1,4 +1,5 @@
-﻿using StarisApi.Models.MoviesStarships;
+﻿using StarisApi.Dtos;
+using StarisApi.Models.MoviesStarships;
 
 namespace StarisApi.Models.StarShips;
 
@@ -18,16 +19,33 @@ public class Starship : Entity
     public string CargoCapacity { get; set; } = null!;
     public string Consumables { get; set; } = null!;
 
-    public ICollection<MovieStarship> Movies { get; set; } = [];
+    public virtual ICollection<MovieStarship> Movies { get; set; } = [];
 
     public override T ConvertToDto<T>()
     {
-        throw new NotImplementedException();
+        var starship = new StarshipDto
+        {
+            Id = Id,
+            Model = Model,
+            Name = Name,
+            StarshipClass = StarshipClass,
+            Manufacturer = Manufacturer,
+            CostInCredits = CostInCredits,
+            Lenght = Lenght,
+            Crew = Crew,
+            Passengers = Passengers,
+            MaxAtmospheringSpeed = MaxAtmospheringSpeed,
+            HyperDriveRating = HyperDriveRating,
+            Megalights = Megalights,
+            CargoCapacity = CargoCapacity,
+            Consumables = Consumables,
+            Movies = Movies.Select(x => new ListDto(x.MovieId, x.Movie.Title)).ToList(),
+        } as T;
+        
+
+        return starship!;
     }
 
-    public override string GetSearchParameter()
-    {
-        throw new NotImplementedException();
-    }
+    public override string GetSearchParameter() => "Name";
     
 }

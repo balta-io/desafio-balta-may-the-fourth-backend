@@ -2,9 +2,6 @@
 
 namespace StarisApi.Dtos
 {
-    /// <summary>
-    /// teste
-    /// </summary>
     public sealed class CharacterDto : IDto
     {
         public int Id { get; set; }

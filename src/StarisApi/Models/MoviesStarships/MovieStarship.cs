@@ -9,7 +9,7 @@ public class MovieStarship()
     public int MovieId { get; set; }
     public int StarshipId { get; set; }
 
-    public Movie Movie { get; set; } = null!;
-    public Starship Starship { get; set; } = null!;
+    public virtual Movie Movie { get; set; } = null!;
+    public virtual Starship Starship { get; set; } = null!;
     
 }
