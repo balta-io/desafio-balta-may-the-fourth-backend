@@ -7,7 +7,7 @@ public static class DataBaseFeederEndpoints
 {
     public static IEndpointRouteBuilder MapDatabaseFeederEndpoits(this IEndpointRouteBuilder app)
     {
-        app.MapGet("/dbFeeder", async (SqliteContext context, DataBaseFeeder feeder) =>
+        app.MapGet("/seed", async (SqliteContext context, DataBaseFeeder feeder) =>
         {
             var infosMovies = await feeder.GetInfoFromMoviesEndpoint();
             var infosCharacters = await feeder.GetInfoFromPeopleEndpoint();
@@ -43,7 +43,8 @@ public static class DataBaseFeederEndpoints
             //await context.SaveChangesAsync();
 
             return movies.Count != 0 ? TypedResults.Ok(movies) : Results.NoContent();
-        });
+        }).WithTags("Seed")
+          .WithOpenApi();
 
         return app;
     }

@@ -160,7 +160,7 @@ public class DataBaseFeeder
             {
                 Id = id,
                 Title = info.GetProperty("title").GetString()!,
-                Episode = info.GetProperty("episode_id").GetInt32()!,
+                Episode = info.GetProperty("episode_id").GetString()!,
                 OpeningCrawl = info.GetProperty("opening_crawl").GetString()!,
                 Director = info.GetProperty("director").GetString()!,
                 Producer = info.GetProperty("producer").GetString()!,

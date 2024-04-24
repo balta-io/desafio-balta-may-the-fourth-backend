@@ -9,20 +9,20 @@ namespace StarisApi.Models.Movies;
 public class Movie : Entity
 {
     public string Title { get; set; } = null!;
-    public string Episode { get; set; }
+    public string Episode { get; set; } = null!;
     public string OpeningCrawl { get; set; } = null!;
     public string Director { get; set; } = null!;
     public string Producer { get; set; } = null!;
     public string ReleaseDate { get; set; } = null!;
 
-    public ICollection<CharacterMovie> Characters { get; set; } = [];
-    public ICollection<MoviePlanet> Planets { get; set; } = [];
-    public ICollection<MovieVehicle> Vehicles { get; set; } = [];
-    public ICollection<MovieStarship> Starships { get; set; } = [];
+    public virtual ICollection<CharacterMovie> Characters { get; set; } = [];
+    public virtual ICollection<MoviePlanet> Planets { get; set; } = [];
+    public virtual ICollection<MovieVehicle> Vehicles { get; set; } = [];
+    public virtual ICollection<MovieStarship> Starships { get; set; } = [];
 
         public override T ConvertToDto<T>()
         {
-            var movie = new MovieDTO
+            var movie = new MovieDto
             {
                 Id = Id,
                 Title = Title,
@@ -40,9 +40,6 @@ public class Movie : Entity
             return movie!;
         }
 
-    public override string GetSearchParameter()
-    {
-        throw new NotImplementedException();
-    }
+    public override string GetSearchParameter() => "Title";
     
 }

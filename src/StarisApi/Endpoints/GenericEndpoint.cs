@@ -1,7 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using StarisApi.Dtos;
 using StarisApi.Models;
-using StarisApi.Models.Characters;
 using StarisApi.Repository;
 using StarisApi.Requests;
 
@@ -23,16 +22,24 @@ namespace StarisApi.Endpoints
             }).WithTags(tag)
               .Produces(TypedResults.Ok().StatusCode)
               .Produces(TypedResults.NoContent().StatusCode)
-              .WithOpenApi();
+              .WithOpenApi()
+              .WithSummary("retorna uma lista de " + endpoint)
+              .WithDescription("<b>search</b> => busca por palavra chave. <br> " +
+                               "<b>page</b> => número da página a ser retornada. <br>" +
+                               "<b>perPage</b> => quantos itens retorna por página. <br>" +
+                               "<b>sortBy</b> => qual propriedade dever ser ordenada.<br>" +
+                               "<b>SortOrder</b> => <i>asc<i/> para ascendente e <i>desc</i> para descendente.<br>");
 
             app.MapGet(endpoint + "/{id}", ([FromRoute] int id, Repository<TEntity> context) =>
             {
                 var result = context.Find(id);
 
                 return result is null ? Results.NotFound() : TypedResults.Ok(result);
-                
+
             }).WithTags(tag)
-              .WithOpenApi();
+              .WithOpenApi()
+              .WithSummary("retorna uma entidade do tipo " + tag.ToLower())
+              .WithDescription("<b>Id</b> => id da busca pela entidade<br> ");
 
             return app;
         }   

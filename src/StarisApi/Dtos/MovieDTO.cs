@@ -2,10 +2,7 @@ using StarisApi.Models.Planets;
 
 namespace StarisApi.Dtos
 {
-    /// <summary>
-    /// teste
-    /// </summary>
-    public sealed class MovieDTO : IDto
+    public sealed class MovieDto : IDto
     {
         public int Id { get; set; }
         public string Title { get; set; } = null!;

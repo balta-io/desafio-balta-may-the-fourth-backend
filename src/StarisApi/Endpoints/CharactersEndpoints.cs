@@ -8,9 +8,9 @@ using StarisApi.Models.Characters;
 using StarisApi.Repository;
 using StarisApi.Requests;
 
-namespace StarisApi.Endpoints.Characters
+namespace StarisApi.Endpoints
 {
-    public static class CharactersEndpoits
+    public static class CharactersEndpoints
     {
         public static IEndpointRouteBuilder MapCharacterEndpoits(this IEndpointRouteBuilder app)
         {
@@ -30,7 +30,7 @@ namespace StarisApi.Endpoints.Characters
                 var character = context.Find(id);
 
                 return character is null ? Results.NotFound() : TypedResults.Ok(character);
-                
+
             }).WithTags("Character")
               .WithOpenApi();
 

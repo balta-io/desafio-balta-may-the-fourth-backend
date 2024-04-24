@@ -5,9 +5,8 @@ using StarisApi.Configurations;
 using StarisApi.Configurations.Attributtes;
 using StarisApi.DbContexts;
 using StarisApi.Endpoints;
-using StarisApi.Endpoints.Characters;
+using StarisApi.Endpoints.DataBaseFeeders;
 using StarisApi.Repository;
-using Swashbuckle.AspNetCore.SwaggerGen;
 using System.Reflection;
 using System.Text.Json.Serialization;
 
@@ -32,7 +31,8 @@ builder.Services.AddSwaggerGen(opt =>
 
 builder.Services.AddDbContext<SqliteContext>(opt =>
 {
-    opt.UseSqlite(builder.Configuration.GetConnectionString("DefaultConnection"));
+    opt.UseSqlite(builder.Configuration.GetConnectionString("DefaultConnection"))
+       .UseLazyLoadingProxies();
 });
 
 builder.Services.AddTransient<SqliteContext>();
@@ -46,12 +46,20 @@ var app = builder.Build();
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
-    app.UseSwaggerUI();
+    app.UseSwaggerUI(c =>
+    {
+        c.DisplayRequestDuration();
+    });
     app.UseDeveloperExceptionPage();
 }
 
 app.UseHttpsRedirection();
 
 app.MapGroup("/api").MapEndpoints();
+
+if (app.Environment.IsDevelopment())
+{
+    app.MapGroup("/api").MapDatabaseFeederEndpoits();
+}
 
 app.Run();
