@@ -1,4 +1,5 @@
-﻿using MayTheFourth.Core.Entities;
+﻿using MayTheFourth.Core.Dtos;
+using MayTheFourth.Core.Entities;
 using MayTheFourth.Core.Interfaces.Repositories;
 using MediatR;
 
@@ -26,10 +27,12 @@ public class Handler : IRequestHandler<Request, Response>
         {
             return new Response($"Erro: {ex.Message}", 500);
         }
+
+        List<PlanetDetailsDto> planetDetailList = planets.Select(planet => new PlanetDetailsDto(planet)).ToList();
         #endregion
 
         #region Response
-        return new Response("Uma lista de planetas foi encontrado.", new ResponseData(planets!));
+        return new Response("Uma lista de planetas foi encontrado.", new ResponseData(new(planetDetailList)));
         #endregion
     }
 }

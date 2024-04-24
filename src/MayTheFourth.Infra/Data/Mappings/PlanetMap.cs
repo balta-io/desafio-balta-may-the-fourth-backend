@@ -39,7 +39,7 @@ public class PlanetMap : IEntityTypeConfiguration<Planet>
             .IsRequired()
             .HasColumnName("Gravity")
             .HasColumnType("NVARCHAR")
-            .HasMaxLength(10);
+            .HasMaxLength(100);
 
         builder.Property(x => x.Population)
             .IsRequired()
@@ -57,13 +57,13 @@ public class PlanetMap : IEntityTypeConfiguration<Planet>
             .IsRequired()
             .HasColumnName("Terrain")
             .HasColumnType("NVARCHAR")
-            .HasMaxLength(30);
+            .HasMaxLength(100);
 
         builder.Property(x => x.SurfaceWater)
             .IsRequired()
             .HasColumnName("SurfaceWater")
             .HasColumnType("NVARCHAR")
-            .HasMaxLength(20);
+            .HasMaxLength(100);
 
         builder.Property(x => x.Url)
             .IsRequired()

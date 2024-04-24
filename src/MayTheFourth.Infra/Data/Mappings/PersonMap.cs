@@ -27,13 +27,13 @@ public class PersonMap : IEntityTypeConfiguration<Person>
             .IsRequired()
             .HasColumnName("EyeColor")
             .HasColumnType("NVARCHAR")
-            .HasMaxLength(10);
+            .HasMaxLength(30);
 
         builder.Property(x => x.Gender)
             .IsRequired()
             .HasColumnName("Gender")
             .HasColumnType("NVARCHAR")
-            .HasMaxLength(10);
+            .HasMaxLength(30);
 
         builder.Property(x => x.HairColor)
             .IsRequired()

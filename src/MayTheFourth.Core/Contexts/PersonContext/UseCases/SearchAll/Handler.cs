@@ -1,4 +1,5 @@
-﻿using MayTheFourth.Core.Entities;
+﻿using MayTheFourth.Core.Dtos;
+using MayTheFourth.Core.Entities;
 using MayTheFourth.Core.Interfaces.Repositories;
 using MediatR;
 
@@ -28,10 +29,12 @@ public class Handler : IRequestHandler<Request, Response>
         {
             return new Response($"Erro: {ex.Message}", 500);
         }
+
+        List<PersonDetailsDto> personDetailsList = people.Select(person => new PersonDetailsDto(person)).ToList();
         #endregion
 
         #region Response
-        return new Response("Lista de personagens encontrada", new ResponseData(people!));
+        return new Response("Lista de personagens encontrada", new ResponseData(new(personDetailsList)));
         #endregion
     }
 }

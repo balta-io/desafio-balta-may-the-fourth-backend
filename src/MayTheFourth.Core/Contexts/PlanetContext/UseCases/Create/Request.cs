@@ -1,5 +1,6 @@
 ﻿using MayTheFourth.Core.Entities;
 using MediatR;
+using System.Runtime.Serialization;
 
 namespace MayTheFourth.Core.Contexts.PlanetContext.UseCases.Create;
 

@@ -33,7 +33,7 @@ public class StarshipMap : IEntityTypeConfiguration<Starship>
             .IsRequired()
             .HasColumnName("Manufacturer")
             .HasColumnType("NVARCHAR")
-            .HasMaxLength(50);
+            .HasMaxLength(150);
 
         builder.Property(x => x.CostInCredits)
             .IsRequired()

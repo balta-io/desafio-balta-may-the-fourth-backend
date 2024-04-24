@@ -14,6 +14,10 @@
     <ProjectReference Include="..\MayTheFourth.Core\MayTheFourth.Core.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Services\DataImportService\" />
+  </ItemGroup>
+
   <PropertyGroup>
     <TargetFramework>net8.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>

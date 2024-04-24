@@ -1,4 +1,5 @@
-﻿using MayTheFourth.Core.Entities;
+﻿using MayTheFourth.Core.Dtos;
+using MayTheFourth.Core.Entities;
 using MayTheFourth.Core.Interfaces.Repositories;
 using MediatR;
 
@@ -28,10 +29,12 @@ public class Handler : IRequestHandler<Request, Response>
         {
             return new Response($"Erro: {ex.Message}", 500);
         }
+
+        List<StarshipDetailsDto> starshipDetailsList = starships.Select(starship => new StarshipDetailsDto(starship)).ToList();
         #endregion
 
         #region Response
-        return new Response("Lista de naves encontrada.", new ResponseData(starships));
+        return new Response("Lista de naves encontrada.", new ResponseData(new(starshipDetailsList)));
         #endregion
     }
 }

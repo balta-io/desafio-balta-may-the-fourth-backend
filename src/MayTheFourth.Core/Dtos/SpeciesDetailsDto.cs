@@ -1,9 +1,10 @@
-﻿using MayTheFourth.Core.Contexts.SharedContext.Entities;
+﻿using MayTheFourth.Core.Entities;
 
-namespace MayTheFourth.Core.Entities;
+namespace MayTheFourth.Core.Dtos;
 
-public class Species : Entity
+public class SpeciesDetailsDto
 {
+    public Guid Id { get; set; }
     public string Name { get; set; } = string.Empty;
     public string Classification { get; set; } = string.Empty;
     public string Designation { get; set; } = string.Empty;
@@ -13,7 +14,6 @@ public class Species : Entity
     public string HairColors { get; set; } = string.Empty;
     public string SkinColors { get; set; } = string.Empty;
     public string Language { get; set; } = string.Empty;
-    public string Url { get; set; } = string.Empty;
     public DateTime Created { get; set; }
     public DateTime Edited { get; set; }
 
@@ -21,6 +21,6 @@ public class Species : Entity
     public Guid? HomeworldId { get; set; }
 
 
-    public List<Person> People { get; set; } = [];
-    public List<Film> Films { get; set; } = [];
+    public List<PersonSummaryDto> People { get; set; } = [];
+    public List<FilmSummaryDto> Films { get; set; } = [];
 }

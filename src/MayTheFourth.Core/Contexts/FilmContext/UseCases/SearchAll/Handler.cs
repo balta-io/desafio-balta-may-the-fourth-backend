@@ -1,4 +1,5 @@
-﻿using MayTheFourth.Core.Entities;
+﻿using MayTheFourth.Core.Dtos;
+using MayTheFourth.Core.Entities;
 using MayTheFourth.Core.Interfaces.Repositories;
 using MediatR;
 using System;
@@ -33,10 +34,11 @@ namespace MayTheFourth.Core.Contexts.FilmContext.UseCases.SearchAll
                 return new Response($"Erro: {ex.Message}", 500);
             }
 
+            List<FilmDetailsDto> filmDetailsList = films.Select(film => new FilmDetailsDto(film)).ToList();
             #endregion
 
             #region Response
-                return new Response("Lista de filmes encontrada", new ResponseData(films!));
+            return new Response("Lista de filmes encontrada", new ResponseData(new(filmDetailsList)));
             #endregion
         }
     }
