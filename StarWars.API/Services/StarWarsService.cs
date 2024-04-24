@@ -14,7 +14,7 @@ namespace StarWars.API.Services
 
         public async Task<List<MovieModel>>? GetMoviesAsync(CancellationToken cancellationToken)
         {
-            var movies = await _starWarsRepository.GetMovesAsync(cancellationToken);
+            var movies = await _starWarsRepository.GetMoviesAsync(cancellationToken);
 
             return movies;
         }
