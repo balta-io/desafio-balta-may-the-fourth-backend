@@ -1,4 +1,5 @@
-﻿using MayTheFourth.Core.Entities;
+﻿using MayTheFourth.Core.Dtos;
+using MayTheFourth.Core.Entities;
 
 namespace MayTheFourth.Core.Contexts.PersonContext.UseCases.SearchAll;
 
@@ -20,4 +21,4 @@ public class Response : SharedContext.UseCases.Response
     public ResponseData? Data { get; set; }
 }
 
-public record ResponseData(List<Person> people);
+public record ResponseData(List<PersonDetailsDto> people);

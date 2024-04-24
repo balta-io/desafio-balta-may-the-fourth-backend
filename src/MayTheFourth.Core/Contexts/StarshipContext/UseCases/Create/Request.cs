@@ -1,4 +1,5 @@
 ﻿using MediatR;
+using System.Runtime.Serialization;
 
 namespace MayTheFourth.Core.Contexts.StarshipContext.UseCases.Create;
 
