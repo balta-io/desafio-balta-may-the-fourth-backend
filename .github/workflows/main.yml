@@ -1,0 +1,33 @@
+name: Release the Monster 👽
+
+on:
+    pull_request:
+        branches:
+            - main
+    push:
+        branches:
+            - main
+
+jobs:
+    publish:
+        runs-on: ubuntu-latest
+        steps:
+            - uses: actions/checkout@v4
+            - name: Setup .Net 8.0
+              uses: actions/setup-dotnet@v3
+              with: 
+                    dotnet-version: 8.x
+            - name: Install dependencies
+              run: dotnet restore
+            - name: Build
+              run: dotnet build --configuration Release --no-restore
+            - name: Publish
+              run: dotnet publish --configuration Release --no-restore /p:PublishSingleFile=true --output ./publish
+            - name: Deploy Sync Files
+              uses: SamKirkland/FTP-Deploy-Action@v4.3.5
+              with:
+                    server: https://webftp.monsterasp.net
+                    server-dir: /www
+                    username: ${{ secrets.ftp_password }}
+                    password: ${{ secrets.ftp_password }}
+                    local-dir: ./publish
