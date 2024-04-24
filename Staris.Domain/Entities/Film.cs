@@ -14,6 +14,8 @@ public sealed class Film : Entity
 
     //EF Relation
 	public List<CharacterFilm>? Characters { get; init; }
+    public List<PlanetFilm>? Planets { get; init; }
+    public List<VehicleFilm>? Vehicles { get; init;}
+    public List<StarshipFilm>? Starships { get; init;}
 
-	public List<PlanetFilm>? Planets { get; init; }
 }

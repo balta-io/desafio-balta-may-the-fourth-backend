@@ -18,4 +18,7 @@ public class Vehicle : Entity
     public string Class { get; set; } = string.Empty;
 
     public EnumTypeOfVehicle Type { get; set; }
+
+
+    public List<VehicleFilm> Films { get; init; }
 }

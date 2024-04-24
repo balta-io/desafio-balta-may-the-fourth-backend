@@ -12,7 +12,9 @@ public interface IApplicationDbContext
     DbSet<Planet> Planets { get; set; }
     DbSet<PlanetFilm> PlanetFilms { get; set; }
     DbSet<Starship> Starships { get; set; }
+    DbSet<StarshipFilm> StarshipFilms { get; set; }
     DbSet<Vehicle> Vehicles { get; set; }
+    DbSet<VehicleFilm> VehicleFilms { get; set; }
 
 
     Task<int> SaveChangesAsync(CancellationToken cancellationToken = default);
