@@ -8,7 +8,7 @@ public record Request(
     int Diameter, 
     int RotationPeriod, 
     int OrbitalPeriod,
-    double Gravity,
+    string Gravity,
     int Population,
     string Climate,
     string Terrain,

@@ -31,7 +31,7 @@ namespace MayTheFourth.Infra.Data.Mappings
                 .IsRequired()
                 .HasColumnName("OpeningCrawl")
                 .HasColumnType("NVARCHAR")
-                .HasMaxLength(500);
+                .HasMaxLength(1500);
 
             builder.Property(x => x.Director)
                 .IsRequired()

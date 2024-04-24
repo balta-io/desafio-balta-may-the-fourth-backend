@@ -15,7 +15,11 @@ public class StarshipRepository : IStarshipRepository
     }
 
     public async Task<List<Starship>?> GetAllAsync()
-    => await _appDbContext.Starships.AsNoTracking().ToListAsync();
+    => await _appDbContext.Starships
+        .Include(x => x.Films)
+        .Include(x => x.Pilots)
+        .AsNoTracking()
+        .ToListAsync();
 
     public async Task<bool> AnyAsync(string name, CancellationToken cancellationToken)
         => await _appDbContext.Starships.AnyAsync(x => x.Name == name, cancellationToken);

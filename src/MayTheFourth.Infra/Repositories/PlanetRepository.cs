@@ -13,9 +13,13 @@ public class PlanetRepository : IPlanetRepository
         => _appDbContext = appDbContext;
 
     public async Task<List<Planet>?> GetAllAsync()
-    => await _appDbContext.Planets.AsNoTracking().ToListAsync();
+    => await _appDbContext.Planets
+        .Include(x => x.Films)
+        .Include(x =>  x.Residents)
+        .AsNoTracking()
+        .ToListAsync();
 
-    public async Task<bool> AnyAsync(string name, double gravity)
+    public async Task<bool> AnyAsync(string name, string gravity)
         => await _appDbContext.Planets.AnyAsync(x => x.Name == name && x.Gravity.Equals(gravity));
 
     public async Task SaveAsync(Planet planet, CancellationToken cancellationToken)

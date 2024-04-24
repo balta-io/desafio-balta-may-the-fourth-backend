@@ -79,9 +79,5 @@ public class SpeciesMap : IEntityTypeConfiguration<Species>
             .HasColumnName("Edited")
             .HasColumnType("DATETIME");
 
-        builder.HasOne(x => x.Homeworld)
-            .WithMany()
-            .HasForeignKey(x => x.HomeworldId)
-            .IsRequired();
     }
 }

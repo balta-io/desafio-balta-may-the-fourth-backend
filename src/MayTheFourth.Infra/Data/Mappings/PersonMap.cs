@@ -27,13 +27,13 @@ public class PersonMap : IEntityTypeConfiguration<Person>
             .IsRequired()
             .HasColumnName("EyeColor")
             .HasColumnType("NVARCHAR")
-            .HasMaxLength(10);
+            .HasMaxLength(30);
 
         builder.Property(x => x.Gender)
             .IsRequired()
             .HasColumnName("Gender")
             .HasColumnType("NVARCHAR")
-            .HasMaxLength(10);
+            .HasMaxLength(30);
 
         builder.Property(x => x.HairColor)
             .IsRequired()
@@ -77,7 +77,7 @@ public class PersonMap : IEntityTypeConfiguration<Person>
         #region relationships
 
         builder.HasOne(x => x.Homeworld)
-            .WithMany()
+            .WithMany(x => x.Residents)
             .HasForeignKey(x => x.HomeworldId)
             .IsRequired();
 
