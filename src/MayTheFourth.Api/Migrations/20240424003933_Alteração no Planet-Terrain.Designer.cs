@@ -4,6 +4,7 @@ using MayTheFourth.Infra.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace MayTheFourth.Api.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240424003933_Alteração no Planet-Terrain")]
+    partial class AlteraçãonoPlanetTerrain
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -258,7 +261,7 @@ namespace MayTheFourth.Api.Migrations
 
                     b.Property<string>("Gravity")
                         .IsRequired()
-                        .HasMaxLength(100)
+                        .HasMaxLength(20)
                         .HasColumnType("NVARCHAR")
                         .HasColumnName("Gravity");
 
@@ -288,7 +291,7 @@ namespace MayTheFourth.Api.Migrations
 
                     b.Property<string>("SurfaceWater")
                         .IsRequired()
-                        .HasMaxLength(100)
+                        .HasMaxLength(20)
                         .HasColumnType("NVARCHAR")
                         .HasColumnName("SurfaceWater");
 

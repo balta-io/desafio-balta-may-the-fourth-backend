@@ -36,11 +36,11 @@ namespace MayTheFourth.Infra.DTOs
             var planet = new Planet
             {
                 Name = dto.Name,
-                Diameter = int.Parse(dto.Diameter!),
-                RotationPeriod = int.Parse(dto.RotationPeriod!),
-                OrbitalPeriod = int.Parse(dto.OrbitalPeriod!),
+                Diameter = int.TryParse(dto.Diameter!, out int parsedDiameter) ? parsedDiameter : 0,
+                RotationPeriod = int.TryParse(dto.RotationPeriod, out int parsedRotationPeriod) ? parsedRotationPeriod : 0,
+                OrbitalPeriod = int.TryParse(dto.OrbitalPeriod!, out int parsedOrbitalPeriod) ? parsedOrbitalPeriod : 0,
                 Gravity = dto.Gravity!,
-                Population = int.Parse(dto.Population!),
+                Population = int.TryParse(dto.Population!, out int parsedPopulation) ? parsedOrbitalPeriod : 0  ,
                 Climate = dto.Climate!,
                 Terrain = dto.Terrain!,
                 SurfaceWater = dto.SurfaceWater!,

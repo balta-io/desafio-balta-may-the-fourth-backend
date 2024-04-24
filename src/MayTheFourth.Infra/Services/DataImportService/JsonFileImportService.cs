@@ -36,6 +36,9 @@ namespace MayTheFourth.Infra.Services.DataImportService
 
         public async Task ImportDataAsync()
         {
+            List<PersonDTO> people = new();
+            List<PlanetDTO> planets = new();
+
             if (!IsDatabaseEmpty()) return;
             try
             {
@@ -52,61 +55,32 @@ namespace MayTheFourth.Infra.Services.DataImportService
                             switch (endpoint)
                             {
                                 case "people":
-                                    List<PersonDTO> people = JsonSerializer.Deserialize<List<PersonDTO>>(results.GetRawText())!;
-
-                                    foreach(var personDTO in people)
-                                    {
-                                        await _appDbContext.People.AddAsync(personDTO.ToPerson());
-                                    }
-                                    //await _appDbContext.SaveChangesAsync();
+                                    people = JsonSerializer.Deserialize<List<PersonDTO>>(results.GetRawText())!;
                                     break;
 
                                 case "planets":
-                                    List<PlanetDTO> planets = JsonSerializer.Deserialize<List<PlanetDTO>>(results.GetRawText())!;
-
-                                    var planetDTO = planets[0];
-                                    await _appDbContext.Planets.AddAsync(planetDTO.ToPlanet());
-                                    await _appDbContext.SaveChangesAsync();
-
-                                    //foreach (var planetDTO in planets)
-                                    //{
-                                    //    await _appDbContext.Planets.AddAsync(planetDTO.ToPlanet());
-                                    //    //var planet = planetDTO.ToPlanet();
-                                    //    //string query = @$"INSERT INTO [dbo].[Planets]
-                                    //    //           ([Id]
-                                    //    //           ,[Name]
-                                    //    //           ,[Diameter]
-                                    //    //           ,[RotationPeriod]
-                                    //    //           ,[OrbitalPeriod]
-                                    //    //           ,[Gravity]
-                                    //    //           ,[Population]
-                                    //    //           ,[Climate]
-                                    //    //           ,[Terrain]
-                                    //    //           ,[SurfaceWater]
-                                    //    //           ,[Url]
-                                    //    //           ,[Created]
-                                    //    //           ,[Edited])
-                                    //    //     VALUES
-                                    //    //           ('{planet.Id}',
-                                    //    //           '{planet.Name}',
-                                    //    //           {planet.Diameter},
-                                    //    //           {planet.RotationPeriod},
-                                    //    //           {planet.OrbitalPeriod},
-                                    //    //           '{planet.Gravity}',
-                                    //    //           {planet.Population},
-                                    //    //           '{planet.Climate}',
-                                    //    //           '{planet.Terrain}',
-                                    //    //           '{planet.SurfaceWater}',
-                                    //    //           '{planet.Url}',
-                                    //    //           '{planet.Created}',
-                                    //    //           '{planet.Edited}')";
-                                    //    //_appDbContext.Database.ExecuteSqlRaw(query);
-                                    //}
-                                    //await _appDbContext.SaveChangesAsync();
+                                    planets = JsonSerializer.Deserialize<List<PlanetDTO>>(results.GetRawText())!;
                                     break;
                             }
                         }
+                    }
 
+                    // Cadastrar os planets primeiro
+                    foreach (var planetDTO in planets)
+                    {
+                        await _appDbContext.Planets.AddAsync(planetDTO.ToPlanet());
+                    }
+                    await _appDbContext.SaveChangesAsync();
+
+                    // Depois people
+                    foreach (var personDTO in people)
+                    {
+                        // Encontrar homeworld (planet) pela url
+                        var planet = _appDbContext.Planets.FirstOrDefault(p => p.Url.Equals(personDTO.Homeworld));
+                        var person = personDTO.ToPerson();
+                        person.HomeworldId = planet!.Id;
+                        await _appDbContext.People.AddAsync(person);
+                        await _appDbContext.SaveChangesAsync();
                     }
 
                 }
