@@ -12,6 +12,7 @@ namespace StarWars.API.Storages.Datas
 
         #region - Configuração de DbSets -
         public DbSet<MovieModel> Movies { get; private set; }
+        public DbSet<CharacterModel> Characters { get; private set; }
         #endregion
 
 

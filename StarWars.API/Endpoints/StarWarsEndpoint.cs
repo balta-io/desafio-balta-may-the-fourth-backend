@@ -5,7 +5,7 @@ namespace StarWars.API.Endpoints
     {
         public static RouteGroupBuilder StarWarsEndpoints(this RouteGroupBuilder route, string routePrefix)
         {
-            route.MapGet($"{routePrefix}/getmoves", async () =>
+            route.MapGet($"{routePrefix}/getmovies", async () =>
             {
                 // Todo: Implementação da logica do service que vai
                 // retornar a lista de filmes
@@ -15,10 +15,9 @@ namespace StarWars.API.Endpoints
 
                 return Results.NotFound();
 
-            }).WithName($"GetMovesAsync{routePrefix}")
+            }).WithName($"GetMoviesAsync{routePrefix}")
              .Produces(StatusCodes.Status200OK)
              .Produces(StatusCodes.Status404NotFound);
-
 
             return route;
         }
