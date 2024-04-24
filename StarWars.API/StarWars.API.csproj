@@ -59,7 +59,6 @@
     <Folder Include="Services\" />
     <Folder Include="Storages\" />
     <Folder Include="Storages\Repositores\" />
-    <Folder Include="Storages\Datas\" />
     <Folder Include="Storages\Datas\EntityConfigurations\" />
     <Folder Include="Storages\Abstracts\" />
     <Folder Include="Services\Abstracts\" />
