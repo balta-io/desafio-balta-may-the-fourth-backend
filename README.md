@@ -80,7 +80,7 @@ Agora que estamos com a API rodando, podemos fazer requisições necessárias ut
 
 
 ### 🎬 Film
-<span style="color: #50FA9F">SearchAll</span>  - Responsavel por listar todos os filmes
+#### 🟢 SearchAll  - Responsavel por listar todos os filmes
 ```
 https://localhost:7288/api/v1/film
 ```
@@ -90,7 +90,7 @@ https://localhost:7288/api/v1/film
 
 ```
 
-<span style="color: #EDE360">Create</span> - Responsável por criar um filme
+#### 🟡 Create - Responsável por criar um filme
 ```
 https://localhost:7288/api/v1/
 ```
@@ -105,7 +105,7 @@ https://localhost:7288/api/v1/
 
 ```
 
-<span style="color: #F06A8A">Delete</span> - Responsável por deletar um filme
+#### 🔴 Delete - Responsável por deletar um filme
 ```
 https://localhost:7288/api/v1/
 ```
@@ -120,7 +120,7 @@ https://localhost:7288/api/v1/
 
 ```
 
-<span style="color: #74AEF6">Update</span> - Responsável por atualizar um filme
+#### 🔵 Update - Responsável por atualizar um filme
 ```
 https://localhost:7288/api/v1/
 ```
@@ -138,7 +138,7 @@ https://localhost:7288/api/v1/
 ---
 
 ### 🧔Person
-<span style="color: #50FA9F">SearchAll</span> - Responsável por listar todos os personagens
+#### 🟢 SearchAll - Responsável por listar todos os personagens
 ```
 https://localhost:7288/api/v1/people
 ```
@@ -148,7 +148,7 @@ https://localhost:7288/api/v1/people
 
 ```
 
-<span style="color: #EDE360">Create</span> - Responsável por criar uma pessoa
+#### 🟡 Create - Responsável por criar uma pessoa
 ```
 https://localhost:7288/api/v1/people/create
 ```
@@ -163,7 +163,7 @@ https://localhost:7288/api/v1/people/create
 
 ```
 
-<span style="color: #F06A8A">Delete</span> - Responsável por deletar uma pessoa
+#### 🔴 Delete - Responsável por deletar uma pessoa
 ```
 https://localhost:7288/api/v1/
 ```
@@ -178,7 +178,7 @@ https://localhost:7288/api/v1/
 
 ```
 
-<span style="color: #74AEF6">Update</span> - Responsável por atualizar uma pessoa
+#### 🔵 Update - Responsável por atualizar uma pessoa
 ```
 https://localhost:7288/api/v1/
 ```
@@ -196,7 +196,7 @@ https://localhost:7288/api/v1/
 ---
 
 ### 🌍 Planet
-<span style="color: #50FA9F">SearchAll</span> - Responsável por listar todos os planetas
+#### 🟢SearchAll - Responsável por listar todos os planetas
 ```
 https://localhost:7288/api/v1/planets
 ```
@@ -206,7 +206,7 @@ https://localhost:7288/api/v1/planets
 
 ```
 
-<span style="color: #EDE360">Create</span> - Responsável por criar um planeta
+#### 🟡 Create - Responsável por criar um planeta
 
 ```
 https://localhost:7288/api/v1/planets/create
@@ -222,7 +222,7 @@ https://localhost:7288/api/v1/planets/create
 
 ```
 
-<span style="color: #F06A8A">Delete</span> - Responsável por deletar um planeta
+#### 🔴 Delete - Responsável por deletar um planeta
 ```
 https://localhost:7288/api/v1/
 ```
@@ -237,7 +237,7 @@ https://localhost:7288/api/v1/
 
 ```
 
-<span style="color: #74AEF6">Update</span> - Responsável por atualizar um planeta
+#### 🔵 Update - Responsável por atualizar um planeta
 ```
 https://localhost:7288/api/v1/
 ```
@@ -256,7 +256,7 @@ https://localhost:7288/api/v1/
 
 ### 👽 Species
 
-<span style="color: #50FA9F">SearchAll</span> - Responsável por listar todas as espécies
+#### 🟢SearchAll - Responsável por listar todas as espécies
 
 ```
 https://localhost:7288/api/v1/
@@ -266,22 +266,7 @@ https://localhost:7288/api/v1/
 ```json
 
 ```
-<span style="color: #EDE360">Create</span> - Responsável por criar uma espécie
-```
-https://localhost:7288/api/v1/
-```
-
-**Curl**
-```json
-
-```
-
-**Response**
-```json
-
-```
-
-<span style="color: #F06A8A">Delete</span> - Responsável por deletar uma espécie
+#### 🟡 Create - Responsável por criar uma espécie
 ```
 https://localhost:7288/api/v1/
 ```
@@ -296,7 +281,22 @@ https://localhost:7288/api/v1/
 
 ```
 
-<span style="color: #74AEF6">Update</span> - Responsável por atualizar uma espécie
+#### 🔴 Delete - Responsável por deletar uma espécie
+```
+https://localhost:7288/api/v1/
+```
+
+**Curl**
+```json
+
+```
+
+**Response**
+```json
+
+```
+
+#### 🔵 Update - Responsável por atualizar uma espécie
 ```
 https://localhost:7288/api/v1/
 ```
@@ -314,7 +314,7 @@ https://localhost:7288/api/v1/
 ---
 
 ### 🚀 Starship
-<span style="color: #50FA9F">SearchAll</span> - Responsável por listar todos as naves
+#### 🟢SearchAll - Responsável por listar todos as naves
 
 ```
 https://localhost:7288/api/v1/starships
@@ -325,7 +325,7 @@ https://localhost:7288/api/v1/starships
 
 ```
 
-<span style="color: #EDE360">Create</span> - Responsável por criar uma nave
+#### 🟡 Create - Responsável por criar uma nave
 
 ```
 https://localhost:7288/api/v1/starships/create
@@ -341,7 +341,7 @@ https://localhost:7288/api/v1/starships/create
 
 ```
 
-<span style="color: #F06A8A">Delete</span> - Responsável por deletar uma nave
+#### 🔴 Delete - Responsável por deletar uma nave
 ```
 https://localhost:7288/api/v1/
 ```
@@ -356,7 +356,7 @@ https://localhost:7288/api/v1/
 
 ```
 
-<span style="color: #74AEF6">Update</span> - Responsável por atualizar uma nave
+#### 🔵 Update - Responsável por atualizar uma nave
 ```
 https://localhost:7288/api/v1/
 ```
@@ -375,7 +375,7 @@ https://localhost:7288/api/v1/
 
 ### 🚗 Vehicle
 
-<span style="color: #50FA9F">SearchAll</span> - Responsável por listar todos os veículos
+#### 🟢 SearchAll - Responsável por listar todos os veículos
 ```
 https://localhost:7288/api/v1/
 ```
@@ -385,22 +385,7 @@ https://localhost:7288/api/v1/
 
 ```
 
-<span style="color: #EDE360">Create</span> - Responsável por criar um veículo
-```
-https://localhost:7288/api/v1/
-```
-
-**Curl**
-```json
-
-```
-
-**Response**
-```json
-
-```
-
-<span style="color: #F06A8A">Delete</span> - Responsável por deletar um veículo
+#### 🟡 Create - Responsável por criar um veículo
 ```
 https://localhost:7288/api/v1/
 ```
@@ -415,7 +400,22 @@ https://localhost:7288/api/v1/
 
 ```
 
-<span style="color: #74AEF6">Update</span> - Responsável por atualizar um veículo
+#### 🔴 Delete - Responsável por deletar um veículo
+```
+https://localhost:7288/api/v1/
+```
+
+**Curl**
+```json
+
+```
+
+**Response**
+```json
+
+```
+
+#### 🔵 Update - Responsável por atualizar um veículo
 ```
 https://localhost:7288/api/v1/
 ```
