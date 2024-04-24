@@ -1,5 +1,6 @@
 using Mapster;
 using MayTheFourth.Application.Features.Films;
+using MayTheFourth.Application.Features.People;
 using MayTheFourth.Domain.Entities;
 
 namespace MayTheFourth.Application.Common.Mapster
@@ -17,6 +18,7 @@ namespace MayTheFourth.Application.Common.Mapster
                 .Ignore(dest => dest.Planets)
                 .Ignore(dest => dest.Vehicles)
                 .Ignore(dest => dest.Starships);
+
         }
     }
 }

@@ -11,10 +11,19 @@ namespace MayTheFourth.Application.Features.People
         public string Name { get; set; }  = null!;
         public string Height { get; set; } = null!;
         public string Mass { get; set; } = null!;
-        public string HairColor { get; set; } = null!;
-        public string SkinColor { get; set; } = null!;
-        public string EyeColor { get; set; } = null!;
-        public string BirthYear { get; set; } = null!;
+        public string Hair_color { get; set; } = null!;
+        public string Skin_color { get; set; } = null!;
+        public string Eye_color { get; set; } = null!;
+        public string Birth_year { get; set; } = null!;
         public string Gender { get; set; } = null!;
+        public List<ItemDescriptor>? Movies { get; set; }
     }
+
+    public class ItemDescriptor
+    {
+        public int? Id { get; set; }
+        public string? Tittle { get; set; }
+    }
+
+
 }

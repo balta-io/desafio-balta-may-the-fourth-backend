@@ -7,7 +7,7 @@ using MediatR;
 
 namespace MayTheFourth.Application.Features.People.GetPeopleById
 {
-    public sealed record GetPeopleByIdRequest(Guid id) : IRequest<GetPeopleResponse>
+    public sealed record GetPeopleByIdRequest(int id) : IRequest<GetPeopleResponse>
     {
     }
 }
