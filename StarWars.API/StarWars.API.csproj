@@ -55,11 +55,9 @@
     <Folder Include="Middlewares\Swagger\" />
     <Folder Include="Middlewares\Versioning\" />
     <Folder Include="Endpoints\" />
-    <Folder Include="Models\" />
     <Folder Include="Services\" />
     <Folder Include="Storages\" />
     <Folder Include="Storages\Repositores\" />
-    <Folder Include="Storages\Datas\EntityConfigurations\" />
     <Folder Include="Storages\Abstracts\" />
     <Folder Include="Services\Abstracts\" />
     <Folder Include="Endpoints\Abstracts\" />

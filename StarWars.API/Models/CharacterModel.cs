@@ -16,4 +16,5 @@ public class CharacterModel
     public string EyeColor { get; set; }
     public string BirthYear { get; set; }
     public string Gender { get; set; }
+    public List<MovieModel> Movies { get; set; }
 }
