@@ -21,4 +21,6 @@ public sealed class Character : Entity
 
     public List<CharacterFilm>? Movies { get; init; }
 
+	public List<PlanetCharacter>? PlanetsOfResidence { get; init; }
+
 }

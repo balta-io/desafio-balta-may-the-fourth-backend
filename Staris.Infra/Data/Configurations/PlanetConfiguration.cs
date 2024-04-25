@@ -10,7 +10,6 @@ namespace Staris.Infra.Data.Configurations
         public void Configure(EntityTypeBuilder<Planet> builder) 
         {
             builder.Property(p => p.Id)
-                .HasColumnName("PlanetId")
                 .ValueGeneratedOnAdd()
                 .IsRequired();
 

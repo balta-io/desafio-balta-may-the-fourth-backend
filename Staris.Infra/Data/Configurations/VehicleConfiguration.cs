@@ -9,7 +9,6 @@ namespace Staris.Infra.Data.Configurations
         public void Configure(EntityTypeBuilder<Vehicle> builder)
         {
             builder.Property(v => v.Id)
-                .HasColumnName("VehicleId")
                 .ValueGeneratedOnAdd()
                 .IsRequired();
 
@@ -54,7 +53,7 @@ namespace Staris.Infra.Data.Configurations
                 .IsRequired();
 
             builder.Property(v => v.Type)
-                .HasColumnType("text") //verificar como ficaria o enum..
+                .HasColumnType("integer")
                 .IsRequired();
 
             builder.HasKey(v => v.Id);

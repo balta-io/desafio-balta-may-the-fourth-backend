@@ -23,8 +23,6 @@
     <Folder Include="Data\Configurations\Converters\" />
     <Folder Include="Migrations\" />
     <Folder Include="ExternalServices\" />
-    <Folder Include="Helpers\" />
-    <Folder Include="Repositories\" />
   </ItemGroup>
 
 </Project>

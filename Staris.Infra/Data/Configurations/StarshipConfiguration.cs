@@ -9,8 +9,7 @@ namespace Staris.Infra.Data.Configurations
     {
         public void Configure(EntityTypeBuilder<Starship> builder)
         {
-            builder.Property(s => s.Id)
-                .HasColumnName("StarshipId")
+            builder.Property(s => s.VehicleId)
                 .ValueGeneratedOnAdd()
                 .IsRequired();
 
@@ -22,9 +21,16 @@ namespace Staris.Infra.Data.Configurations
                 .HasColumnType("integer")
                 .IsRequired();
 
-            builder.HasKey(s => s.Id);
+            builder.HasKey(s => s.VehicleId);
 
-        }
+			builder.HasOne(p => p.Vehicle)
+				.WithOne(o => o.Starship)
+				.HasForeignKey<Vehicle>(pf => pf.Id)
+				.HasConstraintName("fk_Vechicles_Starships");
+
+			builder.ToTable("Starships");
+
+		}
 
 
     }

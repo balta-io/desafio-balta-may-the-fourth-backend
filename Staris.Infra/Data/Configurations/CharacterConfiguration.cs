@@ -11,7 +11,6 @@ namespace Staris.Infra.Data.Configurations
 		{
 
 			builder.Property(p => p.Id)
-				.HasColumnName("CharacterId")
 				.ValueGeneratedOnAdd()
 				.IsRequired();
 				
@@ -28,7 +27,7 @@ namespace Staris.Infra.Data.Configurations
 				.IsRequired();
 
 			builder.Property(p => p.Gender)
-				.HasColumnType("INTEGER")
+				.HasColumnType("integer")
 				.IsRequired();
 
 			builder.Property(p => p.Mass)
@@ -55,16 +54,17 @@ namespace Staris.Infra.Data.Configurations
                 .HasColumnType("text")
                 .IsRequired();
 
-			builder.HasKey(p => p.Id);				
-
             builder.Property(p => p.HomeWorldId);
 
-			builder.ToTable("Characters");
+			builder.HasKey(p => p.Id);
 
             builder.HasOne(p => p.HomeWorld)
                 .WithMany()
                 .HasForeignKey(f => f.HomeWorldId)
                 .HasConstraintName("fk_Planets_Characters");
-        }
+
+			builder.ToTable("Characters");
+
+		}
 	}
 }

@@ -10,7 +10,6 @@ namespace Staris.Infra.Data.Configurations
         public void Configure(EntityTypeBuilder<Film> builder) 
         {
             builder.Property(f => f.Id)
-                .HasColumnName("FilmId")
                 .ValueGeneratedOnAdd()
                 .IsRequired();
 

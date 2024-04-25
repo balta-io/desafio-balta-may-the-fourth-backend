@@ -15,23 +15,21 @@ namespace Staris.Infra.Data.Configurations
             builder.Property(cf => cf.FilmId)
                 .IsRequired();
 
-            builder.Property(cf => cf.Character);
-
-            builder.Property(cf => cf.Film);
-
-
-            builder.HasOne(c => c.Character)
+			builder.HasOne(c => c.Character)
                 .WithMany(f => f.Movies)
                 .HasForeignKey(cf => cf.CharacterId)
-                .HasConstraintName("fk_character_film");
+                .HasConstraintName("fk_characters_films")
+                .HasPrincipalKey(pk => pk.Id);
 
             builder.HasOne(f => f.Film)
                 .WithMany(c => c.Characters)
                 .HasForeignKey(cf => cf.FilmId)
-                .HasConstraintName("fk_film_character");
+                .HasConstraintName("fk_films_characters")
+				.HasPrincipalKey(pk => pk.Id);
 
+			builder.HasKey(k => new { k.CharacterId, k.FilmId });
 
-            builder.ToTable("CharacterFilms");
+			builder.ToTable("CharacterFilms");
 
         }
     }
