@@ -4,6 +4,7 @@
 	{
 		public static IServiceCollection AddServiceDependences(this IServiceCollection services)
 		{
+			services.AddScoped<IImportService, ImportService>();
 			services.AddScoped<IStarWarsService, StarWarsService>();
 
 			return services;

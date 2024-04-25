@@ -5,19 +5,18 @@ using StarWars.API.Storages.Repositores;
 namespace StarWars.API.Storages.Abstracts
 {
     public static class StorageDependences
-	{
-		public static IServiceCollection AddStorageDependences(
-			this IServiceCollection services, IConfiguration configuration)
+    {
+        public static IServiceCollection AddStorageDependences(
+            this IServiceCollection services, IConfiguration configuration)
         {
-			var mySqlConnection = configuration.GetConnectionString("DefaultConnection");
+            var mySqlConnection = configuration.GetConnectionString("DefaultConnection");
 
-            services.AddDbContext<StarWarsContext>(
-               options => options.UseMySQL(mySqlConnection));
+            services.AddDbContext<StarWarsContext>();
 
-			services.AddScoped<IStarWarsRepository, StarWarsRepository>();
+            services.AddScoped<IStarWarsRepository, StarWarsRepository>();
 
             return services;
-		}
-	}
+        }
+    }
 }
 

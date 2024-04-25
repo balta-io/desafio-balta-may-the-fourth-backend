@@ -14,7 +14,9 @@ namespace StarWars.API.Storages.Repositores
             _context = context;
         }
 
-        public async Task<MovieModel?> CreateMovie(MovieModel model, CancellationToken cancellationToken = default)
+        public async Task<MovieModel?> CreateMovieAsync(
+            MovieModel model,
+            CancellationToken cancellationToken = default)
         {
             _context.Movies.Add(model);
 
@@ -23,18 +25,31 @@ namespace StarWars.API.Storages.Repositores
             return result == 0 ? null : model;
         }
 
-
-        public async Task<List<MovieModel>>? GetMoviesAsync(CancellationToken cancellationToken = default)
+        public async Task<List<MovieModel>?> GetMoviesAsync(
+            CancellationToken cancellationToken = default)
         {
             var response = await _context.Movies.ToListAsync(cancellationToken);
+            
+            return response;
+        }
+
+        public async Task<MovieModel?> GetMovieByIdAsync(
+            int movieId, CancellationToken cancellationToken = default)
+        {
+            var response = await _context.Movies.Where(x=> x.MovieId == movieId)
+                .FirstOrDefaultAsync(cancellationToken);
 
             return response;
         }
-        public async Task<List<CharacterModel>>? GetCharactersAsync(CancellationToken cancellationToken = default)
+        public async Task<List<CharacterModel>?> GetCharactersAsync(
+            CancellationToken cancellationToken = default)
         {
-            var response = await _context.Characters.ToListAsync(cancellationToken);
+            // Todo: retirar o comentario após garantir a existencia e configuração da tabela com a entidade
+            // var response = await _context.Characters.ToListAsync(cancellationToken);
 
-            return response;
+            await Task.Delay(0);
+
+            return null;
         }
     }
 }
