@@ -14,7 +14,6 @@ namespace StarisApi.Models.Characters
         public string Height { get; set; } = null!;
         public string Mass { get; set; } = null!;
         public string SkinColor { get; set; } = null!;
-        public string ImageUrl { get; set; } = string.Empty!;
 
         public int PlanetId { get; set; }
         public virtual Planet Planet { get; set; } = null!;

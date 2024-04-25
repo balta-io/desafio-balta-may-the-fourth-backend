@@ -15,7 +15,6 @@ public class Planet : Entity
     public string Climate { get; set; } = null!;
     public string Terrain { get; set; } = null!;
     public string SurfaceWater { get; set; } = null!;
-    public string ImageUrl { get; set; } = string.Empty!;
     public virtual ICollection<Character> Characters { get; set; } = [];
 
     public virtual ICollection<MoviePlanet> Movies { get; set; } = [];

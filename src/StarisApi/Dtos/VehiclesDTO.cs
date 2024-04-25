@@ -16,7 +16,7 @@ namespace StarisApi.Dtos
         public string MaxAtmospheringSpeed { get; set; } = null!;
         public string Consumables { get; set; } = null!;
         public string ClassVehicle { get; set; } = null!;
-        public string ImageUrl { get; set; } = string.Empty!;
+        public string ImageUrl { get; set; } = string.Empty;
         public ICollection<ListDto> Movies { get; set; } = null!;
     }
 }
