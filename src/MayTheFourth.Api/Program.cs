@@ -1,4 +1,5 @@
 using MayTheFourth.Api.Extensions;
+using MayTheFourth.Api.Extensions.Contexts;
 using MayTheFourth.Api.Extensions.Contexts.FilmContext;
 using MayTheFourth.Api.Extensions.Contexts.PersonContext;
 using MayTheFourth.Api.Extensions.Contexts.PlanetContext;
@@ -16,6 +17,7 @@ builder.AddStarshipContext();
 builder.AddFilmContext();
 builder.AddPersonContext();
 builder.AddDbContext();
+builder.AddDataImport();
 builder.AddMediatR();
 
 builder.Services.Configure<JsonOptions>(opt => opt.SerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles);
@@ -23,7 +25,16 @@ builder.Services.Configure<JsonOptions>(opt => opt.SerializerOptions.ReferenceHa
 
 builder.Services.AddEndpointsApiExplorer();
 
-builder.Services.AddSwaggerGen();
+builder.Services.AddSwaggerGen( options =>
+{
+    options.SwaggerDoc("v1", new OpenApiInfo { Title = "MayTheFourth API", Version = "v1" });
+
+    var xmlFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
+    var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
+
+    options.IncludeXmlComments(xmlPath);
+});
+
 builder.Services.ConfigureSwaggerGen(options => options.CustomSchemaIds(x => x.FullName));
 
 var app = builder.Build();
@@ -37,6 +48,9 @@ app.UseSwaggerUI(c =>
 
 app.UseHttpsRedirection();
 
+var importFileName = builder.Configuration["ImportSettings:FileName"];
+
+await app.ImportDataAsync(importFileName!);
 
 app.MapPlanetEndpoints();
 app.MapStarshipEndpoints();

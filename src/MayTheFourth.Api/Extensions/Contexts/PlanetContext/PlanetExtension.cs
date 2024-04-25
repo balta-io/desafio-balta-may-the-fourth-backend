@@ -27,7 +27,12 @@ public static class PlanetExtension
             return result.IsSuccess
                 ? Results.Ok(result)
                 : Results.Json(result, statusCode: result.Status);
-        });
+        })
+            .WithTags("Planet")
+            .Produces(TypedResults.Ok().StatusCode)
+            .Produces(TypedResults.NotFound().StatusCode)
+            .WithSummary("Return a list of planets")
+            .WithOpenApi(); 
         #endregion
 
         #region Create planet
@@ -42,7 +47,12 @@ public static class PlanetExtension
             return result.IsSuccess
                 ? Results.Created($"api/v1/planets/create/{result.Data?.planet.Id}", result)
                 : Results.Json(result, statusCode: result.Status);
-        });
+        })
+            .WithTags("Planet")
+            .Produces(TypedResults.Created().StatusCode)
+            .Produces(TypedResults.BadRequest().StatusCode)
+            .WithOpenApi()
+            .WithSummary("Create a planet"); 
         #endregion
     }
 }
