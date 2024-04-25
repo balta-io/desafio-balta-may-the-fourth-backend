@@ -109,7 +109,67 @@ https://localhost:7288/api/v1/film
 
 **Response**
 ```json
+{
+    "data": {
+        "films": [
+            {
+                "id": "bf26860b-b5e6-413f-b8ae-47a01da2f507",
+                "title": "The Phantom Menace",
+                "director": "George Lucas",
+                "releaseDate": "1999-05-19T00:00:00"
+            },
+            ...
+            {
+                "id": "3cac0850-1577-4f1b-b6b4-f339dcdc468a",
+                "title": "Return of the Jedi",
+                "director": "Richard Marquand",
+                "releaseDate": "1983-05-25T00:00:00"
+            }
+        ]
+    },
+    "message": "Lista de filmes encontrada",
+    "status": 200,
+    "isSuccess": true
+}
+```
+#### 🟢 SearchById  - Responsavel por listar um filme específico
+```
+https://localhost:7288/api/v1/film/{ID_FILM}
+```
 
+**Response**
+```json
+    "data": {
+        "filmDetails": {
+            "id": "bf26860b-b5e6-413f-b8ae-47a01da2f507",
+            "title": "The Phantom Menace",
+            "episodeId": 1,
+            "openingCrawl": "Turmoil has engulfed the\r\nGalactic Republic. The taxation\r\nof trade routes to outlying star\r\nsystems is in dispute.\r\n\r\nHoping to resolve the matter\r\nwith a blockade of deadly\r\nbattleships, the greedy Trade\r\nFederation has stopped all\r\nshipping to the small planet\r\nof Naboo.\r\n\r\nWhile the Congress of the\r\nRepublic endlessly debates\r\nthis alarming chain of events,\r\nthe Supreme Chancellor has\r\nsecretly dispatched two Jedi\r\nKnights, the guardians of\r\npeace and justice in the\r\ngalaxy, to settle the conflict....",
+            "director": "George Lucas",
+            "producer": "Rick McCallum",
+            "releaseDate": "1999-05-19T00:00:00",
+            "created": "2014-12-19T16:52:55.74",
+            "edited": "2014-12-20T10:54:07.217",
+            "speciesList": [
+            ...
+            ],
+            "starships": [
+            ...
+            ],
+            "vehicles": [
+            ...
+            ],
+            "characters": [
+            ...
+            ],
+            "planets": [
+            ...
+            ],
+        }
+    "message": "Filme encontrado com sucesso.",
+    "status": 200,
+    "isSuccess": true
+}
 ```
 
 #### 🟡 Create - Responsável por criar um filme
@@ -164,10 +224,83 @@ https://localhost:7288/api/v1/
 ```
 https://localhost:7288/api/v1/people
 ```
+
 **Response**
 
 ```json
+    "data": {
+        "people": [
+            {
+                "id": "5f4c1202-17e1-49dc-81c7-0fa534273655",
+                "name": "Quarsh Panaka",
+                "birthYear": "62BBY",
+                "gender": "male",
+                "homeworldId": "31e83947-3a28-4720-886b-d38cb05fa22e"
+            },
+            ...
+            {
+                "id": "b79a015d-5610-4d1d-a557-ff36bcaf6aff",
+                "name": "Leia Organa",
+                "birthYear": "19BBY",
+                "gender": "female",
+                "homeworldId": "8193b17f-cd25-4574-b466-bbe807e032f5"
+            }
+        ]
+    },
+    "message": "Lista de personagens encontrada",
+    "status": 200,
+    "isSuccess": true
+}
+```
 
+#### 🟢 SearchById - Responsável por buscar um personagem específico
+```
+https://localhost:7288/api/v1/people/{ID_PEOPLE}
+```
+**Response**
+
+```json
+"data": {
+        "personDetail": {
+            "id": "5f4c1202-17e1-49dc-81c7-0fa534273655",
+            "name": "Quarsh Panaka",
+            "birthYear": "62BBY",
+            "eyeColor": "brown",
+            "gender": "male",
+            "hairColor": "black",
+            "height": 183,
+            "mass": "unknown",
+            "skinColor": "dark",
+            "created": "2014-12-19T17:55:43.347",
+            "edited": "2014-12-20T21:17:50.4",
+            "homeworld": null,
+            "homeworldId": "31e83947-3a28-4720-886b-d38cb05fa22e",
+            "films": [
+                {
+                    "id": "bf26860b-b5e6-413f-b8ae-47a01da2f507",
+                    "title": "The Phantom Menace",
+                    "director": "George Lucas",
+                    "releaseDate": "1999-05-19T00:00:00"
+                }
+            ],
+            "species": [
+                {
+                    "id": "cf30a6f1-5fef-418a-8ec3-fce820099745",
+                    "name": "Human",
+                    "classification": "mammal",
+                    "designation": "sentient",
+                    "language": "Galactic Basic",
+                    "homeworldId": "fa0320f0-0588-492b-84df-0af98d35915d"
+                }
+            ],
+            "starships": [],
+            "vehicles": []
+        }
+    },
+    "message": "Personagem encontrado.",
+    "status": 200,
+    "isSuccess": true
+}
 ```
 
 #### 🟡 Create - Responsável por criar uma pessoa
@@ -225,7 +358,68 @@ https://localhost:7288/api/v1/planets
 
 **Response**
 ```json
+    "data": {
+        "planetList": [
+            {
+                "id": "24e2beaa-edee-406b-8ffc-0a9169cdacfd",
+                "name": "Mon Cala",
+                "gravity": "1",
+                "population": 0,
+                "climate": "temperate"
+            },
+            ...
+            {
+                "id": "2262348f-2393-47ee-bb33-ff50a6b9a3d3",
+                "name": "Kashyyyk",
+                "gravity": "1 standard",
+                "population": 381,
+                "climate": "tropical"
+            }
+        ]
+    },
+    "message": "Uma lista de planetas foi encontrado.",
+    "status": 200,
+    "isSuccess": true
+}
+```
 
+#### 🟢SearchById - Responsável por buscar um planeta específico
+```
+https://localhost:7288/api/v1/planets/{ID_PLANET}
+```
+
+**Response**
+```json
+    "data": {
+        "planet": {
+            "id": "24e2beaa-edee-406b-8ffc-0a9169cdacfd",
+            "name": "Mon Cala",
+            "diameter": 11030,
+            "rotationPeriod": 21,
+            "orbitalPeriod": 398,
+            "gravity": "1",
+            "population": 0,
+            "climate": "temperate",
+            "terrain": "oceans, reefs, islands",
+            "surfaceWater": "100",
+            "created": "2014-12-18T11:07:01.793",
+            "edited": "2014-12-20T20:58:18.47",
+            "residents": [
+                {
+                    "id": "79992019-c6d0-485b-aeb4-df2de730b9fe",
+                    "name": "Ackbar",
+                    "birthYear": "41BBY",
+                    "gender": "male",
+                    "homeworldId": "24e2beaa-edee-406b-8ffc-0a9169cdacfd"
+                }
+            ],
+            "films": []
+        }
+    },
+    "message": "Planeta encontrado com sucesso.",
+    "status": 200,
+    "isSuccess": true
+}
 ```
 
 #### 🟡 Create - Responsável por criar um planeta
@@ -288,6 +482,19 @@ https://localhost:7288/api/v1/
 ```json
 
 ```
+
+#### 🟢SearchById - Responsável por buscar uma espécies específica
+
+```
+https://localhost:7288/api/v1/
+```
+
+**Response**
+```json
+
+```
+
+
 #### 🟡 Create - Responsável por criar uma espécie
 ```
 https://localhost:7288/api/v1/
@@ -344,7 +551,95 @@ https://localhost:7288/api/v1/starships
 
 **Response**
 ```json
+{
+    "data": {
+        "starshipList": [
+            {
+                "id": "01bbe16b-ef40-422d-b25b-184c18568c86",
+                "name": "Millennium Falcon",
+                "model": "YT-1300 light freighter",
+                "manufacturer": "Corellian Engineering Corporation"
+            },
+            ...
+            {
+                "id": "ca50c044-732a-49a5-9c6b-fa4b8c237071",
+                "name": "Trade Federation cruiser",
+                "model": "Providence-class carrier/destroyer",
+                "manufacturer": "Rendili StarDrive, Free Dac Volunteers Engineering corps."
+            }
+        ]
+    },
+    "message": "Lista de naves encontrada.",
+    "status": 200,
+    "isSuccess": true
+}
+```
 
+#### 🟢SearchById - Responsável por buscar uma nave específica
+
+```
+https://localhost:7288/api/v1/starships/{ID_STARSHIP}
+```
+
+**Response**
+```json
+{
+    "data": {
+        "starshipDetails": {
+            "id": "01bbe16b-ef40-422d-b25b-184c18568c86",
+            "name": "Millennium Falcon",
+            "model": "YT-1300 light freighter",
+            "starshipClass": "Light freighter",
+            "manufacturer": "Corellian Engineering Corporation",
+            "costInCredits": 100000,
+            "length": 3437,
+            "crew": 4,
+            "passengers": 6,
+            "maxAtmospheringSpeed": 1050,
+            "hyperdriveRating": "0.5",
+            "mglt": "75",
+            "cargoCapacity": 100000,
+            "consumables": "2 months",
+            "created": "2014-12-10T16:59:45.093",
+            "edited": "2014-12-20T21:23:49.88",
+            "films": [
+                {
+                    "id": "8358d097-960a-4a97-a7cd-6ed74fade9a7",
+                    "title": "The Empire Strikes Back",
+                    "director": "Irvin Kershner",
+                    "releaseDate": "1980-05-17T00:00:00"
+                },
+                ...
+                {
+                    "id": "3cac0850-1577-4f1b-b6b4-f339dcdc468a",
+                    "title": "Return of the Jedi",
+                    "director": "Richard Marquand",
+                    "releaseDate": "1983-05-25T00:00:00"
+                }
+            ],
+            "pilots": [
+                {
+                    "id": "ae26b00b-7909-4c4f-8416-2700a576ccf3",
+                    "name": "Lando Calrissian",
+                    "birthYear": "31BBY",
+                    "gender": "male",
+                    "homeworldId": "687d30ea-3488-4e1d-b76d-82c4cd321ae9"
+                },
+                ...
+                {
+                    "id": "2c5683ca-9008-41cd-afb4-b90d8d62bc2a",
+                    "name": "Han Solo",
+                    "birthYear": "29BBY",
+                    "gender": "male",
+                    "homeworldId": "c0562cc5-3d5b-47d0-b541-191376b1e92d"
+                }
+            ]
+        }
+    },
+    "message": "Nave encontrada.",
+    "status": 200,
+    "isSuccess": true
+}
 ```
 
 #### 🟡 Create - Responsável por criar uma nave
@@ -398,6 +693,16 @@ https://localhost:7288/api/v1/
 ### 🚗 Vehicle
 
 #### 🟢 SearchAll - Responsável por listar todos os veículos
+```
+https://localhost:7288/api/v1/
+```
+
+**Response**
+```json
+
+```
+
+#### 🟢 SearchById - Responsável por buscar um veículo específico
 ```
 https://localhost:7288/api/v1/
 ```
