@@ -18,7 +18,7 @@ jobs:
               with: 
                     dotnet-version: 8.x
             - name: Install dependencies
-              run: dotnet restore /src/StarisApi/StarisApi.csproj
+              run: dotnet restore ./src/StarisApi/StarisApi.csproj
             - name: Build
               run: dotnet build --configuration Release --no-restore
             - name: Publish
