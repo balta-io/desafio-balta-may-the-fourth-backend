@@ -6,7 +6,7 @@ using StarisApi.Models.Characters;
 using StarisApi.Repository;
 
 namespace StarisApi.Endpoints.DataBaseFeeders;
-
+//teste
 public static class DataBaseFeederEndpoints
 {
     public static IEndpointRouteBuilder MapDatabaseFeederEndpoits(this IEndpointRouteBuilder app)
