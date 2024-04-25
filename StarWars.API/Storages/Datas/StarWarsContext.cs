@@ -14,7 +14,7 @@ namespace StarWars.API.Storages.Datas
         public DbSet<MovieModel> Movies { get; private set; }
         public DbSet<CharacterModel> Characters { get; private set; }
         public DbSet<VehicleModel> Vehicles { get; private set; }
-
+        #endregion
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             optionsBuilder.EnableServiceProviderCaching();
