@@ -2,7 +2,6 @@ namespace StarWars.API.Models;
 
 public class StarshipsModel
 {
-
     public string? Name { get; set; }
     public string? Model { get; set; }
     public string? Manufacturer { get; set; }
@@ -15,5 +14,5 @@ public class StarshipsModel
     public int Mglt { get; set; }
     public string? Consumables { get; set; }
     public string? Class { get; set; }
-    public List<MoveModel> Movies { get; set; }
+    public List<MovieModel> Movies { get; set; }
 }
