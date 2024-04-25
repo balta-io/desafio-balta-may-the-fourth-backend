@@ -27,7 +27,12 @@ namespace MayTheFourth.Api.Extensions.Contexts.FilmContext
                 return result.IsSuccess
                     ? Results.Ok(result)
                     : Results.Json(result, statusCode: result.Status);
-            });
+            })
+                .WithTags("Film")
+                .Produces(TypedResults.Ok().StatusCode)
+                .Produces(TypedResults.NotFound().StatusCode)
+                .WithSummary("Return a list of films")
+                .WithOpenApi();
             #endregion
 
             #region Get film by id

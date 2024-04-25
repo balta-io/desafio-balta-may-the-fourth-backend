@@ -78,6 +78,5 @@ public class SpeciesMap : IEntityTypeConfiguration<Species>
             .IsRequired()
             .HasColumnName("Edited")
             .HasColumnType("DATETIME");
-
     }
 }

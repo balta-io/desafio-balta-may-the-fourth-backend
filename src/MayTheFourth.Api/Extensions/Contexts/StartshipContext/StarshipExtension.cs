@@ -1,4 +1,5 @@
-﻿using MediatR;
+﻿using MayTheFourth.Core.Entities;
+using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using System.Reflection.Metadata.Ecma335;
 
@@ -28,7 +29,12 @@ public static class StarshipExtension
             return result.IsSuccess
                 ? Results.Ok(result)
                 : Results.Json(result, statusCode: result.Status);
-        });
+        })
+            .WithTags("Starship")
+            .Produces(TypedResults.Ok().StatusCode)
+            .Produces(TypedResults.NotFound().StatusCode)
+            .WithSummary("Return a list of starships")
+            .WithOpenApi();
         #endregion
 
         #region Search starship by id
@@ -59,7 +65,12 @@ public static class StarshipExtension
             return result.IsSuccess
                 ? Results.Created($"api/v1/starships/create/{result.Data?.starship.Id}", result)
                 : Results.Json(result, statusCode: result.Status);
-        });
+        })
+            .WithTags("Starship")
+            .Produces(TypedResults.Created().StatusCode)
+            .Produces(TypedResults.BadRequest().StatusCode)
+            .WithOpenApi()
+            .WithSummary("Create a starship");
         #endregion
     }
 }
