@@ -5,6 +5,30 @@ namespace MayTheFourth.Application.Common.AppServices.PopulateFilms
 {
     public class PopulateFilmsResponseAppService : IPopulateFilmsResponseAppService
     {
+        public List<ItemDescription>? GetFilmsList(List<string> urlList, IEnumerable<FilmEntity> filmList)
+        {
+            var movies = new List<ItemDescription>();
+
+            foreach (var item in urlList!)
+            {
+                var entity = filmList.FirstOrDefault(x => x.Url.Equals(item));
+
+                if (entity is null)
+                    continue;
+
+                var id = entity.Url.TrimEnd('/').Split('/');
+                string idString = id[^1];
+
+                movies.Add(new ItemDescription()
+                {
+                    Id = Convert.ToInt32(idString),
+                    Name = entity.Title
+                });
+            }
+
+            return movies;
+        }
+
         public List<ItemDescription>? GetPeopleList(FilmEntity film, IEnumerable<PersonEntity> peopleList)
         {
             var characters = new List<ItemDescription>();

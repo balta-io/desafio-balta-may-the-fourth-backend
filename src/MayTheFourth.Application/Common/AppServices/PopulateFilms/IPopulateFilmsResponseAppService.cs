@@ -5,6 +5,8 @@ namespace MayTheFourth.Application.Common.AppServices.PopulateFilms
 {
     public interface IPopulateFilmsResponseAppService
     {
+        List<ItemDescription>? GetFilmsList(List<string> itemDescriptions, IEnumerable<FilmEntity> peopleList);
+
         List<ItemDescription>? GetPeopleList(FilmEntity film, IEnumerable<PersonEntity> peopleList);
 
         List<ItemDescription>? GetPlanetsList(FilmEntity film, IEnumerable<PlanetEntity> planetList);
