@@ -616,6 +616,27 @@ public class DataBaseFeeder
         return entityUrlImagesRelation;
     }
 
+    public List<Movie> ScrappyUrlImageForMovies(List<Movie> movies)
+    {
+        List<string> imageUrls = [
+                                    "https://lumiere-a.akamaihd.net/v1/images/EP1-IA-99993-RESIZED_f9ae99b6.jpeg",
+                                    "https://lumiere-a.akamaihd.net/v1/images/EP2-IA-69221-RESIZED_1e8e0971.jpeg",
+                                    "https://lumiere-a.akamaihd.net/v1/images/image_ff356cdb.jpeg",
+                                    "https://lumiere-a.akamaihd.net/v1/images/EP4_POS_2_D-RESIZED_f977074a.jpeg",
+                                    "https://lumiere-a.akamaihd.net/v1/images/image_ca7910bd.jpeg",
+                                    "https://lumiere-a.akamaihd.net/v1/images/EP6_POS_21_R-RESIZED_2873dc04.jpeg",
+                                    "https://lumiere-a.akamaihd.net/v1/images/avco_payoff_1-sht_v7_lg_32e68793.jpeg"
+                                  ];
+        movies = [.. movies.OrderBy(x => x.Episode)];
+
+        for (int i = 0; i < movies.Count; i++)
+        {
+            movies[i].ImageUrl = imageUrls[i];
+        }
+
+        return movies;
+    }
+
     public Dictionary<int, string> MountUrlString(Dictionary<int, string> entityNames)
     {
         string urlBase = "https://starwars.fandom.com/wiki/";
