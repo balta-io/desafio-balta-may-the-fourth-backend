@@ -23,10 +23,10 @@ namespace StarWars.API.Services
             CancellationToken cancellationToken = default)
         {
             // Todo: Implementar os demais endpoints
-            string movesUrl = "https://";
+            string moviesUrl = "https://";
 
-            var movies = await _httpClient.GetFromJsonAsync<List<MoveModel>>(
-                movesUrl, cancellationToken: cancellationToken);
+            var movies = await _httpClient.GetFromJsonAsync<List<MovieModel>>(
+                moviesUrl, cancellationToken: cancellationToken);
 
             var response = (movies?.Count ?? 0) > 0;
 

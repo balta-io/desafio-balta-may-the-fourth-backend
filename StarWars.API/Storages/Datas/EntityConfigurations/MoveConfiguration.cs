@@ -4,14 +4,14 @@ using StarWars.API.Models;
 
 namespace StarWars.API.Storages.Datas.EntityConfigurations
 {
-    public class MoveConfiguration : IEntityTypeConfiguration<MoveModel>
+    public class MoveConfiguration : IEntityTypeConfiguration<MovieModel>
     {
 
-        public void Configure(EntityTypeBuilder<MoveModel> builder)
+        public void Configure(EntityTypeBuilder<MovieModel> builder)
         {
-            builder.ToTable("Move");
-            builder.HasKey(x=> x.MoveId);
-            builder.Property(x=> x.MoveId).ValueGeneratedOnAdd();
+            builder.ToTable("Movie");
+            builder.HasKey(x=> x.MovieId);
+            builder.Property(x=> x.MovieId).ValueGeneratedOnAdd();
         }
     }
 }

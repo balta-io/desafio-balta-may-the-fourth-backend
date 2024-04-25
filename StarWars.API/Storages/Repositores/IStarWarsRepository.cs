@@ -8,7 +8,7 @@ namespace StarWars.API.Storages.Repositores
 		/// </summary>
 		/// <param name="cancellationToken"></param>
 		/// <returns>Retorna uma lista de filmes</returns>
-		Task<List<MoveModel>?> GetMovesAsync(
+		Task<List<MovieModel>>? GetMoviesAsync(
 			CancellationToken cancellationToken = default);
 
 		/// <summary>
@@ -17,8 +17,8 @@ namespace StarWars.API.Storages.Repositores
 		/// <param name="model"></param>
 		/// <param name="cancellationToken"></param>
 		/// <returns>Retorna os dados do filme criado, em caso de sucesso</returns>
-		Task<MoveModel?> CreateMove(
-			MoveModel model, CancellationToken cancellationToken = default);
+		Task<MovieModel?> CreateMovie(
+			MovieModel model, CancellationToken cancellationToken = default);
 	}
 }
 

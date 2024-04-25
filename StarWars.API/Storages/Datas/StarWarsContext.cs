@@ -11,7 +11,8 @@ namespace StarWars.API.Storages.Datas
         }
 
         #region - Configuração de DbSets -
-        public DbSet<MoveModel> Moves { get; private set; }
+        public DbSet<MovieModel> Movies { get; private set; }
+        public DbSet<VehicleModel> Vehicles { get; private set; }
         #endregion
 
 
@@ -28,6 +29,7 @@ namespace StarWars.API.Storages.Datas
             // Todo: Adicionar as configurações dos outros modelos
 
             modelBuilder.ApplyConfiguration(new MoveConfiguration());
+            modelBuilder.ApplyConfiguration(new VehicleConfiguration());
 
             base.OnModelCreating(modelBuilder);
         }
