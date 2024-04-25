@@ -17,7 +17,7 @@ namespace MayTheFourth.Api.Extensions.Contexts.FilmContext
         public static void MapFilmEndpoints(this WebApplication app)
         {
             #region Get all films
-            app.MapGet("api/v1/film", async
+            app.MapGet("api/v1/films", async
                 (IRequestHandler<Core.Contexts.FilmContext.UseCases.SearchAll.Request,
                 Core.Contexts.FilmContext.UseCases.SearchAll.Response> handler) =>
             {
@@ -36,7 +36,7 @@ namespace MayTheFourth.Api.Extensions.Contexts.FilmContext
             #endregion
 
             #region Get film by id
-            app.MapGet("api/v1/film/{id}", async (
+            app.MapGet("api/v1/films/{id}", async (
                 [FromRoute] Guid id,
                 [FromServices] IRequestHandler<
                     Core.Contexts.FilmContext.UseCases.SearchById.Request,
