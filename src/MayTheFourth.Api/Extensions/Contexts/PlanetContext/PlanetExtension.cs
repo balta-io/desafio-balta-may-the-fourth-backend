@@ -9,7 +9,7 @@ public static class PlanetExtension
     {
         #region Register Planet Repository
         builder.Services.AddTransient
-            <Core.Interfaces.Repositories.IPlanetRepository, 
+            <Core.Interfaces.Repositories.IPlanetRepository,
             Infra.Repositories.PlanetRepository>();
         #endregion
     }
@@ -32,7 +32,7 @@ public static class PlanetExtension
             .Produces(TypedResults.Ok().StatusCode)
             .Produces(TypedResults.NotFound().StatusCode)
             .WithSummary("Return a list of planets")
-            .WithOpenApi(); 
+            .WithOpenApi();
         #endregion
 
         #region Get planet by id
@@ -48,8 +48,15 @@ public static class PlanetExtension
             return result.IsSuccess
                 ? Results.Ok(result)
                 : Results.Json(result, statusCode: result.Status);
-        });
-
+        })
+            .WithTags("Planet")
+            .WithSummary("Return a planet according to ID")
+            .WithOpenApi(opt =>
+            {
+                var parameter = opt.Parameters[0];
+                parameter.Description = "The ID associated with the created Planet";
+                return opt;
+            });
         #endregion
 
         #region Create planet
@@ -69,7 +76,7 @@ public static class PlanetExtension
             .Produces(TypedResults.Created().StatusCode)
             .Produces(TypedResults.BadRequest().StatusCode)
             .WithOpenApi()
-            .WithSummary("Create a planet"); 
+            .WithSummary("Create a planet");
         #endregion
     }
 }

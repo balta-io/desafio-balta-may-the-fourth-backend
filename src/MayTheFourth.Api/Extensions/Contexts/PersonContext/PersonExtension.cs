@@ -48,7 +48,15 @@ public static class PersonExtension
             return result.IsSuccess
                 ? Results.Ok(result)
                 : Results.Json(result, statusCode: result.Status);
-        });
+        })
+            .WithTags("Person")
+            .WithSummary("Return a person according to ID")
+            .WithOpenApi(opt =>
+            {
+                var parameter = opt.Parameters[0];
+                parameter.Description = "The ID associated with the created Person";
+                return opt;
+            });
         #endregion
 
         #region Create person
