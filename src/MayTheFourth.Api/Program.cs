@@ -4,6 +4,8 @@ using MayTheFourth.Api.Extensions.Contexts.PersonContext;
 using MayTheFourth.Api.Extensions.Contexts.PlanetContext;
 using MayTheFourth.Api.Extensions.Contexts.StartshipContext;
 using Microsoft.AspNetCore.Http.Json;
+using Microsoft.OpenApi.Models;
+using System.Reflection;
 using System.Text.Json.Serialization;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -20,8 +22,10 @@ builder.Services.Configure<JsonOptions>(opt => opt.SerializerOptions.ReferenceHa
 
 
 builder.Services.AddEndpointsApiExplorer();
+
 builder.Services.AddSwaggerGen();
 builder.Services.ConfigureSwaggerGen(options => options.CustomSchemaIds(x => x.FullName));
+
 var app = builder.Build();
 
 app.UseSwagger();
