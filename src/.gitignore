@@ -483,5 +483,4 @@ $RECYCLE.BIN/
 # Vim temporary swap files
 *.swp
 
-MayTheFourth.Api/Migrations
 MayTheFourth.Api/.config
