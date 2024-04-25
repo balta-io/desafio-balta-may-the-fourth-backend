@@ -35,8 +35,11 @@ builder.Services.AddSwaggerGen(options =>
     var xmlMoviename = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
     options.IncludeXmlComments(Path.Combine(AppContext.BaseDirectory, xmlMoviename));
 });
-builder.Services.AddScoped<IMoviepository, Moviepository>();
+builder.Services.AddScoped<IMovieRepository, MovieRepository>();
 builder.Services.AddScoped<IMovieService, MovieService>();
+
+builder.Services.AddScoped<IStarshipRepository, StarshipRepository>();
+builder.Services.AddScoped<IStarshipService, StarshipService>();
 
 builder.Services.AddEntityFrameworkNpgsql();
 var connection = builder.Configuration.GetConnectionString("StarWarsConnection");
@@ -53,7 +56,8 @@ app.UseSwagger();
 // endpoints
 var endpoints = app.MapGroup("/star-wars");
 endpoints.MapGet("/", () => "Hello Star Wars World!");
-endpoints.MapGet("/filmes", GetMovies);
+endpoints.MapGet("/movies", GetMovies);
+endpoints.MapGet("/starships", GetStarships);
 
 app.UseSwaggerUI(options =>
 {
@@ -67,6 +71,14 @@ app.Run();
 static async Task<IResult> GetMovies(IMovieService movieService)
 {
     var result = await movieService.GetMovies();
+    return result.Success 
+        ? TypedResults.Ok(result) 
+        : TypedResults.BadRequest(result);
+}
+
+static async Task<IResult> GetStarships(IStarshipService starshipService)
+{
+    var result = await starshipService.GetStarships();
     return result.Success 
         ? TypedResults.Ok(result) 
         : TypedResults.BadRequest(result);

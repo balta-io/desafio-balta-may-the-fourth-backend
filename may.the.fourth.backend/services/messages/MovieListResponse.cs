@@ -5,6 +5,6 @@ namespace May.The.Fourth.Backend.Services.Messages
 {
     public class MovieListResponse : ResponseBase
     {
-        public IList<MovieDto>? FilmeDto { get; set; }
+        public IList<MovieDto>? MovieDto { get; set; }
     }
 }

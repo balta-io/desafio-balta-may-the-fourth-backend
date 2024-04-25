@@ -5,27 +5,28 @@ using May.The.Fourth.Backend.Services.Messages;
 
 namespace May.The.Fourth.Backend.Services;
 
-public class MovieService(IMoviepository moviepository) : IMovieService
+public class MovieService(IMovieRepository movieRepository) : IMovieService
 {
     public async Task<MovieListResponse> GetMovies()
     {
         try
         {
             var movieListResponse = new MovieListResponse();
-            var filmes = await moviepository.GetMovies();
-            if (filmes.Any())
+            var movies = await movieRepository.GetMovies();
+            
+            if (movies.Any())
             {
                 movieListResponse.Success = true;
                 movieListResponse.Message = "SUCCESS";
                 movieListResponse.StatusCode = 200;
-                movieListResponse.FilmeDto = MapperDto.MapToMovieDto(filmes);
+                movieListResponse.MovieDto = MapperDto.MapToMovieDto(movies);
             }
             else
             {
                 movieListResponse.Success = false;
                 movieListResponse.Message = "FAILED";
                 movieListResponse.StatusCode = 500;
-                movieListResponse.FilmeDto = null;
+                movieListResponse.MovieDto = null;
             }
             return movieListResponse;
         }
@@ -36,7 +37,7 @@ public class MovieService(IMoviepository moviepository) : IMovieService
                 Success = false,
                 Message = "Internal server error",
                 StatusCode = 500,
-                FilmeDto = null
+                MovieDto = null
             };
         }
     }

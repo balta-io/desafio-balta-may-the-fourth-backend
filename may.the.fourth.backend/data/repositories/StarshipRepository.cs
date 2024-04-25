@@ -4,14 +4,14 @@ using May.The.Fourth.Backend.Data.Interfaces;
 
 namespace May.The.Fourth.Backend.Data.Repositories;
 
-public class Moviepository(StarWarsContext ctx) : IMoviepository
+public class StarshipRepository(StarWarsContext ctx) : IStarshipRepository
 {
-    public async Task<IList<MovieEntity>> GetMovies()
+    public async Task<IList<StarshipEntity>> GetStarships()
     {
         try
         {
-            IQueryable<MovieEntity> films = await Task.FromResult(ctx.Filmes);
-            return films.ToList();
+            IQueryable<StarshipEntity> starships = await Task.FromResult(ctx.Starships);
+            return starships.ToList();
         }
         catch (Exception e)
         {
