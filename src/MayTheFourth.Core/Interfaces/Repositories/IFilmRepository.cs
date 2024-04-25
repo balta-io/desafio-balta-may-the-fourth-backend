@@ -10,5 +10,6 @@ namespace MayTheFourth.Core.Interfaces.Repositories
     public interface IFilmRepository
     {
         Task <List<Film>> GetAllAsync();
+        Task<Film?> GetByIdAsync(Guid id, CancellationToken cancellationToken);
     }
 }

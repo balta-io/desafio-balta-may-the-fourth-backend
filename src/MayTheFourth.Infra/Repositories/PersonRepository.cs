@@ -26,4 +26,13 @@ public class PersonRepository : IPersonRepository
         await _appDbContext.People.AddAsync(person);
         await _appDbContext.SaveChangesAsync();
     }
+
+    public async Task<Person?> GetByIdAsync(Guid id, CancellationToken cancellationToken)
+        => await _appDbContext.People
+        .Include(x => x.Films)
+        .Include(x => x.Species)
+        .Include(x => x.Starships)
+        .Include(x => x.Vehicles)
+        .AsNoTracking()
+        .FirstOrDefaultAsync(x => x.Id == id, cancellationToken);
 }

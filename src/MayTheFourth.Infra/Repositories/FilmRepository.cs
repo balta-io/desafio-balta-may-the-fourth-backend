@@ -18,5 +18,14 @@ namespace MayTheFourth.Infra.Repositories
                     .AsNoTracking()
                     .ToListAsync();
 
+        public async Task<Film?> GetByIdAsync(Guid id, CancellationToken cancellationToken)
+            => await _appDbContext.Films
+            .Include(x => x.SpeciesList)
+            .Include(x => x.Starships)
+            .Include(x => x.Vehicles)
+            .Include(x => x.Characters)
+            .Include(x => x.Planets)
+            .AsNoTracking()
+            .FirstOrDefaultAsync(x => x.Id == id, cancellationToken);
     }
 }

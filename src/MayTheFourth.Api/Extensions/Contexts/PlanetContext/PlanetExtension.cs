@@ -30,6 +30,23 @@ public static class PlanetExtension
         });
         #endregion
 
+        #region Get planet by id
+        app.MapGet("api/v1/planets/{id}", async (
+            [FromRoute] Guid id,
+            [FromServices] IRequestHandler<
+                Core.Contexts.PlanetContext.UseCases.SearchById.Request,
+                Core.Contexts.PlanetContext.UseCases.SearchById.Response> handler) =>
+        {
+            var request = new Core.Contexts.PlanetContext.UseCases.SearchById.Request(id);
+            var result = await handler.Handle(request, new CancellationToken());
+
+            return result.IsSuccess
+                ? Results.Ok(result)
+                : Results.Json(result, statusCode: result.Status);
+        });
+
+        #endregion
+
         #region Create planet
         app.MapPost("api/v1/planets/create", async (
             [FromBody] Core.Contexts.PlanetContext.UseCases.Create.Request request,

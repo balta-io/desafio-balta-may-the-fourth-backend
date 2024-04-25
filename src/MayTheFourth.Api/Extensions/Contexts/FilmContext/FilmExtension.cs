@@ -1,4 +1,5 @@
 ﻿using MediatR;
+using Microsoft.AspNetCore.Mvc;
 
 namespace MayTheFourth.Api.Extensions.Contexts.FilmContext
 {
@@ -21,6 +22,22 @@ namespace MayTheFourth.Api.Extensions.Contexts.FilmContext
                 Core.Contexts.FilmContext.UseCases.SearchAll.Response> handler) =>
             {
                 var request = new Core.Contexts.FilmContext.UseCases.SearchAll.Request();
+                var result = await handler.Handle(request, new CancellationToken());
+
+                return result.IsSuccess
+                    ? Results.Ok(result)
+                    : Results.Json(result, statusCode: result.Status);
+            });
+            #endregion
+
+            #region Get film by id
+            app.MapGet("api/v1/film/{id}", async (
+                [FromRoute] Guid id,
+                [FromServices] IRequestHandler<
+                    Core.Contexts.FilmContext.UseCases.SearchById.Request,
+                    Core.Contexts.FilmContext.UseCases.SearchById.Response> handler) =>
+            {
+                var request = new Core.Contexts.FilmContext.UseCases.SearchById.Request(id);
                 var result = await handler.Handle(request, new CancellationToken());
 
                 return result.IsSuccess

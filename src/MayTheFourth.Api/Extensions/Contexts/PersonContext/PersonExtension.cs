@@ -30,6 +30,22 @@ public static class PersonExtension
         });
         #endregion
 
+        #region Search person by id
+        app.MapGet("api/v1/people/{id}", async (
+            [FromRoute] Guid id,
+            [FromServices] IRequestHandler<
+                Core.Contexts.PersonContext.UseCases.SearchById.Request,
+                Core.Contexts.PersonContext.UseCases.SearchById.Response> handler) =>
+        {
+            var request = new Core.Contexts.PersonContext.UseCases.SearchById.Request(id);
+            var result = await handler.Handle(request, new CancellationToken());
+
+            return result.IsSuccess
+                ? Results.Ok(result)
+                : Results.Json(result, statusCode: result.Status);
+        });
+        #endregion
+
         #region Create person
         app.MapPost("api/v1/people/create", async (
             [FromBody] Core.Contexts.PersonContext.UseCases.Create.Request request,

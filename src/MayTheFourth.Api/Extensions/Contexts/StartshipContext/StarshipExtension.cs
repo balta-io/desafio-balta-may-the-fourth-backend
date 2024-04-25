@@ -1,5 +1,6 @@
 ﻿using MediatR;
 using Microsoft.AspNetCore.Mvc;
+using System.Reflection.Metadata.Ecma335;
 
 namespace MayTheFourth.Api.Extensions.Contexts.StartshipContext;
 
@@ -22,6 +23,22 @@ public static class StarshipExtension
             Core.Contexts.StarshipContext.UseCases.SearchAll.Response> handler) =>
         {
             var request = new Core.Contexts.StarshipContext.UseCases.SearchAll.Request();
+            var result = await handler.Handle(request, new CancellationToken());
+
+            return result.IsSuccess
+                ? Results.Ok(result)
+                : Results.Json(result, statusCode: result.Status);
+        });
+        #endregion
+
+        #region Search starship by id
+        app.MapGet("api/v1/starships/{id}", async (
+            [FromRoute] Guid id,
+            [FromServices] IRequestHandler<
+                Core.Contexts.StarshipContext.UseCases.SearchById.Request,
+                Core.Contexts.StarshipContext.UseCases.SearchById.Response> handler) =>
+        {
+            var request = new Core.Contexts.StarshipContext.UseCases.SearchById.Request(id);
             var result = await handler.Handle(request, new CancellationToken());
 
             return result.IsSuccess

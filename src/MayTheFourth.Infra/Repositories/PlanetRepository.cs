@@ -25,4 +25,11 @@ public class PlanetRepository : IPlanetRepository
         await _appDbContext.Planets.AddAsync(planet);
         await _appDbContext.SaveChangesAsync();
     }
+
+    public async Task<Planet?> GetByIdAsync(Guid id, CancellationToken cancellationToken)
+        => await _appDbContext.Planets
+            .Include(x => x.Residents)
+            .Include(x => x.Films)
+            .AsNoTracking()
+            .FirstOrDefaultAsync(x => x.Id == id);
 }

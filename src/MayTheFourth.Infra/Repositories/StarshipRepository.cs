@@ -27,4 +27,11 @@ public class StarshipRepository : IStarshipRepository
         await _appDbContext.Starships.AddAsync(starship);
         await _appDbContext.SaveChangesAsync();
     }
+
+    public async Task<Starship?> GetByIdAsync(Guid id, CancellationToken cancellationToken)
+        => await _appDbContext.Starships
+            .Include(x => x.Films)
+            .Include(x => x.Pilots)
+            .AsNoTracking()
+            .FirstOrDefaultAsync(x => x.Id == id, cancellationToken);
 }
