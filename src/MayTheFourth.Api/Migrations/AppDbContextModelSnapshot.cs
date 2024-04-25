@@ -123,7 +123,7 @@ namespace MayTheFourth.Api.Migrations
 
                     b.Property<string>("OpeningCrawl")
                         .IsRequired()
-                        .HasMaxLength(500)
+                        .HasMaxLength(1500)
                         .HasColumnType("NVARCHAR")
                         .HasColumnName("OpeningCrawl");
 
@@ -176,13 +176,13 @@ namespace MayTheFourth.Api.Migrations
 
                     b.Property<string>("EyeColor")
                         .IsRequired()
-                        .HasMaxLength(10)
+                        .HasMaxLength(30)
                         .HasColumnType("NVARCHAR")
                         .HasColumnName("EyeColor");
 
                     b.Property<string>("Gender")
                         .IsRequired()
-                        .HasMaxLength(10)
+                        .HasMaxLength(30)
                         .HasColumnType("NVARCHAR")
                         .HasColumnName("Gender");
 
@@ -258,7 +258,7 @@ namespace MayTheFourth.Api.Migrations
 
                     b.Property<string>("Gravity")
                         .IsRequired()
-                        .HasMaxLength(10)
+                        .HasMaxLength(100)
                         .HasColumnType("NVARCHAR")
                         .HasColumnName("Gravity");
 
@@ -288,13 +288,13 @@ namespace MayTheFourth.Api.Migrations
 
                     b.Property<string>("SurfaceWater")
                         .IsRequired()
-                        .HasMaxLength(20)
+                        .HasMaxLength(100)
                         .HasColumnType("NVARCHAR")
                         .HasColumnName("SurfaceWater");
 
                     b.Property<string>("Terrain")
                         .IsRequired()
-                        .HasMaxLength(30)
+                        .HasMaxLength(100)
                         .HasColumnType("NVARCHAR")
                         .HasColumnName("Terrain");
 
@@ -355,7 +355,7 @@ namespace MayTheFourth.Api.Migrations
                         .HasColumnType("NVARCHAR")
                         .HasColumnName("HairColors");
 
-                    b.Property<Guid>("HomeworldId")
+                    b.Property<Guid?>("HomeworldId")
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("Language")
@@ -439,7 +439,7 @@ namespace MayTheFourth.Api.Migrations
 
                     b.Property<string>("Manufacturer")
                         .IsRequired()
-                        .HasMaxLength(50)
+                        .HasMaxLength(150)
                         .HasColumnType("NVARCHAR")
                         .HasColumnName("Manufacturer");
 
@@ -520,7 +520,7 @@ namespace MayTheFourth.Api.Migrations
 
                     b.Property<string>("Manufacturer")
                         .IsRequired()
-                        .HasMaxLength(50)
+                        .HasMaxLength(150)
                         .HasColumnType("NVARCHAR")
                         .HasColumnName("Manufacturer");
 
@@ -698,9 +698,7 @@ namespace MayTheFourth.Api.Migrations
                 {
                     b.HasOne("MayTheFourth.Core.Entities.Planet", "Homeworld")
                         .WithMany()
-                        .HasForeignKey("HomeworldId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("HomeworldId");
 
                     b.Navigation("Homeworld");
                 });
