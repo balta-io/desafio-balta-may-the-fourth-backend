@@ -43,25 +43,17 @@ Configurations.Host = builder.Configuration.GetValue<string>("Host")!;
 
 var app = builder.Build();
 
-app.UseDeveloperExceptionPage();
-
-app.UseRouting();
-
-app.UseEndpoints(endpoint =>
+if (app.Environment.IsDevelopment())
 {
-    _ = endpoint.MapGet("/", async context => await Task.Run(() =>
-    context.Response.Redirect("/swagger/index.html")));
-});
+    app.UseSwagger();
+    app.UseSwaggerUI(c =>
+    {
+        c.DisplayRequestDuration();
+    });
+    app.UseDeveloperExceptionPage();
+}
 
 app.UseHttpsRedirection();
-
-app.UseSwagger();
-app.UseSwaggerUI(c =>
-{
-    c.DisplayRequestDuration();
-});
-app.UseDeveloperExceptionPage();
-
 
 app.MapGroup("/api").MapEndpoints();
 
@@ -69,7 +61,5 @@ if (app.Environment.IsDevelopment())
 {
     app.MapGroup("/api").MapDatabaseFeederEndpoits();
 }
-
-
 
 app.Run();
