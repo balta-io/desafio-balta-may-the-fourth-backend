@@ -43,8 +43,6 @@ Configurations.Host = builder.Configuration.GetValue<string>("Host")!;
 
 var app = builder.Build();
 
-app.UseDeveloperExceptionPage();
-
 app.UseRouting();
 
 app.UseEndpoints(endpoint =>
@@ -53,17 +51,15 @@ app.UseEndpoints(endpoint =>
     context.Response.Redirect("/swagger/index.html")));
 });
 
-if (app.Environment.IsDevelopment())
-{
-    app.UseSwagger();
-    app.UseSwaggerUI(c =>
-    {
-        c.DisplayRequestDuration();
-    });
-    app.UseDeveloperExceptionPage();
-}
-
 app.UseHttpsRedirection();
+
+app.UseSwagger();
+app.UseSwaggerUI(c =>
+{
+    c.DisplayRequestDuration();
+});
+app.UseDeveloperExceptionPage();
+
 
 app.MapGroup("/api").MapEndpoints();
 
