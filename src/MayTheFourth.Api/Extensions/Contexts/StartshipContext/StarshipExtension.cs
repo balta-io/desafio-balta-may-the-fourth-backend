@@ -50,7 +50,15 @@ public static class StarshipExtension
             return result.IsSuccess
                 ? Results.Ok(result)
                 : Results.Json(result, statusCode: result.Status);
-        });
+        })
+            .WithTags("Starship")
+            .WithSummary("Return a starship according to ID")
+            .WithOpenApi( opt =>
+            {
+                var parameter = opt.Parameters[0];
+                parameter.Description = "The ID associated with the created Starship";
+                return opt;
+            });
         #endregion
 
         #region Create Starship
