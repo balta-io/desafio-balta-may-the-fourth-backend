@@ -5,18 +5,9 @@ using May.The.Fourth.Backend.Data.Entities;
 namespace May.The.Fourth.Backend.Data.Contexts
 {
     public class StarWarsContext : DbContext
-    {
-        protected readonly IConfiguration configuration;
-
-        public StarWarsContext(IConfiguration configuration)
-        {
-            this.configuration = configuration;
-        }
-
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        {
-            optionsBuilder.UseNpgsql(configuration.GetConnectionString("StarWarsConnection"));
-        }
+    {        
+        public StarWarsContext(DbContextOptions<StarWarsContext> options)
+            : base(options) { }
 
         public DbSet<FilmeEntity> Filmes { get; set; }
 

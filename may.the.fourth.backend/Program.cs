@@ -1,5 +1,12 @@
 using Microsoft.OpenApi.Models;
 using System.Reflection;
+using Microsoft.EntityFrameworkCore;
+
+using May.The.Fourth.Backend.Data.Interfaces;
+using May.The.Fourth.Backend.Data.Repositories;
+using May.The.Fourth.Backend.Services.Interfaces;
+using May.The.Fourth.Backend.Services;
+using May.The.Fourth.Backend.Data.Contexts;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -28,6 +35,12 @@ builder.Services.AddSwaggerGen(options =>
     var xmlFilename = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
     options.IncludeXmlComments(Path.Combine(AppContext.BaseDirectory, xmlFilename));
 });
+builder.Services.AddScoped<IFilmeRepository, FilmeRepository>();
+builder.Services.AddScoped<IFilmeService, FilmeService>();
+
+builder.Services.AddEntityFrameworkNpgsql();
+var connection = builder.Configuration.GetConnectionString("StarWarsConnection");
+builder.Services.AddDbContextPool<StarWarsContext>(options => options.UseNpgsql(connection));
 
 var app = builder.Build();
 
@@ -35,7 +48,12 @@ if (app.Environment.IsDevelopment())
     app.UseDeveloperExceptionPage();
 app.UseSwagger();
 
-app.MapGet("/", () => "Hello World!");
+// app.MapGet("/", () => "Hello World!");
+
+// endpoints
+var endpoints = app.MapGroup("/star-wars");
+endpoints.MapGet("/", () => "Hello Star Wars World!");
+endpoints.MapGet("/filmes", GetFilmes);
 
 app.UseSwaggerUI(options =>
 {
@@ -45,3 +63,11 @@ app.UseSwaggerUI(options =>
 });
 
 app.Run();
+
+static async Task<IResult> GetFilmes(IFilmeService filmeService)
+{
+    var result = await filmeService.GetFilmes();
+    return result.Success 
+        ? TypedResults.Ok(result) 
+        : TypedResults.BadRequest(result);
+}

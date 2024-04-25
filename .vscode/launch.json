@@ -19,7 +19,7 @@
             // If you have changed target frameworks, make sure to update the program path.
             "program": "${workspaceFolder}/may.the.fourth.backend/bin/Debug/net8.0/may.the.fourth.backend.dll",
             "args": [],
-            "cwd": "${workspaceFolder}",
+            "cwd": "${workspaceRoot}/may.the.fourth.backend",
             "externalConsole": false,
             "stopAtEntry": false,
             "internalConsoleOptions": "openOnSessionStart",
