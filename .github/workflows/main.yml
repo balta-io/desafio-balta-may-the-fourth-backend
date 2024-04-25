@@ -26,7 +26,7 @@ jobs:
             - name: Deploy Sync Files
               uses: SamKirkland/FTP-Deploy-Action@v4.3.5
               with:
-                    server: https://webftp.monsterasp.net
+                    server: https://webftp.monsterasp.net/mftp/
                     server-dir: ./wwwroot/
                     username: ${{ secrets.ftp_user }}
                     password: ${{ secrets.ftp_password }}
