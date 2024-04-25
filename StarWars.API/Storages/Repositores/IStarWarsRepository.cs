@@ -19,6 +19,15 @@ namespace StarWars.API.Storages.Repositores
 		/// <returns>Retorna os dados do filme criado, em caso de sucesso</returns>
 		Task<MovieModel?> CreateMovie(
 			MovieModel model, CancellationToken cancellationToken = default);
+
+		
+		/// <summary>
+		/// </summary>
+		/// <param name="cancellationToken"></param>
+		/// <returns>Retorna uma lista de personagens</returns>
+		Task<List<CharacterModel>>? GetCharactersAsync(
+			CancellationToken cancellationToken = default);
+
 	}
 }
 

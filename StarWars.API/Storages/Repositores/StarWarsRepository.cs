@@ -23,9 +23,16 @@ namespace StarWars.API.Storages.Repositores
             return result == 0 ? null : model;
         }
 
+
         public async Task<List<MovieModel>>? GetMoviesAsync(CancellationToken cancellationToken = default)
         {
             var response = await _context.Movies.ToListAsync(cancellationToken);
+
+            return response;
+        }
+        public async Task<List<CharacterModel>>? GetCharactersAsync(CancellationToken cancellationToken = default)
+        {
+            var response = await _context.Characters.ToListAsync(cancellationToken);
 
             return response;
         }

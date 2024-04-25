@@ -4,7 +4,7 @@ using StarWars.API.Models;
 
 namespace StarWars.API.Storages.Datas.EntityConfigurations
 {
-    public class MoveConfiguration : IEntityTypeConfiguration<MovieModel>
+    public class MovieConfiguration : IEntityTypeConfiguration<MovieModel>
     {
 
         public void Configure(EntityTypeBuilder<MovieModel> builder)
