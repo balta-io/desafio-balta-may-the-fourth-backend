@@ -28,6 +28,11 @@ public class FakePlanetRepository : IPlanetRepository
         return planets;
     }
 
+    public Task<Planet?> GetByIdAsync(Guid id, CancellationToken cancellationToken)
+    {
+        throw new NotImplementedException();
+    }
+
     public Task SaveAsync(Planet planet, CancellationToken cancellationToken)
     {
         if (planet is null)

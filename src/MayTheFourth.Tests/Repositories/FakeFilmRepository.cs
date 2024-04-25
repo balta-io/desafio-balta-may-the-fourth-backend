@@ -22,6 +22,10 @@ namespace MayTheFourth.Tests.Repositories
             await Task.Delay(10);
             return films;
         }
-    
+
+        public Task<Film?> GetByIdAsync(Guid id, CancellationToken cancellationToken)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

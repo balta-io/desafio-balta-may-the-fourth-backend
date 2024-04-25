@@ -48,9 +48,9 @@ app.UseSwaggerUI(c =>
 
 app.UseHttpsRedirection();
 
-var importFileName = builder.Configuration["ImportSettings:FileName"];
+var resourceFileName = builder.Configuration["ImportSettings:ResourceFileName"];
 
-await app.ImportDataAsync(importFileName!);
+await app.ImportDataAsync(resourceFileName!);
 
 app.MapPlanetEndpoints();
 app.MapStarshipEndpoints();

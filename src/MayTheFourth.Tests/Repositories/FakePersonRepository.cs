@@ -29,6 +29,11 @@ namespace MayTheFourth.Tests.Repositories
             return people;
         }
 
+        public Task<Person?> GetByIdAsync(Guid id, CancellationToken cancellationToken)
+        {
+            throw new NotImplementedException();
+        }
+
         public Task SaveAsync(Person person, CancellationToken cancellationToken)
         {
             if (person is null)

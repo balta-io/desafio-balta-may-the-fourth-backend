@@ -59,6 +59,11 @@ public class FakeStarshipRepository : IStarshipRepository
         return starships;
     }
 
+    public Task<Starship?> GetByIdAsync(Guid id, CancellationToken cancellationToken)
+    {
+        throw new NotImplementedException();
+    }
+
     public Task SaveAsync(Starship starship, CancellationToken cancellationToken)
     {
         if (starship is null)

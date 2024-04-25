@@ -10,6 +10,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Numerics;
+using System.Reflection;
 using System.Text;
 using System.Text.Json;
 using System.Text.Json.Serialization;
@@ -21,7 +22,7 @@ namespace MayTheFourth.Infra.Services.DataImportService
     {
         private readonly AppDbContext _appDbContext;
 
-        public string FileName { get; set; } = string.Empty;
+        public string ResourceFileName { get; set; } = string.Empty;
 
         public JsonFileImportService(AppDbContext appDbContext)
         {
@@ -49,41 +50,47 @@ namespace MayTheFourth.Infra.Services.DataImportService
             if (!IsDatabaseEmpty()) return;
             try
             {
-                using (var stream = File.OpenRead(FileName))
+                Assembly assembly = Assembly.GetExecutingAssembly();
+                // using (var stream = File.OpenRead(FileName))
+                using (Stream stream = assembly.GetManifestResourceStream(ResourceFileName)!)
                 {
-                    using (JsonDocument doc = await JsonDocument.ParseAsync(stream))
+                    using (StreamReader reader = new StreamReader(stream))
                     {
-                        JsonElement root = doc.RootElement;
-                        foreach (JsonElement element in root.EnumerateArray())
+                        string jsonString = reader.ReadToEnd();
+                        using (JsonDocument doc = JsonDocument.Parse(jsonString))
                         {
-                            var endpoint = element.GetProperty("Endpoint").GetString();
-                            JsonElement data = element.GetProperty("Data");
-                            JsonElement results = data.GetProperty("results");
-                            switch (endpoint)
+                            JsonElement root = doc.RootElement;
+                            foreach (JsonElement element in root.EnumerateArray())
                             {
-                                case "people":
-                                    people = JsonSerializer.Deserialize<List<PersonDTO>>(results.GetRawText())!;
-                                    break;
+                                var endpoint = element.GetProperty("Endpoint").GetString();
+                                JsonElement data = element.GetProperty("Data");
+                                JsonElement results = data.GetProperty("results");
+                                switch (endpoint)
+                                {
+                                    case "people":
+                                        people = JsonSerializer.Deserialize<List<PersonDTO>>(results.GetRawText())!;
+                                        break;
 
-                                case "planets":
-                                    planets = JsonSerializer.Deserialize<List<PlanetDTO>>(results.GetRawText())!;
-                                    break;
+                                    case "planets":
+                                        planets = JsonSerializer.Deserialize<List<PlanetDTO>>(results.GetRawText())!;
+                                        break;
 
-                                case "films":
-                                    films = JsonSerializer.Deserialize<List<FilmDTO>> (results.GetRawText())!;
-                                    break;
+                                    case "films":
+                                        films = JsonSerializer.Deserialize<List<FilmDTO>>(results.GetRawText())!;
+                                        break;
 
-                                case "species":
-                                    speciesList = JsonSerializer.Deserialize<List<SpeciesDTO>>(results.GetRawText())!;
-                                    break;
+                                    case "species":
+                                        speciesList = JsonSerializer.Deserialize<List<SpeciesDTO>>(results.GetRawText())!;
+                                        break;
 
-                                case "starships":
-                                    starships = JsonSerializer.Deserialize<List<StarshipDTO>>(results.GetRawText())!;
-                                    break;
+                                    case "starships":
+                                        starships = JsonSerializer.Deserialize<List<StarshipDTO>>(results.GetRawText())!;
+                                        break;
 
-                                case "vehicles":
-                                    vehicles = JsonSerializer.Deserialize<List<VehicleDTO>>(results.GetRawText())!;
-                                    break;
+                                    case "vehicles":
+                                        vehicles = JsonSerializer.Deserialize<List<VehicleDTO>>(results.GetRawText())!;
+                                        break;
+                                }
                             }
                         }
                     }

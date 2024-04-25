@@ -9,12 +9,12 @@ namespace MayTheFourth.Api.Extensions.Contexts
             builder.Services.AddScoped<IDataImportService, JsonFileImportService>();
         }
 
-        public static async Task ImportDataAsync(this WebApplication app, string FileName)
+        public static async Task ImportDataAsync(this WebApplication app, string ResourceFileName)
         {
             using var scope = app.Services.CreateScope();
             var dataImportService = (JsonFileImportService)scope.ServiceProvider.GetRequiredService<IDataImportService>();
 
-            dataImportService.FileName = FileName;
+            dataImportService.ResourceFileName = ResourceFileName;
             await dataImportService.ImportDataAsync();
         }
     }
