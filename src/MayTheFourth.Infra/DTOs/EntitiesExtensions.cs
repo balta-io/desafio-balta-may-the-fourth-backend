@@ -17,6 +17,7 @@ namespace MayTheFourth.Infra.DTOs
             var person = new Person
             {
                 Name = dto.Name,
+                Slug = dto.Name.ToLower().Replace(" ", "-"),
                 BirthYear = dto.BirthYear,
                 EyeColor = dto.EyeColor,
                 Gender = dto.Gender,
@@ -41,13 +42,14 @@ namespace MayTheFourth.Infra.DTOs
                 RotationPeriod = int.TryParse(dto.RotationPeriod, out int parsedRotationPeriod) ? parsedRotationPeriod : 0,
                 OrbitalPeriod = int.TryParse(dto.OrbitalPeriod!, out int parsedOrbitalPeriod) ? parsedOrbitalPeriod : 0,
                 Gravity = dto.Gravity!,
-                Population = int.TryParse(dto.Population!, out int parsedPopulation) ? parsedOrbitalPeriod : 0  ,
+                Population = int.TryParse(dto.Population!, out int parsedPopulation) ? parsedOrbitalPeriod : 0,
                 Climate = dto.Climate!,
                 Terrain = dto.Terrain!,
                 SurfaceWater = dto.SurfaceWater!,
                 Url = dto.Url!,
                 Created = dto.Created,
                 Edited = dto.Edited,
+                Slug = dto.Name.ToLower().Replace(" ", "-"),
                 Residents = new(),
                 Films = new()
             };
@@ -59,6 +61,7 @@ namespace MayTheFourth.Infra.DTOs
             var film = new Film
             {
                 Title = dto.Title,
+                Slug = dto.Title.ToLower().Replace(" ", "-"),
                 EpisodeId = dto.EpisodeId,
                 OpeningCrawl = dto.OpeningCrawl,
                 Director = dto.Director,
@@ -76,6 +79,7 @@ namespace MayTheFourth.Infra.DTOs
             var species = new Species
             {
                 Name = dto.Name,
+                Slug = dto.Name.ToLower().Replace(" ", "-"),
                 Classification = dto.Classification,
                 Designation = dto.Designation,
                 AverageHeight = int.TryParse(dto.AverageHeight!, out int parsedAverageHeight) ? parsedAverageHeight : 0,
@@ -96,6 +100,7 @@ namespace MayTheFourth.Infra.DTOs
             var starship = new Starship
             {
                 Name = dto.Name,
+                Slug = dto.Name.ToLower().Replace(" ", "-"),
                 Model = dto.Model,
                 StarshipClass = dto.StarshipClass,
                 Manufacturer = dto.Manufacturer,
@@ -120,6 +125,7 @@ namespace MayTheFourth.Infra.DTOs
             var vehicle = new Vehicle
             {
                 Name = dto.Name,
+                Slug = dto.Name.ToLower().Replace(" ", "-"),
                 Model = dto.Model,
                 VehicleClass = dto.VehicleClass,
                 Manufacturer = dto.Manufacturer,

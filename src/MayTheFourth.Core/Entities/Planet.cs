@@ -4,7 +4,13 @@ namespace MayTheFourth.Core.Entities;
 
 public class Planet : Entity
 {
+    public Planet()
+    {
+        Slug = Name.ToLower().Replace(" ", "-");    
+    }
+
     public string Name { get; set; } = string.Empty;
+    public string Slug { get; set; } = string.Empty;
     public int Diameter { get; set; }
     public int RotationPeriod { get; set; }
     public int OrbitalPeriod { get; set; }

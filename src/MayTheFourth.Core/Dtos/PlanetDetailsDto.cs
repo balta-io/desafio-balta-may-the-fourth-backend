@@ -8,6 +8,7 @@ public class PlanetDetailsDto
     {
         Id = planet.Id;
         Name = planet.Name;
+        Slug = planet.Slug;
         Diameter = planet.Diameter;
         RotationPeriod = planet.RotationPeriod;
         OrbitalPeriod = planet.OrbitalPeriod;
@@ -37,6 +38,7 @@ public class PlanetDetailsDto
 
     public Guid Id { get; set; }
     public string Name { get; set; } = string.Empty;
+    public string Slug { get; set; } = string.Empty;
     public int Diameter { get; set; }
     public int RotationPeriod { get; set; }
     public int OrbitalPeriod { get; set; }

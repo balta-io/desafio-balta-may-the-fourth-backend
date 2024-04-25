@@ -4,7 +4,13 @@ namespace MayTheFourth.Core.Entities;
 
 public class Vehicle : Entity
 {
+    public Vehicle()
+    {
+        Slug = Name.ToLower().Replace(" ", "-");    
+    }
+
     public string Name { get; set; } = string.Empty;
+    public string Slug { get; set; } = string.Empty;
     public string Model { get; set; } = string.Empty;
     public string VehicleClass { get; set; } = string.Empty;
     public string Manufacturer { get; set; } = string.Empty;

@@ -4,7 +4,13 @@ namespace MayTheFourth.Core.Entities;
 
 public class Starship : Entity
 {
+    public Starship()
+    {
+        Slug = Name.ToLower().Replace(" ", "-");
+    }
+
     public string Name { get; set; } = string.Empty;
+    public string Slug { get; set; } = string.Empty;
     public string Model { get; set; } = string.Empty;
     public string StarshipClass { get; set; } = string.Empty;
     public string Manufacturer { get; set; } = string.Empty;

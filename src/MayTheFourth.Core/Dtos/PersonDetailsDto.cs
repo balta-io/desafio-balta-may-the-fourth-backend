@@ -8,6 +8,7 @@ public class PersonDetailsDto
     {
         Id = person.Id;
         Name = person.Name;
+        Slug = person.Slug;
         BirthYear = person.BirthYear;
         EyeColor = person.EyeColor;
         Gender = person.Gender;
@@ -52,6 +53,7 @@ public class PersonDetailsDto
 
     public Guid Id { get; set; }
     public string Name { get; set; } = string.Empty;
+    public string Slug { get; set; } = string.Empty;
     public string BirthYear { get; set; } = string.Empty;
     public string EyeColor { get; set; } = string.Empty;
     public string Gender { get; set; } = string.Empty;

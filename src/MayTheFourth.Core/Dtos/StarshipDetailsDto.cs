@@ -8,6 +8,7 @@ public class StarshipDetailsDto
     {
         Id = starship.Id;
         Name = starship.Name;
+        Slug = starship.Slug;
         Model = starship.Model;
         StarshipClass = starship.StarshipClass;
         Manufacturer = starship.Manufacturer;
@@ -41,6 +42,7 @@ public class StarshipDetailsDto
 
 public Guid Id { get; set; }
     public string Name { get; set; } = string.Empty;
+    public string Slug { get; set; } = string.Empty;
     public string Model { get; set; } = string.Empty;
     public string StarshipClass { get; set; } = string.Empty;
     public string Manufacturer { get; set; } = string.Empty;

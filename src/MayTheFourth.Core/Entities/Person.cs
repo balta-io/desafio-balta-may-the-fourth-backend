@@ -5,7 +5,13 @@ namespace MayTheFourth.Core.Entities;
 
 public class Person : Entity
 {
+    public Person()
+    {
+        Slug = Name.ToLower().Replace(" ", "-");    
+    }
+
     public string Name { get; set; } = string.Empty;
+    public string Slug { get; set; } = string.Empty;
     public string BirthYear { get; set; } = string.Empty;
     public string EyeColor { get; set; } = string.Empty;
     public string Gender { get; set; } = string.Empty;

@@ -137,6 +137,10 @@ namespace MayTheFourth.Api.Migrations
                         .HasColumnType("DATETIME")
                         .HasColumnName("ReleaseDate");
 
+                    b.Property<string>("Slug")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("Title")
                         .IsRequired()
                         .HasMaxLength(160)
@@ -217,6 +221,10 @@ namespace MayTheFourth.Api.Migrations
                         .HasColumnType("NVARCHAR")
                         .HasColumnName("SkinColor");
 
+                    b.Property<string>("Slug")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("Url")
                         .IsRequired()
                         .HasMaxLength(255)
@@ -285,6 +293,10 @@ namespace MayTheFourth.Api.Migrations
                         .HasMaxLength(20)
                         .HasColumnType("NVARCHAR")
                         .HasColumnName("RotationPeriod");
+
+                    b.Property<string>("Slug")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("SurfaceWater")
                         .IsRequired()
@@ -376,6 +388,10 @@ namespace MayTheFourth.Api.Migrations
                         .HasColumnType("NVARCHAR")
                         .HasColumnName("SkinColors");
 
+                    b.Property<string>("Slug")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("Url")
                         .IsRequired()
                         .HasMaxLength(255)
@@ -463,6 +479,10 @@ namespace MayTheFourth.Api.Migrations
                         .HasColumnType("INT")
                         .HasColumnName("Passengers");
 
+                    b.Property<string>("Slug")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("StarshipClass")
                         .IsRequired()
                         .HasMaxLength(50)
@@ -545,6 +565,10 @@ namespace MayTheFourth.Api.Migrations
                         .HasMaxLength(50)
                         .HasColumnType("NVARCHAR")
                         .HasColumnName("Passengers");
+
+                    b.Property<string>("Slug")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Url")
                         .IsRequired()

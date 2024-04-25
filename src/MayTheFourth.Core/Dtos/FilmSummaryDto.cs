@@ -9,12 +9,14 @@ public class FilmSummaryDto
     {
         Id = film.Id;
         Title = film.Title;
+        Slug = film.Slug;
         Director = film.Director;
         ReleaseDate = film.ReleaseDate;
     }
 
     public Guid Id { get; set; }
     public string Title { get; set; } = string.Empty;
+    public string Slug { get; set; } = string.Empty;
     public string Director { get; set; } = string.Empty;
     public DateTime ReleaseDate { get; set; }
 }

@@ -8,6 +8,7 @@ public class FilmDetailsDto
     {
         Id = film.Id;
         Title = film.Title;
+        Slug = film.Slug;
         EpisodeId = film.EpisodeId;
         OpeningCrawl = film.OpeningCrawl;
         Director = film.Director;
@@ -58,6 +59,7 @@ public class FilmDetailsDto
 
     public Guid Id { get; set; }
     public string Title { get; set; } = string.Empty;
+    public string Slug { get; set; } = string.Empty;
     public int EpisodeId { get; set; }
     public string OpeningCrawl { get; set; } = string.Empty;
     public string Director { get; set; } = string.Empty;

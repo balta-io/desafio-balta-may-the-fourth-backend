@@ -5,7 +5,13 @@ namespace MayTheFourth.Core.Entities;
 
 public class Film : Entity
 {
+    public Film()
+    {
+        Slug = Title.ToLower().Replace(" ", "-");    
+    }
+
     public string Title { get; set; } = string.Empty;
+    public string Slug { get; set; } = string.Empty;
     public int EpisodeId { get; set; }
     public string OpeningCrawl { get; set; } = string.Empty;
     public string Director { get; set; } = string.Empty;

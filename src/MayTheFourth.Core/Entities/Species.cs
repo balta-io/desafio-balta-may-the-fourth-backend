@@ -4,7 +4,13 @@ namespace MayTheFourth.Core.Entities;
 
 public class Species : Entity
 {
+    public Species()
+    {
+        Slug = Name.ToLower().Replace(" ", "-");    
+    }
+
     public string Name { get; set; } = string.Empty;
+    public string Slug { get; set; } = string.Empty;
     public string Classification { get; set; } = string.Empty;
     public string Designation { get; set; } = string.Empty;
     public int AverageHeight { get; set; }
