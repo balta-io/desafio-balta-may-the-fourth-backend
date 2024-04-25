@@ -27,7 +27,12 @@ public static class PersonExtension
             return result.IsSuccess
                 ? Results.Ok(result)
                 : Results.Json(result, statusCode: result.Status);
-        });
+        })
+            .WithTags("Person")
+            .Produces(TypedResults.Ok().StatusCode)
+            .Produces(TypedResults.NotFound().StatusCode)
+            .WithSummary("Return a list of people")
+            .WithOpenApi();
         #endregion
 
         #region Create person
@@ -42,7 +47,12 @@ public static class PersonExtension
             return result.IsSuccess
                 ? Results.Created($"api/v1/people/create/{result.Data?.person.Id}", result)
                 : Results.Json(result, statusCode: result.Status);
-        });
+        })
+            .WithTags("Person")
+            .Produces(TypedResults.Created().StatusCode)
+            .Produces(TypedResults.BadRequest().StatusCode)
+            .WithOpenApi()
+            .WithSummary("Create a person");
         #endregion
     }
 }
