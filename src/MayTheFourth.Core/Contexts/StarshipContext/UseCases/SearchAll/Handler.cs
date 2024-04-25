@@ -30,11 +30,11 @@ public class Handler : IRequestHandler<Request, Response>
             return new Response($"Erro: {ex.Message}", 500);
         }
 
-        List<StarshipDetailsDto> starshipDetailsList = starships.Select(starship => new StarshipDetailsDto(starship)).ToList();
+        List<StarshipSummaryDto> starshipSummaryList = starships.Select(starship => new StarshipSummaryDto(starship)).ToList();
         #endregion
 
         #region Response
-        return new Response("Lista de naves encontrada.", new ResponseData(new(starshipDetailsList)));
+        return new Response("Lista de naves encontrada.", new ResponseData(new(starshipSummaryList)));
         #endregion
     }
 }

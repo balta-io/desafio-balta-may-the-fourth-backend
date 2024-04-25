@@ -28,11 +28,11 @@ public class Handler : IRequestHandler<Request, Response>
             return new Response($"Erro: {ex.Message}", 500);
         }
 
-        List<PlanetDetailsDto> planetDetailList = planets.Select(planet => new PlanetDetailsDto(planet)).ToList();
+        List<PlanetSummaryDto> planetSummaryList = planets.Select(planet => new PlanetSummaryDto(planet)).ToList();
         #endregion
 
         #region Response
-        return new Response("Uma lista de planetas foi encontrado.", new ResponseData(new(planetDetailList)));
+        return new Response("Uma lista de planetas foi encontrado.", new ResponseData(new(planetSummaryList)));
         #endregion
     }
 }

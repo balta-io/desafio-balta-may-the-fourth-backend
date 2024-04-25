@@ -30,11 +30,11 @@ public class Handler : IRequestHandler<Request, Response>
             return new Response($"Erro: {ex.Message}", 500);
         }
 
-        List<PersonDetailsDto> personDetailsList = people.Select(person => new PersonDetailsDto(person)).ToList();
+        List<PersonSummaryDto> personSummaryList = people.Select(person => new PersonSummaryDto(person)).ToList();
         #endregion
 
         #region Response
-        return new Response("Lista de personagens encontrada", new ResponseData(new(personDetailsList)));
+        return new Response("Lista de personagens encontrada", new ResponseData(new(personSummaryList)));
         #endregion
     }
 }

@@ -34,11 +34,11 @@ namespace MayTheFourth.Core.Contexts.FilmContext.UseCases.SearchAll
                 return new Response($"Erro: {ex.Message}", 500);
             }
 
-            List<FilmDetailsDto> filmDetailsList = films.Select(film => new FilmDetailsDto(film)).ToList();
+            List<FilmSummaryDto> filmSummaryList = films.Select(film => new FilmSummaryDto(film)).ToList();
             #endregion
 
             #region Response
-            return new Response("Lista de filmes encontrada", new ResponseData(new(filmDetailsList)));
+            return new Response("Lista de filmes encontrada", new ResponseData(new(filmSummaryList)));
             #endregion
         }
     }

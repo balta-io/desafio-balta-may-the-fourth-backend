@@ -15,10 +15,6 @@ public class PersonRepository : IPersonRepository
     public async Task<List<Person>?> GetAllAsync()
         => await _appDbContext
                 .People
-                .Include(x => x.Species)
-                .Include(x => x.Films)
-                .Include(x => x.Starships)
-                .Include(x => x.Vehicles)
                 .AsNoTracking()
                 .ToListAsync();
 

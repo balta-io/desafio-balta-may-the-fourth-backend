@@ -21,4 +21,4 @@ public class Response : SharedContext.UseCases.Response
     public ResponseData? Data { get; set; }
 }
 
-public record ResponseData(List<PlanetDetailsDto> planetList);
+public record ResponseData(List<PlanetSummaryDto> planetList);
