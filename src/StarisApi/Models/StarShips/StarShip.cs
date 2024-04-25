@@ -18,6 +18,7 @@ public class Starship : Entity
     public string Megalights { get; set; } = null!;
     public string CargoCapacity { get; set; } = null!;
     public string Consumables { get; set; } = null!;
+    public string ImageUrl { get; set; } = string.Empty!;
 
     public virtual ICollection<MovieStarship> Movies { get; set; } = [];
 
@@ -39,6 +40,7 @@ public class Starship : Entity
             Megalights = Megalights,
             CargoCapacity = CargoCapacity,
             Consumables = Consumables,
+            ImageUrl = ImageUrl,
             Movies = Movies.Select(x => new ListDto(x.MovieId, x.Movie.Title)).ToList(),
         } as T;
         
