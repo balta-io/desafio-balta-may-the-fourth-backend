@@ -14,7 +14,6 @@ public class Movie : Entity
     public string Director { get; set; } = null!;
     public string Producer { get; set; } = null!;
     public string ReleaseDate { get; set; } = null!;
-    public string ImageUrl { get; set; } = string.Empty!;
     public virtual ICollection<CharacterMovie> Characters { get; set; } = [];
     public virtual ICollection<MoviePlanet> Planets { get; set; } = [];
     public virtual ICollection<MovieVehicle> Vehicles { get; set; } = [];

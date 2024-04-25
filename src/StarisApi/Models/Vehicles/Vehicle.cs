@@ -16,7 +16,7 @@ public class Vehicle : Entity
     public string MaxAtmospheringSpeed { get; set; } = null!;
     public string CargoCapacity { get; set; } = null!;
     public string Consumables { get; set; } = null!;
-    public string ImageUrl { get; set; } = string.Empty!;
+    
     public virtual ICollection<MovieVehicle> Movies { get; set; } = [];
 
     public override T ConvertToDto<T>()
