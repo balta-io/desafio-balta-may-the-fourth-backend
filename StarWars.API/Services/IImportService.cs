@@ -8,7 +8,7 @@
 		/// <param name="cancellationToken"></param>
 		/// <returns>Retorna o valor true para indicar sucesso e false
 		/// uma possivel falha</returns>
-		Task<bool> ImportFromSwapiAsync(
+		Task<bool> FromSwapiAsync(
 			CancellationToken cancellationToken = default);
 	}
 }

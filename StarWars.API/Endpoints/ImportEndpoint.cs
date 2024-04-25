@@ -1,22 +1,31 @@
-﻿namespace StarWars.API.Endpoints
+﻿using Microsoft.AspNetCore.Mvc;
+using StarWars.API.Services;
+
+namespace StarWars.API.Endpoints
 {
     public static class ImportEndpoint
-	{
+    {
         public static RouteGroupBuilder ImportEndpoints(
             this RouteGroupBuilder route, string routePrefix)
         {
-            route.MapPost($"{routePrefix}/fromswapi", async () =>
+            route.MapPost($"{routePrefix}/fromswapi", async (
+                [FromServices] IImportService importService,
+                CancellationToken cancellationToken) =>
             {
-                // Todo: Implementação da logica do service que vai importar os dados
+                var response = await importService.FromSwapiAsync(cancellationToken);
 
-                // Todo: Remover após implementar o service
-                await Task.Delay(0);
+                if (response)
+                {
+                    return Results.Ok(
+                        new { message = "Importação de dados concluida com sucesso." });
+                }
 
-                return Results.NotFound();
+                return Results.BadRequest(
+                    new { message = "Não foi possivel concluir a importação." });
 
             }).WithName($"ImportFromSwapiAsync{routePrefix}")
               .Produces(StatusCodes.Status200OK)
-              .Produces(StatusCodes.Status404NotFound);
+              .Produces(StatusCodes.Status400BadRequest);
 
 
             return route;

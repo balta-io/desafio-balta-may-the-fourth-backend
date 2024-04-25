@@ -7,7 +7,7 @@ namespace StarWars.API.Endpoints.Abstracts
         public static WebApplication UseEndpoints(this WebApplication app)
         {
             var route = app.NewVersionedApi()
-                       .MapGroup("/v{version:apiVersion}")
+                       .MapGroup("/api/v{version:apiVersion}")
                        .HasApiVersion(new ApiVersion(1, 1));
 
             route.StarWarsEndpoints("/startwars")

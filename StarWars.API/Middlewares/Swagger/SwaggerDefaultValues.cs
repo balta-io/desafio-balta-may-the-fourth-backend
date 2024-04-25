@@ -26,7 +26,8 @@ namespace StarWars.API.Middleares.Swagger
 
             foreach (var parameter in operation.Parameters)
             {
-                var description = apiDescription.ParameterDescriptions.FirstOrDefault(p => p.Name == parameter.Name);
+                var description = apiDescription.ParameterDescriptions
+                    .FirstOrDefault(p => p.Name == parameter.Name);
 
                 parameter.Description ??= description?.ModelMetadata?.Description;
 

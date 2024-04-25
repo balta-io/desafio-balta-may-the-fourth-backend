@@ -1,19 +1,27 @@
 ﻿using System;
+using Microsoft.AspNetCore.Mvc;
+using StarWars.API.Services;
+
 namespace StarWars.API.Endpoints
 {
     public static class StarWarsEndpoint
     {
-        public static RouteGroupBuilder StarWarsEndpoints(this RouteGroupBuilder route, string routePrefix)
+        public static RouteGroupBuilder StarWarsEndpoints(
+            this RouteGroupBuilder route, string routePrefix)
         {
-            route.MapGet($"{routePrefix}/getmovies", async () =>
+            route.MapGet($"{routePrefix}/getmovies", async (
+               [FromServices] IStarWarsService starWarsService,
+                CancellationToken cancellationToken) =>
             {
-                // Todo: Implementação da logica do service que vai
-                // retornar a lista de filmes
+                var _movies = await starWarsService.GetMoviesAsync(
+                    cancellationToken);
 
-                // Todo: Remover após implementar o service
-                await Task.Delay(0);
+                if (_movies is null)
+                {
+                    return Results.NotFound();
+                }
 
-                return Results.NotFound();
+                return Results.Ok(_movies);
 
             }).WithName($"GetMoviesAsync{routePrefix}")
              .Produces(StatusCodes.Status200OK)
