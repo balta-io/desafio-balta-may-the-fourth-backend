@@ -12,11 +12,18 @@ namespace MayTheFourth.Infra.Repositories
         public FilmRepository(AppDbContext appDbContext)
             =>  _appDbContext = appDbContext;
 
-        public async Task<List<Film>> GetAllAsync()
-            => await _appDbContext
-                    .Films
-                    .AsNoTracking()
-                    .ToListAsync();
+        public async Task<(List<Film> films, int totalRecords)> GetAllAsync(int pageNumber, int pageSize)
+        {
+            var totalRecords = await _appDbContext.Films.CountAsync();
+
+            var films =  await _appDbContext
+                                .Films
+                        .Skip((pageNumber - 1) * pageSize)
+                        .Take(pageSize)
+                        .AsNoTracking()
+                        .ToListAsync();
+            return (films, totalRecords);
+        }
 
         public async Task<Film?> GetByIdAsync(Guid id, CancellationToken cancellationToken)
             => await _appDbContext.Films
