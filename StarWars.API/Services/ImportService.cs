@@ -24,9 +24,9 @@ namespace StarWars.API.Services
         {
             // Todo: Implementar os demais endpoints
 
-            var movies = await ImportMoviesAsync(cancellationToken);
+            var planets = await ImportPlanetsAsync(cancellationToken);
 
-            var response = movies;
+            var response = planets;
 
 
             return response;
@@ -104,6 +104,48 @@ namespace StarWars.API.Services
                                               model, cancellationToken);
 
                         if (_movie is null)
+                        {
+                            i++;
+                            _errors.Add(i);
+                        }
+                    }
+                }
+            }
+
+            var _response = (_errors?.Count ?? 0) == 0;
+
+            return _response;
+        }
+
+        private async Task<bool> ImportPlanetsAsync(
+            CancellationToken cancellationToken)
+        {
+            string planetsUrl = "https://swapi.py4e.com/api/planets";
+
+            var response = await _httpClient.GetFromJsonAsync<PlanetImport>(
+                planetsUrl, cancellationToken: cancellationToken);
+
+            var _errors = new List<int>();
+
+            if (response?.Results.Count > 0)
+            {
+                int i = 0;
+
+                foreach (var planet in response.Results)
+                {
+                    var model = planet.ConvertToModel();
+
+                    var existPlanet = await _starWarsRepository
+                        .GetPlanetByIdAsync(
+                        model.PlanetId,
+                        cancellationToken);
+
+                    if (existPlanet is null)
+                    {
+                        var _planet = await _starWarsRepository.CreatePlanetAsync(
+                                              model, cancellationToken);
+
+                        if (_planet is null)
                         {
                             i++;
                             _errors.Add(i);

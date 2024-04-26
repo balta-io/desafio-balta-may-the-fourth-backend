@@ -5,10 +5,10 @@ namespace StarWars.API.Models.Imports
     public class MovieImport
     {
         public string Message { get; set; }
-        public List<Result> Results { get; set; }
+        public List<MovieResult> Results { get; set; }
     }
 
-    public class Result
+    public class MovieResult
     {
         public int MovieId { get; set; }
         public string Title { get; set; }
