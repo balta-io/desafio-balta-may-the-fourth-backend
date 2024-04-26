@@ -10,6 +10,7 @@ public class AppDbContext : DbContext
         
     }
 
+    public DbSet<Vehicle> Vehicles { get; set; }
     public DbSet<Planet> Planets { get; set; }
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
