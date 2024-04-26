@@ -3,19 +3,20 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using MayTheFourth.Application.Features.People;
-using MayTheFourth.Domain.Entities;
+using MayTheFourth.Application.Common.AppServices.PopulateVehicle;
 using MayTheFourth.Application.Features;
+using MayTheFourth.Application.Features.Vehicles;
+using MayTheFourth.Domain.Entities;
 
-namespace MayTheFourth.Application.Common.AppServices.PopulatePeople
+namespace MayTheFourth.Application.Common.AppServices.PopulateEntity
 {
-    public class PopulatePeopleResponseAppService : IPopulatePeopleResponseAppService
+    public class PopulateVehicleResponseAppService : IPopulateVehicleResponseAppService
     {
-        public List<MoviesDescriptionToPeople>? GetMoviesList(PersonEntity character, IEnumerable<FilmEntity> filmList)
+        public List<MoviesDescriptionToVehicle>? GetMoviesList(VehicleEntity vehicleEntity, IEnumerable<FilmEntity> filmList)
         {
-            var films = new List<MoviesDescriptionToPeople>();
+            var films = new List<MoviesDescriptionToVehicle>();
 
-            foreach (var item in character.Films!)
+            foreach(var item in vehicleEntity.Films!)
             {
                 var entity = filmList.FirstOrDefault(x => x.Url.Equals(item));
 
@@ -25,13 +26,12 @@ namespace MayTheFourth.Application.Common.AppServices.PopulatePeople
                 var id = entity.Url.TrimEnd('/').Split('/');
                 string idString = id[^1];
 
-                films.Add(new MoviesDescriptionToPeople()
+                films.Add(new MoviesDescriptionToVehicle()
                 {
                     Id = Convert.ToInt32(idString),
                     Title = entity.Title
                 });
             }
-
             return films;
         }
     }

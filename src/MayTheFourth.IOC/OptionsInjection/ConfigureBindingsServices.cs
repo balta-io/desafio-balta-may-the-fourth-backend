@@ -1,6 +1,8 @@
 using MayTheFourth.Application.Common.AppServices.PopulateDB;
+using MayTheFourth.Application.Common.AppServices.PopulateEntity;
 using MayTheFourth.Application.Common.AppServices.PopulateFilms;
 using MayTheFourth.Application.Common.AppServices.PopulatePeople;
+using MayTheFourth.Application.Common.AppServices.PopulateVehicle;
 using MayTheFourth.Application.Common.Services;
 using MayTheFourth.Infrastructure.StarWarsApi;
 using Microsoft.Extensions.DependencyInjection;
@@ -15,6 +17,7 @@ namespace MayTheFourth.IOC.OptionsInjection
             services.AddScoped<IPopulateSWDataBaseAppService, PopulateSWDataBaseAppService>();
             services.AddScoped<IPopulateFilmsResponseAppService, PopulateFilmsResponseAppService>();
             services.AddScoped<IPopulatePeopleResponseAppService, PopulatePeopleResponseAppService>();
+            services.AddScoped<IPopulateVehicleResponseAppService,PopulateVehicleResponseAppService>();
         }
     }
 }
