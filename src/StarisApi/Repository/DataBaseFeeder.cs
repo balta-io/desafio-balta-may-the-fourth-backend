@@ -7,7 +7,6 @@ using StarisApi.Models.MoviesVehicles;
 using StarisApi.Models.Planets;
 using StarisApi.Models.StarShips;
 using StarisApi.Models.Vehicles;
-using System.Runtime.Intrinsics.Arm;
 using System.Text.Json;
 
 namespace StarisApi.Repository;
@@ -15,13 +14,14 @@ namespace StarisApi.Repository;
 public class DataBaseFeeder
 {
     private readonly IHttpClientFactory _httpClientFactory;
-    private string _url = "https://swapi.py4e.com/api/";
-    private readonly HttpClient client;
+    private string _urlBase = "https://swapi.py4e.com/api/";
+    private readonly string _imgUrlBase = "https://starwars.fandom.com/wiki/";
+    private readonly HttpClient _client;
 
     public DataBaseFeeder(IHttpClientFactory httpClientFactory)
     {
         _httpClientFactory = httpClientFactory;
-        client = _httpClientFactory.CreateClient();
+        _client = _httpClientFactory.CreateClient();
     }
 
     public async Task<List<JsonElement>> GetInfoFromPeopleEndpoint()
@@ -32,7 +32,7 @@ public class DataBaseFeeder
 
         for (var i = 0; i < 9; i++)
         {
-            var response = await client.GetAsync($"{_url}/{endpoint}?page={i + 1}");
+            var response = await _client.GetAsync($"{_urlBase}/{endpoint}?page={i + 1}");
             var stream = await response.Content.ReadAsStreamAsync();
             var bodyMessage = await JsonDocument.ParseAsync(stream);
 
@@ -50,6 +50,7 @@ public class DataBaseFeeder
         return infos;
     }
 
+//TODO============================================ABSTRAIR=================================================================
     public async Task<List<JsonElement>> GetInfoFromPlanetsEndpoint()
     {
         var endpoint = "planets/";
@@ -58,7 +59,7 @@ public class DataBaseFeeder
 
         for (var i = 0; i < 7; i++)
         {
-            var response = await client.GetAsync($"{_url}/{endpoint}?page={i + 1}");
+            var response = await _client.GetAsync($"{_urlBase}/{endpoint}?page={i + 1}");
             var stream = await response.Content.ReadAsStreamAsync();
             var bodyMessage = await JsonDocument.ParseAsync(stream);
 
@@ -80,7 +81,7 @@ public class DataBaseFeeder
     {
         var endpoint = "films/";
         List<JsonElement> infos = [];
-        var response = await client.GetAsync($"{_url}/{endpoint}");
+        var response = await _client.GetAsync($"{_urlBase}/{endpoint}");
         var stream = await response.Content.ReadAsStreamAsync();
         var bodyMessage = await JsonDocument.ParseAsync(stream);
 
@@ -104,7 +105,7 @@ public class DataBaseFeeder
 
         for (var i = 0; i < 4; i++)
         {
-            var response = await client.GetAsync($"{_url}/{endpoint}?page={i + 1}");
+            var response = await _client.GetAsync($"{_urlBase}/{endpoint}?page={i + 1}");
             var stream = await response.Content.ReadAsStreamAsync();
             var bodyMessage = await JsonDocument.ParseAsync(stream);
             JsonElement resultProperty = bodyMessage.RootElement.GetProperty("results");
@@ -128,7 +129,7 @@ public class DataBaseFeeder
 
         for (var i = 0; i < 4; i++)
         {
-            var response = await client.GetAsync($"{_url}/{endpoint}?page={i + 1}");
+            var response = await _client.GetAsync($"{_urlBase}/{endpoint}?page={i + 1}");
             var stream = await response.Content.ReadAsStreamAsync();
             var bodyMessage = await JsonDocument.ParseAsync(stream);
             JsonElement resultProperty = bodyMessage.RootElement.GetProperty("results");
@@ -176,8 +177,9 @@ public class DataBaseFeeder
 
         return movies;
     }
+//=========================================================================================================================
 
-    public List<Character> GetCharactersBase(List<JsonElement> infos)
+    public async Task<List<Character>> GetCharactersBase(List<JsonElement> infos)
     {
         var characters = new List<Character>();
         foreach (var info in infos)
@@ -186,12 +188,12 @@ public class DataBaseFeeder
             var splitHomeUrl = info.GetProperty("homeworld").GetString()!.Split("/");
             var splitMoviesUrl = GetUrlRelationsId(info.GetProperty("films"));
             var id = GetIdFromUrl(splitIdUrl);
-            //var movie = filmsBase.FirstOrDefault(x => x.Id == homeId);
+            var name = StringNamesFixer(info.GetProperty("name").GetString()!);
 
             var character = new Character
             {
                 Id = id,
-                Name = info.GetProperty("name").GetString()!,
+                Name = name,
                 Height = info.GetProperty("height").GetString()!,
                 Mass = info.GetProperty("mass").GetString()!,
                 HairColor = info.GetProperty("hair_color").GetString()!,
@@ -201,23 +203,70 @@ public class DataBaseFeeder
                 Gender = info.GetProperty("gender").GetString()!,
                 PlanetId = GetIdFromUrl(splitHomeUrl),
                 Movies = GetCharacterMovieBase(splitMoviesUrl, id)
-                //Movies = info.GetProperty("films").EnumerateArray()
-                //             .Select(movie => GetMovies(movie)).ToList()
-                //Movies = new List<CharacterMovie>
-                //    {
-                //        new CharacterMovie
-                //        {
-                //            Movie = movie!
-                //        }
-                //    }
             };
+            var imgUrl = $"{_imgUrlBase}{character.Name.Replace(" ", "_")}";
+            character.ImageUrl = await ScrappyUrlImage(imgUrl);
 
             characters.Add(character);
         }
 
         return characters;
     }
+    public List<CharacterMovie> GetCharacterMovieRelation(List<Movie> movies, List<Character> characters)
+    {
+        Dictionary<int, List<CharacterMovie>> characterMovieDictionary = [];
+        var characterMovies = new List<CharacterMovie>();
+        var index = 0;
 
+        foreach (var movie in movies)
+        {
+            characterMovieDictionary.Add(movie.Id, [.. movie.Characters]);
+        }
+
+        foreach (var relation in characterMovieDictionary)
+        {
+            var characterIds = relation.Value.Select(r => r.CharacterId).ToList();
+            var relatedCharacters = characters.Where(v => characterIds.Contains(v.Id)).ToList();
+            var movie = movies.Find(x => relation.Key == x.Id);
+
+            foreach (var character in relatedCharacters)
+            {
+                if (movie == null)
+                {
+                    continue;
+                }
+                index++;
+                var relationship = new CharacterMovie
+                {
+                    Id = index,
+                    MovieId = relation.Key,
+                    CharacterId = character.Id,
+                };
+                characterMovies.Add(relationship);
+            }
+        }
+
+        return characterMovies;
+    }
+
+    public List<CharacterMovie> GetCharacterMovieBase(List<int> ids, int id)
+    {
+        var characterMovies = new List<CharacterMovie>();
+
+        for (int i = 0; i < ids.Count; i++)
+        {
+            var relationship = new CharacterMovie
+            {
+                CharacterId = id,
+                MovieId = ids[i],
+            };
+            characterMovies.Add(relationship);
+        }
+
+        return characterMovies;
+    }
+
+    //TODO============================================ABSTRAIR=================================================================
     public List<Planet> GetPlanetsBase(List<JsonElement> infos)
     {
         var planets = new List<Planet>();
@@ -326,23 +375,7 @@ public class DataBaseFeeder
 
         return planetCharacters;
     }
-    public List<CharacterMovie> GetCharacterMovieBase(List<int> ids, int id)
-    {
-        var characterMovies = new List<CharacterMovie>();
-
-        for (int i = 0; i < ids.Count; i++)
-        {
-            var relationship = new CharacterMovie
-            {
-                CharacterId = ids[i],
-                MovieId = id,
-            };
-            characterMovies.Add(relationship);
-        }
-
-        return characterMovies;
-    }
-
+    
     public List<MoviePlanet> GetMoviePlanetBase(List<int> ids, int id)
     {
         var moviePlanets = new List<MoviePlanet>();
@@ -392,45 +425,6 @@ public class DataBaseFeeder
         }
 
         return movieStarship;
-    }
-
-    public List<CharacterMovie> GetCharacterMovieRelation(List<Movie> movies, List<Character> characters)
-    {
-        Dictionary<int, List<CharacterMovie>> characterMovieDictionary = [];
-        var characterMovies = new List<CharacterMovie>();
-        var index = 0;
-
-        foreach (var movie in movies)
-        {
-            characterMovieDictionary.Add(movie.Id, [.. movie.Characters]);
-        }
-
-        foreach (var relation in characterMovieDictionary)
-        {
-            var characterIds = relation.Value.Select(r => r.CharacterId).ToList();
-            var relatedCharacters = characters.Where(v => characterIds.Contains(v.Id)).ToList();
-            var movie = movies.Find(x => relation.Key == x.Id);
-
-            foreach (var character in relatedCharacters)
-            {
-                if (movie == null)
-                {
-                    continue;
-                }
-                index++;
-                var relationship = new CharacterMovie
-                {
-                    Id = index,
-                    MovieId = relation.Key,
-                    //Movie = movie,
-                    CharacterId = character.Id,
-                    //Character = character
-                };
-                characterMovies.Add(relationship);
-            }
-        }
-
-        return characterMovies;
     }
 
     public List<MovieVehicle> GetMovieVehicleRelation(List<Movie> movies, List<Vehicle> vehicles)
@@ -552,33 +546,6 @@ public class DataBaseFeeder
         return moviePlanet;
     }
 
-    public List<Movie> GetMovies(List<Movie> filmsBase,
-            List<MovieVehicle> relationMovieVehicle,
-            List<MoviePlanet> relationMoviePlanet,
-            List<MovieStarship> relationMovieStarship,
-            List<CharacterMovie> relationCharacterMovie)
-    {
-        foreach (Movie movie in filmsBase)
-        {
-            movie.Vehicles = relationMovieVehicle.Where(x => x.MovieId == movie.Id).ToList();
-            movie.Starships = relationMovieStarship.Where(x => x.MovieId == movie.Id).ToList();
-            movie.Planets = relationMoviePlanet.Where(x => x.MovieId == movie.Id).ToList();
-            movie.Characters = relationCharacterMovie.Where(x => x.MovieId == movie.Id).ToList();
-        }
-
-        return filmsBase;
-    }
-
-    public List<Character> GetCharacters(List<Character> characterBase, List<CharacterMovie> relationCharacterMovie)
-    {
-        foreach(Character character in characterBase)
-        {
-            character.Movies = relationCharacterMovie.Where(x => x.CharacterId == character.Id).ToList();
-        }
-
-        return characterBase;
-    }
-
     public List<int> GetUrlRelationsId(JsonElement infos)
     {
         List<int> relationIds = [];
@@ -596,24 +563,37 @@ public class DataBaseFeeder
 
         return relationIds;
     }
+//=========================================================================================================================
 
+    public async Task<string> ScrappyUrlImage(string url)
+    {
+        string htmlContent = await _client.GetStringAsync(url);
+
+        return ExtractImageUrl(htmlContent);
+    }
+
+    //TODO: Daqui para baixo, abstrair par uma handle do tipo static
     public int GetIdFromUrl(string[] url)
     {
         return int.Parse(url[^2]);
     }
 
-    public async Task<Dictionary<int, string>> ScrappyUrlImage(Dictionary<int, string> entityNames)
+    private string StringNamesFixer(string name)
     {
-        var urls = MountUrlString(entityNames);
-        var entityUrlImagesRelation = new Dictionary<int, string>();
-
-        foreach (var url in urls)
+        Dictionary<string, string> fixRelation = new()
         {
-            string htmlContent = await client.GetStringAsync(url.Value);
-            entityUrlImagesRelation.Add(url.Key, ExtractImageUrl(htmlContent));
+            { "Beru Whitesun lars" , "Beru Whitesun Lars" },
+            { "Wicket Systri Warrick", "Wicket Wystri Warrick" },
+            { "Ayla Secura", "Aayla Secura" },
+            { "Ratts Tyerel", "Ratts Tyerell" },
+        };
+
+        if (fixRelation.TryGetValue(name, out string? value))
+        {
+            return value;
         }
 
-        return entityUrlImagesRelation;
+        return name;
     }
 
     public List<Movie> ScrappyUrlImageForMovies(List<Movie> movies)
@@ -635,16 +615,6 @@ public class DataBaseFeeder
         }
 
         return movies;
-    }
-
-    public Dictionary<int, string> MountUrlString(Dictionary<int, string> entityNames)
-    {
-        string urlBase = "https://starwars.fandom.com/wiki/";
-        
-        return entityNames.ToDictionary(
-            kvp => kvp.Key,
-            kvp => $"{urlBase}{kvp.Value.Replace(" ", "_")}"
-        );
     }
 
     string ExtractImageUrl(string htmlContent)
