@@ -4,8 +4,15 @@ using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace MayTheFourth.Data.Mappings;
 
+/// <summary>
+/// PlanetaMAP
+/// </summary>
 public class PlanetasMap : IEntityTypeConfiguration<Planeta>
 {
+    /// <summary>
+    /// Mapeamento da tabela
+    /// </summary>
+    /// <param name="builder"></param>
     public void Configure(EntityTypeBuilder<Planeta> builder)
     {
         // Tabela

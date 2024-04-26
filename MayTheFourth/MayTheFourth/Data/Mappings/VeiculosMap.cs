@@ -4,8 +4,15 @@ using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace MayTheFourth.Data.Mappings;
 
+/// <summary>
+/// VeiculoMAP
+/// </summary>
 public class VeiculosMap : IEntityTypeConfiguration<Veiculo>
 {
+    /// <summary>
+    /// Mapeamento da tabela
+    /// </summary>
+    /// <param name="builder"></param>
     public void Configure(EntityTypeBuilder<Veiculo> builder)
     {
         // Tabela

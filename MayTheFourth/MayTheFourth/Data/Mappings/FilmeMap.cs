@@ -4,8 +4,15 @@ using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace MayTheFourth.Data.Mappings;
 
+/// <summary>
+/// FilmeMAP
+/// </summary>
 public class FilmeMap : IEntityTypeConfiguration<Filme>
 {
+    /// <summary>
+    /// Mapeamento da tabela
+    /// </summary>
+    /// <param name="builder"></param>
     public void Configure(EntityTypeBuilder<Filme> builder)
     {
         // Tabela
