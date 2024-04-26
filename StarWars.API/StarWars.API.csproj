@@ -61,5 +61,6 @@
     <Folder Include="Storages\Abstracts\" />
     <Folder Include="Services\Abstracts\" />
     <Folder Include="Endpoints\Abstracts\" />
+    <Folder Include="Models\Imports\" />
   </ItemGroup>
 </Project>

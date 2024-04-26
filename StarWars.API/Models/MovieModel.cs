@@ -2,40 +2,29 @@
 {
     public sealed class MovieModel
     {
-        protected MovieModel() {}
-
-        public MovieModel(string id, string uid, string description, string title)
+        public MovieModel()
         {
-            Create(id, uid, description, title);
         }
 
         public int MovieId { get; private set; }
-        public string Id { get; private set; }
-        public string Uid { get; private set; }
-        public string Description { get; private set; }
         public string Title { get; private set; }
         public int EpisodeId { get; private set; }
         public string? Director { get; private set; }
+        public string Producer { get; private set; }
         public string? ReleaseDate { get; private set; }
         public string? OpeningCrawl { get; private set; }
         public string? Url { get; private set; }
-        public DateTime Edited { get; private set; }
-        public DateTime Created { get; private set; }
 
         //public List<VehicleModel> Vehicles { get; set; }
-		//public List<PlanetModel> planets { get; set; }
+        //public List<PlanetModel> planets { get; set; }
 
-		// public List<CharacterModel> characters { get; set; }
-		// public List<StarshipModel> starships { get; set; }
+        // public List<CharacterModel> characters { get; set; }
+        // public List<StarshipModel> starships { get; set; }
 
-        private void Create(string id, string uid, string description, string title)
+        public void ChanceMovieId(int movieId)
         {
-            Id = id;
-            Uid = uid;
-            Title = title;
-            MovieId = int.Parse(Uid);
-            Description = description;
-           
+            // Todo: Aplicar validações
+            MovieId = movieId;
         }
 
         public void ChanceEpisode(int episodeId)
@@ -44,10 +33,22 @@
             EpisodeId = episodeId;
         }
 
+        public void ChanceTitle(string title)
+        {
+            // Todo: Aplicar validações
+            Title = title;
+        }
+
         public void ChanceDirector(string director)
         {
             // Todo: Aplicar validações
             Director = director;
+        }
+
+        public void ChanceProducer(string producer)
+        {
+            // Todo: Aplicar validações
+            Producer = producer;
         }
 
         public void ChanceReleaseDate(string release)
@@ -66,18 +67,6 @@
         {
             // Todo: Aplicar validações
             Url = url;
-        }
-
-        public void ChanceEdited(DateTime edited)
-        {
-            // Todo: Aplicar validações
-            Edited = edited;
-        }
-
-        public void ChanceCreated(DateTime created)
-        {
-            // Todo: Aplicar validações
-            Created = created;
         }
     }
 }

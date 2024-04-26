@@ -1,6 +1,5 @@
-﻿using System.Configuration;
+
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Configuration;
 using StarWars.API.Models;
 using StarWars.API.Storages.Datas.EntityConfigurations;
 
@@ -22,11 +21,6 @@ namespace StarWars.API.Storages.Datas
         #endregion
 
 
-        // Todo: retirar o comentario após garantir a existencia e configuração da tabela com a entidade
-        // public DbSet<CharacterModel> Characters { get; private set; }
-        // public DbSet<VehicleModel> Vehicles { get; private set; }
-
-
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             var mySqlConnection = _configuration.GetConnectionString("DefaultConnection");
@@ -43,15 +37,10 @@ namespace StarWars.API.Storages.Datas
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            // Todo: Adicionar as configurações dos outros modelos
 
             modelBuilder.ApplyConfiguration(new MovieConfiguration());
 
-            // Todo: retirar o comentario após garantir a existencia e configuração da tabela com a entidade
             modelBuilder.ApplyConfiguration(new CharacterConfiguration());
-            //modelBuilder.ApplyConfiguration(new VehicleConfiguration());
-
-
 
             modelBuilder.UsePropertyAccessMode(PropertyAccessMode.Property);
 
