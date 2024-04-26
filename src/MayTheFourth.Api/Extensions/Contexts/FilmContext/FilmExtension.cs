@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace MayTheFourth.Api.Extensions.Contexts.FilmContext
 {
-    public static class FilmExtension
+    public static class SpeciesExtension
     {
         public static void AddFilmContext(this WebApplicationBuilder builder)
         {

@@ -18,12 +18,7 @@ public class FilmDetailsDto
         Edited = film.Edited;
         SpeciesList = film.SpeciesList.Select(species => new SpeciesSummaryDto
         {
-            Id = species.Id,
-            Name = species.Name,
-            Classification = species.Classification,
-            Designation = species.Designation,
-            Language = species.Language,
-            HomeworldId = species.HomeworldId
+             Id= species.Id
         }).ToList();
         Starships = film.Starships.Select(starship => new StarshipSummaryDto
         {

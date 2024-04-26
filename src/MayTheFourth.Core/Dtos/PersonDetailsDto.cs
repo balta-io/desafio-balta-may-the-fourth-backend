@@ -33,7 +33,6 @@ public class PersonDetailsDto
             Classification = species.Classification,
             Designation = species.Designation,
             Language = species.Language,
-            HomeworldId = species.HomeworldId
         }).ToList();
         Starships = person.Starships.Select(starship => new StarshipSummaryDto
         {
