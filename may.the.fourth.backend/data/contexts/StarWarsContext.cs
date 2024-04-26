@@ -10,6 +10,7 @@ namespace May.The.Fourth.Backend.Data.Contexts
             : base(options) { }
 
         public DbSet<FilmeEntity> Filmes { get; set; }
+        public DbSet<CharacterEntity> Characters { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -29,6 +30,23 @@ namespace May.The.Fourth.Backend.Data.Contexts
                 new FilmeEntity { Id = 11, Titulo = "The Edge of the Universe" },
             };
             modelBuilder.Entity<FilmeEntity>().HasData(filmes);
+
+            // characters
+            var characters = new CharacterEntity[]
+            {
+                new CharacterEntity { Id = 1, Name = "Luke Skywalker", Height = "172", Weight = "77", HairColor = "blond", SkinColor = "fair", EyeColor = "blue", BirthYear = "19BBY", Gender = "male", PlanetID = 1 },                
+                new CharacterEntity { Id = 2, Name = "C-3PO", Height = "167", Weight= "75", HairColor = "n/a", SkinColor = "gold", EyeColor = "yellow", BirthYear = "112BBY", Gender = "n/a", PlanetID = 1 },
+                new CharacterEntity { Id = 3, Name = "R2-D2", Height = "96", Weight= "32", HairColor = "n/a", SkinColor = "white, blue", EyeColor="red", BirthYear = "33BBY", Gender = "n/a", PlanetID = 8 },
+                new CharacterEntity { Id = 4, Name = "Darth Vader", Height = "202", Weight = "136", HairColor = "none", SkinColor = "white", EyeColor = "yellow", BirthYear = "41.9BBY", Gender = "male", PlanetID = 1 },                
+                new CharacterEntity { Id = 5, Name = "Leia Organa", Height = "150", Weight = "49", HairColor = "brown", SkinColor = "light", EyeColor = "brown", BirthYear = "19BBY", Gender = "female", PlanetID = 2 },                
+                new CharacterEntity { Id = 6, Name = "Owen Lars", Height = "178", Weight = "120", HairColor = "brown, grey", SkinColor= "light", EyeColor="blue", BirthYear= "52BBY", Gender= "male", PlanetID = 1 },
+                new CharacterEntity { Id = 7, Name = "Beru Whitesun lars", Height = "165", Weight = "75", HairColor = "brown", SkinColor = "light", EyeColor = "blue", BirthYear = "47BBY", Gender = "female", PlanetID = 1 },                
+                new CharacterEntity { Id = 8, Name = "R5-D4", Height = "97", Weight = "32", HairColor = "n/a", SkinColor = "white, red", EyeColor = "red", BirthYear = "unknown", Gender = "n/a", PlanetID = 1 },                
+                new CharacterEntity { Id = 9, Name = "Biggs Darklighter", Height = "183", Weight = "84", HairColor = "black", SkinColor = "light", EyeColor = "brown", BirthYear = "24BBY", Gender = "male", PlanetID = 1 },                
+                new CharacterEntity { Id = 10, Name = "Obi-Wan Kenobi", Height = "182", Weight = "77", HairColor = "auburn, white", SkinColor = "fair", EyeColor = "blue-gray", BirthYear = "57BBY", Gender = "male", PlanetID = 20 },                
+                new CharacterEntity { Id = 11, Name = "Anakin Skywalker", Height = "188", Weight = "84", HairColor = "blond", SkinColor = "fair", EyeColor = "blue", BirthYear = "41.9BBY", Gender = "male", PlanetID = 1 },
+            };
+            modelBuilder.Entity<CharacterEntity>().HasData(characters);
         }
     }
 }

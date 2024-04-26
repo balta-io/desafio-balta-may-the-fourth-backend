@@ -38,6 +38,9 @@ builder.Services.AddSwaggerGen(options =>
 builder.Services.AddScoped<IFilmeRepository, FilmeRepository>();
 builder.Services.AddScoped<IFilmeService, FilmeService>();
 
+builder.Services.AddScoped<ICharacterRepository, CharacterRepository>();
+builder.Services.AddScoped<ICharacterService, CharacterService>();
+
 builder.Services.AddEntityFrameworkNpgsql();
 var connection = builder.Configuration.GetConnectionString("StarWarsConnection");
 builder.Services.AddDbContextPool<StarWarsContext>(options => options.UseNpgsql(connection));
@@ -54,6 +57,7 @@ app.UseSwagger();
 var endpoints = app.MapGroup("/star-wars");
 endpoints.MapGet("/", () => "Hello Star Wars World!");
 endpoints.MapGet("/filmes", GetFilmes);
+endpoints.MapGet("/characters", GetCharacters);
 
 app.UseSwaggerUI(options =>
 {
@@ -67,6 +71,14 @@ app.Run();
 static async Task<IResult> GetFilmes(IFilmeService filmeService)
 {
     var result = await filmeService.GetFilmes();
+    return result.Success 
+        ? TypedResults.Ok(result) 
+        : TypedResults.BadRequest(result);
+}
+
+static async Task<IResult> GetCharacters(ICharacterService characterService)
+{
+    var result = await characterService.GetCharacters();
     return result.Success 
         ? TypedResults.Ok(result) 
         : TypedResults.BadRequest(result);
