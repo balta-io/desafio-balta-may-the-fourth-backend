@@ -34,4 +34,11 @@ public class StarshipRepository : IStarshipRepository
             .Include(x => x.Pilots)
             .AsNoTracking()
             .FirstOrDefaultAsync(x => x.Id == id, cancellationToken);
+
+    public async Task<Starship?> GetBySlugAsync(string slug, CancellationToken cancellationToken)
+        => await _appDbContext.Starships
+            .Include(x => x.Films)
+            .Include(x => x.Pilots)
+            .AsNoTracking()
+            .FirstOrDefaultAsync(x => x.Slug == slug, cancellationToken);
 }

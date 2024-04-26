@@ -37,7 +37,7 @@ public static class StarshipExtension
             .WithOpenApi();
         #endregion
 
-        #region Search starship by id
+        #region Get starship by id
         app.MapGet("api/v1/starships/{id}", async (
             [FromRoute] Guid id,
             [FromServices] IRequestHandler<
@@ -59,6 +59,22 @@ public static class StarshipExtension
                 parameter.Description = "The ID associated with the created Starship";
                 return opt;
             });
+        #endregion
+
+        #region Get starship by slug
+        app.MapGet("api/v1/starships/slug/{slug}", async (
+            [FromRoute] string slug,
+            [FromServices] IRequestHandler<
+                Core.Contexts.StarshipContext.UseCases.SearchBySlug.Request,
+                Core.Contexts.StarshipContext.UseCases.SearchBySlug.Response> handler) =>
+        {
+            var request = new Core.Contexts.StarshipContext.UseCases.SearchBySlug.Request(slug);
+            var result = await handler.Handle(request, new CancellationToken());
+
+            return result.IsSuccess
+                ? Results.Ok(result)
+                : Results.Json(result, statusCode: result.Status);
+        });
         #endregion
 
         #region Create Starship

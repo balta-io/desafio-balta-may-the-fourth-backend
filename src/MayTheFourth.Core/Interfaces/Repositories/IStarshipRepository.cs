@@ -8,4 +8,5 @@ public interface IStarshipRepository
     Task<List<Starship>?> GetAllAsync();
     Task SaveAsync(Starship starship, CancellationToken cancellationToken);
     Task<Starship?> GetByIdAsync(Guid id, CancellationToken cancellationToken);
+    Task<Starship?> GetBySlugAsync(string slug, CancellationToken cancellationToken);
 }

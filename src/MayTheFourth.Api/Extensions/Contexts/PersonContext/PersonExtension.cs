@@ -35,7 +35,7 @@ public static class PersonExtension
             .WithOpenApi();
         #endregion
 
-        #region Search person by id
+        #region Get person by id
         app.MapGet("api/v1/people/{id}", async (
             [FromRoute] Guid id,
             [FromServices] IRequestHandler<
@@ -57,6 +57,22 @@ public static class PersonExtension
                 parameter.Description = "The ID associated with the created Person";
                 return opt;
             });
+        #endregion
+
+        #region Get person by slug
+        app.MapGet("api/v1/people/slug/{slug}", async (
+            [FromRoute] string slug,
+            [FromServices] IRequestHandler<
+                Core.Contexts.PersonContext.UseCases.SearchBySlug.Request,
+                Core.Contexts.PersonContext.UseCases.SearchBySlug.Response> handler) =>
+        {
+            var request = new Core.Contexts.PersonContext.UseCases.SearchBySlug.Request(slug);
+            var result = await handler.Handle(request, new CancellationToken());
+
+            return result.IsSuccess
+                ? Results.Ok(result)
+                : Results.Json(result, statusCode: result.Status);
+        });
         #endregion
 
         #region Create person

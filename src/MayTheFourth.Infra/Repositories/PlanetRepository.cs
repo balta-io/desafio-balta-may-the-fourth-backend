@@ -32,4 +32,11 @@ public class PlanetRepository : IPlanetRepository
             .Include(x => x.Films)
             .AsNoTracking()
             .FirstOrDefaultAsync(x => x.Id == id);
+
+    public async Task<Planet?> GetBySlugAsync(string slug, CancellationToken cancellationToken)
+        => await _appDbContext.Planets
+            .Include(x => x.Residents)
+            .Include(x => x.Films)
+            .AsNoTracking()
+            .FirstOrDefaultAsync(x => x.Slug == slug);
 }

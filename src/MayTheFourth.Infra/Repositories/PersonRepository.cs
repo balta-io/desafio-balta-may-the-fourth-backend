@@ -35,4 +35,13 @@ public class PersonRepository : IPersonRepository
         .Include(x => x.Vehicles)
         .AsNoTracking()
         .FirstOrDefaultAsync(x => x.Id == id, cancellationToken);
+
+    public async Task<Person?> GetBySlugAsync(string slug, CancellationToken cancellationToken)
+        => await _appDbContext.People
+        .Include(x => x.Films)
+        .Include(x => x.Species)
+        .Include(x => x.Starships)
+        .Include(x => x.Vehicles)
+        .AsNoTracking()
+        .FirstOrDefaultAsync(x => x.Slug == slug, cancellationToken);
 }

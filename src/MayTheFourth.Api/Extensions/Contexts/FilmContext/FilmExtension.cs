@@ -58,6 +58,22 @@ namespace MayTheFourth.Api.Extensions.Contexts.FilmContext
                     return opt;
                 });
             #endregion
+
+            #region Get film by slug
+            app.MapGet("api/v1/films/slug/{slug}", async (
+                [FromRoute] string slug,
+                [FromServices] IRequestHandler<
+                    Core.Contexts.FilmContext.UseCases.SearchBySlug.Request,
+                    Core.Contexts.FilmContext.UseCases.SearchBySlug.Response> handler) =>
+            {
+                var request = new Core.Contexts.FilmContext.UseCases.SearchBySlug.Request(slug);
+                var result = await handler.Handle(request, new CancellationToken());
+
+                return result.IsSuccess
+                    ? Results.Ok(result)
+                    : Results.Json(result, statusCode: result.Status);
+            });
+            #endregion
         }
 
     }
