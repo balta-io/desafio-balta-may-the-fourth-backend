@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace MayTheFourth.Api.Migrations
 {
     /// <inheritdoc />
-    public partial class VersãoInicial : Migration
+    public partial class InitiaVersion : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)

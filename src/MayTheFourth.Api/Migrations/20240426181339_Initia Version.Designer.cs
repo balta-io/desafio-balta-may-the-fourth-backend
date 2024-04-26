@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace MayTheFourth.Api.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20240425222249_Versão Inicial")]
-    partial class VersãoInicial
+    [Migration("20240426181339_Initia Version")]
+    partial class InitiaVersion
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
