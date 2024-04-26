@@ -39,4 +39,16 @@ public class PlanetRepository : IPlanetRepository
             .Include(x => x.Films)
             .AsNoTracking()
             .FirstOrDefaultAsync(x => x.Slug == slug);
+
+    public async Task<bool> DeletePlanetByIdAsync(Guid id, CancellationToken cancellationToken)
+    {
+        var planet = await _appDbContext.Planets.FindAsync(id);
+        if (planet != null)
+        {
+            _appDbContext.Planets.Remove(planet);
+            await _appDbContext.SaveChangesAsync(cancellationToken);
+            return true;
+        }
+        return false;
+    }
 }

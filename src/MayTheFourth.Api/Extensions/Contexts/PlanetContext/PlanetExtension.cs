@@ -94,5 +94,21 @@ public static class PlanetExtension
             .WithOpenApi()
             .WithSummary("Create a planet");
         #endregion
+
+        #region Remove planet
+        app.MapDelete("api/v1/planets/{id}", async (
+            [FromRoute] Guid id,
+            [FromServices] IRequestHandler<
+                Core.Contexts.PlanetContext.UseCases.Delete.Request,
+                Core.Contexts.PlanetContext.UseCases.Delete.Response> handler) =>
+        {
+            var request = new Core.Contexts.PlanetContext.UseCases.Delete.Request(id);
+            var result = await handler.Handle(request, new CancellationToken());
+
+            return result.IsSuccess
+                ? Results.Accepted("", result)
+                : Results.Json(result, statusCode: result.Status);
+        });
+        #endregion
     }
 }

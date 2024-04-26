@@ -36,6 +36,7 @@ public class Handler : IRequestHandler<Request, Response>
         try
         {
             planet = CreatePlanet(request);
+            planet.Slug = planet.Name.ToLower().Replace(" ", "-");
             await _planetRepository.SaveAsync(planet, cancellationToken);
         }
         catch(Exception ex)
