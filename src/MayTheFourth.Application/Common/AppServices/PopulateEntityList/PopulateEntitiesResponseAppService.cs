@@ -1,9 +1,15 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using MayTheFourth.Application.Common.ClassBase;
 using MayTheFourth.Application.Features.Films;
 using MayTheFourth.Domain.Entities;
 
-namespace MayTheFourth.Application.Common.AppServices.PopulateFilms
+namespace MayTheFourth.Application.Common.AppServices.PopulateEntityList
 {
-    public class PopulateFilmsResponseAppService : IPopulateFilmsResponseAppService
+    public class PopulateEntitiesResponseAppService : IPopulateEntitiesResponseAppService
     {
         public List<ItemDescription>? GetFilmsList(List<string> urlList, IEnumerable<FilmEntity> filmList)
         {
@@ -22,18 +28,18 @@ namespace MayTheFourth.Application.Common.AppServices.PopulateFilms
                 movies.Add(new ItemDescription()
                 {
                     Id = Convert.ToInt32(idString),
-                    Name = entity.Title
+                    Title = entity.Title
                 });
             }
 
             return movies;
         }
 
-        public List<ItemDescription>? GetPeopleList(FilmEntity film, IEnumerable<PersonEntity> peopleList)
+        public List<ItemDescription>? GetPeopleList(List<string> urlList, IEnumerable<PersonEntity> peopleList)
         {
-            var characters = new List<ItemDescription>();
+            var people = new List<ItemDescription>();
 
-            foreach (var item in film.Characters!)
+            foreach (var item in urlList!)
             {
                 var entity = peopleList.FirstOrDefault(x => x.Url.Equals(item));
 
@@ -43,21 +49,21 @@ namespace MayTheFourth.Application.Common.AppServices.PopulateFilms
                 var id = entity.Url.TrimEnd('/').Split('/');
                 string idString = id[^1];
 
-                characters.Add(new ItemDescription()
+                people.Add(new ItemDescription()
                 {
                     Id = Convert.ToInt32(idString),
-                    Name = entity.Name
+                    Title = entity.Name
                 });
             }
 
-            return characters;
+            return people;
         }
 
-        public List<ItemDescription>? GetPlanetsList(FilmEntity film, IEnumerable<PlanetEntity> planetList)
+        public List<ItemDescription>? GetPlanetsList(List<string> urlList, IEnumerable<PlanetEntity> planetList)
         {
             var planets = new List<ItemDescription>();
 
-            foreach (var item in film.Planets!)
+            foreach (var item in urlList!)
             {
                 var entity = planetList.FirstOrDefault(x => x.Url.Equals(item));
 
@@ -70,42 +76,18 @@ namespace MayTheFourth.Application.Common.AppServices.PopulateFilms
                 planets.Add(new ItemDescription()
                 {
                     Id = Convert.ToInt32(idString),
-                    Name = entity.Name
+                    Title = entity.Name
                 });
             }
 
             return planets;
         }
 
-        public List<ItemDescription>? GetVehiclesList(FilmEntity film, IEnumerable<VehicleEntity> vehicleList)
+        public List<ItemDescription>? GetStarshipsList(List<string> urlList, IEnumerable<StarshipEntity> starshipList)
         {
-            var vehicles = new List<ItemDescription>();
+            var startShip = new List<ItemDescription>();
 
-            foreach (var item in film.Vehicles!)
-            {
-                var entity = vehicleList.FirstOrDefault(x => x.Url.Equals(item));
-
-                if (entity is null)
-                    continue;
-
-                var id = entity.Url.TrimEnd('/').Split('/');
-                string idString = id[^1];
-
-                vehicles.Add(new ItemDescription()
-                {
-                    Id = Convert.ToInt32(idString),
-                    Name = entity.Name
-                });
-            }
-
-            return vehicles;
-        }
-
-        public List<ItemDescription>? GetStarshipsList(FilmEntity film, IEnumerable<StarshipEntity> starshipList)
-        {
-            var starships = new List<ItemDescription>();
-
-            foreach (var item in film.Starships!)
+            foreach (var item in urlList!)
             {
                 var entity = starshipList.FirstOrDefault(x => x.Url.Equals(item));
 
@@ -115,14 +97,38 @@ namespace MayTheFourth.Application.Common.AppServices.PopulateFilms
                 var id = entity.Url.TrimEnd('/').Split('/');
                 string idString = id[^1];
 
-                starships.Add(new ItemDescription()
+                startShip.Add(new ItemDescription()
                 {
                     Id = Convert.ToInt32(idString),
-                    Name = entity.Name
+                    Title = entity.Name
                 });
             }
 
-            return starships;
+            return startShip;
+        }
+
+        public List<ItemDescription>? GetVehiclesList(List<string> urlList, IEnumerable<VehicleEntity> vehicleList)
+        {
+            var vehicle = new List<ItemDescription>();
+
+            foreach (var item in urlList!)
+            {
+                var entity = vehicleList.FirstOrDefault(x => x.Url.Equals(item));
+
+                if (entity is null)
+                    continue;
+
+                var id = entity.Url.TrimEnd('/').Split('/');
+                string idString = id[^1];
+
+                vehicle.Add(new ItemDescription()
+                {
+                    Id = Convert.ToInt32(idString),
+                    Title = entity.Name
+                });
+            }
+
+            return vehicle;
         }
     }
 }

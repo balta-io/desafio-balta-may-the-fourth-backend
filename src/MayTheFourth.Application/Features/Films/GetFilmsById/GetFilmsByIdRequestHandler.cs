@@ -1,5 +1,5 @@
 using Mapster;
-using MayTheFourth.Application.Common.AppServices.PopulateFilms;
+using MayTheFourth.Application.Common.AppServices.PopulateEntityList;
 using MayTheFourth.Application.Common.Constants;
 using MayTheFourth.Application.Common.Repositories;
 using MayTheFourth.Domain.Entities;
@@ -14,7 +14,7 @@ namespace MayTheFourth.Application.Features.Films.GetFilmsById
         private readonly IRepository<PlanetEntity> _planetRepository;
         private readonly IRepository<VehicleEntity> _vehicleRepository;
         private readonly IRepository<StarshipEntity> _starshipRepository;
-        private readonly IPopulateFilmsResponseAppService _populateFilmsAppService;
+        private readonly IPopulateEntitiesResponseAppService _populateEntitiesResponseAppService;
 
         public GetFilmsByIdRequestHandler
         (
@@ -23,7 +23,7 @@ namespace MayTheFourth.Application.Features.Films.GetFilmsById
             IRepository<PlanetEntity> planetRepository,
             IRepository<VehicleEntity> vehicleRepository,
             IRepository<StarshipEntity> starshipRepository,
-            IPopulateFilmsResponseAppService populateFilmsAppService
+            IPopulateEntitiesResponseAppService populateEntitiesResponseAppService
         )
         {
             _filmRepository = filmRepository;
@@ -31,7 +31,7 @@ namespace MayTheFourth.Application.Features.Films.GetFilmsById
             _planetRepository = planetRepository;
             _vehicleRepository = vehicleRepository;
             _starshipRepository = starshipRepository;
-            _populateFilmsAppService = populateFilmsAppService;
+            _populateEntitiesResponseAppService = populateEntitiesResponseAppService;
         }
 
         public async Task<GetFilmsResponse?> Handle(GetFilmsByIdRequest request, CancellationToken cancellationToken)
@@ -52,10 +52,10 @@ namespace MayTheFourth.Application.Features.Films.GetFilmsById
 
             var response = film.Adapt<GetFilmsResponse>();
 
-            response.Characters = _populateFilmsAppService.GetPeopleList(film, peopleList);
-            response.Planets = _populateFilmsAppService.GetPlanetsList(film, planetList);
-            response.Vehicles = _populateFilmsAppService.GetVehiclesList(film, vehicleList);
-            response.Starships = _populateFilmsAppService.GetStarshipsList(film, starshipList);
+            response.Characters = _populateEntitiesResponseAppService.GetPeopleList(film.Characters, peopleList);
+            response.Planets = _populateEntitiesResponseAppService.GetPlanetsList(film.Planets, planetList);
+            response.Vehicles = _populateEntitiesResponseAppService.GetVehiclesList(film.Vehicles, vehicleList);
+            response.Starships = _populateEntitiesResponseAppService.GetStarshipsList(film.Starships, starshipList);
 
             return response;
         }       

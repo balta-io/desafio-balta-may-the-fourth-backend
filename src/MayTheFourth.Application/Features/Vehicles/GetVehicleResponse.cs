@@ -1,3 +1,5 @@
+using MayTheFourth.Application.Common.ClassBase;
+
 namespace MayTheFourth.Application.Features.Vehicles
 {
     public class GetVehicleResponse
@@ -13,13 +15,8 @@ namespace MayTheFourth.Application.Features.Vehicles
         public string CargoCapacity { get; set; } = null!;
         public string Consumables { get; set; } = null!;
         public string VehicleClass { get; set; } = null!;
-        public List<MoviesDescriptionToVehicle>? Movies { get; set; } = null!;
+        public List<ItemDescription>? Movies { get; set; } = null!;
     }
 
-    public class MoviesDescriptionToVehicle
-    {
-        public int? Id { get; set; }
-        public string? Title { get; set; }
-    }
 
 }

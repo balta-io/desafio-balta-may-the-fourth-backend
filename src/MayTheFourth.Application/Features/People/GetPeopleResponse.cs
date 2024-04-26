@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using MayTheFourth.Application.Common.ClassBase;
 
 
 namespace MayTheFourth.Application.Features.People
@@ -17,16 +18,15 @@ namespace MayTheFourth.Application.Features.People
         public string Eyecolor { get; set; } = null!;
         public string Birthyear { get; set; } = null!;
         public string Gender { get; set; } = null!;
-        public List<MoviesDescriptionToPeople>? Movies { get; set; }
+        public List<ItemDescription>? Movies { get; set; }
 
     }
 
     public class MoviesDescriptionToPeople
     {
-        public int? Id { get; set; }
-        public string? Title { get; set; }
+        public  int? Id { get; set; }
+        public string Title { get; set; }
     }
-
 
 
 }

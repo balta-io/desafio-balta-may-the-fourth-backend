@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Mapster;
-using MayTheFourth.Application.Common.AppServices.PopulateVehicle;
+using MayTheFourth.Application.Common.AppServices.PopulateEntityList;
 using MayTheFourth.Application.Common.Repositories;
 using MayTheFourth.Domain.Entities;
 using MediatR;
@@ -15,13 +15,13 @@ namespace MayTheFourth.Application.Features.Vehicles.GetVehicle
     {
         private readonly IRepository<FilmEntity> _filmRepository;
         private readonly IRepository<VehicleEntity> _vehicleRepository;
-        private readonly IPopulateVehicleResponseAppService _populateVehicleAppService;
+        private readonly IPopulateEntitiesResponseAppService _populateEntitiesResponseAppService;
 
-        public GetVehicleRequestHandler(IRepository<FilmEntity> filmRepository, IRepository<VehicleEntity> vehicleRepository, IPopulateVehicleResponseAppService populateVehicleAppService)
+        public GetVehicleRequestHandler(IRepository<FilmEntity> filmRepository, IRepository<VehicleEntity> vehicleRepository, IPopulateEntitiesResponseAppService populateEntitiesResponseAppService)
         {
             _filmRepository = filmRepository;
             _vehicleRepository = vehicleRepository;
-            _populateVehicleAppService = populateVehicleAppService;
+            _populateEntitiesResponseAppService = populateEntitiesResponseAppService;
         }
 
         public async Task<List<GetVehicleResponse>> Handle(GetVehicleRequest request, CancellationToken cancellationToken)
@@ -37,7 +37,7 @@ namespace MayTheFourth.Application.Features.Vehicles.GetVehicle
             {
                 var response = vehicle.Adapt<GetVehicleResponse>();
 
-                response.Movies = _populateVehicleAppService.GetMoviesList(vehicle, filmList);
+                response.Movies = _populateEntitiesResponseAppService.GetFilmsList(vehicle.Films, filmList);
 
                 responseList.Add(response);               
             }

@@ -4,8 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Mapster;
-using MayTheFourth.Application.Common.AppServices.PopulateFilms;
-using MayTheFourth.Application.Common.AppServices.PopulatePeople;
+using MayTheFourth.Application.Common.AppServices.PopulateEntityList;
 using MayTheFourth.Application.Common.Repositories;
 using MayTheFourth.Domain.Entities;
 using MediatR;
@@ -16,13 +15,13 @@ namespace MayTheFourth.Application.Features.People.GetPeople
     {
         private readonly IRepository<FilmEntity> _filmRepository;
         private readonly IRepository<PersonEntity> _repository;
-        private readonly IPopulatePeopleResponseAppService _populateService;
+        private readonly IPopulateEntitiesResponseAppService _populateEntitiesList;
 
-        public GetPeopleRequestHandler(IRepository<PersonEntity> repository, IRepository<FilmEntity> filmRepository, IPopulatePeopleResponseAppService populateService)
+        public GetPeopleRequestHandler(IRepository<PersonEntity> repository, IRepository<FilmEntity> filmRepository, IPopulateEntitiesResponseAppService populateEntitiesList)
         {
             _repository = repository;
             _filmRepository = filmRepository;
-            _populateService = populateService;
+            _populateEntitiesList = populateEntitiesList;
         }
 
 
@@ -36,7 +35,7 @@ namespace MayTheFourth.Application.Features.People.GetPeople
             {
                 var adapt = person.Adapt<GetPeopleResponse>();
 
-                adapt.Movies = _populateService.GetMoviesList(person,filmList);
+                adapt.Movies = _populateEntitiesList.GetFilmsList(person.Films, filmList);
 
                 responseList.Add(adapt);
             }

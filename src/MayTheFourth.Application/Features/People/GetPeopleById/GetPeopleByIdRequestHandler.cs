@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Mapster;
-using MayTheFourth.Application.Common.AppServices.PopulatePeople;
+using MayTheFourth.Application.Common.AppServices.PopulateEntityList;
 using MayTheFourth.Application.Common.Constants;
 using MayTheFourth.Application.Common.Repositories;
 using MayTheFourth.Domain.Entities;
@@ -16,13 +16,13 @@ namespace MayTheFourth.Application.Features.People.GetPeopleById
     {
         private readonly IRepository<PersonEntity> _repository;
         private readonly IRepository<FilmEntity> _filmRepository;
-        private readonly IPopulatePeopleResponseAppService _populateService;
+        private readonly IPopulateEntitiesResponseAppService _populateEntitiesList;
 
-        public GetPeopleByIdRequestHandler(IRepository<PersonEntity> repository,IRepository<FilmEntity> filmRepository, IPopulatePeopleResponseAppService populateService)
+        public GetPeopleByIdRequestHandler(IRepository<PersonEntity> repository,IRepository<FilmEntity> filmRepository, IPopulateEntitiesResponseAppService populateEntitiesList)
         {
             _repository = repository;
             _filmRepository = filmRepository;
-            _populateService = populateService;
+            _populateEntitiesList = populateEntitiesList;          
         }
 
         public async Task<GetPeopleResponse?> Handle(GetPeopleByIdRequest request, CancellationToken cancellationToken)
@@ -40,7 +40,7 @@ namespace MayTheFourth.Application.Features.People.GetPeopleById
 
             var result = people.Adapt<GetPeopleResponse>();
 
-            result.Movies = _populateService.GetMoviesList(people, movieList);
+            result.Movies = _populateEntitiesList.GetFilmsList(people.Films, movieList);
 
             return result;
         }
