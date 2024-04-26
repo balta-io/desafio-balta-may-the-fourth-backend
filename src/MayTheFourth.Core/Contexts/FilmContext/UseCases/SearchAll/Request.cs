@@ -7,7 +7,6 @@ using System.Threading.Tasks;
 
 namespace MayTheFourth.Core.Contexts.FilmContext.UseCases.SearchAll
 {
-    public class Request : IRequest<Response>
-    {
-    }
+    public record Request(int PageNumber, int PageSize) : IRequest<Response>;
+
 }

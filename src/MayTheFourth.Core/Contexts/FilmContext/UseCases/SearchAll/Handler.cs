@@ -24,10 +24,10 @@ namespace MayTheFourth.Core.Contexts.FilmContext.UseCases.SearchAll
         {
             #region GetAllFilms
             List<Film>? films;
-
+            int totalRecords;
             try
             {
-                films = await _filmRepository.GetAllAsync();
+                (films, totalRecords) = await _filmRepository.GetAllAsync(request.PageNumber, request.PageSize);
             }
             catch (Exception ex)
             {
@@ -38,7 +38,7 @@ namespace MayTheFourth.Core.Contexts.FilmContext.UseCases.SearchAll
             #endregion
 
             #region Response
-            return new Response("Lista de filmes encontrada", new ResponseData(new(filmSummaryList)));
+            return new Response("Lista de filmes encontrada", new ResponseData(new(filmSummaryList), totalRecords));
             #endregion
         }
     }

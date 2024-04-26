@@ -27,5 +27,5 @@ namespace MayTheFourth.Core.Contexts.FilmContext.UseCases.SearchAll
         public ResponseData? Data { get; set; }
     }
 
-    public record ResponseData(List<FilmSummaryDto> films);
+    public record ResponseData(List<FilmSummaryDto> films, int totalRecords);
 }

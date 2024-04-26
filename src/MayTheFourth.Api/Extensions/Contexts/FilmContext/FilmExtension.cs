@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace MayTheFourth.Api.Extensions.Contexts.FilmContext
 {
-    public static class SpeciesExtension
+    public static class FilmExtension
     {
         public static void AddFilmContext(this WebApplicationBuilder builder)
         {
@@ -18,10 +18,13 @@ namespace MayTheFourth.Api.Extensions.Contexts.FilmContext
         {
             #region Get all films
             app.MapGet("api/v1/films", async
-                (IRequestHandler<Core.Contexts.FilmContext.UseCases.SearchAll.Request,
-                Core.Contexts.FilmContext.UseCases.SearchAll.Response> handler) =>
+                (
+                IRequestHandler<Core.Contexts.FilmContext.UseCases.SearchAll.Request,
+                Core.Contexts.FilmContext.UseCases.SearchAll.Response> handler,
+                [FromQuery] int pageNumber = 1,
+                [FromQuery] int pageSize = 10) =>
             {
-                var request = new Core.Contexts.FilmContext.UseCases.SearchAll.Request();
+                var request = new Core.Contexts.FilmContext.UseCases.SearchAll.Request(pageNumber, pageSize);
                 var result = await handler.Handle(request, new CancellationToken());
 
                 return result.IsSuccess

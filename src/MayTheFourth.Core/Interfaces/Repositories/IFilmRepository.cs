@@ -9,7 +9,7 @@ namespace MayTheFourth.Core.Interfaces.Repositories
 {
     public interface IFilmRepository
     {
-        Task <List<Film>> GetAllAsync();
+        Task <(List<Film> films, int totalRecords)> GetAllAsync(int pageNumber, int pageSize);
         Task<Film?> GetByIdAsync(Guid id, CancellationToken cancellationToken);
         Task<Film?> GetBySlugAsync(string slug, CancellationToken cancellationToken);
     }
