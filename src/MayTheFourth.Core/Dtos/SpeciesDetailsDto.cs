@@ -4,6 +4,40 @@ namespace MayTheFourth.Core.Dtos;
 
 public class SpeciesDetailsDto
 {
+    public SpeciesDetailsDto(Species species)
+    {
+        Id = species.Id;
+        Name = species.Name;
+        Slug = species.Slug;
+        Classification = species.Classification;
+        Designation = species.Designation;
+        AverageHeight = species.AverageHeight;
+        AverageLifespan = species.AverageLifespan;
+        EyeColors = species.EyeColors;
+        HairColors = species.HairColors;
+        SkinColors = species.SkinColors;
+        Language = species.Language;
+        Created = species.Created;
+        Edited = species.Edited;
+        Homeworld = species.Homeworld;
+        HomeworldId = species.HomeworldId;
+        People = species.People.Select(person => new PersonSummaryDto
+        {
+            Id = person.Id,
+            Name = person.Name,
+            BirthYear = person.BirthYear,
+            Gender = person.Gender,
+            HomeworldId = person.HomeworldId
+        }).ToList();
+        Films = species.Films.Select(film => new FilmSummaryDto
+        {
+            Id = film.Id,
+            Title = film.Title,
+            Director = film.Director,
+            ReleaseDate = film.ReleaseDate
+        }).ToList();
+    }
+
     public Guid Id { get; set; }
     public string Name { get; set; } = string.Empty;
     public string Slug { get; set; } = string.Empty;
