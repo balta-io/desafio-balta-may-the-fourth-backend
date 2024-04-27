@@ -1,4 +1,5 @@
-﻿using MayTheFourth.Core.Dtos;
+﻿using MayTheFourth.Core.Contexts.SharedContext;
+using MayTheFourth.Core.Dtos;
 using MayTheFourth.Core.Entities;
 
 namespace MayTheFourth.Core.Contexts.SpeciesContext.UseCases.SearchAll;
@@ -17,8 +18,8 @@ public class Response : SharedContext.UseCases.Response
         Status = 200;
         Data = data;
     }
-
     public ResponseData? Data { get; set; }
+
 }
 
-public record ResponseData(List<SpeciesSummaryDto> speciesList);
+public record ResponseData(PagedList<SpeciesSummaryDto> species);

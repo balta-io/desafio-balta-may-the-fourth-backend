@@ -1,4 +1,5 @@
-﻿using MayTheFourth.Core.Entities;
+﻿using MayTheFourth.Core.Contexts.SharedContext;
+using MayTheFourth.Core.Entities;
 using MayTheFourth.Core.Interfaces.Repositories;
 using MayTheFourth.Infra.Data;
 using Microsoft.EntityFrameworkCore;
@@ -10,18 +11,19 @@ using System.Threading.Tasks;
 
 namespace MayTheFourth.Infra.Repositories
 {
-    public class SpeciesRepository : ISpeciesRepository
+    public class SpeciesRepository : BaseRepository<Species>, ISpeciesRepository
     {
-        private readonly AppDbContext _appDbContext;
+        public SpeciesRepository(AppDbContext appDbContext) : base(appDbContext) { }
 
-        public SpeciesRepository(AppDbContext appDbContext)
-            => _appDbContext = appDbContext;
+        public async Task<PagedList<Species>> GetAllAsync(int pageNumber, int pageSize)
+        {
+            var query = _appDbContext.Species.AsQueryable();
+            return await GetPagedAsync(query, pageNumber, pageSize);
+        }
 
-        public async Task<List<Species>?> GetAllAsync()
-            => await _appDbContext
-                    .Species
-                    .AsNoTracking()
-                    .ToListAsync();
+        public async Task<int> CountItemsAsync()
+        => await _appDbContext.Species.CountAsync();
+
 
         public async Task<Species?> GetByIdAsync(Guid id, CancellationToken cancellationToken)
             => await _appDbContext.Species

@@ -1,4 +1,5 @@
-﻿using MayTheFourth.Core.Entities;
+﻿using MayTheFourth.Core.Contexts.SharedContext;
+using MayTheFourth.Core.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,7 +10,8 @@ namespace MayTheFourth.Core.Interfaces.Repositories
 {
     public interface ISpeciesRepository
     {
-        Task<List<Species>?> GetAllAsync();
+        Task<int> CountItemsAsync();
+        Task<PagedList<Species>> GetAllAsync(int pageNumber, int pageSize);
         Task<Species?> GetByIdAsync(Guid id, CancellationToken cancellationToken);
     }
 }

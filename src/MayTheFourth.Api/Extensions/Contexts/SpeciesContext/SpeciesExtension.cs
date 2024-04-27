@@ -19,19 +19,21 @@ namespace MayTheFourth.Api.Extensions.Contexts.SpeciesContext
             #region Get all species
             app.MapGet("api/v1/species", async
                 (IRequestHandler<Core.Contexts.SpeciesContext.UseCases.SearchAll.Request,
-                Core.Contexts.SpeciesContext.UseCases.SearchAll.Response> handler) =>
+                Core.Contexts.SpeciesContext.UseCases.SearchAll.Response> handler,
+                [FromQuery] int pageNumber = 1,
+                [FromQuery] int pageSize = 10) =>
             {
-                var request = new Core.Contexts.SpeciesContext.UseCases.SearchAll.Request();
+                var request = new Core.Contexts.SpeciesContext.UseCases.SearchAll.Request(pageNumber, pageSize);
                 var result = await handler.Handle(request, new CancellationToken());
 
                 return result.IsSuccess
                     ? Results.Ok(result)
                     : Results.Json(result, statusCode: result.Status);
             })
-                .WithTags("Specie")
+                .WithTags("Species")
                 .Produces(TypedResults.Ok().StatusCode)
                 .Produces(TypedResults.NotFound().StatusCode)
-                .WithSummary("Returns a list of species")
+                .WithSummary("Return a list of species")
                 .WithOpenApi();
             #endregion
 
