@@ -25,6 +25,18 @@ namespace StarWars.API.Services
 
             return movies;
         }
+
+        public async Task<List<CharacterModel>?> GetCharacterAsync(CancellationToken cancellationToken)
+        {
+            var character = await _starWarsRepository.GetCharactersAsync(cancellationToken);
+            return character;
+        }
+        public async Task<CharacterModel?> GetCharacterByIdAsync(int characterId, CancellationToken cancellationToken)
+        {
+            var character = await _starWarsRepository.GetCharacterByIdAsync(characterId, cancellationToken);
+
+            return character;
+        }
     }
 }
 
