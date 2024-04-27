@@ -45,11 +45,17 @@ namespace StarWars.API.Storages.Repositores
         public async Task<List<CharacterModel>?> GetCharactersAsync(
             CancellationToken cancellationToken = default)
         {
-          
+            var response = await _context.Characters.ToListAsync(cancellationToken);
+            return response;
+        }
 
-            await Task.Delay(0);
+        public async Task<CharacterModel?> GetCharacterByIdAsync(
+            int characterId, CancellationToken cancellationToken = default)
+        {
+            var response = await _context.Characters.Where(x=> x.CharacterId == characterId)
+                .FirstOrDefaultAsync(cancellationToken);
 
-            return null;
+            return response;
         }
 
         public async Task<CharacterModel?> GetCharacterByIdAsync(

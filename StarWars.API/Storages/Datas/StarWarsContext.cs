@@ -38,6 +38,7 @@ namespace StarWars.API.Storages.Datas
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.ApplyConfiguration(new MovieConfiguration());
+            // Todo: retirar o comentario após garantir a existencia e configuração da tabela com a entidade
             modelBuilder.ApplyConfiguration(new CharacterConfiguration());
             modelBuilder.ApplyConfiguration(new PlanetConfiguration());
             //modelBuilder.ApplyConfiguration(new VehicleConfiguration());
