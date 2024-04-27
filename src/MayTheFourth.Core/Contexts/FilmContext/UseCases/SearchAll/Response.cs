@@ -1,4 +1,5 @@
-﻿using MayTheFourth.Core.Contexts.SharedContext.UseCases;
+﻿using MayTheFourth.Core.Contexts.SharedContext;
+using MayTheFourth.Core.Contexts.SharedContext.UseCases;
 using MayTheFourth.Core.Dtos;
 using MayTheFourth.Core.Entities;
 using System;
@@ -27,5 +28,5 @@ namespace MayTheFourth.Core.Contexts.FilmContext.UseCases.SearchAll
         public ResponseData? Data { get; set; }
     }
 
-    public record ResponseData(List<FilmSummaryDto> films, int totalRecords);
+    public record ResponseData(PagedList<FilmSummaryDto> films);
 }

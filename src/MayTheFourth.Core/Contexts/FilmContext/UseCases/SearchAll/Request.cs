@@ -1,12 +1,20 @@
 ﻿using MediatR;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace MayTheFourth.Core.Contexts.FilmContext.UseCases.SearchAll
+namespace MayTheFourth.Core.Contexts.FilmContext.UseCases.SearchAll;
+
+public class Request : IRequest<Response>
 {
-    public record Request(int PageNumber, int PageSize) : IRequest<Response>;
+    public Request(int pageNumber, int pageSize)
+    {
+        PageNumber = pageNumber;
+        PageSize = pageSize;
+    }
 
+    public int PageNumber { get; private set; }
+    public int PageSize { get; private set; }
+
+    public void ChangePageSize(int newPageSize)
+    {
+        PageSize = newPageSize;
+    }
 }

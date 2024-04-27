@@ -14,6 +14,9 @@ public class FilmRepository : BaseRepository<Film>, IFilmRepository
 
     }
 
+    public async Task<int> CountItemsAsync()
+        => await _appDbContext.Films.CountAsync();
+
     public async Task<PagedList<Film>> GetAllAsync(int pageNumber, int pageSize)
     {
         var query = _appDbContext.Films.AsQueryable();

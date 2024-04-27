@@ -6,6 +6,7 @@ using MediatR;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Numerics;
 using System.Text;
 using System.Threading.Tasks;
@@ -25,9 +26,16 @@ namespace MayTheFourth.Core.Contexts.FilmContext.UseCases.SearchAll
         {
             #region GetAllFilms
             PagedList<Film>? films;
+            int countItems = 0;
             try
             {
+                if (request.PageSize > 30) 
+                    request.ChangePageSize(30);
+
+                countItems = await _filmRepository.CountItemsAsync();
                 films = await _filmRepository.GetAllAsync(request.PageNumber, request.PageSize);
+                if (request.PageSize > films.Count)
+                    films.ChangePageSize(countItems);
             }
             catch (Exception ex)
             {
@@ -35,10 +43,18 @@ namespace MayTheFourth.Core.Contexts.FilmContext.UseCases.SearchAll
             }
 
             List<FilmSummaryDto> filmSummaryList = films.Items!.Select(film => new FilmSummaryDto(film)).ToList();
+            
+            PagedList<FilmSummaryDto> filmPagedSummaryList = 
+                new PagedList<FilmSummaryDto>(films.PageNumber, films.PageSize, countItems, filmSummaryList);
+          
+            if (filmPagedSummaryList.PageNumber > Math.Ceiling((double)filmPagedSummaryList.Count / filmPagedSummaryList.PageSize))
+            {
+                return new Response($"Número de página inválido.", (int)HttpStatusCode.BadRequest);
+            }
             #endregion
 
             #region Response
-            return new Response("Lista de filmes encontrada", new ResponseData(new(filmSummaryList), films.Count));
+            return new Response("Lista de filmes encontrada", new ResponseData(filmPagedSummaryList));
             #endregion
         }
     }
