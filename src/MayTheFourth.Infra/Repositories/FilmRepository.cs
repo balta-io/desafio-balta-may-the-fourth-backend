@@ -1,31 +1,24 @@
-﻿using MayTheFourth.Core.Entities;
+﻿using MayTheFourth.Core.Contexts.SharedContext;
+using MayTheFourth.Core.Entities;
 using MayTheFourth.Core.Interfaces.Repositories;
 using MayTheFourth.Infra.Data;
 using Microsoft.EntityFrameworkCore;
 
 namespace MayTheFourth.Infra.Repositories;
 
-public class FilmRepository : IFilmRepository
+public class FilmRepository : BaseRepository<Film>, IFilmRepository
 {
-    private readonly AppDbContext _appDbContext;
+    public FilmRepository(AppDbContext appDbContext) 
+        : base(appDbContext)
+    {
 
-    public FilmRepository(AppDbContext appDbContext)
-        =>  _appDbContext = appDbContext;
+    }
 
-
-	public async Task<(List<Film> films, int totalRecords)> GetAllAsync(int pageNumber, int pageSize)
-	{
-		var totalRecords = await _appDbContext.Films.CountAsync();
-
-		var films =  await _appDbContext
-							.Films
-					.Skip((pageNumber - 1) * pageSize)
-					.Take(pageSize)
-					.AsNoTracking()
-					.ToListAsync();
-		return (films, totalRecords);
-	}
-
+    public async Task<PagedList<Film>> GetAllAsync(int pageNumber, int pageSize)
+    {
+        var query = _appDbContext.Films.AsQueryable();
+        return await GetPagedAsync(query, pageNumber, pageSize);
+    }
 
     public async Task<Film?> GetByIdAsync(Guid id, CancellationToken cancellationToken)
         => await _appDbContext.Films

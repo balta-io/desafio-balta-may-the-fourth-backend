@@ -1,4 +1,5 @@
-﻿using MayTheFourth.Core.Dtos;
+﻿using MayTheFourth.Core.Contexts.SharedContext;
+using MayTheFourth.Core.Dtos;
 using MayTheFourth.Core.Entities;
 using MayTheFourth.Core.Interfaces.Repositories;
 using MediatR;
@@ -23,22 +24,21 @@ namespace MayTheFourth.Core.Contexts.FilmContext.UseCases.SearchAll
         public async Task<Response> Handle(Request request, CancellationToken cancellationToken)
         {
             #region GetAllFilms
-            List<Film>? films;
-            int totalRecords;
+            PagedList<Film>? films;
             try
             {
-                (films, totalRecords) = await _filmRepository.GetAllAsync(request.PageNumber, request.PageSize);
+                films = await _filmRepository.GetAllAsync(request.PageNumber, request.PageSize);
             }
             catch (Exception ex)
             {
                 return new Response($"Erro: {ex.Message}", 500);
             }
 
-            List<FilmSummaryDto> filmSummaryList = films.Select(film => new FilmSummaryDto(film)).ToList();
+            List<FilmSummaryDto> filmSummaryList = films.Items!.Select(film => new FilmSummaryDto(film)).ToList();
             #endregion
 
             #region Response
-            return new Response("Lista de filmes encontrada", new ResponseData(new(filmSummaryList), totalRecords));
+            return new Response("Lista de filmes encontrada", new ResponseData(new(filmSummaryList), films.Count));
             #endregion
         }
     }
