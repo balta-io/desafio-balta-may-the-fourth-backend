@@ -38,6 +38,14 @@ namespace StarWars.API.Storages.Repositores
 
 		Task<CharacterModel?> CreateCharacterAsync(
 			CharacterModel model,  CancellationToken cancellationToken = default);
+
+		Task<PlanetModel?> GetPlanetByIdAsync(
+		   int planetId,
+		   CancellationToken cancellationToken = default);
+
+		Task<PlanetModel?> CreatePlanetAsync(
+			PlanetModel model,
+			CancellationToken cancellationToken = default);
     }
 }
 

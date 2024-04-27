@@ -70,6 +70,27 @@ namespace StarWars.API.Storages.Repositores
 
             return result == 0 ? null : model;
         }
+
+        public async Task<PlanetModel?> GetPlanetByIdAsync(
+            int planetId,
+            CancellationToken cancellationToken = default)
+        {
+            var response = await _context.Planet.Where(x => x.PlanetId == planetId)
+                 .FirstOrDefaultAsync(cancellationToken);
+
+            await Task.Delay(0);
+
+            return null;
+        }
+
+        public async Task<PlanetModel?> CreatePlanetAsync(PlanetModel model, CancellationToken cancellationToken = default)
+        {
+            _context.Planet.Add(model);
+
+            var result = await _context.SaveChangesAsync(cancellationToken);
+
+            return result == 0 ? null : model;
+        }
     }
 }
 

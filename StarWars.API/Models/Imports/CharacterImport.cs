@@ -1,13 +1,12 @@
-﻿using StarWars.API.Models;
-using System.Text.Json.Serialization;
+﻿namespace StarWars.API.Models.Imports;
 
 public class CharacterImport
 {
     public string Message { get; set; }
-    public List<Result> Results { get; set; }
+    public List<CharacterResult> Results { get; set; }
 }
 
-public class Result
+public class CharacterResult
 {
     public string Name { get; set; }
     public string Height { get; set; }

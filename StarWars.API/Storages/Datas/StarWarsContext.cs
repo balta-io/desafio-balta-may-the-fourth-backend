@@ -15,8 +15,8 @@ namespace StarWars.API.Storages.Datas
         }
 
         #region - Configuração de DbSets -
-        public DbSet<MovieModel> Movies { get; private set; }
-        // Todo: retirar o comentario após garantir a existencia e configuração da tabela com a entidade
+         public DbSet<MovieModel> Movies { get; private set; }
+         public DbSet<PlanetModel> Planet { get; private set; }
          public DbSet<CharacterModel> Characters { get; private set; }
          public DbSet<VehicleModel> Vehicles { get; private set; }
         #endregion
@@ -37,11 +37,9 @@ namespace StarWars.API.Storages.Datas
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-
             modelBuilder.ApplyConfiguration(new MovieConfiguration());
-
             modelBuilder.ApplyConfiguration(new CharacterConfiguration());
-
+            modelBuilder.ApplyConfiguration(new PlanetConfiguration());
             //modelBuilder.ApplyConfiguration(new VehicleConfiguration());
 
             modelBuilder.UsePropertyAccessMode(PropertyAccessMode.Property);
