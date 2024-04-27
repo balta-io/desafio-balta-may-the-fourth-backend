@@ -11,6 +11,7 @@ public class AppDbContext : DbContext
         
     }
 
+    public DbSet<Vehicle> Vehicles { get; set; }
     public DbSet<Planet> Planets { get; set; }
     public DbSet<Starship> Starships { get; set; }
     public DbSet<Film> Films { get; set; }
