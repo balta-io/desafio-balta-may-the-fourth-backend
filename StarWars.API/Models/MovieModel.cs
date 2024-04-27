@@ -22,8 +22,8 @@
         public DateTime Edited { get; private set; }
         public DateTime Created { get; private set; }
 
-        //public List<VehicleModel> Vehicles { get; set; }
-		//public List<PlanetModel> planets { get; set; }
+        public List<VehicleModel> Vehicles { get; set; }
+		public List<PlanetModel> planets { get; set; }
 
 		// public List<CharacterModel> characters { get; set; }
 		// public List<StarshipModel> starships { get; set; }
