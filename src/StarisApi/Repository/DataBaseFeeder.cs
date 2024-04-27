@@ -26,11 +26,9 @@ public class DataBaseFeeder
 
     public async Task<List<JsonElement>> GetInfoFromPeopleEndpoint(string endpointBase, int interationLimit)
     {
-        //var endpoint = "people/";
-
         List<JsonElement> infos = [];
 
-        for (var i = 0; i < interationLimit/*9*/; i++)
+        for (var i = 0; i < interationLimit; i++)
         {
             var response = await _client.GetAsync($"{_urlBase}/{endpointBase}?page={i + 1}");
             var stream = await response.Content.ReadAsStreamAsync();
