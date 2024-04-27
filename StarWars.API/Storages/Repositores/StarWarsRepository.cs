@@ -29,7 +29,7 @@ namespace StarWars.API.Storages.Repositores
             CancellationToken cancellationToken = default)
         {
             var response = await _context.Movies.ToListAsync(cancellationToken);
-            
+
             return response;
         }
 
@@ -41,6 +41,7 @@ namespace StarWars.API.Storages.Repositores
 
             return response;
         }
+
         public async Task<List<CharacterModel>?> GetCharactersAsync(
             CancellationToken cancellationToken = default)
         {
@@ -50,6 +51,24 @@ namespace StarWars.API.Storages.Repositores
             await Task.Delay(0);
 
             return null;
+        }
+
+        public async Task<CharacterModel?> GetCharacterByIdAsync(
+            int characterId, 
+            CancellationToken cancellationToken = default)
+        {
+           var response = await _context.Characters.Where(x => x.CharacterId == characterId)
+           
+            return response;
+        }
+
+        public async Task<CharacterModel?> CreateCharacterAsync(CharacterModel model, CancellationToken cancellationToken = default)
+        {
+            _context.Characters.Add(model);
+
+            var result = await _context.SaveChangesAsync(cancellationToken);
+
+            return result == 0 ? null : model;
         }
     }
 }
