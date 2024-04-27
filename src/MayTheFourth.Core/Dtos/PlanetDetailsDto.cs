@@ -23,6 +23,7 @@ public class PlanetDetailsDto
         {
             Id = resident.Id,
             Name = resident.Name,
+            Slug = resident.Slug,
             BirthYear = resident.BirthYear,
             Gender = resident.Gender,
             HomeworldId = resident.HomeworldId
@@ -31,6 +32,7 @@ public class PlanetDetailsDto
         {
             Id = film.Id,
             Title = film.Title,
+            Slug = film.Slug,
             Director = film.Director,
             ReleaseDate = film.ReleaseDate
         }).ToList();
