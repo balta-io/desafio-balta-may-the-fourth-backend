@@ -1,5 +1,5 @@
 using System.Net;
-using MayTheFourth.Core.Entities;
+using MayTheFourth.Core.Dtos;
 
 namespace MayTheFourth.Core.Contexts.VehicleContext.UseCases.SearchAll;
 
@@ -21,4 +21,4 @@ public class Response : SharedContext.UseCases.Response
     public ResponseData? Data { get; set; }
 }
 
-public record ResponseData(List<Vehicle> vehicles);
+public record ResponseData(List<VehicleSummaryDto> vehicles, int totalRecords);

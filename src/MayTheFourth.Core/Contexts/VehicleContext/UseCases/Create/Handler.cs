@@ -1,3 +1,4 @@
+using System.Net;
 using MayTheFourth.Core.Entities;
 using MayTheFourth.Core.Interfaces.Repositories;
 using MediatR;
@@ -24,11 +25,11 @@ public class Handler : IRequestHandler<Request, Response>
         {
             var exists = await _vehicleRepository.AnyAsync(request.Name, request.Model);
             if (exists)
-                return new Response("Erro: veículo já cadastrado.", 400);
+                return new Response("Erro: veículo já cadastrado.", (int)HttpStatusCode.BadRequest);
         }
         catch (Exception ex)
         {
-            return new Response($"Erro: {ex.Message}", 500);
+            return new Response($"Erro: {ex.Message}", (int)HttpStatusCode.InternalServerError);
         }
         #endregion
 
@@ -41,7 +42,7 @@ public class Handler : IRequestHandler<Request, Response>
         }
         catch(Exception ex)
         {
-            return new Response($"Erro: {ex.Message}", 500);
+            return new Response($"Erro: {ex.Message}", (int)HttpStatusCode.InternalServerError);
         }
         #endregion
 
@@ -50,7 +51,7 @@ public class Handler : IRequestHandler<Request, Response>
         #endregion
     }
 
-    private Vehicle CreateVehicle(Request request)
+    private static Vehicle CreateVehicle(Request request)
     {
         var vehicle = new Vehicle
         {

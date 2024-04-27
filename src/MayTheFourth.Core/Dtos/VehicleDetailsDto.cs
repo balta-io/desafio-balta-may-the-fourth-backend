@@ -4,6 +4,42 @@ namespace MayTheFourth.Core.Dtos;
 
 public class VehicleDetailsDto
 {
+    public VehicleDetailsDto(Vehicle vehicle)
+    {
+        Id = vehicle.Id;
+        Name = vehicle.Name;
+        Slug = vehicle.Slug;
+        Model = vehicle.Model;
+        VehicleClass = vehicle.VehicleClass;
+        Manufacturer = vehicle.Manufacturer;
+        Length = vehicle.Length;
+        CostInCredits = vehicle.CostInCredits;
+        Crew = vehicle.Crew;
+        Passengers = vehicle.Passengers;
+        MaxAtmospheringSpeed = vehicle.MaxAtmospheringSpeed;
+        CargoCapacity = vehicle.CargoCapacity;
+        Consumables = vehicle.Consumables;
+        Created = vehicle.Created;
+        Edited = vehicle.Edited;
+        Films = vehicle.Films.Select(films => new FilmSummaryDto()
+        {
+            Id = films.Id,
+            Title = films.Title,
+            Slug = films.Slug,
+            Director = films.Director,
+            ReleaseDate = films.ReleaseDate
+        }).ToList();
+        Pilots = vehicle.Pilots.Select(pilots => new PersonSummaryDto()
+        {
+            Id = pilots.Id,
+            Name = pilots.Name,
+            Slug = pilots.Slug,
+            BirthYear = pilots.BirthYear,
+            Gender = pilots.Gender,
+            HomeworldId = pilots.HomeworldId
+        }).ToList();
+    }
+    
     public Guid Id { get; set; }
     public string Name { get; set; } = string.Empty;
     public string Slug { get; set; } = string.Empty;
