@@ -29,7 +29,7 @@ namespace StarWars.API.Storages.Repositores
             CancellationToken cancellationToken = default)
         {
             var response = await _context.Movies.ToListAsync(cancellationToken);
-            
+
             return response;
         }
 
@@ -59,10 +59,7 @@ namespace StarWars.API.Storages.Repositores
            var response = await _context.Characters.Where(x => x.CharacterId == characterId)
                 .FirstOrDefaultAsync(cancellationToken);
 
-
-            await Task.Delay(0);
-
-            return null;
+            return response;
         }
 
         public async Task<CharacterModel?> CreateCharacterAsync(CharacterModel model, CancellationToken cancellationToken = default)

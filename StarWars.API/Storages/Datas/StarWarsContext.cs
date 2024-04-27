@@ -1,4 +1,4 @@
-
+using System.Configuration;
 using Microsoft.EntityFrameworkCore;
 using StarWars.API.Models;
 using StarWars.API.Storages.Datas.EntityConfigurations;
@@ -16,10 +16,10 @@ namespace StarWars.API.Storages.Datas
 
         #region - Configuração de DbSets -
         public DbSet<MovieModel> Movies { get; private set; }
-        public DbSet<CharacterModel> Characters { get; private set; }
-       //  public DbSet<VehicleModel> Vehicles { get; private set; }
+        // Todo: retirar o comentario após garantir a existencia e configuração da tabela com a entidade
+         public DbSet<CharacterModel> Characters { get; private set; }
+         public DbSet<VehicleModel> Vehicles { get; private set; }
         #endregion
-
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -41,6 +41,8 @@ namespace StarWars.API.Storages.Datas
             modelBuilder.ApplyConfiguration(new MovieConfiguration());
 
             modelBuilder.ApplyConfiguration(new CharacterConfiguration());
+
+            //modelBuilder.ApplyConfiguration(new VehicleConfiguration());
 
             modelBuilder.UsePropertyAccessMode(PropertyAccessMode.Property);
 
