@@ -12,11 +12,11 @@
 </div>
 
 1. <a href="#desafio">Desafio</a><br>
-2. <a href="#tecnologias">Tecnologias</a><br>
-3. <a href="#arquitetura">Arquiteturas e Infraestrutura</a><br>
-4. <a href="#skills">Skills Desenvolvidas</a><br>
-5. <a href="#testes">Como testar o projeto</a><br>
-6. <a href="#participantes">Participantes</a><br>
+2. <a href="#participantes">Participantes</a><br>
+3. <a href="#tecnologias">Tecnologias</a><br>
+4. <a href="#arquitetura">Arquiteturas e Infraestrutura</a><br>
+5. <a href="#skills">Skills Desenvolvidas</a><br>
+6. <a href="#testes">Como testar o projeto</a><br>
 7. <a href="#endpoints">Endpoints</a><br>
 8. <a href="#participe">Participe</a><br>
 
@@ -30,6 +30,49 @@
 ## 📱 Projeto
 
 Esta API proporciona uma plataforma para consulta, cadastro, remoção e atualização de dados relacionados ao vasto universo de Star Wars. Os dados disponíveis incluem informações sobre Filmes, Personagens, Naves, Veículos, Planetas e Espécies, permitindo aos desenvolvedores explorar e interagir com diversos aspectos do universo fictício de Star Wars.
+
+<section id="participantes"> </section>
+
+# 💂‍Participantes
+
+**Capitão:** Igor Santiago \
+<img src="https://avatars.githubusercontent.com/u/99906642?v=4" width="150"/>
+<div style="display: inline_block;">
+    <a href="https://www.linkedin.com/in/igorsantiago" target="_blank"><img src="https://skillicons.dev/icons?i=linkedin"></a> 
+    <a href="https://github.com/igorsantiiago" target="_blank"><img src="https://skillicons.dev/icons?i=github"></a> 
+</div>
+<br>
+
+**Soldado:** Eduardo Freitas \
+<img src="https://avatars.githubusercontent.com/u/13337819?v=4" width="150"/>
+<div style="display: inline_block;">
+    <a href="https://www.linkedin.com/in/eduardo-freitas-ehff/" target="_blank"><img src="https://skillicons.dev/icons?i=linkedin"></a> 
+    <a href="https://github.com/eduardoboca" target="_blank"><img src="https://skillicons.dev/icons?i=github"></a> 
+</div>
+<br>
+
+**Soldado:** Erik Coelho \
+<img src="https://avatars.githubusercontent.com/u/79767115?v=4" width="150"/>
+<div style="display: inline_block;">
+    <a href="https://www.linkedin.com/in/erik-coelho-56121318b/" target="_blank"><img src="https://skillicons.dev/icons?i=linkedin"></a> 
+    <a href="https://github.com/ErikCoelho" target="_blank"><img src="https://skillicons.dev/icons?i=github"></a> 
+</div>
+<br>
+
+**Soldado:**  Everson Rezende \
+<img src="https://avatars.githubusercontent.com/u/61418106?v=4" width="150"/>
+<div style="display: inline_block;">
+    <a href="https://www.linkedin.com/in/eversonrezende/" target="_blank"><img src="https://skillicons.dev/icons?i=linkedin"></a> 
+    <a href="https://github.com/eversonrezende" target="_blank"><img src="https://skillicons.dev/icons?i=github"></a> 
+</div>
+<br>
+
+**Soldado:** Lucas Mikó \
+<img src="https://avatars.githubusercontent.com/u/63825231?v=4" width="150"/>
+<div style="display: inline_block;">
+    <a href="https://www.linkedin.com/in/lucasmiko/" target="_blank"><img src="https://skillicons.dev/icons?i=linkedin"></a> 
+    <a href="https://github.com/lucasmiko" target="_blank"><img src="https://skillicons.dev/icons?i=github"></a> 
+</div>
 
 <section id="tecnologias"> </section>
 
@@ -47,7 +90,7 @@ Esta API proporciona uma plataforma para consulta, cadastro, remoção e atualiz
 * Repository Pattern
 * Mediator Pattern
 
-### **Módulos**\
+### **Módulos**
 Adotamos a estratégia de dividir o sistema em módulos independentes, cada um com uma função específica e claramente definida, seguindo os princípios da Clean Architecture. Essa abordagem promove clareza do código e facilita a expansão e a evolução da aplicação ao longo do tempo, garantindo que cada parte do sistema mantenha sua responsabilidade definida.
 - **MayTheFourth.Core**\
 Seguindo os princípios da Clean Architecture, o Core contém a lógica de negócios e as entidades principais da aplicação. Aqui são definidos os modelos de dados, serviços e operações essenciais para o funcionamento da API, mantendo-se independente de detalhes de implementação externos.
@@ -111,48 +154,6 @@ dotnet watch run
 
 Agora que estamos com a API rodando, podemos fazer requisições necessárias utilizando um headless browser como o Postman e os Endpoints descritos no próximo tópico.
 
-<section id="participantes"> </section>
-
-# 💂‍Participantes
-
-**Capitão:** Igor Santiago \
-<img src="https://avatars.githubusercontent.com/u/99906642?v=4" width="150"/>
-<div style="display: inline_block;">
-    <a href="https://www.linkedin.com/in/igorsantiago" target="_blank"><img src="https://skillicons.dev/icons?i=linkedin"></a> 
-    <a href="https://github.com/igorsantiiago" target="_blank"><img src="https://skillicons.dev/icons?i=github"></a> 
-</div>
-<br>
-
-**Soldado:** Eduardo Freitas \
-<img src="https://avatars.githubusercontent.com/u/13337819?v=4" width="150"/>
-<div style="display: inline_block;">
-    <a href="https://www.linkedin.com/in/eduardo-freitas-ehff/" target="_blank"><img src="https://skillicons.dev/icons?i=linkedin"></a> 
-    <a href="https://github.com/eduardoboca" target="_blank"><img src="https://skillicons.dev/icons?i=github"></a> 
-</div>
-<br>
-
-**Soldado:** Erik Coelho \
-<img src="https://avatars.githubusercontent.com/u/79767115?v=4" width="150"/>
-<div style="display: inline_block;">
-    <a href="https://www.linkedin.com/in/erik-coelho-56121318b/" target="_blank"><img src="https://skillicons.dev/icons?i=linkedin"></a> 
-    <a href="https://github.com/ErikCoelho" target="_blank"><img src="https://skillicons.dev/icons?i=github"></a> 
-</div>
-<br>
-
-**Soldado:**  Everson Rezende \
-<img src="https://avatars.githubusercontent.com/u/61418106?v=4" width="150"/>
-<div style="display: inline_block;">
-    <a href="https://www.linkedin.com/in/eversonrezende/" target="_blank"><img src="https://skillicons.dev/icons?i=linkedin"></a> 
-    <a href="https://github.com/eversonrezende" target="_blank"><img src="https://skillicons.dev/icons?i=github"></a> 
-</div>
-<br>
-
-**Soldado:** Lucas Mikó \
-<img src="https://avatars.githubusercontent.com/u/63825231?v=4" width="150"/>
-<div style="display: inline_block;">
-    <a href="https://www.linkedin.com/in/lucasmiko/" target="_blank"><img src="https://skillicons.dev/icons?i=linkedin"></a> 
-    <a href="https://github.com/lucasmiko" target="_blank"><img src="https://skillicons.dev/icons?i=github"></a> 
-</div>
 <br>
 
 <section id="endpoints"> </section>
