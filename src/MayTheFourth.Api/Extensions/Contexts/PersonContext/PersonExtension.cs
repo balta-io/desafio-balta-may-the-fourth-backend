@@ -19,9 +19,11 @@ public static class PersonExtension
         #region Get all people
         app.MapGet("api/v1/people", async
             (IRequestHandler<Core.Contexts.PersonContext.UseCases.SearchAll.Request,
-            Core.Contexts.PersonContext.UseCases.SearchAll.Response> handler) =>
+            Core.Contexts.PersonContext.UseCases.SearchAll.Response> handler,
+            [FromQuery] int pageNumber = 1,
+            [FromQuery] int pageSize = 10) =>
         {
-            var request = new Core.Contexts.PersonContext.UseCases.SearchAll.Request();
+            var request = new Core.Contexts.PersonContext.UseCases.SearchAll.Request(pageNumber, pageSize);
             var result = await handler.Handle(request, new CancellationToken());
 
             return result.IsSuccess
