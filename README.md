@@ -33,7 +33,7 @@ Esta API proporciona uma plataforma para consulta, cadastro, remoção e atualiz
 
 <section id="participantes"> </section>
 
-# 💂‍Participantes
+## 💂‍Participantes
 
 **Capitão:** Igor Santiago \
 <img src="https://avatars.githubusercontent.com/u/99906642?v=4" width="150"/>
