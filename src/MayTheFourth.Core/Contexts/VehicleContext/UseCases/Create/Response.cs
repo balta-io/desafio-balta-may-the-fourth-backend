@@ -1,6 +1,7 @@
+using System.Net;
 using MayTheFourth.Core.Entities;
 
-namespace MayTheFourth.Core.Contexts.VehicleContext.UseCases.CreateVehicle;
+namespace MayTheFourth.Core.Contexts.VehicleContext.UseCases.Create;
 
 public class Response : SharedContext.UseCases.Response
 {
@@ -13,7 +14,7 @@ public class Response : SharedContext.UseCases.Response
     public Response(string message, ResponseData data)
     {
         Message = message;
-        Status = 201;
+        Status = (int)HttpStatusCode.Created;
         Data = data;
     }
 

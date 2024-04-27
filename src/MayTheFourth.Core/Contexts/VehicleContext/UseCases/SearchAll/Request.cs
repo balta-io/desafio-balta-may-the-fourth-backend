@@ -1,6 +1,6 @@
 using MediatR;
 
-namespace MayTheFourth.Core.Contexts.VehicleContext.UseCases.SearchAllVehicles;
+namespace MayTheFourth.Core.Contexts.VehicleContext.UseCases.SearchAll;
 
 public class Request : IRequest<Response>
 {

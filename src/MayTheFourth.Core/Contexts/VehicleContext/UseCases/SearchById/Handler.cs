@@ -1,5 +1,4 @@
 using System.Net;
-using MayTheFourth.Core.Contexts.VehicleContext.UseCases.SearchAllVehicles;
 using MayTheFourth.Core.Entities;
 using MayTheFourth.Core.Interfaces.Repositories;
 using MediatR;

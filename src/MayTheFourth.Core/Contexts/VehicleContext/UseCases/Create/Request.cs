@@ -1,7 +1,7 @@
 using MayTheFourth.Core.Entities;
 using MediatR;
 
-namespace MayTheFourth.Core.Contexts.VehicleContext.UseCases.CreateVehicle;
+namespace MayTheFourth.Core.Contexts.VehicleContext.UseCases.Create;
 
 public record Request(
     string Name,

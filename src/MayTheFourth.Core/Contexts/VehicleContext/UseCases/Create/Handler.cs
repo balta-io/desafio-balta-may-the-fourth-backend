@@ -2,7 +2,7 @@ using MayTheFourth.Core.Entities;
 using MayTheFourth.Core.Interfaces.Repositories;
 using MediatR;
 
-namespace MayTheFourth.Core.Contexts.VehicleContext.UseCases.CreateVehicle;
+namespace MayTheFourth.Core.Contexts.VehicleContext.UseCases.Create;
 
 public class Handler : IRequestHandler<Request, Response>
 {
