@@ -14,10 +14,9 @@
         public string? ReleaseDate { get; private set; }
         public string? OpeningCrawl { get; private set; }
         public string? Url { get; private set; }
-
-        //public List<VehicleModel> Vehicles { get; set; }
-        //public List<PlanetModel> planets { get; set; }
-
+      
+        public List<VehicleModel> Vehicles { get; set; }
+		    public List<PlanetModel> planets { get; set; }
         // public List<CharacterModel> characters { get; set; }
         // public List<StarshipModel> starships { get; set; }
 

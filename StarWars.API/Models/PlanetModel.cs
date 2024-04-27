@@ -4,19 +4,18 @@ public class PlanetModel
 {
     public PlanetModel()
     {
-        
     }
 
-    public int PlanetId { get; set; }
-    public string Name { get; set; }
-    public string RotationPeriod { get; set; }
-    public string OrbitalPeriod { get; set; }
-    public string Diameter { get; set; }
-    public string Climate { get; set; }
-    public string Gravity { get; set; }
-    public string Terrain { get; set; }
-    public string SurfaceWater { get; set; }
-    public string Population { get; set; }
-    //public List<CharacterModel> Characters { get; set;}
-    // public List<MovieModel> Movies { get; set; }
+    public int PlanetId { get; private set; }
+    public string Name { get; private set; }
+    public string RotationPeriod { get; private set; }
+    public string OrbitalPeriod { get; private set; }
+    public string Diameter { get; private set; }
+    public string Climate { get; private set; }
+    public string Gravity { get; private set; }
+    public string Terrain { get; private set; }
+    public string SurfaceWater { private get; set; }
+    public string Population { get; private set; }
+    public List<CharacterModel> characters { get; set; }
+    public List<MovieModel> movies { get; set; }
 }
