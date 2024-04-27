@@ -133,6 +133,15 @@ namespace MayTheFourth.Utils.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to O arquivo Sql {0} não pôde ser executado. Motivo: {1}.
+        /// </summary>
+        public static string SqlFileCantBeExecuted {
+            get {
+                return ResourceManager.GetString("SqlFileCantBeExecuted", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Processado com sucesso.
         /// </summary>
         public static string Success {

@@ -141,6 +141,9 @@
   <data name="ReleaseDateIsRequired" xml:space="preserve">
     <value>Data de lançamento é obrigatório</value>
   </data>
+  <data name="SqlFileCantBeExecuted" xml:space="preserve">
+    <value>O arquivo Sql {0} não pôde ser executado. Motivo: {1}</value>
+  </data>
   <data name="Success" xml:space="preserve">
     <value>Processado com sucesso</value>
   </data>
