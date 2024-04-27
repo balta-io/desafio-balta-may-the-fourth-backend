@@ -143,8 +143,10 @@ Além do Docker com SqlServer, precisaremos também instalar o CLI do EF utlizan
 dotnet tool install — global dotnet-ef
 ```
 
-Agora, com o container e o CLI do EF prontos, vamos criar o banco e inicializar a API
-
+Agora, com o container e o CLI do EF prontos, vamos gerar os migrations atualizados do banco de dados e inicializar o projetto
+```
+dotnet ef migrations add GitHubMigrattion
+```
 ```
 dotnet ef database update
 ```
