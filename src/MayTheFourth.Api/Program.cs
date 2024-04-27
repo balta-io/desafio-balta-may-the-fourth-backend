@@ -29,7 +29,21 @@ builder.Services.AddEndpointsApiExplorer();
 
 builder.Services.AddSwaggerGen( options =>
 {
-    options.SwaggerDoc("v1", new OpenApiInfo { Title = "MayTheFourth API", Version = "v1" });
+    options.SwaggerDoc("v1", new OpenApiInfo 
+    { 
+        Title = "MayTheFourth API - Rebel Renegades", 
+        Version = "v1",
+        Description = "API para consulta de dados do universo de Star Wars",
+        Contact = new OpenApiContact
+        {
+            Name = "Capitão Igor",
+            Url = new Uri("https://github.com/igorsantiiago/desafio-balta-may-the-fourth-backend")
+        },
+        License = new OpenApiLicense
+        {
+            Name = "MIT License"
+        }
+    });
 
     var xmlFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
     var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);

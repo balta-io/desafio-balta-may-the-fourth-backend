@@ -72,7 +72,10 @@ public static class PersonExtension
             return result.IsSuccess
                 ? Results.Ok(result)
                 : Results.Json(result, statusCode: result.Status);
-        });
+        })
+            .WithTags("Person")
+            .WithSummary("Return a person according to slug")
+            .WithOpenApi();
         #endregion
 
         #region Create person

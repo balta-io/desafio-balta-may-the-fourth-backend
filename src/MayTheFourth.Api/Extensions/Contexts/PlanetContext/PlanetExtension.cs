@@ -72,7 +72,10 @@ public static class PlanetExtension
             return result.IsSuccess
                 ? Results.Ok(result)
                 : Results.Json(result, statusCode: result.Status);
-        });
+        })
+            .WithTags("Planet")
+            .WithSummary("Return a planet according to slug")
+            .WithOpenApi();
         #endregion
 
         #region Create planet
@@ -108,7 +111,10 @@ public static class PlanetExtension
             return result.IsSuccess
                 ? Results.Accepted("", result)
                 : Results.Json(result, statusCode: result.Status);
-        });
+        })
+            .WithTags("Planet")
+            .WithSummary("Remove a planet according to ID")
+            .WithOpenApi();
         #endregion
     }
 }
