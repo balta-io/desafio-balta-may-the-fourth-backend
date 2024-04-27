@@ -26,17 +26,13 @@ namespace StarWars.API.Storages.Datas.EntityConfigurations
             builder.Property(x => x.Director)
                 .HasColumnName("director");
 
-            builder.Property(x => x.Description)
+            builder.Property(x => x.Producer)
                 .HasColumnName("producer");
 
             builder.Property(x => x.ReleaseDate)
                 .HasColumnName("releaseDate");
 
-            builder.Ignore(x => x.Id);
-            builder.Ignore(x => x.Uid);
             builder.Ignore(x => x.Url);
-            builder.Ignore(x => x.Edited);
-            builder.Ignore(x => x.Created);
 
             //builder.Ignore(x=> x.Vehicles);
         }

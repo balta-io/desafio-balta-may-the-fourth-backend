@@ -10,6 +10,7 @@ public class CharacterConfiguration : IEntityTypeConfiguration<CharacterModel>
     {
         builder.ToTable("characters");
         builder.HasKey(x => x.CharacterId);
+        
         builder.Property(x => x.CharacterId).HasColumnName("Id");
         builder.Property(x => x.CharacterId).ValueGeneratedOnAdd();
 
@@ -30,5 +31,8 @@ public class CharacterConfiguration : IEntityTypeConfiguration<CharacterModel>
         builder.Property(x => x.BirthYear).HasColumnName("birth_year");
 
         builder.Property(x => x.Gender).HasMaxLength(10); 
+
+        builder.Ignore(x => x.Created);
+        builder.Ignore(x => x.Edited);
     }
 }

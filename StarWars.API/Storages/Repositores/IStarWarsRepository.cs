@@ -31,7 +31,21 @@ namespace StarWars.API.Storages.Repositores
 		/// <returns>Retorna uma lista de personagens</returns>
 		Task<List<CharacterModel>?> GetCharactersAsync(
 			CancellationToken cancellationToken = default);
-        Task<CharacterModel?> GetCharacterByIdAsync(int characterId, CancellationToken cancellationToken);
+
+        Task<CharacterModel?> GetCharacterByIdAsync(
+			int characterId, 
+			CancellationToken cancellationToken = default);
+
+		Task<CharacterModel?> CreateCharacterAsync(
+			CharacterModel model,  CancellationToken cancellationToken = default);
+
+		Task<PlanetModel?> GetPlanetByIdAsync(
+		   int planetId,
+		   CancellationToken cancellationToken = default);
+
+		Task<PlanetModel?> CreatePlanetAsync(
+			PlanetModel model,
+			CancellationToken cancellationToken = default);
     }
 }
 
