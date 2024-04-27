@@ -45,6 +45,12 @@ var app = builder.Build();
 
 app.UseRouting();
 
+app.UseCors(policy => 
+                    policy.AllowAnyOrigin()
+                    .AllowAnyMethod()
+                    .AllowAnyHeader()
+            );
+
 app.UseEndpoints(endpoint =>
 {
     _ = endpoint.MapGet("/", async context => await Task.Run(() =>
