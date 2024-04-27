@@ -23,6 +23,7 @@ public class PersonDetailsDto
         {
             Id = film.Id,
             Title = film.Title,
+            Slug = film.Slug,
             Director = film.Director,
             ReleaseDate = film.ReleaseDate
         }).ToList();
@@ -30,6 +31,7 @@ public class PersonDetailsDto
         {
             Id = species.Id,
             Name = species.Name,
+            Slug = species.Slug,
             Classification = species.Classification,
             Designation = species.Designation,
             Language = species.Language,
@@ -38,6 +40,7 @@ public class PersonDetailsDto
         {
             Id = starship.Id,
             Name = starship.Name,
+            Slug = starship.Slug,
             Model = starship.Model,
             Manufacturer = starship.Manufacturer
         }).ToList();
@@ -45,6 +48,7 @@ public class PersonDetailsDto
         {
             Id = vehicle.Id,
             Name = vehicle.Name,
+            Slug = vehicle.Slug,
             Model = vehicle.Model,
             Manufacturer = vehicle.Manufacturer
         }).ToList();

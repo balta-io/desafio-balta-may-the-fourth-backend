@@ -18,12 +18,18 @@ public class FilmDetailsDto
         Edited = film.Edited;
         SpeciesList = film.SpeciesList.Select(species => new SpeciesSummaryDto
         {
-             Id= species.Id
+            Id = species.Id,
+            Name = species.Name,
+            Slug = species.Slug,
+            Language = species.Language,
+            Designation = species.Designation,
+            Classification = species.Classification,
         }).ToList();
         Starships = film.Starships.Select(starship => new StarshipSummaryDto
         {
             Id = starship.Id,
             Name = starship.Name,
+            Slug = starship.Slug,
             Model = starship.Model,
             Manufacturer = starship.Manufacturer
         }).ToList();
@@ -31,6 +37,7 @@ public class FilmDetailsDto
         {
             Id = vehicle.Id,
             Name = vehicle.Name,
+            Slug = vehicle.Slug,
             Model = vehicle.Model,
             Manufacturer = vehicle.Manufacturer
         }).ToList();
@@ -38,6 +45,7 @@ public class FilmDetailsDto
         {
             Id = characters.Id,
             Name = characters.Name,
+            Slug = characters.Slug,
             BirthYear = characters.BirthYear,
             Gender = characters.Gender,
             HomeworldId = characters.HomeworldId
@@ -46,6 +54,7 @@ public class FilmDetailsDto
         {
             Id = planets.Id,
             Name = planets.Name,
+            Slug = planets.Slug,
             Gravity = planets.Gravity,
             Population = planets.Population,
             Climate = planets.Climate

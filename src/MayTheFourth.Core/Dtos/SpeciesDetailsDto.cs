@@ -25,6 +25,7 @@ public class SpeciesDetailsDto
         {
             Id = person.Id,
             Name = person.Name,
+            Slug = person.Slug,
             BirthYear = person.BirthYear,
             Gender = person.Gender,
             HomeworldId = person.HomeworldId
@@ -33,6 +34,7 @@ public class SpeciesDetailsDto
         {
             Id = film.Id,
             Title = film.Title,
+            Slug = film.Slug,
             Director = film.Director,
             ReleaseDate = film.ReleaseDate
         }).ToList();

@@ -27,6 +27,7 @@ public class StarshipDetailsDto
         {
             Id = film.Id,
             Title = film.Title,
+            Slug = film.Slug,
             Director = film.Director,
             ReleaseDate = film.ReleaseDate
         }).ToList();
@@ -34,6 +35,7 @@ public class StarshipDetailsDto
         {
             Id = pilot.Id,
             Name = pilot.Name,
+            Slug = pilot.Slug,
             BirthYear = pilot.BirthYear,
             Gender = pilot.Gender,
             HomeworldId = pilot.HomeworldId
