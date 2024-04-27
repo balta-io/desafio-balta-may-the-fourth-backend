@@ -19,9 +19,11 @@ public static class VehicleExtension
         #region Get all vehicles
         app.MapGet("api/v1/vehicles", async
             (IRequestHandler<Core.Contexts.VehicleContext.UseCases.SearchAll.Request,
-                Core.Contexts.VehicleContext.UseCases.SearchAll.Response> handler) =>
+                Core.Contexts.VehicleContext.UseCases.SearchAll.Response> handler,
+                [FromQuery] int pageNumber = 1,
+                [FromQuery] int pageSize = 10) =>
         {
-            var request = new Core.Contexts.VehicleContext.UseCases.SearchAll.Request();
+            var request = new Core.Contexts.VehicleContext.UseCases.SearchAll.Request(pageNumber, pageSize);
             var result = await handler.Handle(request, new CancellationToken());
 
             return result.IsSuccess

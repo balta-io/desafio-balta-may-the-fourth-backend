@@ -1,4 +1,5 @@
 using System.Net;
+using MayTheFourth.Core.Dtos;
 using MayTheFourth.Core.Entities;
 using MayTheFourth.Core.Interfaces.Repositories;
 using MediatR;
@@ -27,10 +28,12 @@ public class Handler: IRequestHandler<Request, Response>
         {
             return new Response($"Erro: {ex.Message}", (int)HttpStatusCode.InternalServerError);
         }
+
+        VehicleDetailsDto vehicleDetails = new(vehicle);
         #endregion
 
         #region Response
-        return new Response("Veículo encontrado.", new ResponseData(vehicle));
+        return new Response("Veículo encontrado.", new ResponseData(vehicleDetails));
         #endregion
     }
 }

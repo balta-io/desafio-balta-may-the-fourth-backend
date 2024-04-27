@@ -5,6 +5,7 @@ using MayTheFourth.Api.Extensions.Contexts.PersonContext;
 using MayTheFourth.Api.Extensions.Contexts.PlanetContext;
 using MayTheFourth.Api.Extensions.Contexts.SpeciesContext;
 using MayTheFourth.Api.Extensions.Contexts.StartshipContext;
+using MayTheFourth.Api.Extensions.Contexts.VehicleContext;
 using Microsoft.AspNetCore.Http.Json;
 using Microsoft.OpenApi.Models;
 using System.Reflection;
@@ -18,6 +19,7 @@ builder.AddStarshipContext();
 builder.AddFilmContext();
 builder.AddPersonContext();
 builder.AddSpeciesContext();
+builder.AddVehicleContext();
 builder.AddDbContext();
 builder.AddDataImport();
 builder.AddMediatR();
@@ -36,7 +38,7 @@ builder.Services.AddSwaggerGen( options =>
         Description = "API para consulta de dados do universo de Star Wars",
         Contact = new OpenApiContact
         {
-            Name = "Capitão Igor",
+            Name = "Capitï¿½o Igor",
             Url = new Uri("https://github.com/igorsantiiago/desafio-balta-may-the-fourth-backend")
         },
         License = new OpenApiLicense
@@ -73,5 +75,6 @@ app.MapStarshipEndpoints();
 app.MapFilmEndpoints();
 app.MapPersonEndpoints();
 app.MapSpeciesEndpoints();
+app.MapVehicleEndpoints();
 
 app.Run();

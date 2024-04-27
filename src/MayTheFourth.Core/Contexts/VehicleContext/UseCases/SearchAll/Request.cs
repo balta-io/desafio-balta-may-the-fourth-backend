@@ -2,7 +2,4 @@ using MediatR;
 
 namespace MayTheFourth.Core.Contexts.VehicleContext.UseCases.SearchAll;
 
-public class Request : IRequest<Response>
-{
-    
-}
+public record Request(int PageNumber, int PageSize) : IRequest<Response>;
