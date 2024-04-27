@@ -68,20 +68,5 @@ namespace MayTheFourth.Services.ViewModels
                 ValidationViewModel.Create(ValidationModelResult.Warning, resultMessages.ToArray()) :
                 ValidationViewModel.Create(ValidationModelResult.Success);
         }
-
-        public new static MovieVM CreateFromEntity(Movie entity) =>
-            new MovieVM()
-            {
-                Title = entity.Title,
-                Episode = entity.Episode,
-                OpeningCrawl = entity.OpeningCrawl,
-                Director = entity.Director,
-                Producer = entity.Producer,
-                ReleaseDate = entity.ReleaseDate,
-                Characters = entity.Characters,
-                Planets = entity.Planets,
-                Vehicles = entity.Vehicles,
-                Starships = entity.Starships
-            };
     }
 }
