@@ -74,7 +74,10 @@ public static class StarshipExtension
             return result.IsSuccess
                 ? Results.Ok(result)
                 : Results.Json(result, statusCode: result.Status);
-        });
+        })
+            .WithTags("Starship")
+            .WithSummary("Return a starship according to slug")
+            .WithOpenApi();
         #endregion
 
         #region Create Starship

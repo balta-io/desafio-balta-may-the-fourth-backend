@@ -75,7 +75,10 @@ namespace MayTheFourth.Api.Extensions.Contexts.FilmContext
                 return result.IsSuccess
                     ? Results.Ok(result)
                     : Results.Json(result, statusCode: result.Status);
-            });
+            })
+                .WithTags("Film")
+                .WithSummary("Return a film according to slug")
+                .WithOpenApi();
             #endregion
         }
 

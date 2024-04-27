@@ -28,7 +28,7 @@ namespace MayTheFourth.Api.Extensions.Contexts.SpeciesContext
                     ? Results.Ok(result)
                     : Results.Json(result, statusCode: result.Status);
             })
-                .WithTags("Species")
+                .WithTags("Specie")
                 .Produces(TypedResults.Ok().StatusCode)
                 .Produces(TypedResults.NotFound().StatusCode)
                 .WithSummary("Returns a list of species")
@@ -49,7 +49,7 @@ namespace MayTheFourth.Api.Extensions.Contexts.SpeciesContext
                     ? Results.Ok(result)
                     : Results.Json(result, statusCode: result.Status);
             })
-                .WithTags("Film")
+                .WithTags("Specie")
                 .WithSummary("Returns a species according to ID")
                 .WithOpenApi(opt =>
                 {
