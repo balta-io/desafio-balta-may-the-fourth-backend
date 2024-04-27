@@ -45,8 +45,7 @@ namespace StarWars.API.Storages.Repositores
         public async Task<List<CharacterModel>?> GetCharactersAsync(
             CancellationToken cancellationToken = default)
         {
-            // Todo: retirar o comentario após garantir a existencia e configuração da tabela com a entidade
-            // var response = await _context.Characters.ToListAsync(cancellationToken);
+          
 
             await Task.Delay(0);
 
@@ -58,7 +57,8 @@ namespace StarWars.API.Storages.Repositores
             CancellationToken cancellationToken = default)
         {
            var response = await _context.Characters.Where(x => x.CharacterId == characterId)
-           
+                .FirstOrDefaultAsync(cancellationToken);
+
             return response;
         }
 

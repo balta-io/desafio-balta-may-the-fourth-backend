@@ -23,36 +23,36 @@ namespace StarWars.API.Services
             CancellationToken cancellationToken = default)
         {
             // Todo: Implementar os demais endpoints
-
             var characters = await ImportCharactersAsync(cancellationToken);
             
             var movies = await ImportMoviesAsync(cancellationToken);
 
             return characters = movies;
+
         }
 
         private async Task<bool> ImportMoviesAsync(
             CancellationToken cancellationToken)
         {
             // Todo: Implementar os demais endpoints
-            string moviesUrl = "https://www.swapi.tech/api/films";
+            string moviesUrl = "https://swapi.py4e.com/api/films";
 
             var response = await _httpClient.GetFromJsonAsync<MovieImport>(
                 moviesUrl, cancellationToken: cancellationToken);
 
             var _errors = new List<int>();
 
-            if (response?.Result.Count > 0)
+            if (response?.Results.Count > 0)
             {
                 int i = 0;
 
-                foreach (var movie in response.Result)
+                foreach (var movie in response.Results)
                 {
                     var model = movie.ConvertToModel();
 
                     var existMovie = await _starWarsRepository
                         .GetMovieByIdAsync(
-                        int.Parse(model.Uid),
+                        model.MovieId,
                         cancellationToken);
 
                     if (existMovie is null)
