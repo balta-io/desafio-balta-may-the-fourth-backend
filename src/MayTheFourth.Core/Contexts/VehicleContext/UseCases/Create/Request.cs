@@ -16,7 +16,7 @@ public record Request(
     int CargoCapacity,
     string Consumables,
     List<Film> Films,
-    List<People> Pilots,
+    List<Person> Pilots,
     DateTime Created,
     DateTime Edited,
     string Url) : IRequest<Response>;

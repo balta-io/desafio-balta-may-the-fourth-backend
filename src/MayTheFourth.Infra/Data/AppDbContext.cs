@@ -17,7 +17,6 @@ public class AppDbContext : DbContext
     public DbSet<Film> Films { get; set; }
     public DbSet<Person> People { get; set; }
     public DbSet<Species> Species { get; set; }
-    public DbSet<Vehicle> Vehicles { get; set; }
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {
