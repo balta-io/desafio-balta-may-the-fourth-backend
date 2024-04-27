@@ -264,48 +264,6 @@ https://localhost:7288/api/v1/film/slug/{SLUG_FILM}
 }
 ```
 
-#### 🟡 Create - Responsável por criar um filme
-```
-
-```
-
-**Curl**
-```json
-
-```
-
-**Response**
-```json
-
-```
-
-#### 🔴 Delete - Responsável por deletar um filme
-```
-
-```
-
-**Response**
-```json
-
-```
-
-#### 🔵 Update - Responsável por atualizar um filme
-```
-
-```
-
-**Curl**
-```json
-
-```
-
-**Response**
-```json
-
-```
-
----
-
 ### 🧔Person
 #### 🟢 SearchAll - Responsável por listar todos os personagens
 ```
@@ -405,48 +363,6 @@ https://localhost:7288/api/v1/people/slug/{SLUG_PEOPLE}
 }
 ```
 
-#### 🟡 Create - Responsável por criar uma pessoa
-```
-
-```
-
-**Curl**
-```json
-
-```
-
-**Response**
-```json
-
-```
-
-#### 🔴 Delete - Responsável por deletar uma pessoa
-```
-
-```
-
-**Response**
-```json
-
-```
-
-#### 🔵 Update - Responsável por atualizar uma pessoa
-```
-
-```
-
-**Curl**
-```json
-
-```
-
-**Response**
-```json
-
-```
-
----
-
 ### 🌍 Planet
 #### 🟢SearchAll - Responsável por listar todos os planetas
 ```
@@ -543,49 +459,6 @@ https://localhost:7288/api/v1/planets/slug/{SLUG_PLANET}
     "isSuccess": true
 }
 ```
-
-#### 🟡 Create - Responsável por criar um planeta
-
-```
-
-```
-
-**Curl**
-```json
-
-```
-
-**Response**
-```json
-
-```
-
-#### 🔴 Delete - Responsável por deletar um planeta
-```
-
-```
-
-**Response**
-```json
-
-```
-
-#### 🔵 Update - Responsável por atualizar um planeta
-```
-
-```
-
-**Curl**
-```json
-
-```
-
-**Response**
-```json
-
-```
-
----
 
 ### 👽 Species
 
@@ -696,49 +569,6 @@ https://localhost:7288/api/v1/slug/{SLUG_SPECIES}
 }
 ```
 
-
-#### 🟡 Create - Responsável por criar uma espécie
-```
-
-```
-
-**Curl**
-```json
-
-```
-
-**Response**
-```json
-
-```
-
-#### 🔴 Delete - Responsável por deletar uma espécie
-```
-
-```
-
-**Response**
-```json
-
-```
-
-#### 🔵 Update - Responsável por atualizar uma espécie
-```
-
-```
-
-**Curl**
-```json
-
-```
-
-**Response**
-```json
-
-```
-
----
-
 ### 🚀 Starship
 #### 🟢SearchAll - Responsável por listar todos as naves
 
@@ -847,49 +677,6 @@ https://localhost:7288/api/v1/starships/slug/{SLUG_STARSHIP}
 }
 ```
 
-#### 🟡 Create - Responsável por criar uma nave
-
-```
-
-```
-
-**Curl**
-```json
-
-```
-
-**Response**
-```json
-
-```
-
-#### 🔴 Delete - Responsável por deletar uma nave
-```
-
-```
-
-**Response**
-```json
-
-```
-
-#### 🔵 Update - Responsável por atualizar uma nave
-```
-
-```
-
-**Curl**
-```json
-
-```
-
-**Response**
-```json
-
-```
-
----
-
 ### 🚗 Vehicle
 
 #### 🟢 SearchAll - Responsável por listar todos os veículos
@@ -969,48 +756,6 @@ https://localhost:7288/api/v1/vehicles/slug/{SLUG_VEHICLE}
     "isSuccess": true
 }
 ```
-
-#### 🟡 Create - Responsável por criar um veículo
-```
-
-```
-
-**Curl**
-```json
-
-```
-
-**Response**
-```json
-
-```
-
-#### 🔴 Delete - Responsável por deletar um veículo
-```
-
-```
-
-**Response**
-```json
-
-```
-
-#### 🔵 Update - Responsável por atualizar um veículo
-```
-
-```
-
-**Curl**
-```json
-
-```
-
-**Response**
-```json
-
-```
-
----
 
 <section id="participe"> </section>
 
