@@ -48,15 +48,7 @@ namespace StarWars.API.Storages.Repositores
             var response = await _context.Characters.ToListAsync(cancellationToken);
             return response;
         }
-
-        public async Task<CharacterModel?> GetCharacterByIdAsync(
-            int characterId, CancellationToken cancellationToken = default)
-        {
-            var response = await _context.Characters.Where(x=> x.CharacterId == characterId)
-                .FirstOrDefaultAsync(cancellationToken);
-
-            return response;
-        }
+        
 
         public async Task<CharacterModel?> GetCharacterByIdAsync(
             int characterId, 
@@ -96,6 +88,14 @@ namespace StarWars.API.Storages.Repositores
             var result = await _context.SaveChangesAsync(cancellationToken);
 
             return result == 0 ? null : model;
+        }
+        
+        public async Task<List<VehicleModel>?> GetVehicleAsync(
+            CancellationToken cancellationToken = default)
+        {
+            var response = await _context.Vehicles.ToListAsync(cancellationToken);
+
+            return response;
         }
     }
 }

@@ -41,7 +41,7 @@ namespace StarWars.API.Storages.Datas
             // Todo: retirar o comentario após garantir a existencia e configuração da tabela com a entidade
             modelBuilder.ApplyConfiguration(new CharacterConfiguration());
             modelBuilder.ApplyConfiguration(new PlanetConfiguration());
-            //modelBuilder.ApplyConfiguration(new VehicleConfiguration());
+            modelBuilder.ApplyConfiguration(new VehicleConfiguration());
 
             modelBuilder.UsePropertyAccessMode(PropertyAccessMode.Property);
 

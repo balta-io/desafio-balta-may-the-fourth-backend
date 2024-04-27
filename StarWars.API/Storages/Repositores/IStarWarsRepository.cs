@@ -46,6 +46,9 @@ namespace StarWars.API.Storages.Repositores
 		Task<PlanetModel?> CreatePlanetAsync(
 			PlanetModel model,
 			CancellationToken cancellationToken = default);
+		
+		Task<List<VehicleModel>?> GetVehicleAsync(
+			CancellationToken cancellationToken = default);
     }
 }
 

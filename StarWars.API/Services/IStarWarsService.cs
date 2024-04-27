@@ -9,6 +9,7 @@ namespace StarWars.API.Services
 		Task<MovieModel?> GetMovieByIdAsync(int moveId, CancellationToken cancellationToken);
 		Task<CharacterModel?> GetCharacterByIdAsync(int characterId, CancellationToken cancellationToken);
 		Task<List<CharacterModel>?> GetCharacterAsync(CancellationToken cancellationToken);
+		Task<List<VehicleModel>?> GetVehicleAsync(CancellationToken cancellationToken);
 	}
 }
 
