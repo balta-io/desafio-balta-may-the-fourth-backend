@@ -24,15 +24,15 @@ public class DataBaseFeeder
         _client = _httpClientFactory.CreateClient();
     }
 
-    public async Task<List<JsonElement>> GetInfoFromPeopleEndpoint()
+    public async Task<List<JsonElement>> GetInfoFromPeopleEndpoint(string endpointBase, int interationLimit)
     {
-        var endpoint = "people/";
+        //var endpoint = "people/";
 
         List<JsonElement> infos = [];
 
-        for (var i = 0; i < 9; i++)
+        for (var i = 0; i < interationLimit/*9*/; i++)
         {
-            var response = await _client.GetAsync($"{_urlBase}/{endpoint}?page={i + 1}");
+            var response = await _client.GetAsync($"{_urlBase}/{endpointBase}?page={i + 1}");
             var stream = await response.Content.ReadAsStreamAsync();
             var bodyMessage = await JsonDocument.ParseAsync(stream);
 
@@ -48,6 +48,46 @@ public class DataBaseFeeder
         }
 
         return infos;
+    }
+
+    public async Task<List<Character>> GetCharactersBase(List<JsonElement> infos)
+    {
+        var characters = new List<Character>();
+        foreach (var info in infos)
+        {
+            var splitIdUrl = info.GetProperty("url").GetString()!.Split("/");
+            var splitHomeUrl = info.GetProperty("homeworld").GetString()!.Split("/");
+            var splitMoviesUrl = GetUrlRelationsId(info.GetProperty("films"));
+            var id = GetIdFromUrl(splitIdUrl);
+            var name = StringNamesFixer(info.GetProperty("name").GetString()!);
+
+            var character = new Character
+            {
+                Id = id,
+                Name = name,
+                Height = info.GetProperty("height").GetString()!,
+                Mass = info.GetProperty("mass").GetString()!,
+                HairColor = info.GetProperty("hair_color").GetString()!,
+                SkinColor = info.GetProperty("skin_color").GetString()!,
+                EyeColor = info.GetProperty("eye_color").GetString()!,
+                BirthYear = info.GetProperty("birth_year").GetString()!,
+                Gender = info.GetProperty("gender").GetString()!,
+                PlanetId = GetIdFromUrl(splitHomeUrl),
+                Movies = GetCharacterMovieBase(splitMoviesUrl, id)
+            };
+            var imgUrl = $"{_imgUrlBase}{character.Name.Replace(" ", "_")}";
+            character.ImageUrl = await ScrappyUrlImage(imgUrl);
+
+            characters.Add(character);
+        }
+
+        return characters;
+    }
+
+    public async Task<string> ScrappyUrlImage(string url)
+    {
+        string htmlContent = await _client.GetStringAsync(url);
+        return ExtractImageUrl(htmlContent);
     }
 
 //TODO============================================ABSTRAIR=================================================================
@@ -177,41 +217,24 @@ public class DataBaseFeeder
 
         return movies;
     }
-//=========================================================================================================================
 
-    public async Task<List<Character>> GetCharactersBase(List<JsonElement> infos)
+    public List<CharacterMovie> GetCharacterMovieBase(List<int> ids, int id)
     {
-        var characters = new List<Character>();
-        foreach (var info in infos)
+        var characterMovies = new List<CharacterMovie>();
+
+        for (int i = 0; i < ids.Count; i++)
         {
-            var splitIdUrl = info.GetProperty("url").GetString()!.Split("/");
-            var splitHomeUrl = info.GetProperty("homeworld").GetString()!.Split("/");
-            var splitMoviesUrl = GetUrlRelationsId(info.GetProperty("films"));
-            var id = GetIdFromUrl(splitIdUrl);
-            var name = StringNamesFixer(info.GetProperty("name").GetString()!);
-
-            var character = new Character
+            var relationship = new CharacterMovie
             {
-                Id = id,
-                Name = name,
-                Height = info.GetProperty("height").GetString()!,
-                Mass = info.GetProperty("mass").GetString()!,
-                HairColor = info.GetProperty("hair_color").GetString()!,
-                SkinColor = info.GetProperty("skin_color").GetString()!,
-                EyeColor = info.GetProperty("eye_color").GetString()!,
-                BirthYear = info.GetProperty("birth_year").GetString()!,
-                Gender = info.GetProperty("gender").GetString()!,
-                PlanetId = GetIdFromUrl(splitHomeUrl),
-                Movies = GetCharacterMovieBase(splitMoviesUrl, id)
+                CharacterId = id,
+                MovieId = ids[i],
             };
-            var imgUrl = $"{_imgUrlBase}{character.Name.Replace(" ", "_")}";
-            character.ImageUrl = await ScrappyUrlImage(imgUrl);
-
-            characters.Add(character);
+            characterMovies.Add(relationship);
         }
 
-        return characters;
+        return characterMovies;
     }
+
     public List<CharacterMovie> GetCharacterMovieRelation(List<Movie> movies, List<Character> characters)
     {
         Dictionary<int, List<CharacterMovie>> characterMovieDictionary = [];
@@ -249,24 +272,6 @@ public class DataBaseFeeder
         return characterMovies;
     }
 
-    public List<CharacterMovie> GetCharacterMovieBase(List<int> ids, int id)
-    {
-        var characterMovies = new List<CharacterMovie>();
-
-        for (int i = 0; i < ids.Count; i++)
-        {
-            var relationship = new CharacterMovie
-            {
-                CharacterId = id,
-                MovieId = ids[i],
-            };
-            characterMovies.Add(relationship);
-        }
-
-        return characterMovies;
-    }
-
-    //TODO============================================ABSTRAIR=================================================================
     public List<Planet> GetPlanetsBase(List<JsonElement> infos)
     {
         var planets = new List<Planet>();
@@ -565,14 +570,7 @@ public class DataBaseFeeder
     }
 //=========================================================================================================================
 
-    public async Task<string> ScrappyUrlImage(string url)
-    {
-        string htmlContent = await _client.GetStringAsync(url);
-
-        return ExtractImageUrl(htmlContent);
-    }
-
-    //TODO: Daqui para baixo, abstrair par uma handle do tipo static
+//TODO: Daqui para baixo, abstrair par uma handle do tipo static
     public int GetIdFromUrl(string[] url)
     {
         return int.Parse(url[^2]);

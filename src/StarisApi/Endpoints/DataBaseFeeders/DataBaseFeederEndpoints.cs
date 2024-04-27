@@ -13,7 +13,7 @@ public static class DataBaseFeederEndpoints
             try
             {
                 var infosMovies = await feeder.GetInfoFromMoviesEndpoint();
-                var infosCharacters = await feeder.GetInfoFromPeopleEndpoint();
+                var infosCharacters = await feeder.GetInfoFromPeopleEndpoint("people/", 9);
                 var infoPlanets = await feeder.GetInfoFromPlanetsEndpoint();
                 var infoStarShips = await feeder.GetInfoFromStarshiptEndpoint();
                 var infoVehicles = await feeder.GetInfoFromVehicleEndpoint();
@@ -60,7 +60,7 @@ public static class DataBaseFeederEndpoints
         {
             try
             {
-                var infosCharacters = await feeder.GetInfoFromPeopleEndpoint();
+                var infosCharacters = await feeder.GetInfoFromPeopleEndpoint("people/", 9);
                 var charactersBase = await feeder.GetCharactersBase(infosCharacters);
 
                 context.Characters.AddRange(charactersBase);
