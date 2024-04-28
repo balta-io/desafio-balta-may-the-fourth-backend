@@ -3,6 +3,7 @@ using MayTheFourth.Application.Features.Films.GetFilmes;
 using MayTheFourth.Application.Features.Films.GetFilmsById;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.RazorPages;
 
 namespace MayTheFourth.WebApi.Endpoints
 {
@@ -29,21 +30,27 @@ namespace MayTheFourth.WebApi.Endpoints
         private static async Task<IResult> GetFilmesAsync
         (
             [FromServices] IMediator mediator,
-            CancellationToken cancellationToken
+            CancellationToken cancellationToken,
+            int page,
+            int take
         )
         {
             var result = await mediator.Send(new GetFilmsRequest(), cancellationToken);
 
-            return Results.Ok(result);
+            var total = result.Count();
+            result = result.Skip((page - 1) * take).Take(take).ToList();
+
+            return Results.Ok(new { total, CurrentPage = page, take, result });
         }
 
         private static async Task<IResult> GetFilmesByIdAsync
         (
-           [FromRoute] int id,
-           [FromServices] IMediator mediator
+            [FromRoute] int id,
+            [FromServices] IMediator mediator
         )
         {
             var result = await mediator.Send(new GetFilmsByIdRequest(id));
+
 
             if (result is null)
                 return Results.NotFound();

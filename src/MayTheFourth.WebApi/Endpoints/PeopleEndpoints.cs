@@ -26,11 +26,14 @@ namespace MayTheFourth.WebApi.Endpoints
         }
 
         //TODO - Adicionar métodos
-        public static async Task<IResult> GetPeopleAsync([FromServices] IMediator mediator,CancellationToken cancellationToken)
+        public static async Task<IResult> GetPeopleAsync( int page, int take, [FromServices] IMediator mediator,CancellationToken cancellationToken)
         {
             var result = await mediator.Send(new GetPeopleRequest(), cancellationToken);
 
-            return Results.Ok(result);
+            var total = result.Count();
+            result = result.Skip((page-1)* take).Take(take).ToList();
+
+            return Results.Ok(new {total, CurrentPage = page,take,result});
         }
 
         public static async Task<IResult> GetPeopleByIdAsync([FromRoute] int id,[FromServices] IMediator mediator, CancellationToken cancellationToken)
