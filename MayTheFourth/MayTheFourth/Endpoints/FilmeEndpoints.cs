@@ -1,10 +1,10 @@
-﻿using MayTheFourth.Data;
-using MayTheFourth.Helpers.Validations;
+﻿using MayTheFourth.Helpers.Validations;
 using MayTheFourth.Interfaces.Services;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Mvc;
+using MayTheFourth.Infra.Context;
 
-namespace MayTheFourth.Endpoints.Filme;
+namespace MayTheFourth.Endpoints;
 
 /// <summary>
 /// Define os endpoints relacionados à gestão de filmes, incluindo obtenção e criação de registros de filmes.
@@ -51,7 +51,7 @@ public static class FilmeEndpoints
     /// <param name="context">O contexto do banco de dados para acesso aos dados.</param>
     /// <param name="filmeService">O serviço que fornece operações de negócio relacionadas a filmes.</param>
     /// <returns>Um resultado HTTP indicando sucesso ou falha na criação do filme.</returns>
-    public static async Task<IResult> PostFilme([FromBody] Dtos.Filme model,
+    public static async Task<IResult> PostFilme([FromBody] Filme model,
         [FromServices] MayTheFourthDataContext context,
         [FromServices] IFilmeService filmeService)
     {
@@ -61,7 +61,7 @@ public static class FilmeEndpoints
             if (errors.Any())
                 return Results.ValidationProblem(errors.ToDictionary(error => error, error => new string[] { error }));
 
-            var filme = new Dtos.Filme()
+            var filme = new Filme()
             {
                 Titulo = model.Titulo,
                 Episodio = model.Episodio,

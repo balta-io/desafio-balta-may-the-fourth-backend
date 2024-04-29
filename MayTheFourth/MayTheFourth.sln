@@ -3,7 +3,17 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.8.34408.163
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MayTheFourth", "MayTheFourth\MayTheFourth.csproj", "{BA70C657-9244-4B7F-93BA-CC3A28CCB652}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MayTheFourth.API", "MayTheFourth\MayTheFourth.API.csproj", "{BA70C657-9244-4B7F-93BA-CC3A28CCB652}"
+	ProjectSection(ProjectDependencies) = postProject
+		{8A9466DF-FAFB-4320-81DA-ECA59D9E8591} = {8A9466DF-FAFB-4320-81DA-ECA59D9E8591}
+		{C28450C7-955F-4D9E-BD75-5D1D1F79E0DA} = {C28450C7-955F-4D9E-BD75-5D1D1F79E0DA}
+	EndProjectSection
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MayTheFourth.Infra", "MayTheFourth.Infra\MayTheFourth.Infra.csproj", "{8A9466DF-FAFB-4320-81DA-ECA59D9E8591}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MayTheFourth.Domain", "MayTheFourth.Domain\MayTheFourth.Domain.csproj", "{C28450C7-955F-4D9E-BD75-5D1D1F79E0DA}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MayTheFourth.Tests", "MayTheFourth.Tests\MayTheFourth.Tests.csproj", "{31CBEB9C-07C0-4B09-A84B-68ED2521192B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +25,18 @@ Global
 		{BA70C657-9244-4B7F-93BA-CC3A28CCB652}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BA70C657-9244-4B7F-93BA-CC3A28CCB652}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{BA70C657-9244-4B7F-93BA-CC3A28CCB652}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8A9466DF-FAFB-4320-81DA-ECA59D9E8591}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8A9466DF-FAFB-4320-81DA-ECA59D9E8591}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8A9466DF-FAFB-4320-81DA-ECA59D9E8591}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8A9466DF-FAFB-4320-81DA-ECA59D9E8591}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C28450C7-955F-4D9E-BD75-5D1D1F79E0DA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C28450C7-955F-4D9E-BD75-5D1D1F79E0DA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C28450C7-955F-4D9E-BD75-5D1D1F79E0DA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C28450C7-955F-4D9E-BD75-5D1D1F79E0DA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{31CBEB9C-07C0-4B09-A84B-68ED2521192B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{31CBEB9C-07C0-4B09-A84B-68ED2521192B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{31CBEB9C-07C0-4B09-A84B-68ED2521192B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{31CBEB9C-07C0-4B09-A84B-68ED2521192B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

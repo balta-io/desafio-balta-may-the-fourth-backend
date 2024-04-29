@@ -1,4 +1,4 @@
-﻿using MayTheFourth.Endpoints.Filme;
+﻿using MayTheFourth.Endpoints;
 
 namespace MayTheFourth.Mappings.Filme;
 

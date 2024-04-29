@@ -1,8 +1,7 @@
-﻿using MayTheFourth.Dtos;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
-namespace MayTheFourth.Data.Mappings;
+namespace MayTheFourth.Infra.Mappings;
 
 /// <summary>
 /// FilmeMAP
@@ -25,26 +24,26 @@ public class FilmeMap : IEntityTypeConfiguration<Filme>
         builder.Property(x => x.Id)
             .ValueGeneratedOnAdd()
             .UseIdentityColumn();
-        
+
         // Propriedades
         builder.Property(x => x.Titulo)
             .IsRequired()
             .HasColumnName("Titulo")
             .HasColumnType("NVARCHAR")
             .HasMaxLength(100);
-        
+
         builder.Property(x => x.Episodio)
             .IsRequired()
             .HasColumnName("Episodio")
             .HasColumnType("NVARCHAR")
             .HasMaxLength(100);
-        
+
         builder.Property(x => x.Diretor)
             .IsRequired()
             .HasColumnName("Diretor")
             .HasColumnType("NVARCHAR")
             .HasMaxLength(60);
-        
+
         builder.Property(x => x.Produtor)
             .IsRequired()
             .HasColumnName("Produtor")
@@ -56,7 +55,7 @@ public class FilmeMap : IEntityTypeConfiguration<Filme>
             .HasColumnName("DataLancamento")
             .HasColumnType("NVARCHAR")
             .HasMaxLength(60);
-        
+
         // Relacionamentos
         builder
             .HasMany(x => x.Personagens)
@@ -75,7 +74,7 @@ public class FilmeMap : IEntityTypeConfiguration<Filme>
                     .HasForeignKey("FilmeId")
                     .HasConstraintName("FK_FilmePersonagem_FilmeId")
                     .OnDelete(DeleteBehavior.Cascade));
-        
+
         builder
             .HasMany(x => x.Planetas)
             .WithMany(x => x.Filmes)
@@ -93,7 +92,7 @@ public class FilmeMap : IEntityTypeConfiguration<Filme>
                     .HasForeignKey("FilmeId")
                     .HasConstraintName("FK_FilmePlaneta_FilmeId")
                     .OnDelete(DeleteBehavior.Cascade));
-        
+
         builder
             .HasMany(x => x.Veiculos)
             .WithMany(x => x.Filmes)
@@ -111,7 +110,7 @@ public class FilmeMap : IEntityTypeConfiguration<Filme>
                     .HasForeignKey("FilmeId")
                     .HasConstraintName("FK_FilmeVeiculo_FilmeId")
                     .OnDelete(DeleteBehavior.Cascade));
-        
+
         builder
             .HasMany(x => x.Naves)
             .WithMany(x => x.Filmes)

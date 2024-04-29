@@ -1,22 +1,21 @@
-﻿using MayTheFourth.Dtos;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
-namespace MayTheFourth.Data.Mappings;
+namespace MayTheFourth.Infra.Mappings;
 
 /// <summary>
-/// NavesMAP
+/// VeiculoMAP
 /// </summary>
-public class NavesEstelaresMap : IEntityTypeConfiguration<NavesEstelares>
+public class VeiculosMap : IEntityTypeConfiguration<Veiculo>
 {
     /// <summary>
     /// Mapeamento da tabela
     /// </summary>
     /// <param name="builder"></param>
-    public void Configure(EntityTypeBuilder<NavesEstelares> builder)
+    public void Configure(EntityTypeBuilder<Veiculo> builder)
     {
         // Tabela
-        builder.ToTable("NavesEstelares");
+        builder.ToTable("Veiculo");
 
         // Chave Primária
         builder.HasKey(x => x.Id);
@@ -25,97 +24,90 @@ public class NavesEstelaresMap : IEntityTypeConfiguration<NavesEstelares>
         builder.Property(x => x.Id)
             .ValueGeneratedOnAdd()
             .UseIdentityColumn();
-        
-        // Propriedades
+
+        builder.Property(x => x.Nome)
+            .IsRequired()
+            .HasColumnName("Nome")
+            .HasColumnType("NVARCHAR")
+            .HasMaxLength(60);
+
         builder.Property(x => x.Modelo)
             .IsRequired()
             .HasColumnName("Modelo")
             .HasColumnType("NVARCHAR")
-            .HasMaxLength(80);
-        
+            .HasMaxLength(60);
+
         builder.Property(x => x.Fabricante)
             .IsRequired()
             .HasColumnName("Fabricante")
             .HasColumnType("NVARCHAR")
-            .HasMaxLength(80);
-        
+            .HasMaxLength(60);
+
         builder.Property(x => x.Custo)
             .IsRequired()
             .HasColumnName("Custo")
             .HasColumnType("NVARCHAR")
-            .HasMaxLength(80);
-        
+            .HasMaxLength(60);
+
         builder.Property(x => x.Comprimento)
             .IsRequired()
             .HasColumnName("Comprimento")
             .HasColumnType("NVARCHAR")
-            .HasMaxLength(80);
+            .HasMaxLength(60);
 
         builder.Property(x => x.VelocidadeMaxima)
             .IsRequired()
             .HasColumnName("VelocidadeMaxima")
             .HasColumnType("NVARCHAR")
-            .HasMaxLength(80);
-        
+            .HasMaxLength(60);
+
         builder.Property(x => x.Tripulacao)
             .IsRequired()
             .HasColumnName("Tripulacao")
             .HasColumnType("NVARCHAR")
-            .HasMaxLength(80);
-        
+            .HasMaxLength(60);
+
         builder.Property(x => x.Passageiros)
             .IsRequired()
             .HasColumnName("Passageiros")
             .HasColumnType("NVARCHAR")
-            .HasMaxLength(80);
-        
+            .HasMaxLength(60);
+
         builder.Property(x => x.CapacidadeCarga)
             .IsRequired()
             .HasColumnName("CapacidadeCarga")
             .HasColumnType("NVARCHAR")
-            .HasMaxLength(80);
-        
-        builder.Property(x => x.ClassificacaoHiperdrive)
-            .IsRequired()
-            .HasColumnName("ClassificacaoHiperdrive")
-            .HasColumnType("NVARCHAR")
-            .HasMaxLength(80);
-        
-        builder.Property(x => x.Mglt)
-            .IsRequired()
-            .HasColumnName("Mglt")
-            .HasColumnType("NVARCHAR")
-            .HasMaxLength(80);
-        
+            .HasMaxLength(60);
+
         builder.Property(x => x.Consumiveis)
             .IsRequired()
             .HasColumnName("Consumiveis")
             .HasColumnType("NVARCHAR")
-            .HasMaxLength(80);
-        
+            .HasMaxLength(60);
+
         builder.Property(x => x.Classe)
             .IsRequired()
             .HasColumnName("Classe")
             .HasColumnType("NVARCHAR")
-            .HasMaxLength(80);
-        
+            .HasMaxLength(60);
+
         // Relacionamentos
         builder
             .HasMany(x => x.Filmes)
-            .WithMany(x => x.Naves)
+            .WithMany(x => x.Veiculos)
             .UsingEntity<Dictionary<string, object>>(
-                "PersonagemNavesEstelares",
+                "FilmePlaneta",
                 filme => filme
                     .HasOne<Filme>()
                     .WithMany()
                     .HasForeignKey("FilmeId")
                     .HasConstraintName("FK_Filme_FilmeId")
                     .OnDelete(DeleteBehavior.Cascade),
-                nave => nave
-                    .HasOne<NavesEstelares>()
+                veiculo => veiculo
+                    .HasOne<Veiculo>()
                     .WithMany()
-                    .HasForeignKey("NavesEstelaresId")
-                    .HasConstraintName("FK_NavesEstelaresFilme_NavesEstelaresId")
+                    .HasForeignKey("VeiculoId")
+                    .HasConstraintName("FK_VeiculoFilme_VeiculoId")
                     .OnDelete(DeleteBehavior.Cascade));
     }
 }

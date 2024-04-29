@@ -10,7 +10,7 @@ public static class ValidateFilme
     /// </summary>
     /// <param name="filme">O DTO do filme a ser validado.</param>
     /// <returns>Uma lista de strings contendo mensagens de erro relacionadas à validação dos dados do filme.</returns>
-    public static List<string> ValidateFilm(Dtos.Filme filme)
+    public static List<string> ValidateFilm(Filme filme)
     {
         var errors = new List<string>();
 
