@@ -27,7 +27,7 @@ public static class DataBaseFeederEndpoints
             .Produces(TypedResults.NoContent().StatusCode)
             .WithOpenApi()
             .WithSummary("Populaicona tabela " + endpoint)
-            .WithDescription("<b style='color: #dc50dc'><p style='color: yellow'>⚠️⚠️⚠️WARNING⚠️⚠️⚠️<br> Por favor Ordem de Feeder:</b>" +
+            .WithDescription("<b><p style='color: yellow'>⚠️⚠️⚠️WARNING⚠️⚠️⚠️<br> Por favor Ordem de Feeder:</b>" +
                              "<ol><li>Planets</li><li>Characters</li><li>Vehicles ou Starships</li><li>Movies</li></ol>");
         return app;
     }
@@ -43,7 +43,7 @@ public static class DataBaseFeederEndpoints
             .Produces(TypedResults.NoContent().StatusCode)
             .WithOpenApi()
             .WithSummary("Populaicona todas as tabelas de Relação")
-            .WithDescription("<b style='color: #dc50dc'><p style='color: yellow'>⚠️⚠️⚠️WARNING⚠️⚠️⚠️<br>" +
+            .WithDescription("<b><p style='color: yellow'>⚠️⚠️⚠️WARNING⚠️⚠️⚠️<br>" +
                              "Por favor, para que todas as relações ocorrerem certo<br>" +
                              "todo os elementos a serem relacionados devem ja existir na tabela.</b>");
         return app;
