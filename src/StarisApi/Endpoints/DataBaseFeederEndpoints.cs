@@ -28,7 +28,7 @@ public static class DataBaseFeederEndpoints
             .WithOpenApi()
             .WithSummary("Populaicona tabela " + endpoint)
             .WithDescription("<b><p style='color: yellow'>⚠️⚠️⚠️WARNING⚠️⚠️⚠️<br> Por favor Ordem de Feeder:</b>" +
-                             "<ol><li>Planets</li><li>Characters</li><li>Vehicles ou Starships</li><li>Movies</li></ol>");
+                             "<ol><li>Planets</li><li>Characters ou Vehicles ou Starships</li><li>por ultimo Movies</li></ol>");
         return app;
     }
 
