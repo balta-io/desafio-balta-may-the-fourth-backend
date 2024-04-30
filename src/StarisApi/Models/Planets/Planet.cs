@@ -1,6 +1,8 @@
 ﻿using StarisApi.Dtos;
+using StarisApi.Handlers;
 using StarisApi.Models.Characters;
 using StarisApi.Models.MoviesPlanet;
+using System.Text.Json;
 
 namespace StarisApi.Models.Planets;
 
@@ -18,6 +20,29 @@ public class Planet : Entity
     public virtual ICollection<Character> Characters { get; set; } = [];
 
     public virtual ICollection<MoviePlanet> Movies { get; set; } = [];
+
+    public override T ConvertFromJson<T>(JsonElement info)
+    {
+        var splitedIdUrl = info.GetProperty("url").GetString()!.Split("/");
+        var id = DataBaseFeederHandler.GetIdFromUrl(splitedIdUrl);
+
+        var planet = new Planet
+        {
+            Id = id,
+            Name = info.GetProperty("name").GetString()!,
+            Diameter = info.GetProperty("diameter").GetString()!,
+            RotationSpeed = info.GetProperty("rotation_period").GetString()!,
+            OrbitalPeriod = info.GetProperty("orbital_period").GetString()!,
+            Gravity = info.GetProperty("gravity").GetString()!,
+            Population = info.GetProperty("population").GetString()!,
+            Climate = info.GetProperty("climate").GetString()!,
+            Terrain = info.GetProperty("terrain").GetString()!,
+            SurfaceWater = info.GetProperty("surface_water").GetString()!
+        };
+        planet.ImageUrl = $"{planet._imgUrlBase}{planet.Name.Replace(" ", "_")}";
+
+        return (T)(object)planet;
+    }
 
     public override T ConvertToDto<T>()
     {

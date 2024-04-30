@@ -36,7 +36,7 @@ builder.Services.AddDbContext<SqliteContext>(opt =>
 });
 
 builder.Services.AddTransient<SqliteContext>();
-builder.Services.AddTransient<DataBaseFeeder>();
+builder.Services.AddScoped(typeof(DataBaseFeeder<>));
 builder.Services.AddScoped(typeof(Repository<>));
 
 Configurations.Host = builder.Configuration.GetValue<string>("Host")!;
@@ -65,7 +65,8 @@ app.MapGroup("/api").MapEndpoints();
 
 if (app.Environment.IsDevelopment())
 {
-    app.MapGroup("/api").MapDatabaseFeederEndpoits();
+    app.MapGroup("/api").MapFeeder();
+    app.MapGroup("/api").MapDataRelationFeederEndpoits();
 }
 
 app.Run();

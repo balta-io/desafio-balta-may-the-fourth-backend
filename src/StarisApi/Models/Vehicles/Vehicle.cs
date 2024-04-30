@@ -1,5 +1,7 @@
 ﻿using StarisApi.Dtos;
+using StarisApi.Handlers;
 using StarisApi.Models.MoviesVehicles;
+using System.Text.Json;
 
 namespace StarisApi.Models.Vehicles;
 
@@ -19,10 +21,33 @@ public class Vehicle : Entity
     
     public virtual ICollection<MovieVehicle> Movies { get; set; } = [];
 
+    public override T ConvertFromJson<T>(JsonElement info)
+    {
+        var splitedIdUrl = info.GetProperty("url").GetString()!.Split("/");
+        var id = DataBaseFeederHandler.GetIdFromUrl(splitedIdUrl);
+        var name = DataBaseFeederHandler.StringNamesFixer(info.GetProperty("name").GetString()!);
+        var vehicle = new Vehicle
+        {
+            Id = id,
+            Model = info.GetProperty("model").GetString()!,
+            Name = name,
+            VehicleClass = info.GetProperty("vehicle_class").GetString()!,
+            Manufacturer = info.GetProperty("manufacturer").GetString()!,
+            CostInCredits = info.GetProperty("cost_in_credits").GetString()!,
+            Lenght = info.GetProperty("length").GetString()!,
+            Crew = info.GetProperty("crew").GetString()!,
+            Passengers = info.GetProperty("passengers").GetString()!,
+            MaxAtmospheringSpeed = info.GetProperty("max_atmosphering_speed").GetString()!,
+            CargoCapacity = info.GetProperty("cargo_capacity").GetString()!,
+            Consumables = info.GetProperty("consumables").GetString()!
+        };
+        vehicle.ImageUrl = $"{vehicle._imgUrlBase}{DataBaseFeederHandler.StringImgUrlFixer(vehicle.Name)}";
+        return (T)(object)vehicle;
+    }
+
     public override T ConvertToDto<T>()
     {
-
-        var vehicle = new VehiclesDto
+        var vehicle = new VehicleDto
         {
             Id = Id,
             Name = Name,
