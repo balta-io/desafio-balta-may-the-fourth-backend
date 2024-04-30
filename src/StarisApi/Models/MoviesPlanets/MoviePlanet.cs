@@ -11,4 +11,13 @@ public class MoviePlanet
 
     public virtual Movie Movie {get; set; } = null!;
     public virtual Planet Planet { get; set; } = null!;
+
+    public MoviePlanet MountRelation(int movieId, int planetId)
+    {
+        return new MoviePlanet
+        {
+            MovieId = movieId,
+            PlanetId = planetId
+        };
+    }
 }

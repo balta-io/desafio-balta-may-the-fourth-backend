@@ -1,5 +1,6 @@
 ﻿using StarisApi.DbContexts;
 using StarisApi.Models;
+using StarisApi.Models.Movies;
 using StarisApi.Repository;
 
 namespace StarisApi.Endpoints.DataBaseFeeders;
@@ -32,18 +33,10 @@ public static class DataBaseFeederEndpoints
 
     public static IEndpointRouteBuilder MapDataRelationFeederEndpoits(this IEndpointRouteBuilder app)
     {
-        app.MapPost("/seedRelations", async(SqliteContext context) => {
-            var movies = context.Movies.ToList();
-            var characterMovie = movies.SelectMany(x => x.Characters).ToList();
-            var moviePlanet = movies.SelectMany(x => x.Planets).ToList();
-            var movieStarship = movies.SelectMany(x => x.Starships).ToList();
-            var movieVehicle = movies.SelectMany(x => x.Vehicles).ToList();
+        app.MapPost("/seedRelations", async(SqliteContext context, DataBaseFeeder<Movie> contextFeeder) => {
 
-            context.CharacterMovies.AddRange(characterMovie);
-            context.MoviesPlanets.AddRange(moviePlanet);
-            context.MoviesStarships.AddRange(movieStarship);
-            context.MoviesVehicles.AddRange(movieVehicle);
-            await context.SaveChangesAsync();
+            var infos = await contextFeeder.GetInfoFromEndpoint("Movie");
+            await contextFeeder.FeedRelationsTable(infos);
         }).WithTags("Relation")
           .WithOpenApi();
         return app;

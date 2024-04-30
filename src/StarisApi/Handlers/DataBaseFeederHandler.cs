@@ -1,5 +1,4 @@
-﻿using StarisApi.Models.Characters;
-using StarisApi.Models.CharactersMovies;
+﻿using StarisApi.Models.CharactersMovies;
 using StarisApi.Models.MoviesPlanet;
 using StarisApi.Models.MoviesStarships;
 using StarisApi.Models.MoviesVehicles;
@@ -30,6 +29,26 @@ public static class DataBaseFeederHandler
     public static int GetIdFromUrl(string[] url)
     {
         return int.Parse(url[^2]);
+    }
+
+    public static (string, int) GetSwapiUrlRelation(string entityName)
+    {
+
+        Dictionary<string, (string Endpoint, int Limit)> mapEntity = new()
+        {
+            { "Character", ("people/", 9) },
+            { "Planet", ("planets/", 7) },
+            { "Vehicle", ("vehicles/", 4) },
+            { "Starship", ("starships/", 4) },
+            { "Movie", ("films/", 1) }
+        };
+
+        if (mapEntity.TryGetValue(entityName, out var entityInfo))
+        {
+            return entityInfo;
+        }
+
+        throw new ArgumentException($"Entity name '{entityName}' is not supported.");
     }
 
     public static string StringNamesFixer(string name)
@@ -78,88 +97,68 @@ public static class DataBaseFeederHandler
         return url;
     }
 
-    public static List<MoviePlanet> GetMoviePlanetBase(List<int> ids, int id)
+    public static List<MoviePlanet> GetMoviePlanetBase(Dictionary<int, List<int>> relationIds)
     {
         var moviePlanets = new List<MoviePlanet>();
 
-        for (int i = 0; i < ids.Count; i++)
+        foreach (var ids in relationIds)
         {
-            var relationship = new MoviePlanet
+            var relationship = new MoviePlanet();
+            foreach (var planetId in ids.Value)
             {
-                PlanetId = ids[i],
-                MovieId = id,
-            };
-            moviePlanets.Add(relationship);
+                moviePlanets.Add(relationship.MountRelation(ids.Key, planetId));
+            }
         }
 
         return moviePlanets;
     }
 
-    public static List<MovieStarship> GetMovieStarshipBase(List<int> ids, int id)
+    public static List<MovieStarship> GetMovieStarshipBase(Dictionary<int, List<int>> relationIds)
     {
         var movieStarship = new List<MovieStarship>();
 
-        for (int i = 0; i < ids.Count; i++)
+        foreach (var ids in relationIds)
         {
-            var relationship = new MovieStarship
+            var relationship = new MovieStarship();
+            foreach (var planetId in ids.Value)
             {
-                StarshipId = ids[i],
-                MovieId = id,
-            };
-            movieStarship.Add(relationship);
+                movieStarship.Add(relationship.MountRelation(ids.Key, planetId));
+            }
         }
 
         return movieStarship;
     }
 
-    public static List<MovieVehicle> GetMovieVehicleBase(List<int> ids, int id)
+    public static List<MovieVehicle> GetMovieVehicleBase(Dictionary<int, List<int>> relationIds)
     {
-        var movieStarship = new List<MovieVehicle>();
+        var movieVehicle = new List<MovieVehicle>();
 
-        for (int i = 0; i < ids.Count; i++)
+        foreach (var ids in relationIds)
         {
-            var relationship = new MovieVehicle
+            var relationship = new MovieVehicle();
+            foreach (var planetId in ids.Value)
             {
-                VehicleId = ids[i],
-                MovieId = id,
-            };
-            movieStarship.Add(relationship);
+                movieVehicle.Add(relationship.MountRelation(ids.Key, planetId));
+            }
         }
 
-        return movieStarship;
+        return movieVehicle;
     }
 
-    public static List<CharacterMovie> GetCharacterMovieBase(List<int> ids, int id)
+    public static List<CharacterMovie> GetCharacterMovieBase(Dictionary<int, List<int>> relationIds)
     {
-        var characterMovies = new List<CharacterMovie>();
+        var characterMovie = new List<CharacterMovie>();
 
-        for (int i = 0; i < ids.Count; i++)
+        foreach (var ids in relationIds)
         {
-            var relationship = new CharacterMovie
+            var relationship = new CharacterMovie();
+            foreach (var planetId in ids.Value)
             {
-                CharacterId = id,
-                MovieId = ids[i],
-            };
-            characterMovies.Add(relationship);
+                characterMovie.Add(relationship.MountRelation(ids.Key, planetId));
+            }
         }
 
-        return characterMovies;
-    }
-
-    public static List<Character> GetPlanetCharactersBase(List<int> ids, int id)
-    {
-        var planetCharacters = new List<Character>();
-
-        for (int i = 0; i < ids.Count; i++)
-        {
-            var relationship = new Character
-            {
-                Id = ids[i],
-            };
-            planetCharacters.Add(relationship);
-        }
-
-        return planetCharacters;
+        return characterMovie;
     }
 
     public static string ExtractImageUrl(string htmlContent)
