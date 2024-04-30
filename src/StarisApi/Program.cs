@@ -5,7 +5,6 @@ using StarisApi.Configurations;
 using StarisApi.Configurations.Attributtes;
 using StarisApi.DbContexts;
 using StarisApi.Endpoints;
-using StarisApi.Endpoints.DataBaseFeeders;
 using StarisApi.Repository;
 using System.Reflection;
 using System.Text.Json.Serialization;
@@ -36,7 +35,7 @@ builder.Services.AddDbContext<SqliteContext>(opt =>
 });
 
 builder.Services.AddTransient<SqliteContext>();
-builder.Services.AddScoped(typeof(DataBaseFeeder<>));
+builder.Services.AddScoped(typeof(DataBaseFeederRepository<>));
 builder.Services.AddScoped(typeof(Repository<>));
 
 Configurations.Host = builder.Configuration.GetValue<string>("Host")!;

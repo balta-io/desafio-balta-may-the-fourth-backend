@@ -1,9 +1,8 @@
-﻿using StarisApi.DbContexts;
-using StarisApi.Models;
+﻿using StarisApi.Models;
 using StarisApi.Models.Movies;
 using StarisApi.Repository;
 
-namespace StarisApi.Endpoints.DataBaseFeeders;
+namespace StarisApi.Endpoints;
 public static class DataBaseFeederEndpoints
 {
     public static IEndpointRouteBuilder MapDatabaseFeederEndpoits<TEntity>(this IEndpointRouteBuilder app)
@@ -11,7 +10,7 @@ public static class DataBaseFeederEndpoints
     {
         var endpoint = $"{typeof(TEntity).ToString().Split(".").Last().Replace("TEntity", string.Empty)}s";
         var tag = endpoint[..^1];
-        app.MapPost($"/seed{endpoint}", async (DataBaseFeeder<TEntity> contextFeeder) =>
+        app.MapPost($"/seed{endpoint}", async (DataBaseFeederRepository<TEntity> contextFeeder) =>
         {
             try
             {
@@ -33,8 +32,8 @@ public static class DataBaseFeederEndpoints
 
     public static IEndpointRouteBuilder MapDataRelationFeederEndpoits(this IEndpointRouteBuilder app)
     {
-        app.MapPost("/seedRelations", async(SqliteContext context, DataBaseFeeder<Movie> contextFeeder) => {
-
+        app.MapPost("/seedRelations", async (DataBaseFeederRepository<Movie> contextFeeder) =>
+        {
             var infos = await contextFeeder.GetInfoFromEndpoint("Movie");
             await contextFeeder.FeedRelationsTable(infos);
         }).WithTags("Relation")

@@ -1,5 +1,4 @@
 ﻿using StarisApi.Dtos;
-using StarisApi.Endpoints.DataBaseFeeders;
 using StarisApi.Models.Characters;
 using StarisApi.Models.Movies;
 using StarisApi.Models.Planets;

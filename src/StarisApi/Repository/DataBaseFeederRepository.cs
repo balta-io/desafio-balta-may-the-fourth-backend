@@ -1,18 +1,19 @@
-﻿using StarisApi.DbContexts;
+﻿using StarisApi.Attributes;
+using StarisApi.DbContexts;
 using StarisApi.Handlers;
 using StarisApi.Models;
 using System.Text.Json;
 
 namespace StarisApi.Repository;
 
-public class DataBaseFeeder<TEntity> where TEntity : Entity, new()
+public class DataBaseFeederRepository<TEntity> where TEntity : Entity, new()
 {
     private readonly SqliteContext _context;
     private readonly IHttpClientFactory _httpClientFactory;
     private readonly string _urlBase = "https://swapi.py4e.com/api/";
     private readonly HttpClient _client;
 
-    public DataBaseFeeder(SqliteContext context, IHttpClientFactory httpClientFactory)
+    public DataBaseFeederRepository(SqliteContext context, IHttpClientFactory httpClientFactory)
     {
         _context = context;
         _httpClientFactory = httpClientFactory;
