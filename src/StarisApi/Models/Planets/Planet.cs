@@ -1,8 +1,8 @@
-﻿using StarisApi.Dtos;
+﻿using System.Text.Json;
+using StarisApi.Dtos;
 using StarisApi.Handlers;
 using StarisApi.Models.Characters;
 using StarisApi.Models.MoviesPlanet;
-using System.Text.Json;
 
 namespace StarisApi.Models.Planets;
 
@@ -46,7 +46,8 @@ public class Planet : Entity
 
     public override T ConvertToDto<T>()
     {
-        var Planet = new PlanetDto
+        var Planet =
+            new PlanetDto
             {
                 Id = Id,
                 Name = Name,
@@ -57,15 +58,14 @@ public class Planet : Entity
                 Population = Population,
                 Climate = Climate,
                 Terrain = Terrain,
-                SurfaceWater = SurfaceWater,   
+                SurfaceWater = SurfaceWater,
                 ImageUrl = ImageUrl,
                 Characters = Characters.Select(x => new ListDto(x.Id, x.Name)).ToList(),
                 Movies = Movies.Select(x => new ListDto(x.MovieId, x.Movie.Title)).ToList(),
             } as T;
 
-            return Planet!;
+        return Planet!;
     }
 
     public override string GetSearchParameter() => "Name";
-    
 }

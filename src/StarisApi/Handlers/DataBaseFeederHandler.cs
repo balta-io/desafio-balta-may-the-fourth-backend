@@ -1,8 +1,8 @@
-﻿using StarisApi.Models.CharactersMovies;
+﻿using System.Text.Json;
+using StarisApi.Models.CharactersMovies;
 using StarisApi.Models.MoviesPlanet;
 using StarisApi.Models.MoviesStarships;
 using StarisApi.Models.MoviesVehicles;
-using System.Text.Json;
 
 namespace StarisApi.Handlers;
 
@@ -33,15 +33,15 @@ public static class DataBaseFeederHandler
 
     public static (string, int) GetSwapiUrlRelation(string entityName)
     {
-
-        Dictionary<string, (string Endpoint, int Limit)> mapEntity = new()
-        {
-            { "Character", ("people/", 9) },
-            { "Planet", ("planets/", 7) },
-            { "Vehicle", ("vehicles/", 4) },
-            { "Starship", ("starships/", 4) },
-            { "Movie", ("films/", 1) }
-        };
+        Dictionary<string, (string Endpoint, int Limit)> mapEntity =
+            new()
+            {
+                { "Character", ("people/", 9) },
+                { "Planet", ("planets/", 7) },
+                { "Vehicle", ("vehicles/", 4) },
+                { "Starship", ("starships/", 4) },
+                { "Movie", ("films/", 1) }
+            };
 
         if (mapEntity.TryGetValue(entityName, out var entityInfo))
         {
@@ -53,15 +53,16 @@ public static class DataBaseFeederHandler
 
     public static string StringNamesFixer(string name)
     {
-        Dictionary<string, string> fixRelation = new()
-        {
-            { "Beru Whitesun lars" , "Beru Whitesun Lars" },
-            { "Wicket Systri Warrick", "Wicket Wystri Warrick" },
-            { "Ayla Secura", "Aayla Secura" },
-            { "Ratts Tyerel", "Ratts Tyerell" },
-            { "Sand Crawler", "Sandcrawler" },
-            { "Zephyr-G swoop bike", "Zephyr-G swoop" }
-        };
+        Dictionary<string, string> fixRelation =
+            new()
+            {
+                { "Beru Whitesun lars", "Beru Whitesun Lars" },
+                { "Wicket Systri Warrick", "Wicket Wystri Warrick" },
+                { "Ayla Secura", "Aayla Secura" },
+                { "Ratts Tyerel", "Ratts Tyerell" },
+                { "Sand Crawler", "Sandcrawler" },
+                { "Zephyr-G swoop bike", "Zephyr-G swoop" }
+            };
 
         if (fixRelation.TryGetValue(name, out string? value))
         {
@@ -73,21 +74,22 @@ public static class DataBaseFeederHandler
 
     public static string StringImgUrlFixer(string url)
     {
-        Dictionary<string, string> fixRelation = new()
-        {
-            { "Corporate Alliance tank droid", "NR-N99_Persuader-class_droid_enforcer" },
-            { "Republic Assault ship", "Acclamator-class_transgalactic_military_assault_ship" },
-            { "arc-170", "Aggressive_ReConnaissance-170_starfighter" },
-            { "Banking clan frigte", "Munificent-class_star_frigate" },
-            { "TIE bomber", "TIE/sa_bomber" },
-            { "Aleen Minor", "Aleen_Minor/Legends" },
-            { "Kalee", "Kalee/Legends" },
-            { "Star Destroyer", "Imperial_II-class_Star_Destroyer" },
-            { "X-wing", "X-wing_starfighter" },
-            { "A-wing", "A-wing_starfighter" },
-            { "Jedi starfighter", "Delta-7_Aethersprite-class_light_interceptor" },
-            { "V-wing", "Alpha-3_Nimbus-class_V-wing_starfighter" },
-        };
+        Dictionary<string, string> fixRelation =
+            new()
+            {
+                { "Corporate Alliance tank droid", "NR-N99_Persuader-class_droid_enforcer" },
+                { "Republic Assault ship", "Acclamator-class_transgalactic_military_assault_ship" },
+                { "arc-170", "Aggressive_ReConnaissance-170_starfighter" },
+                { "Banking clan frigte", "Munificent-class_star_frigate" },
+                { "TIE bomber", "TIE/sa_bomber" },
+                { "Aleen Minor", "Aleen_Minor/Legends" },
+                { "Kalee", "Kalee/Legends" },
+                { "Star Destroyer", "Imperial_II-class_Star_Destroyer" },
+                { "X-wing", "X-wing_starfighter" },
+                { "A-wing", "A-wing_starfighter" },
+                { "Jedi starfighter", "Delta-7_Aethersprite-class_light_interceptor" },
+                { "V-wing", "Alpha-3_Nimbus-class_V-wing_starfighter" },
+            };
 
         if (fixRelation.TryGetValue(url, out string? value))
         {
@@ -168,12 +170,26 @@ public static class DataBaseFeederHandler
 
         while (startIndex != -1)
         {
-            if (htmlContent.IndexOf("class=\"image image-thumbnail\"", startIndex, StringComparison.OrdinalIgnoreCase) != -1)
+            if (
+                htmlContent.IndexOf(
+                    "class=\"image image-thumbnail\"",
+                    startIndex,
+                    StringComparison.OrdinalIgnoreCase
+                ) != -1
+            )
             {
-                int hrefIndex = htmlContent.IndexOf("href=\"", startIndex, StringComparison.OrdinalIgnoreCase);
+                int hrefIndex = htmlContent.IndexOf(
+                    "href=\"",
+                    startIndex,
+                    StringComparison.OrdinalIgnoreCase
+                );
                 if (hrefIndex != -1)
                 {
-                    int endIndex = htmlContent.IndexOf("\"", hrefIndex + 6, StringComparison.OrdinalIgnoreCase);
+                    int endIndex = htmlContent.IndexOf(
+                        "\"",
+                        hrefIndex + 6,
+                        StringComparison.OrdinalIgnoreCase
+                    );
                     if (endIndex != -1)
                     {
                         resultUrl = htmlContent.Substring(hrefIndex + 6, endIndex - hrefIndex - 6);
@@ -181,7 +197,11 @@ public static class DataBaseFeederHandler
                 }
             }
 
-            startIndex = htmlContent.IndexOf("<a", startIndex + 1, StringComparison.OrdinalIgnoreCase);
+            startIndex = htmlContent.IndexOf(
+                "<a",
+                startIndex + 1,
+                StringComparison.OrdinalIgnoreCase
+            );
         }
 
         return resultUrl;
@@ -189,15 +209,16 @@ public static class DataBaseFeederHandler
 
     public static string ScrappyUrlImageForMovies(int episode)
     {
-        List<string> imageUrls = [
-                                    "https://lumiere-a.akamaihd.net/v1/images/EP1-IA-99993-RESIZED_f9ae99b6.jpeg",
-                                    "https://lumiere-a.akamaihd.net/v1/images/EP2-IA-69221-RESIZED_1e8e0971.jpeg",
-                                    "https://lumiere-a.akamaihd.net/v1/images/image_ff356cdb.jpeg",
-                                    "https://lumiere-a.akamaihd.net/v1/images/EP4_POS_2_D-RESIZED_f977074a.jpeg",
-                                    "https://lumiere-a.akamaihd.net/v1/images/image_ca7910bd.jpeg",
-                                    "https://lumiere-a.akamaihd.net/v1/images/EP6_POS_21_R-RESIZED_2873dc04.jpeg",
-                                    "https://lumiere-a.akamaihd.net/v1/images/avco_payoff_1-sht_v7_lg_32e68793.jpeg"
-                                  ];
+        List<string> imageUrls =
+        [
+            "https://lumiere-a.akamaihd.net/v1/images/EP1-IA-99993-RESIZED_f9ae99b6.jpeg",
+            "https://lumiere-a.akamaihd.net/v1/images/EP2-IA-69221-RESIZED_1e8e0971.jpeg",
+            "https://lumiere-a.akamaihd.net/v1/images/image_ff356cdb.jpeg",
+            "https://lumiere-a.akamaihd.net/v1/images/EP4_POS_2_D-RESIZED_f977074a.jpeg",
+            "https://lumiere-a.akamaihd.net/v1/images/image_ca7910bd.jpeg",
+            "https://lumiere-a.akamaihd.net/v1/images/EP6_POS_21_R-RESIZED_2873dc04.jpeg",
+            "https://lumiere-a.akamaihd.net/v1/images/avco_payoff_1-sht_v7_lg_32e68793.jpeg"
+        ];
 
         return imageUrls[episode - 1];
     }

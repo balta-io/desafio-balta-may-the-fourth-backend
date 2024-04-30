@@ -14,10 +14,6 @@ public class CharacterMovie
 
     public CharacterMovie MountRelation(int movieId, int characterId)
     {
-        return new CharacterMovie
-        {
-            MovieId = movieId,
-            CharacterId = characterId
-        };
+        return new CharacterMovie { MovieId = movieId, CharacterId = characterId };
     }
 }

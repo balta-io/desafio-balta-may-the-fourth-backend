@@ -1,11 +1,11 @@
-﻿using StarisApi.Attributes;
+﻿using System.Text.Json;
+using StarisApi.Attributes;
 using StarisApi.Dtos;
 using StarisApi.Handlers;
 using StarisApi.Models.CharactersMovies;
 using StarisApi.Models.MoviesPlanet;
 using StarisApi.Models.MoviesStarships;
 using StarisApi.Models.MoviesVehicles;
-using System.Text.Json;
 
 namespace StarisApi.Models.Movies;
 
@@ -44,8 +44,9 @@ public class Movie : Entity
     }
 
     public override T ConvertToDto<T>()
-        {
-            var movie = new MovieDto
+    {
+        var movie =
+            new MovieDto
             {
                 Id = Id,
                 Title = Title,
@@ -55,15 +56,18 @@ public class Movie : Entity
                 Production = Producer,
                 ReleaseDate = ReleaseDate,
                 ImageUrl = ImageUrl,
-                Characters = Characters.Select(x => new ListDto(x.CharacterId, x.Character.Name)).ToList(),
+                Characters = Characters
+                    .Select(x => new ListDto(x.CharacterId, x.Character.Name))
+                    .ToList(),
                 Planets = Planets.Select(x => new ListDto(x.PlanetId, x.Planet.Name)).ToList(),
                 Vehicles = Vehicles.Select(x => new ListDto(x.VehicleId, x.Vehicle.Name)).ToList(),
-                Starships = Starships.Select(x => new ListDto(x.StarshipId, x.Starship.Name)).ToList(),
+                Starships = Starships
+                    .Select(x => new ListDto(x.StarshipId, x.Starship.Name))
+                    .ToList(),
             } as T;
 
-            return movie!;
-        }
+        return movie!;
+    }
 
     public override string GetSearchParameter() => "Title";
-    
 }

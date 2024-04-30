@@ -1,12 +1,13 @@
-﻿using StarisApi.Attributes;
+﻿using System.Text.Json;
+using StarisApi.Attributes;
 using StarisApi.DbContexts;
 using StarisApi.Handlers;
 using StarisApi.Models;
-using System.Text.Json;
 
 namespace StarisApi.Repository;
 
-public class DataBaseFeederRepository<TEntity> where TEntity : Entity, new()
+public class DataBaseFeederRepository<TEntity>
+    where TEntity : Entity, new()
 {
     private readonly SqliteContext _context;
     private readonly IHttpClientFactory _httpClientFactory;
@@ -19,6 +20,7 @@ public class DataBaseFeederRepository<TEntity> where TEntity : Entity, new()
         _httpClientFactory = httpClientFactory;
         _client = _httpClientFactory.CreateClient();
     }
+
     public async Task<string> InsertNew<T>(List<TEntity> obj)
     {
         try
@@ -60,14 +62,19 @@ public class DataBaseFeederRepository<TEntity> where TEntity : Entity, new()
         return infos;
     }
 
-    public Dictionary<int, List<int>> GetRelationInfoFromJson(List<JsonElement> infos, string relationName)
+    public Dictionary<int, List<int>> GetRelationInfoFromJson(
+        List<JsonElement> infos,
+        string relationName
+    )
     {
         var relationInfo = new Dictionary<int, List<int>>();
-        for(int i = 0; i < infos.Count; i++)
+        for (int i = 0; i < infos.Count; i++)
         {
             var splitedIdUrl = infos[i].GetProperty("url").GetString()!.Split("/");
             var movieId = DataBaseFeederHandler.GetIdFromUrl(splitedIdUrl);
-            var relationIds = DataBaseFeederHandler.GetUrlRelationsId(infos[i].GetProperty(relationName));
+            var relationIds = DataBaseFeederHandler.GetUrlRelationsId(
+                infos[i].GetProperty(relationName)
+            );
             relationInfo.Add(movieId, relationIds);
         }
         return relationInfo;

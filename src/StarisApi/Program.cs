@@ -1,3 +1,5 @@
+using System.Reflection;
+using System.Text.Json.Serialization;
 using Microsoft.AspNetCore.Http.Json;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.OpenApi.Models;
@@ -6,14 +8,14 @@ using StarisApi.Configurations.Attributtes;
 using StarisApi.DbContexts;
 using StarisApi.Endpoints;
 using StarisApi.Repository;
-using System.Reflection;
-using System.Text.Json.Serialization;
 
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddHttpClient();
-builder.Services.Configure<JsonOptions>(opt => opt.SerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles);
+builder.Services.Configure<JsonOptions>(opt =>
+    opt.SerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles
+);
 builder.Services.AddSwaggerGen(opt =>
 {
     opt.EnableAnnotations();
@@ -31,7 +33,7 @@ builder.Services.AddSwaggerGen(opt =>
 builder.Services.AddDbContext<SqliteContext>(opt =>
 {
     opt.UseSqlite(builder.Configuration.GetConnectionString("DefaultConnection"))
-       .UseLazyLoadingProxies();
+        .UseLazyLoadingProxies();
 });
 
 builder.Services.AddTransient<SqliteContext>();
@@ -46,8 +48,10 @@ app.UseRouting();
 
 app.UseEndpoints(endpoint =>
 {
-    _ = endpoint.MapGet("/", async context => await Task.Run(() =>
-    context.Response.Redirect("/swagger/index.html")));
+    _ = endpoint.MapGet(
+        "/",
+        async context => await Task.Run(() => context.Response.Redirect("/swagger/index.html"))
+    );
 });
 
 app.UseHttpsRedirection();
@@ -58,7 +62,6 @@ app.UseSwaggerUI(c =>
     c.DisplayRequestDuration();
 });
 app.UseDeveloperExceptionPage();
-
 
 app.MapGroup("/api").MapEndpoints();
 

@@ -14,10 +14,6 @@ public class MovieStarship()
 
     public MovieStarship MountRelation(int movieId, int planetId)
     {
-        return new MovieStarship
-        {
-            MovieId = movieId,
-            StarshipId = planetId
-        };
+        return new MovieStarship { MovieId = movieId, StarshipId = planetId };
     }
 }

@@ -1,7 +1,7 @@
-﻿using StarisApi.Dtos;
+﻿using System.Text.Json;
+using StarisApi.Dtos;
 using StarisApi.Handlers;
 using StarisApi.Models.MoviesStarships;
-using System.Text.Json;
 
 namespace StarisApi.Models.StarShips;
 
@@ -45,36 +45,36 @@ public class Starship : Entity
             CargoCapacity = info.GetProperty("cargo_capacity").GetString()!,
             Consumables = info.GetProperty("consumables").GetString()!
         };
-        starship.ImageUrl = $"{starship._imgUrlBase}{DataBaseFeederHandler.StringImgUrlFixer(starship.Name)}";
+        starship.ImageUrl =
+            $"{starship._imgUrlBase}{DataBaseFeederHandler.StringImgUrlFixer(starship.Name)}";
         return (T)(object)starship;
     }
 
     public override T ConvertToDto<T>()
     {
-        var starship = new StarshipDto
-        {
-            Id = Id,
-            Model = Model,
-            Name = Name,
-            StarshipClass = StarshipClass,
-            Manufacturer = Manufacturer,
-            CostInCredits = CostInCredits,
-            Lenght = Lenght,
-            Crew = Crew,
-            Passengers = Passengers,
-            MaxAtmospheringSpeed = MaxAtmospheringSpeed,
-            HyperDriveRating = HyperDriveRating,
-            Megalights = Megalights,
-            CargoCapacity = CargoCapacity,
-            Consumables = Consumables,
-            ImageUrl = ImageUrl,
-            Movies = Movies.Select(x => new ListDto(x.MovieId, x.Movie.Title)).ToList(),
-        } as T;
-        
+        var starship =
+            new StarshipDto
+            {
+                Id = Id,
+                Model = Model,
+                Name = Name,
+                StarshipClass = StarshipClass,
+                Manufacturer = Manufacturer,
+                CostInCredits = CostInCredits,
+                Lenght = Lenght,
+                Crew = Crew,
+                Passengers = Passengers,
+                MaxAtmospheringSpeed = MaxAtmospheringSpeed,
+                HyperDriveRating = HyperDriveRating,
+                Megalights = Megalights,
+                CargoCapacity = CargoCapacity,
+                Consumables = Consumables,
+                ImageUrl = ImageUrl,
+                Movies = Movies.Select(x => new ListDto(x.MovieId, x.Movie.Title)).ToList(),
+            } as T;
 
         return starship!;
     }
 
     public override string GetSearchParameter() => "Name";
-    
 }

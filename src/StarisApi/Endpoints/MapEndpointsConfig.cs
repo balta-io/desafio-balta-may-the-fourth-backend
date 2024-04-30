@@ -10,7 +10,7 @@ namespace StarisApi.Endpoints
     public static class MapEndpointsConfig
     {
         //Adicionar os endpoints aqui
-        public  static IEndpointRouteBuilder MapEndpoints(this IEndpointRouteBuilder app)
+        public static IEndpointRouteBuilder MapEndpoints(this IEndpointRouteBuilder app)
         {
             app.MapGenericEndpoint<Character, CharacterDto>();
             app.MapGenericEndpoint<Movie, MovieDto>();
